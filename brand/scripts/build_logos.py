@@ -225,23 +225,23 @@ def build_core():
 def build_app_icons():
     files = []
     A = 1024.0
-    k = 0.60 * A            # keyhole drawn on the 100-grid, scaled so grid = 60% of icon
+    k = 0.74 * A            # 100-grid scaled to 74% of icon -> keyhole is 37% of icon height
     # Primary: Terracotta field, Bone keyhole, faint inner ring (hairline) — reads at 29 px.
     body = (f'<rect width="{A}" height="{A}" fill="{TERRA}"/>'
-            f'<path fill="{BONE}" d="{keyhole_d(A / 2, A / 2 + 6, k / 100)}"/>')
+            f'<path fill="{BONE}" d="{keyhole_d(A / 2, A / 2 - 0.02 * k + 4, k / 100)}"/>')
     files.append(write("lore-app-icon-1024.svg", svg(A, A, body, "LORE app icon")))
     # Dark appearance (iOS 18+/Android themed): Ink field, Terracotta keyhole
     body = (f'<rect width="{A}" height="{A}" fill="{INK}"/>'
-            f'<path fill="{TERRA}" d="{keyhole_d(A / 2, A / 2 + 6, k / 100)}"/>')
+            f'<path fill="{TERRA}" d="{keyhole_d(A / 2, A / 2 - 0.02 * k + 4, k / 100)}"/>')
     files.append(write("lore-app-icon-1024-dark.svg", svg(A, A, body, "LORE app icon (dark)")))
     # Tinted / monochrome (iOS tinted mode): white keyhole on transparent, as alpha mask
-    body = f'<path fill="#FFFFFF" d="{keyhole_d(A / 2, A / 2 + 6, k / 100)}"/>'
+    body = f'<path fill="#FFFFFF" d="{keyhole_d(A / 2, A / 2 - 0.02 * k + 4, k / 100)}"/>'
     files.append(write("lore-app-icon-1024-tinted-mask.svg", svg(A, A, body, "LORE app icon (tinted mask)")))
     # Preview with iOS-style squircle mask (for decks only — never ship pre-masked to the stores)
     r = 0.2237 * A
     body = (f'<defs><clipPath id="sq"><rect width="{A}" height="{A}" rx="{f(r)}"/></clipPath></defs>'
             f'<g clip-path="url(#sq)"><rect width="{A}" height="{A}" fill="{TERRA}"/>'
-            f'<path fill="{BONE}" d="{keyhole_d(A / 2, A / 2 + 6, k / 100)}"/></g>')
+            f'<path fill="{BONE}" d="{keyhole_d(A / 2, A / 2 - 0.02 * k + 4, k / 100)}"/></g>')
     files.append(write("lore-app-icon-preview-rounded.svg", svg(A, A, body, "LORE app icon (rounded preview)")))
     # Favicon: symbol disc tuned for 16–32 px (head slightly larger for legibility)
     body = (f'<circle cx="16" cy="16" r="16" fill="{TERRA}"/>'
@@ -391,8 +391,8 @@ def build_construction():
         ("BODY", "flares 10 u → 23 u wide, from y 50 to y 77"),
         ("BASE", "flat · sits 23 u above disc edge"),
         ("k", "= head Ø (26 u) = clear-space unit"),
-        ("OPTICS", "keyhole mass centred at y 52.6 (2.6 u low)"),
-        ("", "so the void feels 'seated', like a door sill"),
+        ("OPTICS", "keyhole spans y 27 to 77: its centre sits 2 u low"),
+        ("", "so the void feels 'seated', like a door on its sill"),
         ("FAVICON", "≤ 32 px: keyhole scale +3%, head +0.4 px"),
         ("COLOUR", "Terracotta #C4623A disc · void = ground"),
         ("SOURCE", "logo/svg/lore-symbol-*.svg (outlines)"),
@@ -488,16 +488,18 @@ def build_misuse():
         cx = 80 + (i % 4) * (tw + 25)
         cy = 140 + (i // 4) * (th + 70)
         p.append(f'<rect x="{cx}" y="{cy}" width="{tw}" height="{th - 60}" fill="#EAE3D7"/>')
-        c = 50.0
+        c = 34.0
         D = 1.5 * c
         gap = 0.45 * D
         _g, w = wordmark_g(0, 0, c, INK)
+        p.append(f'<clipPath id="c{i}"><rect x="{cx}" y="{cy}" width="{tw}" height="{th - 60}"/></clipPath><g clip-path="url(#c{i})">')
+        close_tile = True
         LW = D + gap + w
         x0 = cx + (tw - LW) / 2
         y0 = cy + (th - 60 - D) / 2
         lock = (f'<path fill="{TERRA}" fill-rule="evenodd" d="{symbol_d(x0, y0, D)}"/>' + wordmark_g(x0 + D + gap, y0 + (D - c) / 2, c, INK)[0])
         if kind == "stretch":
-            p.append(f'<g transform="translate({cx + tw / 2} {cy + 120}) scale(1.35 0.7) translate({-cx - tw / 2} {-cy - 120})">{lock}</g>')
+            p.append(f'<g transform="translate({cx + tw / 2} {cy + 120}) scale(1.25 0.72) translate({-cx - tw / 2} {-cy - 120})">{lock}</g>')
         elif kind == "retype":
             p.append(f'<path fill="{TERRA}" fill-rule="evenodd" d="{symbol_d(x0, y0, D)}"/>')
             t, _ = label("Lore", x0 + D + gap, y0 + D * 0.72, 58, INK, "fraunces", opsz=144, wght=700, SOFT=100, WONK=1)
@@ -515,6 +517,7 @@ def build_misuse():
             p.append(stripes + lock)
         elif kind == "proportion":
             p.append(f'<path fill="{TERRA}" fill-rule="evenodd" d="{symbol_d(x0 + 10, y0 + 18, D * 0.5)}"/>' + wordmark_g(x0 + D * 0.5 + 18, y0, c * 1.4, INK)[0])
+        p.append('</g>')
         # red cross mark
         p.append(f'<g stroke="{"#D2392B"}" stroke-width="3"><line x1="{cx + tw - 34}" y1="{cy + 14}" x2="{cx + tw - 14}" y2="{cy + 34}"/><line x1="{cx + tw - 14}" y1="{cy + 14}" x2="{cx + tw - 34}" y2="{cy + 34}"/></g>')
         t, _ = label(cap, cx, cy + th - 25, 18, INK, "inter")
