@@ -1,0 +1,31 @@
+{
+  "name": "lore-software",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "LORE Labs software monorepo: core engine, prototype PWA, backend, simulations",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "pack:build": "cd city-pack && python3 -m lore_citypack build --city rome --seed data/rome_seed.json --out output && node ../scripts/copy-pack.mjs",
+    "pack:test": "cd city-pack && python3 -m pytest -q",
+    "sim": "tsx simulations/walk-sim.ts",
+    "app:dev": "vite --config apps/prototype/vite.config.ts",
+    "app:build": "vite build --config apps/prototype/vite.config.ts",
+    "app:preview": "vite preview --config apps/prototype/vite.config.ts --port 4173 --strictPort",
+    "app:screenshots": "node apps/prototype/scripts/screenshots.mjs",
+    "backend": "tsx backend/src/server.ts",
+    "test:all": "npm run typecheck && npm test && npm run pack:test && npm run sim"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "playwright": "1.56",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21",
+    "vitest": "^2.1.9"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0"
+  }
+}

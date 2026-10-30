@@ -1,0 +1,6 @@
+node_modules/
+apps/prototype/dist/
+city-pack/**/__pycache__/
+city-pack/.pytest_cache/
+.pytest_cache/
+backend/.data/
