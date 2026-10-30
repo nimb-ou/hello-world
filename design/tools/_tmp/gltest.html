@@ -1,0 +1,2 @@
+<canvas id=c width=200 height=200></canvas><script>
+const gl=document.getElementById('c').getContext('webgl2');const e=gl.getExtension('WEBGL_debug_renderer_info');window.__info=gl?gl.getParameter(gl.VERSION)+' | '+gl.getParameter(e?e.UNMASKED_RENDERER_WEBGL:gl.RENDERER)+' | float:'+!!gl.getExtension('EXT_color_buffer_float')+' maxtex:'+gl.getParameter(gl.MAX_TEXTURE_SIZE)+' maxrb:'+gl.getParameter(gl.MAX_RENDERBUFFER_SIZE):'NO GL';console.error(window.__info);window.__done=true;</script>

@@ -1,0 +1,17 @@
+id,tier,ks_price_usd,msrp_usd,saving_pct,limit,includes,est_delivery
+T0,Supporter,5,,,unlimited,"Name in Founding Walkers credits; backer updates",
+T1,Trip Pass Digital,25,29,14,unlimited,"14-day Trip Pass (5 GB) + Rome & Lisbon packs in app",2027-12
+T2,Pebble Super Early Bird,99,149,34,750,"Pebble + clip + cable; 6 mo Explorer",2027-12
+T3,Pebble Early Bird,115,149,23,2000,"Pebble + clip + cable; 6 mo Explorer",2027-12
+T4,Pebble Kickstarter Special,125,149,16,unlimited,"Pebble + clip + cable; 6 mo Explorer",2028-01
+T5,Square Super Early Bird,199,299,33,750,"Square + magnetic dock; eSIM; 6 mo Explorer",2027-12
+T6,Square Early Bird,229,299,23,2000,"Square + magnetic dock; eSIM; 6 mo Explorer",2027-12
+T7,Square Kickstarter Special,249,299,17,unlimited,"Square + magnetic dock; eSIM; 6 mo Explorer",2028-01
+T8,Atlas Founders Edition,399,549,27,500,"Numbered Atlas + leather lanyard + dock; 6 mo Explorer",2028-04
+T9,Atlas Kickstarter Special,449,549,18,unlimited,"Atlas + dock; 6 mo Explorer",2028-04
+T10,Pebble Duo,209,298,30,1000,"2x Pebble + 2 clips",2027-12
+T11,Square Traveller Kit,299,466,36,1500,"Square + LORE Buds + rugged case + power puck",2028-01
+T12,Pebble Explorer Kit,179,277,35,1500,"Pebble + LORE Buds + leather lanyard",2028-01
+T13,Family Pack,399,596,33,300,"4x Pebble + family Pass 6 mo",2028-01
+T14,Rome Patron,1200,,,25,"Atlas Founders + private Rome walk (travel excluded) + personal story card",2028-04
+T15,Fleet Pilot (B2B),1190,1490,20,30,"10x Pebble + multi-dock tray + 12-mo fleet dashboard + branded intro story",2028-01
