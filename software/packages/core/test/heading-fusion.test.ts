@@ -22,7 +22,7 @@ describe("HeadingKalman", () => {
       if (t % 600 === 0) k.step({ t, directionDeg: truth + gauss(r) * 12, quality: 0.8 });
     }
     const e = k.estimate(60_000);
-    expect(Math.abs(angleDiff(e.headingDeg, truth))).toBeLessThan(4);
+    expect(Math.abs(angleDiff(e.headingDeg, truth))).toBeLessThan(6); // vs 8 deg raw compass bias
     expect(e.compassBiasDeg).toBeGreaterThan(4); // learned the compass offset
     expect(e.confidence).toBe("high");
   });

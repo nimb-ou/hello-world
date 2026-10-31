@@ -144,7 +144,7 @@ def mockup_sheet():
 
 
 def merch():
-    W, H = 420, 240
+    W, H = 420, 185
     p = [f'<rect width="{W}" height="{H}" fill="{BONE}"/>']
     t, _ = label("LORE KIT & MERCH — CONCEPTS (NOT YET COSTED)", 16, 18, 3.6, INK, "mono", tracking=0.12)
     p.append(t)
@@ -204,7 +204,7 @@ def merch():
             t, _ = label(ln, x + 2, yy, 2.3, "#3A3D43", "inter")
             p.append(t)
             yy += 3.6
-    t, _ = label("Principle: merch must be useful on a walk. No disposable swag, no plastic, no slogans beyond our own lines.", 16, H - 30, 2.8, INK, "inter")
+    t, _ = label("Principle: merch must be useful on a walk. No disposable swag, no plastic, no slogans beyond our own lines.", 16, H - 14, 2.8, INK, "inter")
     p.append(t)
     with open(os.path.join(OUT, "merch-concepts.svg"), "w") as fh:
         fh.write(mmdoc(W, H, "".join(p), "LORE merch concepts", scale=6))
