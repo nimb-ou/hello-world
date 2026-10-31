@@ -1,0 +1,3205 @@
+{
+ "schema_version": "1.0",
+ "city": "mumbai",
+ "name": "Mumbai",
+ "bbox": [
+  18.89,
+  72.79,
+  19.05,
+  72.86
+ ],
+ "generated_at": "2026-10-31T17:40:02+00:00",
+ "build": {
+  "mode": "seed",
+  "notes": [
+   "footprints: placeholder (null) - OSM building footprint stage not yet implemented"
+  ],
+  "curation_note": "Curated offline by LORE Labs software team for the founder's first real walk tests (Rome remains the commercial launch pack). Focus: South Mumbai's Fort / Kala Ghoda / Colaba / Churchgate heritage area, i.e. the UNESCO 'Victorian Gothic and Art Deco Ensembles of Mumbai' (2018) and Chhatrapati Shivaji Maharaj Terminus (2004), plus a few well-known landmarks further north. Only well-established facts; uncertain claims were left out. review_status=curated: pending `python -m lore_citypack verify` and human editorial review. Coordinates are from memory and approximate (typically within ~30-60 m) - FIELD-CHECK on the first walk and correct before trusting left/right calls."
+ },
+ "routing": {
+  "status": "not-included-in-v1",
+  "plan": "Pedestrian routing graph generated from OSM highway=* (footway, pedestrian, living_street, steps, residential, crossing nodes) with Valhalla tile builder; shipped as a separate routing tile set (~25-40 MB for central Rome) so packs can update stories without re-downloading routing.",
+  "crossings": "Crossing nodes (highway=crossing) feed the Safety service's 'quiet while crossing' signal."
+ },
+ "stats": {
+  "pois": 62,
+  "facts": 144,
+  "sources": 63
+ },
+ "fact_support": {},
+ "pois": [
+  {
+   "id": "mumbai-afghan-church",
+   "name": "Afghan Church",
+   "lat": 18.905,
+   "lng": 72.8135,
+   "category": "church",
+   "tags": [
+    "colaba",
+    "hidden-gem",
+    "military",
+    "victorian-gothic"
+   ],
+   "interest": 0.606,
+   "visible_range_m": 100,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-afghan-church-1",
+     "poi_id": "mumbai-afghan-church",
+     "text": "Officially the Church of St. John the Evangelist, the Afghan Church was built between 1847 and 1858.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Afghan_Church",
+       "title": "Wikipedia (en): Afghan Church"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-afghan-church-2",
+     "poi_id": "mumbai-afghan-church",
+     "text": "It commemorates the British and Indian soldiers who died in the First Anglo-Afghan War, which is how it got its name.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Afghan_Church",
+       "title": "Wikipedia (en): Afghan Church"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Afghan_Church"
+  },
+  {
+   "id": "mumbai-asiatic-society-town-hall",
+   "name": "Asiatic Society (Town Hall)",
+   "lat": 18.9316,
+   "lng": 72.8363,
+   "category": "palace",
+   "tags": [
+    "fort",
+    "landmark",
+    "library",
+    "neoclassical"
+   ],
+   "interest": 0.749,
+   "visible_range_m": 100,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-asiatic-society-town-hall-1",
+     "poi_id": "mumbai-asiatic-society-town-hall",
+     "text": "The Town Hall, with its grand steps and Doric columns, was completed in 1833 in the neoclassical style, designed by Colonel Thomas Cowper.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Asiatic_Society_of_Mumbai",
+       "title": "Wikipedia (en): Asiatic Society of Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-asiatic-society-town-hall-2",
+     "poi_id": "mumbai-asiatic-society-town-hall",
+     "text": "It houses the Asiatic Society of Mumbai and its historic library.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Asiatic_Society_of_Mumbai",
+       "title": "Wikipedia (en): Asiatic Society of Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-asiatic-society-town-hall-3",
+     "poi_id": "mumbai-asiatic-society-town-hall",
+     "text": "The library's treasures include a rare fourteenth-century manuscript of Dante's Divine Comedy.",
+     "kind": "culture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Asiatic_Society_of_Mumbai",
+       "title": "Wikipedia (en): Asiatic Society of Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Asiatic_Society_of_Mumbai"
+  },
+  {
+   "id": "mumbai-ballard-estate",
+   "name": "Ballard Estate",
+   "lat": 18.936,
+   "lng": 72.8398,
+   "category": "neighbourhood",
+   "tags": [
+    "edwardian",
+    "hidden-gem",
+    "port",
+    "wittet"
+   ],
+   "interest": 0.521,
+   "visible_range_m": 120,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-ballard-estate-1",
+     "poi_id": "mumbai-ballard-estate",
+     "text": "Ballard Estate is a planned business district built in the 1910s by the Bombay Port Trust on land reclaimed from the harbour.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Ballard_Estate",
+       "title": "Wikipedia (en): Ballard Estate"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-ballard-estate-2",
+     "poi_id": "mumbai-ballard-estate",
+     "text": "Its uniform stone office buildings were laid out by George Wittet, giving the area a distinctly European, Edwardian look.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Ballard_Estate",
+       "title": "Wikipedia (en): Ballard Estate"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Ballard_Estate"
+  },
+  {
+   "id": "mumbai-bandra-worli-sea-link",
+   "name": "Bandra-Worli Sea Link",
+   "lat": 19.038,
+   "lng": 72.817,
+   "category": "bridge",
+   "tags": [
+    "engineering",
+    "landmark",
+    "modern",
+    "waterfront"
+   ],
+   "interest": 0.667,
+   "visible_range_m": 1000,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-bandra-worli-sea-link-1",
+     "poi_id": "mumbai-bandra-worli-sea-link",
+     "text": "This cable-stayed bridge across Mahim Bay opened in 2009, linking Bandra and Worli over the sea.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bandra%E2%80%93Worli_Sea_Link",
+       "title": "Wikipedia (en): Bandra–Worli Sea Link"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bandra-worli-sea-link-2",
+     "poi_id": "mumbai-bandra-worli-sea-link",
+     "text": "Its official name is the Rajiv Gandhi Sea Link.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bandra%E2%80%93Worli_Sea_Link",
+       "title": "Wikipedia (en): Bandra–Worli Sea Link"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Bandra%E2%80%93Worli_Sea_Link"
+  },
+  {
+   "id": "mumbai-banganga-tank",
+   "name": "Banganga Tank",
+   "lat": 18.9456,
+   "lng": 72.7945,
+   "category": "hidden_gem",
+   "tags": [
+    "hidden-gem",
+    "hindu",
+    "medieval",
+    "water"
+   ],
+   "interest": 0.706,
+   "visible_range_m": 80,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-banganga-tank-1",
+     "poi_id": "mumbai-banganga-tank",
+     "text": "This ancient water tank, surrounded by temples and steps, was built in 1127 by a minister at the court of the Silhara dynasty.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Banganga_Tank",
+       "title": "Wikipedia (en): Banganga Tank"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-banganga-tank-2",
+     "poi_id": "mumbai-banganga-tank",
+     "text": "Legend says an arrow, or baan, shot into the ground during the Ramayana story released a spring of Ganges water here, which gives the tank its name.",
+     "kind": "legend",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Banganga_Tank",
+       "title": "Wikipedia (en): Banganga Tank"
+      }
+     ],
+     "review_status": "curated",
+     "is_legend": true
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Banganga_Tank"
+  },
+  {
+   "id": "mumbai-bhau-daji-lad-museum",
+   "name": "Dr. Bhau Daji Lad Museum",
+   "lat": 18.9785,
+   "lng": 72.8347,
+   "category": "museum",
+   "tags": [
+    "museum",
+    "statue-history",
+    "victorian"
+   ],
+   "interest": 0.635,
+   "visible_range_m": 60,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-bhau-daji-lad-museum-1",
+     "poi_id": "mumbai-bhau-daji-lad-museum",
+     "text": "Opened in 1872 as the Victoria and Albert Museum, this is the oldest museum in Mumbai.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Dr._Bhau_Daji_Lad_Museum",
+       "title": "Wikipedia (en): Dr. Bhau Daji Lad Museum"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bhau-daji-lad-museum-2",
+     "poi_id": "mumbai-bhau-daji-lad-museum",
+     "text": "Its restoration won a UNESCO Asia-Pacific Heritage Award in 2005.",
+     "kind": "architecture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Dr._Bhau_Daji_Lad_Museum",
+       "title": "Wikipedia (en): Dr. Bhau Daji Lad Museum"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bhau-daji-lad-museum-3",
+     "poi_id": "mumbai-bhau-daji-lad-museum",
+     "text": "In the gardens nearby stands the original statue that gave Kala Ghoda its name.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Dr._Bhau_Daji_Lad_Museum",
+       "title": "Wikipedia (en): Dr. Bhau Daji Lad Museum"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Dr._Bhau_Daji_Lad_Museum"
+  },
+  {
+   "id": "mumbai-bmc-headquarters",
+   "name": "BMC Headquarters",
+   "lat": 18.9395,
+   "lng": 72.8341,
+   "category": "palace",
+   "tags": [
+    "csmt-area",
+    "stevens",
+    "victorian-gothic"
+   ],
+   "interest": 0.608,
+   "visible_range_m": 120,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-bmc-headquarters-1",
+     "poi_id": "mumbai-bmc-headquarters",
+     "text": "The headquarters of the Brihanmumbai Municipal Corporation, the city government, was completed in 1893.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Municipal_Corporation_Building,_Mumbai",
+       "title": "Wikipedia (en): Municipal Corporation Building, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bmc-headquarters-2",
+     "poi_id": "mumbai-bmc-headquarters",
+     "text": "Like the station opposite, it was designed by Frederick William Stevens, mixing Gothic with Indo-Saracenic elements.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Municipal_Corporation_Building,_Mumbai",
+       "title": "Wikipedia (en): Municipal Corporation Building, Mumbai"
+      }
+     ],
+     "review_status": "curated",
+     "look_up": true
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Municipal_Corporation_Building,_Mumbai"
+  },
+  {
+   "id": "mumbai-bnhs-hornbill-house",
+   "name": "Bombay Natural History Society (Hornbill House)",
+   "lat": 18.9264,
+   "lng": 72.8337,
+   "category": "museum",
+   "tags": [
+    "hidden-gem",
+    "nature",
+    "science"
+   ],
+   "interest": 0.501,
+   "visible_range_m": 40,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-bnhs-hornbill-house-1",
+     "poi_id": "mumbai-bnhs-hornbill-house",
+     "text": "Hornbill House is the home of the Bombay Natural History Society, founded in 1883 and one of India's oldest nature research organisations.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_Natural_History_Society",
+       "title": "Wikipedia (en): Bombay Natural History Society"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bnhs-hornbill-house-2",
+     "poi_id": "mumbai-bnhs-hornbill-house",
+     "text": "The great ornithologist Salim Ali, often called the birdman of India, was closely associated with the society for most of his life.",
+     "kind": "people",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_Natural_History_Society",
+       "title": "Wikipedia (en): Bombay Natural History Society"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Bombay_Natural_History_Society"
+  },
+  {
+   "id": "mumbai-bombay-gymkhana",
+   "name": "Bombay Gymkhana",
+   "lat": 18.937,
+   "lng": 72.832,
+   "category": "park",
+   "tags": [
+    "colonial",
+    "cricket",
+    "sport"
+   ],
+   "interest": 0.523,
+   "visible_range_m": 100,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-bombay-gymkhana-1",
+     "poi_id": "mumbai-bombay-gymkhana",
+     "text": "The Bombay Gymkhana sports club was founded in 1875.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_Gymkhana",
+       "title": "Wikipedia (en): Bombay Gymkhana"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bombay-gymkhana-2",
+     "poi_id": "mumbai-bombay-gymkhana",
+     "text": "Its ground hosted the first Test cricket match ever played in India, between India and England, in December 1933.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_Gymkhana",
+       "title": "Wikipedia (en): Bombay Gymkhana"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Bombay_Gymkhana"
+  },
+  {
+   "id": "mumbai-bombay-high-court",
+   "name": "Bombay High Court",
+   "lat": 18.9312,
+   "lng": 72.8301,
+   "category": "palace",
+   "tags": [
+    "landmark",
+    "unesco",
+    "victorian-gothic"
+   ],
+   "interest": 0.749,
+   "visible_range_m": 150,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-bombay-high-court-1",
+     "poi_id": "mumbai-bombay-high-court",
+     "text": "The Bombay High Court building was completed in 1878 in the Gothic Revival style, designed by the British engineer James A. Fuller.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_High_Court",
+       "title": "Wikipedia (en): Bombay High Court"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bombay-high-court-2",
+     "poi_id": "mumbai-bombay-high-court",
+     "text": "The court itself was established in 1862 as one of the three chartered high courts of British India, with Calcutta and Madras.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_High_Court",
+       "title": "Wikipedia (en): Bombay High Court"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bombay-high-court-3",
+     "poi_id": "mumbai-bombay-high-court",
+     "text": "Look up at the roofline: statues of Justice and Mercy stand above the building.",
+     "kind": "art",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_High_Court",
+       "title": "Wikipedia (en): Bombay High Court"
+      }
+     ],
+     "review_status": "curated",
+     "look_up": true
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Bombay_High_Court"
+  },
+  {
+   "id": "mumbai-bombay-house",
+   "name": "Bombay House",
+   "lat": 18.9312,
+   "lng": 72.8337,
+   "category": "palace",
+   "tags": [
+    "fort",
+    "tata",
+    "wittet"
+   ],
+   "interest": 0.503,
+   "visible_range_m": 50,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-bombay-house-1",
+     "poi_id": "mumbai-bombay-house",
+     "text": "Bombay House has been the headquarters of the Tata Group since it was built in 1924.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_House",
+       "title": "Wikipedia (en): Bombay House"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bombay-house-2",
+     "poi_id": "mumbai-bombay-house",
+     "text": "It was designed by George Wittet, the architect of the Gateway of India.",
+     "kind": "architecture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_House",
+       "title": "Wikipedia (en): Bombay House"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Bombay_House"
+  },
+  {
+   "id": "mumbai-bombay-stock-exchange",
+   "name": "Bombay Stock Exchange",
+   "lat": 18.9296,
+   "lng": 72.8339,
+   "category": "monument",
+   "tags": [
+    "finance",
+    "fort",
+    "landmark",
+    "modern"
+   ],
+   "interest": 0.762,
+   "visible_range_m": 200,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-bombay-stock-exchange-1",
+     "poi_id": "mumbai-bombay-stock-exchange",
+     "text": "The Bombay Stock Exchange traces its origins to 1875 and is the oldest stock exchange in Asia.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_Stock_Exchange",
+       "title": "Wikipedia (en): Bombay Stock Exchange"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-bombay-stock-exchange-2",
+     "poi_id": "mumbai-bombay-stock-exchange",
+     "text": "Its tower, Phiroze Jeejeebhoy Towers, stands on Dalal Street, the brokers' street whose name has become shorthand for India's stock market.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombay_Stock_Exchange",
+       "title": "Wikipedia (en): Bombay Stock Exchange"
+      }
+     ],
+     "review_status": "curated",
+     "look_up": true
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Bombay_Stock_Exchange"
+  },
+  {
+   "id": "mumbai-brabourne-stadium",
+   "name": "Brabourne Stadium",
+   "lat": 18.9323,
+   "lng": 72.8247,
+   "category": "park",
+   "tags": [
+    "art-deco",
+    "cricket",
+    "sport"
+   ],
+   "interest": 0.488,
+   "visible_range_m": 120,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-brabourne-stadium-1",
+     "poi_id": "mumbai-brabourne-stadium",
+     "text": "Brabourne Stadium, home of the Cricket Club of India, opened in 1937.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Brabourne_Stadium",
+       "title": "Wikipedia (en): Brabourne Stadium"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-brabourne-stadium-2",
+     "poi_id": "mumbai-brabourne-stadium",
+     "text": "It is named after Lord Brabourne, the governor of Bombay at the time.",
+     "kind": "people",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Brabourne_Stadium",
+       "title": "Wikipedia (en): Brabourne Stadium"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Brabourne_Stadium"
+  },
+  {
+   "id": "mumbai-cafe-mondegar",
+   "name": "Cafe Mondegar",
+   "lat": 18.9233,
+   "lng": 72.8322,
+   "category": "hidden_gem",
+   "tags": [
+    "art",
+    "colaba",
+    "food",
+    "hidden-gem"
+   ],
+   "interest": 0.601,
+   "visible_range_m": 25,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-cafe-mondegar-1",
+     "poi_id": "mumbai-cafe-mondegar",
+     "text": "The walls of Cafe Mondegar are covered with murals of Bombay life by the cartoonist Mario Miranda.",
+     "kind": "art",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Caf%C3%A9_Mondegar",
+       "title": "Wikipedia (en): Café Mondegar"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-cafe-mondegar-2",
+     "poi_id": "mumbai-cafe-mondegar",
+     "text": "It is also known for its jukebox, a rarity among Mumbai's cafes.",
+     "kind": "culture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Caf%C3%A9_Mondegar",
+       "title": "Wikipedia (en): Café Mondegar"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Caf%C3%A9_Mondegar"
+  },
+  {
+   "id": "mumbai-churchgate-station",
+   "name": "Churchgate Station",
+   "lat": 18.9354,
+   "lng": 72.8275,
+   "category": "monument",
+   "tags": [
+    "churchgate",
+    "railways"
+   ],
+   "interest": 0.563,
+   "visible_range_m": 80,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-churchgate-station-1",
+     "poi_id": "mumbai-churchgate-station",
+     "text": "Churchgate station is the southern terminus of the Western line of Mumbai's suburban railway, one of the busiest commuter rail systems in the world.",
+     "kind": "practical",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Churchgate_railway_station",
+       "title": "Wikipedia (en): Churchgate railway station"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-churchgate-station-2",
+     "poi_id": "mumbai-churchgate-station",
+     "text": "It is named after the Church Gate of the old fort, which led to St. Thomas Cathedral.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Churchgate_railway_station",
+       "title": "Wikipedia (en): Churchgate railway station"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Churchgate_railway_station"
+  },
+  {
+   "id": "mumbai-colaba-causeway",
+   "name": "Colaba Causeway",
+   "lat": 18.9175,
+   "lng": 72.83,
+   "category": "street",
+   "tags": [
+    "colaba",
+    "market",
+    "shopping"
+   ],
+   "interest": 0.558,
+   "visible_range_m": 80,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-colaba-causeway-1",
+     "poi_id": "mumbai-colaba-causeway",
+     "text": "Colaba was once a separate island. The causeway, completed in 1838, joined Colaba and Old Woman's Island to the main island of Bombay.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Colaba_Causeway",
+       "title": "Wikipedia (en): Colaba Causeway"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-colaba-causeway-2",
+     "poi_id": "mumbai-colaba-causeway",
+     "text": "Its official name is Shahid Bhagat Singh Road, and its pavements are one long street market.",
+     "kind": "practical",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Colaba_Causeway",
+       "title": "Wikipedia (en): Colaba Causeway"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Colaba_Causeway"
+  },
+  {
+   "id": "mumbai-crawford-market",
+   "name": "Crawford Market (Mahatma Jyotiba Phule Mandai)",
+   "lat": 18.9474,
+   "lng": 72.8346,
+   "category": "square",
+   "tags": [
+    "food",
+    "kipling",
+    "market",
+    "victorian"
+   ],
+   "interest": 0.673,
+   "visible_range_m": 100,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-crawford-market-1",
+     "poi_id": "mumbai-crawford-market",
+     "text": "Crawford Market was completed in 1869 and named after Arthur Crawford, the city's first municipal commissioner. It is now officially Mahatma Jyotiba Phule Mandai.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Crawford_Market",
+       "title": "Wikipedia (en): Crawford Market"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-crawford-market-2",
+     "poi_id": "mumbai-crawford-market",
+     "text": "The stone reliefs of Indian farmers over the entrances were designed by John Lockwood Kipling, Rudyard Kipling's father.",
+     "kind": "art",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Crawford_Market",
+       "title": "Wikipedia (en): Crawford Market"
+      }
+     ],
+     "review_status": "curated",
+     "look_up": true
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Crawford_Market"
+  },
+  {
+   "id": "mumbai-csmt",
+   "name": "Chhatrapati Shivaji Maharaj Terminus",
+   "lat": 18.94,
+   "lng": 72.8355,
+   "category": "monument",
+   "tags": [
+    "landmark",
+    "railways",
+    "stevens",
+    "unesco",
+    "victorian-gothic"
+   ],
+   "interest": 0.961,
+   "visible_range_m": 250,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-csmt-1",
+     "poi_id": "mumbai-csmt",
+     "text": "This railway station was designed by Frederick William Stevens and completed in 1888. It was named Victoria Terminus, for Queen Victoria's Golden Jubilee year of 1887.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Terminus",
+       "title": "Wikipedia (en): Chhatrapati Shivaji Maharaj Terminus"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-csmt-2",
+     "poi_id": "mumbai-csmt",
+     "text": "It became a UNESCO World Heritage Site in 2004 as an outstanding blend of Victorian Gothic Revival architecture with traditional Indian features.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://whc.unesco.org/en/list/945",
+       "title": "whc.unesco.org"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Terminus",
+       "title": "Wikipedia (en): Chhatrapati Shivaji Maharaj Terminus"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-csmt-3",
+     "poi_id": "mumbai-csmt",
+     "text": "Look up at the central dome: it is crowned by a statue of a woman representing Progress.",
+     "kind": "art",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Terminus",
+       "title": "Wikipedia (en): Chhatrapati Shivaji Maharaj Terminus"
+      }
+     ],
+     "review_status": "curated",
+     "look_up": true
+    },
+    {
+     "id": "mumbai-csmt-4",
+     "poi_id": "mumbai-csmt",
+     "text": "India's first passenger train ran from Bori Bunder, right here, to Thane on the 16th of April, 1853.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Terminus",
+       "title": "Wikipedia (en): Chhatrapati Shivaji Maharaj Terminus"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Terminus"
+  },
+  {
+   "id": "mumbai-csmvs-museum",
+   "name": "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya",
+   "lat": 18.9269,
+   "lng": 72.8326,
+   "category": "museum",
+   "tags": [
+    "indo-saracenic",
+    "landmark",
+    "museum",
+    "wittet"
+   ],
+   "interest": 0.881,
+   "visible_range_m": 150,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-csmvs-museum-1",
+     "poi_id": "mumbai-csmvs-museum",
+     "text": "Mumbai's main museum was founded as the Prince of Wales Museum. The future King George the Fifth laid its foundation stone in 1905.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Vastu_Sangrahalaya",
+       "title": "Wikipedia (en): Chhatrapati Shivaji Maharaj Vastu Sangrahalaya"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-csmvs-museum-2",
+     "poi_id": "mumbai-csmvs-museum",
+     "text": "George Wittet, who also designed the Gateway of India, built it in the Indo-Saracenic style, with a dome inspired by Islamic architecture of the Deccan.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Vastu_Sangrahalaya",
+       "title": "Wikipedia (en): Chhatrapati Shivaji Maharaj Vastu Sangrahalaya"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-csmvs-museum-3",
+     "poi_id": "mumbai-csmvs-museum",
+     "text": "During the First World War the building was used as a military hospital, and the museum only opened to the public in 1922.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Vastu_Sangrahalaya",
+       "title": "Wikipedia (en): Chhatrapati Shivaji Maharaj Vastu Sangrahalaya"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-csmvs-museum-4",
+     "poi_id": "mumbai-csmvs-museum",
+     "text": "In 1998 it was renamed after Chhatrapati Shivaji Maharaj, founder of the Maratha Empire.",
+     "kind": "history",
+     "depth": 3,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Vastu_Sangrahalaya",
+       "title": "Wikipedia (en): Chhatrapati Shivaji Maharaj Vastu Sangrahalaya"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Vastu_Sangrahalaya"
+  },
+  {
+   "id": "mumbai-david-sassoon-library",
+   "name": "David Sassoon Library",
+   "lat": 18.9288,
+   "lng": 72.8316,
+   "category": "palace",
+   "tags": [
+    "kala-ghoda",
+    "sassoon",
+    "unesco",
+    "victorian-gothic"
+   ],
+   "interest": 0.643,
+   "visible_range_m": 60,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-david-sassoon-library-1",
+     "poi_id": "mumbai-david-sassoon-library",
+     "text": "This Gothic library was built between 1867 and 1870 and named after David Sassoon, a Baghdadi Jewish merchant and philanthropist who helped pay for it.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/David_Sassoon_Library",
+       "title": "Wikipedia (en): David Sassoon Library"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-david-sassoon-library-2",
+     "poi_id": "mumbai-david-sassoon-library",
+     "text": "Behind the building is a garden reading room where members read under the trees.",
+     "kind": "practical",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/David_Sassoon_Library",
+       "title": "Wikipedia (en): David Sassoon Library"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/David_Sassoon_Library"
+  },
+  {
+   "id": "mumbai-elphinstone-college",
+   "name": "Elphinstone College",
+   "lat": 18.9277,
+   "lng": 72.8309,
+   "category": "palace",
+   "tags": [
+    "education",
+    "unesco",
+    "victorian-gothic"
+   ],
+   "interest": 0.538,
+   "visible_range_m": 70,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-elphinstone-college-1",
+     "poi_id": "mumbai-elphinstone-college",
+     "text": "Elphinstone College, one of the oldest colleges in Mumbai, is named after Mountstuart Elphinstone, a governor of Bombay.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Elphinstone_College",
+       "title": "Wikipedia (en): Elphinstone College"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-elphinstone-college-2",
+     "poi_id": "mumbai-elphinstone-college",
+     "text": "B. R. Ambedkar, the principal architect of India's Constitution, studied here.",
+     "kind": "people",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Elphinstone_College",
+       "title": "Wikipedia (en): Elphinstone College"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Elphinstone_College"
+  },
+  {
+   "id": "mumbai-eros-cinema",
+   "name": "Eros Cinema",
+   "lat": 18.9346,
+   "lng": 72.8262,
+   "category": "monument",
+   "tags": [
+    "art-deco",
+    "churchgate",
+    "film",
+    "unesco"
+   ],
+   "interest": 0.703,
+   "visible_range_m": 100,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-eros-cinema-1",
+     "poi_id": "mumbai-eros-cinema",
+     "text": "Eros Cinema opened in 1938. Its cream and red facade is one of the best-known Art Deco buildings in Mumbai.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eros_Cinema",
+       "title": "Wikipedia (en): Eros Cinema"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-eros-cinema-2",
+     "poi_id": "mumbai-eros-cinema",
+     "text": "It was designed by the architect Sohrabji Bhedwar and is part of the UNESCO Art Deco ensemble.",
+     "kind": "architecture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eros_Cinema",
+       "title": "Wikipedia (en): Eros Cinema"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Eros_Cinema"
+  },
+  {
+   "id": "mumbai-esplanade-mansion",
+   "name": "Esplanade Mansion (Watson's Hotel)",
+   "lat": 18.9292,
+   "lng": 72.8326,
+   "category": "hidden_gem",
+   "tags": [
+    "cast-iron",
+    "film",
+    "hidden-gem",
+    "kala-ghoda"
+   ],
+   "interest": 0.753,
+   "visible_range_m": 50,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-esplanade-mansion-1",
+     "poi_id": "mumbai-esplanade-mansion",
+     "text": "This is India's oldest surviving cast-iron building. Its iron frame was made in England and assembled here in the 1860s.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Esplanade_Mansion",
+       "title": "Wikipedia (en): Esplanade Mansion"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-esplanade-mansion-2",
+     "poi_id": "mumbai-esplanade-mansion",
+     "text": "It was built as Watson's Hotel, and in July 1896 it hosted the first screening in India of the Lumière brothers' films, the start of cinema in India.",
+     "kind": "film",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Esplanade_Mansion",
+       "title": "Wikipedia (en): Esplanade Mansion"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-esplanade-mansion-3",
+     "poi_id": "mumbai-esplanade-mansion",
+     "text": "Today the building is in poor repair; look at the cast-iron balconies from across the street.",
+     "kind": "practical",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Esplanade_Mansion",
+       "title": "Wikipedia (en): Esplanade Mansion"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Esplanade_Mansion"
+  },
+  {
+   "id": "mumbai-flora-fountain-hutatma-chowk",
+   "name": "Flora Fountain and Hutatma Chowk",
+   "lat": 18.9322,
+   "lng": 72.8316,
+   "category": "fountain",
+   "tags": [
+    "fort",
+    "landmark",
+    "samyukta-maharashtra",
+    "victorian"
+   ],
+   "interest": 0.814,
+   "visible_range_m": 90,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-flora-fountain-hutatma-chowk-1",
+     "poi_id": "mumbai-flora-fountain-hutatma-chowk",
+     "text": "Flora Fountain was built in 1864 and is crowned by a statue of Flora, the Roman goddess of flowers.",
+     "kind": "art",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Flora_Fountain",
+       "title": "Wikipedia (en): Flora Fountain"
+      }
+     ],
+     "review_status": "curated",
+     "look_up": true
+    },
+    {
+     "id": "mumbai-flora-fountain-hutatma-chowk-2",
+     "poi_id": "mumbai-flora-fountain-hutatma-chowk",
+     "text": "It was originally meant to honour Sir Bartle Frere, the governor who pulled down the old fort walls so the city could expand.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Flora_Fountain",
+       "title": "Wikipedia (en): Flora Fountain"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-flora-fountain-hutatma-chowk-3",
+     "poi_id": "mumbai-flora-fountain-hutatma-chowk",
+     "text": "The square is now called Hutatma Chowk, Martyrs' Square. Its memorial honours the people killed in the Samyukta Maharashtra movement, which led to the creation of Maharashtra state in 1960.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hutatma_Chowk",
+       "title": "Wikipedia (en): Hutatma Chowk"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Flora_Fountain"
+  },
+  {
+   "id": "mumbai-fort-precinct",
+   "name": "Fort district",
+   "lat": 18.9318,
+   "lng": 72.8345,
+   "category": "neighbourhood",
+   "tags": [
+    "colonial",
+    "fort"
+   ],
+   "interest": 0.538,
+   "visible_range_m": 60,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-fort-precinct-1",
+     "poi_id": "mumbai-fort-precinct",
+     "text": "This district is called Fort because it lay inside the walls of the old British fort of Bombay.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Fort,_Mumbai",
+       "title": "Wikipedia (en): Fort, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-fort-precinct-2",
+     "poi_id": "mumbai-fort-precinct",
+     "text": "The walls were pulled down in the 1860s under Governor Sir Bartle Frere so the city could grow. Their gates live on in names like Churchgate and Bazargate.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Fort,_Mumbai",
+       "title": "Wikipedia (en): Fort, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort,_Mumbai"
+  },
+  {
+   "id": "mumbai-gateway-of-india",
+   "name": "Gateway of India",
+   "lat": 18.922,
+   "lng": 72.8347,
+   "category": "monument",
+   "tags": [
+    "colonial",
+    "landmark",
+    "waterfront",
+    "wittet"
+   ],
+   "interest": 0.969,
+   "visible_range_m": 250,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-gateway-of-india-1",
+     "poi_id": "mumbai-gateway-of-india",
+     "text": "This basalt arch was built to commemorate the landing of King George the Fifth and Queen Mary at Apollo Bunder in December 1911.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Gateway_of_India",
+       "title": "Wikipedia (en): Gateway of India"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-gateway-of-india-2",
+     "poi_id": "mumbai-gateway-of-india",
+     "text": "It was designed by the architect George Wittet and completed in 1924.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Gateway_of_India",
+       "title": "Wikipedia (en): Gateway of India"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-gateway-of-india-3",
+     "poi_id": "mumbai-gateway-of-india",
+     "text": "In February 1948, the last British troops to leave independent India marched out through this arch.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Gateway_of_India",
+       "title": "Wikipedia (en): Gateway of India"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-gateway-of-india-4",
+     "poi_id": "mumbai-gateway-of-india",
+     "text": "Ferries to the Elephanta Caves, a UNESCO World Heritage Site out in the harbour, leave from the jetties beside it.",
+     "kind": "practical",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Gateway_of_India",
+       "title": "Wikipedia (en): Gateway of India"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "height_m": 26,
+   "wikipedia": "https://en.wikipedia.org/wiki/Gateway_of_India"
+  },
+  {
+   "id": "mumbai-general-post-office",
+   "name": "General Post Office",
+   "lat": 18.9387,
+   "lng": 72.8371,
+   "category": "palace",
+   "tags": [
+    "csmt-area",
+    "indo-saracenic"
+   ],
+   "interest": 0.573,
+   "visible_range_m": 120,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-general-post-office-1",
+     "poi_id": "mumbai-general-post-office",
+     "text": "Mumbai's General Post Office was completed in 1913, designed by the architect John Begg.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/General_Post_Office,_Mumbai",
+       "title": "Wikipedia (en): General Post Office, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-general-post-office-2",
+     "poi_id": "mumbai-general-post-office",
+     "text": "Its great central dome was inspired by the Gol Gumbaz, the seventeenth-century mausoleum at Bijapur.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/General_Post_Office,_Mumbai",
+       "title": "Wikipedia (en): General Post Office, Mumbai"
+      }
+     ],
+     "review_status": "curated",
+     "look_up": true
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/General_Post_Office,_Mumbai"
+  },
+  {
+   "id": "mumbai-girgaon-chowpatty",
+   "name": "Girgaon Chowpatty",
+   "lat": 18.9545,
+   "lng": 72.8145,
+   "category": "park",
+   "tags": [
+    "beach",
+    "festival",
+    "food",
+    "sunset"
+   ],
+   "interest": 0.64,
+   "visible_range_m": 200,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-girgaon-chowpatty-1",
+     "poi_id": "mumbai-girgaon-chowpatty",
+     "text": "Chowpatty is the city beach at the north end of Marine Drive, famous for its evening food stalls selling bhelpuri and other street snacks.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Girgaon_Chowpatty",
+       "title": "Wikipedia (en): Girgaon Chowpatty"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-girgaon-chowpatty-2",
+     "poi_id": "mumbai-girgaon-chowpatty",
+     "text": "During the Ganesh Chaturthi festival, huge processions bring idols of Ganesha here to be immersed in the sea.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Girgaon_Chowpatty",
+       "title": "Wikipedia (en): Girgaon Chowpatty"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-girgaon-chowpatty-3",
+     "poi_id": "mumbai-girgaon-chowpatty",
+     "text": "The independence leader Bal Gangadhar Tilak was cremated on this beach in 1920.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Girgaon_Chowpatty",
+       "title": "Wikipedia (en): Girgaon Chowpatty"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Girgaon_Chowpatty"
+  },
+  {
+   "id": "mumbai-haji-ali-dargah",
+   "name": "Haji Ali Dargah",
+   "lat": 18.9827,
+   "lng": 72.8089,
+   "category": "church",
+   "tags": [
+    "landmark",
+    "sufi",
+    "waterfront"
+   ],
+   "interest": 0.752,
+   "visible_range_m": 300,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-haji-ali-dargah-1",
+     "poi_id": "mumbai-haji-ali-dargah",
+     "text": "The Haji Ali Dargah is a mosque and Sufi shrine built in 1431 on a small islet off the coast of Worli.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Haji_Ali_Dargah",
+       "title": "Wikipedia (en): Haji Ali Dargah"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-haji-ali-dargah-2",
+     "poi_id": "mumbai-haji-ali-dargah",
+     "text": "It is reached by a narrow causeway that is covered by the sea at high tide, so visits depend on the tides.",
+     "kind": "practical",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Haji_Ali_Dargah",
+       "title": "Wikipedia (en): Haji Ali Dargah"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Haji_Ali_Dargah"
+  },
+  {
+   "id": "mumbai-hanging-gardens",
+   "name": "Hanging Gardens (Pherozeshah Mehta Gardens)",
+   "lat": 18.9565,
+   "lng": 72.805,
+   "category": "park",
+   "tags": [
+    "garden",
+    "sunset",
+    "viewpoint"
+   ],
+   "interest": 0.523,
+   "visible_range_m": 100,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-hanging-gardens-1",
+     "poi_id": "mumbai-hanging-gardens",
+     "text": "These terraced gardens on Malabar Hill were laid out in the 1880s on top of a reservoir that supplies water to south Mumbai.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hanging_Gardens_of_Mumbai",
+       "title": "Wikipedia (en): Hanging Gardens of Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-hanging-gardens-2",
+     "poi_id": "mumbai-hanging-gardens",
+     "text": "They are known for their hedges clipped into animal shapes and for sunset views over Marine Drive.",
+     "kind": "practical",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hanging_Gardens_of_Mumbai",
+       "title": "Wikipedia (en): Hanging Gardens of Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Hanging_Gardens_of_Mumbai"
+  },
+  {
+   "id": "mumbai-horniman-circle",
+   "name": "Horniman Circle Gardens",
+   "lat": 18.933,
+   "lng": 72.8355,
+   "category": "park",
+   "tags": [
+    "colonial",
+    "fort",
+    "garden"
+   ],
+   "interest": 0.663,
+   "visible_range_m": 90,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-horniman-circle-1",
+     "poi_id": "mumbai-horniman-circle",
+     "text": "This circular garden, ringed by uniform arcaded buildings, was laid out in the 1860s as Elphinstone Circle.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Horniman_Circle_Gardens",
+       "title": "Wikipedia (en): Horniman Circle Gardens"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-horniman-circle-2",
+     "poi_id": "mumbai-horniman-circle",
+     "text": "It was renamed after Benjamin Horniman, a British editor of the Bombay Chronicle who supported Indian independence.",
+     "kind": "people",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Horniman_Circle_Gardens",
+       "title": "Wikipedia (en): Horniman Circle Gardens"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Horniman_Circle_Gardens"
+  },
+  {
+   "id": "mumbai-jehangir-art-gallery",
+   "name": "Jehangir Art Gallery",
+   "lat": 18.9273,
+   "lng": 72.8317,
+   "category": "museum",
+   "tags": [
+    "art",
+    "kala-ghoda"
+   ],
+   "interest": 0.658,
+   "visible_range_m": 60,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-jehangir-art-gallery-1",
+     "poi_id": "mumbai-jehangir-art-gallery",
+     "text": "Jehangir Art Gallery was established in 1952 by Sir Cowasji Jehangir and is one of India's best-known venues for contemporary art.",
+     "kind": "art",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Jehangir_Art_Gallery",
+       "title": "Wikipedia (en): Jehangir Art Gallery"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-jehangir-art-gallery-2",
+     "poi_id": "mumbai-jehangir-art-gallery",
+     "text": "It is run by a trust and hosts changing exhibitions by Indian artists in several galleries, free to enter.",
+     "kind": "practical",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Jehangir_Art_Gallery",
+       "title": "Wikipedia (en): Jehangir Art Gallery"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Jehangir_Art_Gallery"
+  },
+  {
+   "id": "mumbai-jj-school-of-art",
+   "name": "Sir J. J. School of Art",
+   "lat": 18.9447,
+   "lng": 72.8337,
+   "category": "museum",
+   "tags": [
+    "art",
+    "education",
+    "hidden-gem",
+    "kipling"
+   ],
+   "interest": 0.606,
+   "visible_range_m": 80,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-jj-school-of-art-1",
+     "poi_id": "mumbai-jj-school-of-art",
+     "text": "The Sir J. J. School of Art was founded in 1857 with funding from the Parsi philanthropist Sir Jamsetjee Jejeebhoy.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Sir_J._J._School_of_Art",
+       "title": "Wikipedia (en): Sir J. J. School of Art"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-jj-school-of-art-2",
+     "poi_id": "mumbai-jj-school-of-art",
+     "text": "Rudyard Kipling was born in Bombay in 1865, when his father, John Lockwood Kipling, taught here. A bungalow on the campus is known as Kipling House.",
+     "kind": "people",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Sir_J._J._School_of_Art",
+       "title": "Wikipedia (en): Sir J. J. School of Art"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Sir_J._J._School_of_Art"
+  },
+  {
+   "id": "mumbai-kala-ghoda",
+   "name": "Kala Ghoda",
+   "lat": 18.9282,
+   "lng": 72.8321,
+   "category": "neighbourhood",
+   "tags": [
+    "art",
+    "kala-ghoda",
+    "landmark",
+    "statue-history"
+   ],
+   "interest": 0.831,
+   "visible_range_m": 100,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-kala-ghoda-1",
+     "poi_id": "mumbai-kala-ghoda",
+     "text": "Kala Ghoda means black horse. The name comes from a black statue of King Edward the Seventh, as Prince of Wales, on horseback, which stood here from 1879.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kala_Ghoda",
+       "title": "Wikipedia (en): Kala Ghoda"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-kala-ghoda-2",
+     "poi_id": "mumbai-kala-ghoda",
+     "text": "The royal statue was removed in 1965 and moved to the gardens of the Byculla zoo, Jijamata Udyaan. In 2017 a new statue of a riderless black horse was installed here.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kala_Ghoda",
+       "title": "Wikipedia (en): Kala Ghoda"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-kala-ghoda-3",
+     "poi_id": "mumbai-kala-ghoda",
+     "text": "The original statue was a gift to the city from the businessman Sir Albert Sassoon.",
+     "kind": "people",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kala_Ghoda",
+       "title": "Wikipedia (en): Kala Ghoda"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-kala-ghoda-4",
+     "poi_id": "mumbai-kala-ghoda",
+     "text": "Every February since 1999, the Kala Ghoda Arts Festival fills these streets with art, music and talks.",
+     "kind": "culture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kala_Ghoda",
+       "title": "Wikipedia (en): Kala Ghoda"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Kala_Ghoda"
+  },
+  {
+   "id": "mumbai-knesset-eliyahoo",
+   "name": "Knesset Eliyahoo Synagogue",
+   "lat": 18.9283,
+   "lng": 72.8331,
+   "category": "church",
+   "tags": [
+    "hidden-gem",
+    "jewish-heritage",
+    "kala-ghoda",
+    "sassoon"
+   ],
+   "interest": 0.711,
+   "visible_range_m": 40,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-knesset-eliyahoo-1",
+     "poi_id": "mumbai-knesset-eliyahoo",
+     "text": "This sky-blue synagogue was built in 1884 by Jacob Elias Sassoon in memory of his father, Eliyahoo.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Knesset_Eliyahoo_Synagogue",
+       "title": "Wikipedia (en): Knesset Eliyahoo Synagogue"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-knesset-eliyahoo-2",
+     "poi_id": "mumbai-knesset-eliyahoo",
+     "text": "It serves Mumbai's Baghdadi Jewish community and was carefully restored in 2019.",
+     "kind": "culture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Knesset_Eliyahoo_Synagogue",
+       "title": "Wikipedia (en): Knesset Eliyahoo Synagogue"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Knesset_Eliyahoo_Synagogue"
+  },
+  {
+   "id": "mumbai-leopold-cafe",
+   "name": "Leopold Cafe",
+   "lat": 18.9226,
+   "lng": 72.8316,
+   "category": "hidden_gem",
+   "tags": [
+    "colaba",
+    "food",
+    "literature"
+   ],
+   "interest": 0.665,
+   "visible_range_m": 30,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-leopold-cafe-1",
+     "poi_id": "mumbai-leopold-cafe",
+     "text": "Leopold Cafe on Colaba Causeway was established in 1871 and is one of the city's best-known old cafes.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Leopold_Cafe",
+       "title": "Wikipedia (en): Leopold Cafe"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-leopold-cafe-2",
+     "poi_id": "mumbai-leopold-cafe",
+     "text": "It features in Gregory David Roberts's novel Shantaram.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Leopold_Cafe",
+       "title": "Wikipedia (en): Leopold Cafe"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-leopold-cafe-3",
+     "poi_id": "mumbai-leopold-cafe",
+     "text": "It was also attacked during the November 2008 Mumbai attacks; some bullet marks have been left visible on purpose.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Leopold_Cafe",
+       "title": "Wikipedia (en): Leopold Cafe"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Leopold_Cafe"
+  },
+  {
+   "id": "mumbai-liberty-cinema",
+   "name": "Liberty Cinema",
+   "lat": 18.9437,
+   "lng": 72.8262,
+   "category": "monument",
+   "tags": [
+    "art-deco",
+    "film"
+   ],
+   "interest": 0.528,
+   "visible_range_m": 70,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-liberty-cinema-1",
+     "poi_id": "mumbai-liberty-cinema",
+     "text": "Liberty Cinema opened in 1949, soon after Indian independence.",
+     "kind": "film",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Liberty_Cinema",
+       "title": "Wikipedia (en): Liberty Cinema"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-liberty-cinema-2",
+     "poi_id": "mumbai-liberty-cinema",
+     "text": "Its interior is one of the best-preserved Art Deco auditoriums in the city.",
+     "kind": "architecture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Liberty_Cinema",
+       "title": "Wikipedia (en): Liberty Cinema"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Liberty_Cinema"
+  },
+  {
+   "id": "mumbai-mahalaxmi-dhobi-ghat",
+   "name": "Mahalaxmi Dhobi Ghat",
+   "lat": 18.982,
+   "lng": 72.8254,
+   "category": "hidden_gem",
+   "tags": [
+    "hidden-gem",
+    "working-city"
+   ],
+   "interest": 0.636,
+   "visible_range_m": 120,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-mahalaxmi-dhobi-ghat-1",
+     "poi_id": "mumbai-mahalaxmi-dhobi-ghat",
+     "text": "This open-air laundry, built in 1890, has rows of concrete wash pens where hundreds of washermen, the dhobis, clean clothes by hand.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mahalaxmi_Dhobi_Ghat",
+       "title": "Wikipedia (en): Mahalaxmi Dhobi Ghat"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-mahalaxmi-dhobi-ghat-2",
+     "poi_id": "mumbai-mahalaxmi-dhobi-ghat",
+     "text": "The best view is from the road bridge next to Mahalaxmi station.",
+     "kind": "practical",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mahalaxmi_Dhobi_Ghat",
+       "title": "Wikipedia (en): Mahalaxmi Dhobi Ghat"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Mahalaxmi_Dhobi_Ghat"
+  },
+  {
+   "id": "mumbai-mahalaxmi-temple",
+   "name": "Mahalaxmi Temple",
+   "lat": 18.9772,
+   "lng": 72.8061,
+   "category": "church",
+   "tags": [
+    "hindu",
+    "waterfront"
+   ],
+   "interest": 0.588,
+   "visible_range_m": 80,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-mahalaxmi-temple-1",
+     "poi_id": "mumbai-mahalaxmi-temple",
+     "text": "This seaside temple is dedicated to Mahalakshmi, the goddess of wealth, and is one of the most visited temples in Mumbai.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mahalaxmi_Temple,_Mumbai",
+       "title": "Wikipedia (en): Mahalaxmi Temple, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-mahalaxmi-temple-2",
+     "poi_id": "mumbai-mahalaxmi-temple",
+     "text": "Legend says the goddess's images were recovered from the sea after a dream, during construction of the Hornby Vellard causeway that joined the islands of Bombay.",
+     "kind": "legend",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mahalaxmi_Temple,_Mumbai",
+       "title": "Wikipedia (en): Mahalaxmi Temple, Mumbai"
+      }
+     ],
+     "review_status": "curated",
+     "is_legend": true
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Mahalaxmi_Temple,_Mumbai"
+  },
+  {
+   "id": "mumbai-maharashtra-police-headquarters",
+   "name": "Maharashtra Police Headquarters (Old Sailors' Home)",
+   "lat": 18.9248,
+   "lng": 72.8334,
+   "category": "palace",
+   "tags": [
+    "stevens",
+    "unesco",
+    "victorian-gothic"
+   ],
+   "interest": 0.503,
+   "visible_range_m": 80,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-maharashtra-police-headquarters-1",
+     "poi_id": "mumbai-maharashtra-police-headquarters",
+     "text": "This Gothic building was built in the 1870s as the Royal Alfred Sailors' Home, named after Prince Alfred, who visited Bombay in 1870.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Maharashtra_Police_Headquarters",
+       "title": "Wikipedia (en): Maharashtra Police Headquarters"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-maharashtra-police-headquarters-2",
+     "poi_id": "mumbai-maharashtra-police-headquarters",
+     "text": "It was designed by Frederick William Stevens and today houses the headquarters of the Maharashtra Police.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Maharashtra_Police_Headquarters",
+       "title": "Wikipedia (en): Maharashtra Police Headquarters"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Maharashtra_Police_Headquarters"
+  },
+  {
+   "id": "mumbai-mani-bhavan",
+   "name": "Mani Bhavan",
+   "lat": 18.9599,
+   "lng": 72.8116,
+   "category": "museum",
+   "tags": [
+    "gandhi",
+    "independence",
+    "museum"
+   ],
+   "interest": 0.693,
+   "visible_range_m": 50,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-mani-bhavan-1",
+     "poi_id": "mumbai-mani-bhavan",
+     "text": "Mahatma Gandhi stayed in this house whenever he was in Bombay between 1917 and 1934.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mani_Bhavan",
+       "title": "Wikipedia (en): Mani Bhavan"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-mani-bhavan-2",
+     "poi_id": "mumbai-mani-bhavan",
+     "text": "It is now a museum and library about Gandhi's life and work.",
+     "kind": "practical",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mani_Bhavan",
+       "title": "Wikipedia (en): Mani Bhavan"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Mani_Bhavan"
+  },
+  {
+   "id": "mumbai-marine-drive",
+   "name": "Marine Drive",
+   "lat": 18.944,
+   "lng": 72.8232,
+   "category": "viewpoint",
+   "tags": [
+    "art-deco",
+    "landmark",
+    "sunset",
+    "unesco",
+    "waterfront"
+   ],
+   "interest": 0.834,
+   "visible_range_m": 250,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-marine-drive-1",
+     "poi_id": "mumbai-marine-drive",
+     "text": "Marine Drive curves for several kilometres along Back Bay. It was built on land reclaimed from the sea in the 1920s and 1930s.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Marine_Drive,_Mumbai",
+       "title": "Wikipedia (en): Marine Drive, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-marine-drive-2",
+     "poi_id": "mumbai-marine-drive",
+     "text": "At night its curve of street lights is known as the Queen's Necklace.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Marine_Drive,_Mumbai",
+       "title": "Wikipedia (en): Marine Drive, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-marine-drive-3",
+     "poi_id": "mumbai-marine-drive",
+     "text": "The Art Deco apartment buildings along it are part of the UNESCO World Heritage Site inscribed in 2018.",
+     "kind": "architecture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://whc.unesco.org/en/list/1480",
+       "title": "whc.unesco.org"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Marine_Drive,_Mumbai"
+  },
+  {
+   "id": "mumbai-metro-cinema",
+   "name": "Metro Cinema",
+   "lat": 18.9432,
+   "lng": 72.8287,
+   "category": "monument",
+   "tags": [
+    "art-deco",
+    "film"
+   ],
+   "interest": 0.563,
+   "visible_range_m": 70,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-metro-cinema-1",
+     "poi_id": "mumbai-metro-cinema",
+     "text": "Metro Cinema opened in 1938. It was built by the Hollywood studio Metro-Goldwyn-Mayer to show its films.",
+     "kind": "film",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Metro_INOX_Cinema",
+       "title": "Wikipedia (en): Metro INOX Cinema"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-metro-cinema-2",
+     "poi_id": "mumbai-metro-cinema",
+     "text": "It is one of the landmark Art Deco cinemas of Mumbai.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Metro_INOX_Cinema",
+       "title": "Wikipedia (en): Metro INOX Cinema"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Metro_INOX_Cinema"
+  },
+  {
+   "id": "mumbai-mumba-devi-temple",
+   "name": "Mumba Devi Temple",
+   "lat": 18.9512,
+   "lng": 72.8298,
+   "category": "church",
+   "tags": [
+    "city-name",
+    "hindu",
+    "koli"
+   ],
+   "interest": 0.658,
+   "visible_range_m": 50,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-mumba-devi-temple-1",
+     "poi_id": "mumbai-mumba-devi-temple",
+     "text": "This temple is dedicated to Mumba Devi, patron goddess of the Koli fishing community, and the city's name, Mumbai, is widely held to come from her.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mumba_Devi_Temple",
+       "title": "Wikipedia (en): Mumba Devi Temple"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-mumba-devi-temple-2",
+     "poi_id": "mumbai-mumba-devi-temple",
+     "text": "The temple was rebuilt on this site in the eighteenth century after the original near Bori Bunder was demolished.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mumba_Devi_Temple",
+       "title": "Wikipedia (en): Mumba Devi Temple"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Mumba_Devi_Temple"
+  },
+  {
+   "id": "mumbai-mumbai-samachar",
+   "name": "Mumbai Samachar (Red House)",
+   "lat": 18.934,
+   "lng": 72.8352,
+   "category": "hidden_gem",
+   "tags": [
+    "fort",
+    "hidden-gem",
+    "parsi",
+    "press"
+   ],
+   "interest": 0.531,
+   "visible_range_m": 40,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-mumbai-samachar-1",
+     "poi_id": "mumbai-mumbai-samachar",
+     "text": "This is the home of the Mumbai Samachar, a Gujarati newspaper founded in 1822 by Fardunjee Marzban.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mumbai_Samachar",
+       "title": "Wikipedia (en): Mumbai Samachar"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-mumbai-samachar-2",
+     "poi_id": "mumbai-mumbai-samachar",
+     "text": "It is widely described as the oldest continuously published newspaper in Asia.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mumbai_Samachar",
+       "title": "Wikipedia (en): Mumbai Samachar"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Mumbai_Samachar"
+  },
+  {
+   "id": "mumbai-ncpa",
+   "name": "National Centre for the Performing Arts",
+   "lat": 18.9256,
+   "lng": 72.8197,
+   "category": "museum",
+   "tags": [
+    "music",
+    "theatre",
+    "waterfront"
+   ],
+   "interest": 0.518,
+   "visible_range_m": 120,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-ncpa-1",
+     "poi_id": "mumbai-ncpa",
+     "text": "The National Centre for the Performing Arts was founded in 1969 by J. R. D. Tata and Jamshed Bhabha.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/National_Centre_for_the_Performing_Arts_(India)",
+       "title": "Wikipedia (en): National Centre for the Performing Arts (India)"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-ncpa-2",
+     "poi_id": "mumbai-ncpa",
+     "text": "It is India's leading venue for Indian classical music, theatre and Western orchestral music, home to the Symphony Orchestra of India.",
+     "kind": "culture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/National_Centre_for_the_Performing_Arts_(India)",
+       "title": "Wikipedia (en): National Centre for the Performing Arts (India)"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/National_Centre_for_the_Performing_Arts_(India)"
+  },
+  {
+   "id": "mumbai-ngma-mumbai",
+   "name": "National Gallery of Modern Art",
+   "lat": 18.9257,
+   "lng": 72.8318,
+   "category": "museum",
+   "tags": [
+    "art",
+    "museum"
+   ],
+   "interest": 0.553,
+   "visible_range_m": 60,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-ngma-mumbai-1",
+     "poi_id": "mumbai-ngma-mumbai",
+     "text": "The Mumbai branch of the National Gallery of Modern Art occupies the old Sir Cowasji Jehangir Public Hall.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/National_Gallery_of_Modern_Art,_Mumbai",
+       "title": "Wikipedia (en): National Gallery of Modern Art, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-ngma-mumbai-2",
+     "poi_id": "mumbai-ngma-mumbai",
+     "text": "It opened as a gallery in 1996 and shows modern and contemporary Indian art.",
+     "kind": "art",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/National_Gallery_of_Modern_Art,_Mumbai",
+       "title": "Wikipedia (en): National Gallery of Modern Art, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/National_Gallery_of_Modern_Art,_Mumbai"
+  },
+  {
+   "id": "mumbai-oval-art-deco-row",
+   "name": "Art Deco row on the Oval",
+   "lat": 18.93,
+   "lng": 72.8253,
+   "category": "street",
+   "tags": [
+    "art-deco",
+    "backbay",
+    "unesco"
+   ],
+   "interest": 0.628,
+   "visible_range_m": 120,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-oval-art-deco-row-1",
+     "poi_id": "mumbai-oval-art-deco-row",
+     "text": "These cream and pastel apartment buildings were built in the 1930s on land reclaimed from the sea in the Backbay reclamation.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://whc.unesco.org/en/list/1480",
+       "title": "whc.unesco.org"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-oval-art-deco-row-2",
+     "poi_id": "mumbai-oval-art-deco-row",
+     "text": "Look for the Art Deco details: curved balconies, stepped towers, sunburst motifs and decorative lettering with the building names.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Victorian_Gothic_and_Art_Deco_Ensembles_of_Mumbai",
+       "title": "Wikipedia (en): Victorian Gothic and Art Deco Ensembles of Mumbai"
+      }
+     ],
+     "review_status": "curated",
+     "look_up": true
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Victorian_Gothic_and_Art_Deco_Ensembles_of_Mumbai"
+  },
+  {
+   "id": "mumbai-oval-maidan",
+   "name": "Oval Maidan",
+   "lat": 18.929,
+   "lng": 72.8273,
+   "category": "park",
+   "tags": [
+    "art-deco",
+    "cricket",
+    "landmark",
+    "unesco",
+    "victorian-gothic"
+   ],
+   "interest": 0.804,
+   "visible_range_m": 200,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-oval-maidan-1",
+     "poi_id": "mumbai-oval-maidan",
+     "text": "This open ground is the heart of the UNESCO World Heritage Site of Victorian Gothic and Art Deco Ensembles of Mumbai, inscribed in 2018.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://whc.unesco.org/en/list/1480",
+       "title": "whc.unesco.org"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Oval_Maidan",
+       "title": "Wikipedia (en): Oval Maidan"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-oval-maidan-2",
+     "poi_id": "mumbai-oval-maidan",
+     "text": "On one side stand nineteenth-century Victorian Gothic public buildings; on the other, a row of 1930s Art Deco apartment buildings. Two eras of architecture face each other across the grass.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Oval_Maidan",
+       "title": "Wikipedia (en): Oval Maidan"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-oval-maidan-3",
+     "poi_id": "mumbai-oval-maidan",
+     "text": "On most days the maidan is full of overlapping amateur cricket matches.",
+     "kind": "culture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Oval_Maidan",
+       "title": "Wikipedia (en): Oval Maidan"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Oval_Maidan"
+  },
+  {
+   "id": "mumbai-rajabai-clock-tower",
+   "name": "Rajabai Clock Tower",
+   "lat": 18.9297,
+   "lng": 72.8293,
+   "category": "monument",
+   "tags": [
+    "landmark",
+    "unesco",
+    "university",
+    "victorian-gothic"
+   ],
+   "interest": 0.909,
+   "visible_range_m": 300,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-rajabai-clock-tower-1",
+     "poi_id": "mumbai-rajabai-clock-tower",
+     "text": "The Rajabai Clock Tower rises about 85 metres over the University of Mumbai. It was designed by the English architect George Gilbert Scott and completed in 1878.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Rajabai_Clock_Tower",
+       "title": "Wikipedia (en): Rajabai Clock Tower"
+      }
+     ],
+     "review_status": "curated",
+     "look_up": true
+    },
+    {
+     "id": "mumbai-rajabai-clock-tower-2",
+     "poi_id": "mumbai-rajabai-clock-tower",
+     "text": "It was paid for by the stockbroker Premchand Roychand and named after his mother, Rajabai.",
+     "kind": "people",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Rajabai_Clock_Tower",
+       "title": "Wikipedia (en): Rajabai Clock Tower"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-rajabai-clock-tower-3",
+     "poi_id": "mumbai-rajabai-clock-tower",
+     "text": "Its design is often said to be modelled on Big Ben in London.",
+     "kind": "legend",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Rajabai_Clock_Tower",
+       "title": "Wikipedia (en): Rajabai Clock Tower"
+      }
+     ],
+     "review_status": "curated",
+     "is_legend": true
+    },
+    {
+     "id": "mumbai-rajabai-clock-tower-4",
+     "poi_id": "mumbai-rajabai-clock-tower",
+     "text": "A popular story says Rajabai, who was blind, could tell the time for her evening meal from the tower's bells.",
+     "kind": "legend",
+     "depth": 3,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Rajabai_Clock_Tower",
+       "title": "Wikipedia (en): Rajabai Clock Tower"
+      }
+     ],
+     "review_status": "curated",
+     "is_legend": true
+    }
+   ],
+   "height_m": 85,
+   "wikipedia": "https://en.wikipedia.org/wiki/Rajabai_Clock_Tower"
+  },
+  {
+   "id": "mumbai-rampart-row",
+   "name": "Rampart Row (K. Dubash Marg)",
+   "lat": 18.9287,
+   "lng": 72.834,
+   "category": "street",
+   "tags": [
+    "art",
+    "fort",
+    "kala-ghoda"
+   ],
+   "interest": 0.418,
+   "visible_range_m": 50,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-rampart-row-1",
+     "poi_id": "mumbai-rampart-row",
+     "text": "Rampart Row takes its name from the ramparts of the old Bombay fort that once ran along here.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kala_Ghoda",
+       "title": "Wikipedia (en): Kala Ghoda"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-rampart-row-2",
+     "poi_id": "mumbai-rampart-row",
+     "text": "Today the street is part of the Kala Ghoda art district, with galleries and cafes in its old buildings.",
+     "kind": "culture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kala_Ghoda",
+       "title": "Wikipedia (en): Kala Ghoda"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Kala_Ghoda"
+  },
+  {
+   "id": "mumbai-regal-cinema",
+   "name": "Regal Cinema",
+   "lat": 18.9238,
+   "lng": 72.8316,
+   "category": "monument",
+   "tags": [
+    "art-deco",
+    "film",
+    "unesco"
+   ],
+   "interest": 0.703,
+   "visible_range_m": 80,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-regal-cinema-1",
+     "poi_id": "mumbai-regal-cinema",
+     "text": "Regal Cinema opened in 1933 and is one of Mumbai's earliest Art Deco cinemas.",
+     "kind": "architecture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Regal_Cinema,_Mumbai",
+       "title": "Wikipedia (en): Regal Cinema, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-regal-cinema-2",
+     "poi_id": "mumbai-regal-cinema",
+     "text": "It was designed by Charles Stevens, son of Frederick William Stevens, the architect of the great railway terminus up the road.",
+     "kind": "people",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Regal_Cinema,_Mumbai",
+       "title": "Wikipedia (en): Regal Cinema, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Regal_Cinema,_Mumbai"
+  },
+  {
+   "id": "mumbai-reserve-bank-of-india",
+   "name": "Reserve Bank of India",
+   "lat": 18.9338,
+   "lng": 72.8372,
+   "category": "palace",
+   "tags": [
+    "finance",
+    "fort"
+   ],
+   "interest": 0.538,
+   "visible_range_m": 100,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-reserve-bank-of-india-1",
+     "poi_id": "mumbai-reserve-bank-of-india",
+     "text": "This is the headquarters of the Reserve Bank of India, the country's central bank, which was founded in 1935.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Reserve_Bank_of_India",
+       "title": "Wikipedia (en): Reserve Bank of India"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-reserve-bank-of-india-2",
+     "poi_id": "mumbai-reserve-bank-of-india",
+     "text": "The bank's head office moved here from Calcutta in 1937.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Reserve_Bank_of_India",
+       "title": "Wikipedia (en): Reserve Bank of India"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Reserve_Bank_of_India"
+  },
+  {
+   "id": "mumbai-sassoon-dock",
+   "name": "Sassoon Dock",
+   "lat": 18.9128,
+   "lng": 72.827,
+   "category": "hidden_gem",
+   "tags": [
+    "colaba",
+    "fishing",
+    "hidden-gem",
+    "koli",
+    "sassoon"
+   ],
+   "interest": 0.636,
+   "visible_range_m": 80,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-sassoon-dock-1",
+     "poi_id": "mumbai-sassoon-dock",
+     "text": "Sassoon Dock was built in 1875 by the Sassoon family and is one of the oldest docks in Mumbai.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Sassoon_Docks",
+       "title": "Wikipedia (en): Sassoon Docks"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-sassoon-dock-2",
+     "poi_id": "mumbai-sassoon-dock",
+     "text": "It is one of the city's biggest fish markets, run largely by the Koli community, Mumbai's original fishing people. Come at dawn, and expect strong smells.",
+     "kind": "culture",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Sassoon_Docks",
+       "title": "Wikipedia (en): Sassoon Docks"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Sassoon_Docks"
+  },
+  {
+   "id": "mumbai-shivaji-statue-apollo-bunder",
+   "name": "Chhatrapati Shivaji Maharaj Statue",
+   "lat": 18.9225,
+   "lng": 72.8341,
+   "category": "statue",
+   "tags": [
+    "maratha",
+    "waterfront"
+   ],
+   "interest": 0.538,
+   "visible_range_m": 60,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-shivaji-statue-apollo-bunder-1",
+     "poi_id": "mumbai-shivaji-statue-apollo-bunder",
+     "text": "This equestrian statue honours Chhatrapati Shivaji Maharaj, the seventeenth-century founder of the Maratha Empire.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Gateway_of_India",
+       "title": "Wikipedia (en): Gateway of India"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-shivaji-statue-apollo-bunder-2",
+     "poi_id": "mumbai-shivaji-statue-apollo-bunder",
+     "text": "It was unveiled in 1961 and faces the Gateway of India across the square.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Gateway_of_India",
+       "title": "Wikipedia (en): Gateway of India"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Gateway_of_India"
+  },
+  {
+   "id": "mumbai-siddhivinayak-temple",
+   "name": "Shree Siddhivinayak Temple",
+   "lat": 19.0169,
+   "lng": 72.8304,
+   "category": "church",
+   "tags": [
+    "ganesha",
+    "hindu",
+    "landmark"
+   ],
+   "interest": 0.682,
+   "visible_range_m": 80,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-siddhivinayak-temple-1",
+     "poi_id": "mumbai-siddhivinayak-temple",
+     "text": "This temple to Ganesha was first built in 1801 and has grown into one of the most visited temples in Mumbai.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Shree_Siddhivinayak_Temple",
+       "title": "Wikipedia (en): Shree Siddhivinayak Temple"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-siddhivinayak-temple-2",
+     "poi_id": "mumbai-siddhivinayak-temple",
+     "text": "Expect long queues on Tuesdays, the day traditionally associated with Ganesha worship here.",
+     "kind": "practical",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Shree_Siddhivinayak_Temple",
+       "title": "Wikipedia (en): Shree Siddhivinayak Temple"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Shree_Siddhivinayak_Temple"
+  },
+  {
+   "id": "mumbai-st-thomas-cathedral",
+   "name": "St. Thomas Cathedral",
+   "lat": 18.9326,
+   "lng": 72.8343,
+   "category": "church",
+   "tags": [
+    "church",
+    "colonial",
+    "fort"
+   ],
+   "interest": 0.658,
+   "visible_range_m": 70,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-st-thomas-cathedral-1",
+     "poi_id": "mumbai-st-thomas-cathedral",
+     "text": "St. Thomas Cathedral opened in 1718 and is the oldest Anglican church in Mumbai.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/St._Thomas_Cathedral,_Mumbai",
+       "title": "Wikipedia (en): St. Thomas Cathedral, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-st-thomas-cathedral-2",
+     "poi_id": "mumbai-st-thomas-cathedral",
+     "text": "Churchgate takes its name from it: the gate in the old fort wall that led to this church was called the Church Gate.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/St._Thomas_Cathedral,_Mumbai",
+       "title": "Wikipedia (en): St. Thomas Cathedral, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/St._Thomas_Cathedral,_Mumbai"
+  },
+  {
+   "id": "mumbai-st-xaviers-college",
+   "name": "St. Xavier's College",
+   "lat": 18.943,
+   "lng": 72.8316,
+   "category": "palace",
+   "tags": [
+    "education",
+    "indo-gothic"
+   ],
+   "interest": 0.468,
+   "visible_range_m": 70,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-st-xaviers-college-1",
+     "poi_id": "mumbai-st-xaviers-college",
+     "text": "St. Xavier's College was founded in 1869 by German Jesuits.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/St._Xavier%27s_College,_Mumbai",
+       "title": "Wikipedia (en): St. Xavier's College, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-st-xaviers-college-2",
+     "poi_id": "mumbai-st-xaviers-college",
+     "text": "Its main building is in the Indo-Gothic style, with pointed arches and a stone courtyard.",
+     "kind": "architecture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/St._Xavier%27s_College,_Mumbai",
+       "title": "Wikipedia (en): St. Xavier's College, Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/St._Xavier%27s_College,_Mumbai"
+  },
+  {
+   "id": "mumbai-taj-mahal-palace",
+   "name": "Taj Mahal Palace Hotel",
+   "lat": 18.9217,
+   "lng": 72.8331,
+   "category": "palace",
+   "tags": [
+    "colonial",
+    "landmark",
+    "tata",
+    "waterfront"
+   ],
+   "interest": 0.854,
+   "visible_range_m": 200,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-taj-mahal-palace-1",
+     "poi_id": "mumbai-taj-mahal-palace",
+     "text": "The Taj Mahal Palace opened in 1903. It was commissioned by the industrialist Jamsetji Tata, founder of the Tata Group.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Taj_Mahal_Palace_Hotel",
+       "title": "Wikipedia (en): Taj Mahal Palace Hotel"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-taj-mahal-palace-2",
+     "poi_id": "mumbai-taj-mahal-palace",
+     "text": "A popular story says Tata built it after being refused entry to a hotel that admitted only Europeans. Historians debate whether this really happened.",
+     "kind": "legend",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Taj_Mahal_Palace_Hotel",
+       "title": "Wikipedia (en): Taj Mahal Palace Hotel"
+      }
+     ],
+     "review_status": "curated",
+     "is_legend": true
+    },
+    {
+     "id": "mumbai-taj-mahal-palace-3",
+     "poi_id": "mumbai-taj-mahal-palace",
+     "text": "In November 2008 the hotel was one of the targets of the terrorist attacks on Mumbai. It was restored and reopened.",
+     "kind": "history",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Taj_Mahal_Palace_Hotel",
+       "title": "Wikipedia (en): Taj Mahal Palace Hotel"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Taj_Mahal_Palace_Hotel"
+  },
+  {
+   "id": "mumbai-university-of-mumbai-fort",
+   "name": "University of Mumbai (Fort campus)",
+   "lat": 18.9289,
+   "lng": 72.8299,
+   "category": "palace",
+   "tags": [
+    "education",
+    "unesco",
+    "university",
+    "victorian-gothic"
+   ],
+   "interest": 0.573,
+   "visible_range_m": 120,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-university-of-mumbai-fort-1",
+     "poi_id": "mumbai-university-of-mumbai-fort",
+     "text": "The University of Mumbai was founded in 1857, one of the first three modern universities in India, together with Calcutta and Madras.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/University_of_Mumbai",
+       "title": "Wikipedia (en): University of Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-university-of-mumbai-fort-2",
+     "poi_id": "mumbai-university-of-mumbai-fort",
+     "text": "Its Convocation Hall and library, like the clock tower, were designed by George Gilbert Scott, who never visited India.",
+     "kind": "architecture",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/University_of_Mumbai",
+       "title": "Wikipedia (en): University of Mumbai"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/University_of_Mumbai"
+  },
+  {
+   "id": "mumbai-wankhede-stadium",
+   "name": "Wankhede Stadium",
+   "lat": 18.9389,
+   "lng": 72.8258,
+   "category": "park",
+   "tags": [
+    "cricket",
+    "landmark",
+    "sport"
+   ],
+   "interest": 0.617,
+   "visible_range_m": 150,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-wankhede-stadium-1",
+     "poi_id": "mumbai-wankhede-stadium",
+     "text": "Wankhede Stadium opened in 1974. In 2011 India won the Cricket World Cup final here.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Wankhede_Stadium",
+       "title": "Wikipedia (en): Wankhede Stadium"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-wankhede-stadium-2",
+     "poi_id": "mumbai-wankhede-stadium",
+     "text": "Sachin Tendulkar, Mumbai's most famous cricketer, played his final Test match here in 2013.",
+     "kind": "people",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Wankhede_Stadium",
+       "title": "Wikipedia (en): Wankhede Stadium"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Wankhede_Stadium"
+  },
+  {
+   "id": "mumbai-wellington-fountain",
+   "name": "Wellington Fountain",
+   "lat": 18.9244,
+   "lng": 72.8325,
+   "category": "fountain",
+   "tags": [
+    "colonial",
+    "hidden-gem"
+   ],
+   "interest": 0.516,
+   "visible_range_m": 40,
+   "footprint": null,
+   "facts": [
+    {
+     "id": "mumbai-wellington-fountain-1",
+     "poi_id": "mumbai-wellington-fountain",
+     "text": "This Victorian fountain at Regal Circle was erected in 1865 in honour of the Duke of Wellington.",
+     "kind": "history",
+     "depth": 1,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Wellington_Fountain",
+       "title": "Wikipedia (en): Wellington Fountain"
+      }
+     ],
+     "review_status": "curated"
+    },
+    {
+     "id": "mumbai-wellington-fountain-2",
+     "poi_id": "mumbai-wellington-fountain",
+     "text": "Before he became famous for defeating Napoleon at Waterloo, Wellington had visited Bombay, in 1801 and 1804.",
+     "kind": "people",
+     "depth": 2,
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Wellington_Fountain",
+       "title": "Wikipedia (en): Wellington Fountain"
+      }
+     ],
+     "review_status": "curated"
+    }
+   ],
+   "wikipedia": "https://en.wikipedia.org/wiki/Wellington_Fountain"
+  }
+ ]
+}
