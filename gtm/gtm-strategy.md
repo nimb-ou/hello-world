@@ -2,7 +2,7 @@
 
 Owner: CMO / Head of Growth & Sales · Status: working plan · Source of truth for product facts: `/COMPANY.md`
 
-> **How to read the numbers.** Anything marked **(est.)** is our planning assumption, not measured data. Benchmarks cite their sources in the footnotes at the end. Prices are the COMPANY.md targets ($149 / $299 / $549). Research and Finance will validate them, and this plan is updated when they change. We have **no partners or customers yet**. Every company named in this plan is a *target or prospect*.
+> **How to read the numbers.** Anything marked **(est.)** is our planning assumption, not measured data. Benchmarks cite their sources in the footnotes at the end. Prices are the COMPANY.md targets ($149 / $299 / $599). Research and Finance will validate them, and this plan is updated when they change. We have **no partners or customers yet**. Every company named in this plan is a *target or prospect*.
 
 ---
 

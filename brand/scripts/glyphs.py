@@ -43,6 +43,8 @@ def text_path(text, name, size, x=0.0, y=0.0, tracking=0.0, kern=True, **axes):
     FALLBACK = {'→': '->', '≤': '<=', '≥': '>=', '×': 'x', '−': '-', '–': '-', '—': '-'}
     text = ''.join(c if ord(c) in cmap else FALLBACK.get(c, '?') for c in text)
     names = [cmap.get(ord(c), cmap[ord('?')]) for c in text]
+    rv = rvrn_map(f)
+    names = [rv.get(n, n) for n in names]
     kerning = gpos_pairs(f) if kern else {}
     for i, g in enumerate(names):
         t = (s, 0, 0, -s, cx, y)
@@ -97,4 +99,26 @@ def gpos_pairs(f):
                         if v:
                             for sec in second_by_class.get(k2, []):
                                 out.setdefault((first, sec), v)
+    return out
+
+
+def rvrn_map(f):
+    """Apply 'rvrn' single substitutions left in GSUB after instancing (e.g. Fraunces WONK=0 forms)."""
+    out = {}
+    if "GSUB" not in f:
+        return out
+    t = f["GSUB"].table
+    if not t.FeatureList:
+        return out
+    idx = set()
+    for fr in t.FeatureList.FeatureRecord:
+        if fr.FeatureTag == "rvrn":
+            idx.update(fr.Feature.LookupListIndex)
+    for i in sorted(idx):
+        lk = t.LookupList.Lookup[i]
+        for st in lk.SubTable:
+            if lk.LookupType == 7:
+                st = st.ExtSubTable
+            if hasattr(st, "mapping"):
+                out.update(st.mapping)
     return out

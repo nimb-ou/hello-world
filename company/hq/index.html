@@ -1,0 +1,443 @@
+<title>LORE Labs HQ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an operating ledger. Product plates on top, then status, numbers and decisions, left-aligned on a 1120px measure */
+:root{
+  --bg:#F3EEE6; --surface:#FBF8F3; --ink:#14161A; --muted:#5B5F66; --line:#DDD5C8;
+  --accent:#C4623A; --accent-text:#A84E2A; --brass:#B8935A; --olive:#5E6B4E;
+  --ok:#3F7F74; --warn:#B07A1E; --bad:#D2392B;
+  --bar:#C4623A; --bar-soft:#E7C9B9;
+  --display:"Fraunces", "Iowan Old Style", Georgia, serif;
+  --body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1218; --surface:#171B22; --ink:#F3EEE6; --muted:#A6ABB2; --line:#2A303A;
+    --accent:#D9774E; --accent-text:#E58C63; --brass:#C9A56C; --olive:#8E9C7C;
+    --ok:#5FA597; --warn:#D9A04A; --bad:#EF5B4C; --bar:#D9774E; --bar-soft:#4A3329;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1218; --surface:#171B22; --ink:#F3EEE6; --muted:#A6ABB2; --line:#2A303A;
+  --accent:#D9774E; --accent-text:#E58C63; --brass:#C9A56C; --olive:#8E9C7C;
+  --ok:#5FA597; --warn:#D9A04A; --bad:#EF5B4C; --bar:#D9774E; --bar-soft:#4A3329;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--body);margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:32px 72px;display:grid;gap:72px}
+a{color:var(--accent-text);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.02}
+h2{font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.1}
+h3{font-size:1.25rem;line-height:1.2}
+p{margin:0;max-width:66ch}
+.eyebrow{font:500 .72rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono)}
+.num{font-variant-numeric:tabular-nums}
+.sec{display:grid;gap:24px}
+.sec-head{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:20px}
+.sec-head p{color:var(--muted)}
+
+/* masthead */
+.mast{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font:600 1.05rem/1 var(--display);letter-spacing:.18em}
+.brand img{width:30px;height:30px}
+.hero{display:grid;gap:22px}
+.hero .lede{font-size:1.12rem;color:var(--muted);max-width:60ch}
+.plate{margin:0;border-radius:6px;overflow:hidden;background:#F3EEE6;border:1px solid var(--line)}
+.plate img{display:block;width:100%;height:auto}
+figcaption{font:.75rem/1.4 var(--mono);color:var(--muted);padding:10px 2px 0;background:var(--bg)}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;font:.8rem/1.4 var(--mono);color:var(--muted)}
+.facts b{color:var(--ink);font-weight:500}
+
+/* status ledger */
+.ledger{width:100%;border-collapse:collapse}
+.ledger-wrap{overflow-x:auto}
+.ledger th{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 12px 10px 0;border-bottom:1px solid var(--line)}
+.ledger td{padding:14px 12px 14px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.ledger td:first-child{font-family:var(--display);font-size:1.05rem;white-space:nowrap}
+.ledger td:nth-child(3){color:var(--muted);min-width:260px}
+.ledger td:last-child{white-space:nowrap;font:.8rem/1.6 var(--mono)}
+.pill{display:inline-flex;align-items:center;gap:6px;font:500 .72rem/1 var(--mono);padding:5px 9px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.pill.done{color:var(--ok)} .pill.wip{color:var(--warn)} .pill.open{color:var(--bad)}
+
+/* product */
+.skus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.sku{display:grid;gap:12px;align-content:start}
+.sku .plate{aspect-ratio:3/2;max-width:100%}
+.sku .plate img{height:100%;object-fit:cover}
+.sku-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.price{font:500 1.35rem/1 var(--display);color:var(--accent-text)}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.88rem;margin:0}
+.spec dt{color:var(--muted);font:.74rem/1.7 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.spec dd{margin:0}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+
+/* prototype */
+.proto{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start}
+.phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.phones .plate{border-radius:18px}
+.metrics{display:grid;gap:0;margin:0}
+.metrics div{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.metrics dt{color:var(--muted)}
+.metrics dd{margin:0;font:500 1rem/1.4 var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.note{font-size:.85rem;color:var(--muted);border-left:2px solid var(--brass);padding-left:12px}
+
+.cmp{width:100%;border-collapse:collapse;font-size:.92rem}
+.cmp th{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:right;padding:0 0 10px 12px;border-bottom:1px solid var(--line)}
+.cmp td{padding:10px 0 10px 12px;border-bottom:1px solid var(--line);text-align:right;font:500 .92rem/1.4 var(--mono);font-variant-numeric:tabular-nums}
+.cmp td:first-child,.cmp th:first-child{text-align:left;padding-left:0;font:400 .92rem/1.4 var(--body);color:var(--muted)}
+
+/* numbers */
+.numbers{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;display:grid;gap:16px;min-width:0}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+.toggle button{font:500 .78rem/1 var(--mono);border:0;background:transparent;color:var(--muted);padding:8px 14px;border-radius:999px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+#chart{width:100%;height:auto;display:block}
+.ebitda{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;font:.78rem/1.4 var(--mono);text-align:center}
+.ebitda span{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
+.neg{color:var(--bad)} .pos{color:var(--ok)}
+.market{display:grid;gap:0}
+.market div{display:grid;grid-template-columns:4.5em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.market b{font:500 .8rem/1 var(--mono);letter-spacing:.1em;color:var(--muted)}
+.market span{font-family:var(--display);font-size:1.15rem}
+.market small{display:block;font:.82rem/1.4 var(--body);color:var(--muted)}
+.rounds{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.rounds li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.rounds li span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.rounds li.now{color:var(--accent-text);font-weight:600}
+
+/* decisions */
+.decisions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px}
+.dec{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.dec b{font:500 .78rem/1.7 var(--mono);color:var(--accent-text)}
+
+/* asks */
+.asks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ask{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;gap:8px;align-content:start}
+.ask .pill{justify-self:start}
+.ask p{font-size:.92rem;color:var(--muted)}
+.ask:last-child:nth-child(odd){grid-column:1/-1}
+
+/* gates */
+.gates{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;counter-reset:g}
+.gate{border-top:3px solid var(--line);padding-top:14px;display:grid;gap:8px;align-content:start}
+.gate.current{border-top-color:var(--accent)}
+.gate .when{font:.74rem/1 var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.gate p{font-size:.88rem;color:var(--muted)}
+footer{font:.78rem/1.6 var(--mono);color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
+
+@media (max-width:900px){
+  .skus{grid-template-columns:1fr}
+  .proto,.numbers{grid-template-columns:1fr}
+  .gates{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .gallery,.decisions,.asks,.gates{grid-template-columns:1fr}
+  .phones{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .wrap{gap:56px}
+}
+@media (prefers-reduced-motion:no-preference){
+  #chart rect.bar{transition:height .35s ease, y .35s ease}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="mast">
+      <div class="brand"><img src="assets/symbol.svg" alt="">LORE LABS</div>
+      <span class="eyebrow">Company HQ · updated 31 Oct 2026, evening</span>
+    </div>
+    <h1>Every street has a story.</h1>
+    <p class="lede">LORE is a pocket-sized travel companion that tells you the stories of the city around you through your own earphones: history, hidden facts, live info and directions, with "on your left / on your right" awareness. It works online and offline. This page gathers the whole company in one place: the product, the prototype, the numbers, and what each department has produced.</p>
+    <figure class="plate">
+      <img src="assets/lineup.jpg" alt="The LORE family: Pebble in terracotta, Square in black aluminium, Atlas in titanium, shown at true relative scale" width="1600" height="1067">
+    </figure>
+    <div class="facts">
+      <span><b>3</b> devices</span>
+      <span><b>Rome</b> launch pack · <b>Mumbai</b> test pack · 148 places</span>
+      <span><b>87</b> automated tests passing</span>
+      <span><b>$1.75M</b> pre-seed ask</span>
+    </div>
+  </header>
+
+  <section class="sec" aria-labelledby="s-status">
+    <div class="sec-head">
+      <span class="eyebrow">Departments</span>
+      <h2 id="s-status">Where every team stands</h2>
+      <p>Each department is an AI agent team that owns one folder in the repository. The links open that folder on GitHub.</p>
+    </div>
+    <div class="ledger-wrap">
+      <table class="ledger">
+        <thead><tr><th>Team</th><th>Status</th><th>What's in it</th><th>Folder</th></tr></thead>
+        <tbody>
+          <tr><td>Founder's office</td><td><span class="pill done">Done</span></td><td>Company bible, 18-month plan with go/no-go gates, OKRs, org chart, 16 logged decisions</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/company" target="_blank" rel="noopener">company/</a></td></tr>
+          <tr><td>Research</td><td><span class="pill done">Done</span></td><td>Market sizing, 30+ competitors, pricing study, 6 personas, survey and interview script, launch-city scoring</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/research" target="_blank" rel="noopener">research/</a></td></tr>
+          <tr><td>Brand</td><td><span class="pill done">Done</span></td><td>Keyhole logo system, brand book, narrator voices, packaging dielines, stationery</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/brand" target="_blank" rel="noopener">brand/</a></td></tr>
+          <tr><td>Design</td><td><span class="pill done">Done</span></td><td>19 product and accessory renders, 15 device screens, 12 phone app screens, dimensioned drawings, 3D model files, ID spec</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/design" target="_blank" rel="noopener">design/</a></td></tr>
+          <tr><td>Hardware</td><td><span class="pill done">Done</span></td><td>Chip choice per model, costed parts lists, schematics, battery/heading/thermal/RF simulations, certification and factory plan</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/hardware" target="_blank" rel="noopener">hardware/</a></td></tr>
+          <tr><td>Software</td><td><span class="pill done">Done</span></td><td>Story engine, Map Vision, Rome City Pack, phone prototype, backend with fact-guarded AI, walk simulation</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/software" target="_blank" rel="noopener">software/</a></td></tr>
+          <tr><td>Finance</td><td><span class="pill done">Done</span></td><td>20-sheet Excel model with live formulas, scenarios, cap table, unit economics, Kickstarter and fundraising plans</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/finance" target="_blank" rel="noopener">finance/</a></td></tr>
+          <tr><td>Sales &amp; marketing</td><td><span class="pill done">Done</span></td><td>Launch strategy, Kickstarter campaign, 374-post social calendar, landing site, press and creator plans, B2B playbook</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/gtm" target="_blank" rel="noopener">gtm/</a></td></tr>
+          <tr><td>Legal &amp; operations</td><td><span class="pill done">Done</span></td><td>Incorporation plan, 10 contract templates, 10 policy drafts, trademark/patent plan, compliance by country, hiring, 25-item risk register</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/legal-ops" target="_blank" rel="noopener">legal-ops/</a></td></tr>
+          <tr><td>Investor relations</td><td><span class="pill done">Done</span></td><td>16-slide pitch deck, one-pager, executive summary, 25 hard investor questions, data room index</td><td><a href="https://github.com/nimb-ou/hello-world/tree/claude/lore-startup/investor" target="_blank" rel="noopener">investor/</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-product">
+    <div class="sec-head">
+      <span class="eyebrow">Product</span>
+      <h2 id="s-product">Three devices, one story engine</h2>
+      <p>Each device works with the earphones you already own. Costs are landed cost per unit at the first 10,000 units, including certification and tooling spread over that run.</p>
+    </div>
+    <div class="skus">
+      <article class="sku">
+        <figure class="plate"><img src="assets/pebble.jpg" alt="LORE Pebble, a soft terracotta clip-on with a light ring" width="1200" height="800" loading="lazy"></figure>
+        <div class="sku-top"><h3>Pebble</h3><span class="price num">$149</span></div>
+        <dl class="spec">
+          <dt>Form</dt><dd>Clip-on, 42 mm, no screen, light ring</dd>
+          <dt>Brains</dt><dd>Uses your phone for AI; plays stored stories offline</dd>
+          <dt>Battery</dt><dd>1.5 days</dd>
+          <dt>Cost</dt><dd class="num">≈ $90 · 39% margin</dd>
+        </dl>
+      </article>
+      <article class="sku">
+        <figure class="plate"><img src="assets/square.jpg" alt="LORE Square in black anodised aluminium with a compass screen" width="1200" height="800" loading="lazy"></figure>
+        <div class="sku-top"><h3>Square</h3><span class="price num">$299</span></div>
+        <dl class="spec">
+          <dt>Form</dt><dd>54 mm aluminium, 1.6" screen, crown</dd>
+          <dt>Brains</dt><dd>On-device AI, built-in global data (eSIM)</dd>
+          <dt>Battery</dt><dd>2 days</dd>
+          <dt>Cost</dt><dd class="num">≈ $299 today · target ≤ $240</dd>
+        </dl>
+      </article>
+      <article class="sku">
+        <figure class="plate"><img src="assets/atlas.jpg" alt="LORE Atlas in bead-blasted titanium with a brass crown and small camera" width="1200" height="800" loading="lazy"></figure>
+        <div class="sku-top"><h3>Atlas</h3><span class="price num">$599</span></div>
+        <dl class="spec">
+          <dt>Form</dt><dd>Titanium, sapphire, 13.5 mm, camera</dd>
+          <dt>Brains</dt><dd>On-device AI, global data, satellite SOS</dd>
+          <dt>Battery</dt><dd>2+ days</dd>
+          <dt>Cost</dt><dd class="num">≈ $413 · 31% margin</dd>
+        </dl>
+      </article>
+    </div>
+    <div class="gallery">
+      <figure class="plate"><img src="assets/colourways.jpg" alt="All seven finishes across the three devices" width="1600" height="1067" loading="lazy"><figcaption>Seven finishes: Pebble Bone, Ink, Terracotta · Square Ink, Sand · Atlas titanium, black DLC</figcaption></figure>
+      <figure class="plate"><img src="assets/exploded.jpg" alt="Exploded view of LORE Square showing its seven layers" width="1400" height="933" loading="lazy"><figcaption>Square, exploded: glass, display, frame, body, main board, battery, back</figcaption></figure>
+      <figure class="plate"><img src="assets/in-hand.jpg" alt="LORE Square held in a hand for scale" width="1200" height="800" loading="lazy"><figcaption>In hand, for scale</figcaption></figure>
+      <figure class="plate"><img src="assets/lanyard.jpg" alt="LORE device worn on a leather lanyard" width="1200" height="800" loading="lazy"><figcaption>On the leather lanyard (LORE Kit accessory)</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-screens">
+    <div class="sec-head">
+      <span class="eyebrow">Interface</span>
+      <h2 id="s-screens">What you see and tap</h2>
+      <p>The device shows a compass, the story playing and which side it is on, places around you, and the SOS flow. The phone app handles setup, City Packs, the day's recap, safety contacts and the subscription.</p>
+    </div>
+    <figure class="plate"><img src="assets/device-mockup.jpg" alt="Four LORE screens shown on the Square: compass home, now narrating, around you, and Walk Me Home" width="1600" height="909" loading="lazy"><figcaption>On the Square: home compass, now narrating, around you, Walk Me Home</figcaption></figure>
+    <figure class="plate"><img src="assets/app-mockup.jpg" alt="Three companion app screens in phone frames: Rome pack, live walk map, Today in Rome" width="1600" height="1011" loading="lazy"><figcaption>Companion app: Rome pack, live walk map, Today in Rome</figcaption></figure>
+    <div class="gallery">
+      <figure class="plate"><img src="assets/device-sheet.jpg" alt="All 15 device screens" width="1400" height="1034" loading="lazy"><figcaption>All 15 device screens</figcaption></figure>
+      <figure class="plate"><img src="assets/app-sheet.jpg" alt="All 12 companion app screens" width="1600" height="1255" loading="lazy"><figcaption>All 12 app screens</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-proto">
+    <div class="sec-head">
+      <span class="eyebrow">Prototype</span>
+      <h2 id="s-proto">Working walks through Rome and Mumbai</h2>
+      <p>The phone prototype replays two walks and narrates what is on each side of you: Pantheon to Trevi in Rome, and Gateway of India to CSMT in Mumbai, where you will run the first real tests. The numbers come from automated walk simulations with simulated sensors.</p>
+    </div>
+    <div class="proto">
+      <div class="phones">
+        <figure class="plate"><img src="assets/app-pantheon.jpg" alt="Prototype narrating the Pantheon" width="520" height="1125" loading="lazy"></figure>
+        <figure class="plate"><img src="assets/app-around.jpg" alt="Prototype listing what is around the listener at Largo Argentina" width="520" height="1125" loading="lazy"></figure>
+        <figure class="plate"><img src="assets/app-trevi.jpg" alt="Prototype narrating the Trevi Fountain" width="520" height="1125" loading="lazy"></figure>
+        <figure class="plate"><img src="assets/mum-gateway.jpg" alt="Prototype narrating the Gateway of India in Mumbai" width="520" height="1125" loading="lazy"></figure>
+        <figure class="plate"><img src="assets/mum-kala.jpg" alt="Prototype narrating Kala Ghoda in Mumbai" width="520" height="1125" loading="lazy"></figure>
+        <figure class="plate"><img src="assets/mum-csmt.jpg" alt="Prototype showing what is around the listener at CSMT in Mumbai" width="520" height="1125" loading="lazy"></figure>
+      </div>
+      <div class="sec" style="gap:18px">
+        <table class="cmp">
+          <thead><tr><th></th><th>Rome</th><th>Mumbai</th></tr></thead>
+          <tbody>
+            <tr><td>Route</td><td>1.93 km</td><td>2.32 km</td></tr>
+            <tr><td>Places in pack</td><td>86</td><td>62</td></tr>
+            <tr><td>Sourced facts</td><td>215</td><td>144</td></tr>
+            <tr><td>Stories told</td><td>17</td><td>16</td></tr>
+            <tr><td>Repeated facts</td><td>0</td><td>0</td></tr>
+            <tr><td>Stories started while crossing</td><td>0</td><td>0</td></tr>
+            <tr><td>Left / right called correctly</td><td>100%</td><td>93.8%</td></tr>
+            <tr><td>Average heading error</td><td>4.3°</td><td>2.8°</td></tr>
+          </tbody>
+        </table>
+        <p class="note">The facts were written from well-established sources, but this environment could not open the source pages to check them. Each needs a fact-check before anyone hears it. Mumbai coordinates may be 30–60 m off until your first real walk corrects them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-numbers">
+    <div class="sec-head">
+      <span class="eyebrow">Numbers</span>
+      <h2 id="s-numbers">Market, revenue and funding</h2>
+      <p>All figures are planning estimates from the finance model and the research team, not results.</p>
+    </div>
+    <div class="numbers">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Revenue by fiscal year</h3>
+          <div class="toggle" role="group" aria-label="Scenario">
+            <button type="button" id="sc-bear" data-sc="bear" aria-pressed="false">Bear</button>
+            <button type="button" id="sc-base" data-sc="base" aria-pressed="true">Base</button>
+            <button type="button" id="sc-bull" data-sc="bull" aria-pressed="false">Bull</button>
+          </div>
+        </div>
+        <svg id="chart" viewBox="0 0 560 300" role="img" aria-label="Revenue by fiscal year"></svg>
+        <div>
+          <div class="eyebrow" style="margin-bottom:8px">EBITDA</div>
+          <div class="ebitda" id="ebitda"></div>
+        </div>
+      </div>
+      <div class="sec" style="gap:28px">
+        <div class="market">
+          <div><b>TAM</b><span>$10.7B / yr<small>What people already spend on travel eSIMs, audio guides, safety devices and self-guided tours</small></span></div>
+          <div><b>SAM</b><span>$1.44B / yr<small>8.7M solo travellers making 2+ international trips a year in our first markets</small></span></div>
+          <div><b>SOM</b><span>250k units in 2030<small>About 4.7% of SAM over four years</small></span></div>
+        </div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">Funding path · $55.5M to break-even</div>
+          <ul class="rounds">
+            <li class="now"><span>Pre-seed SAFE, $12M cap · now</span><span>$1.75M</span></li>
+            <li><span>Seed · Aug 2027, after Kickstarter</span><span>$6M</span></li>
+            <li><span>Seed extension · Mar 2028</span><span>$3M</span></li>
+            <li><span>Series A · Sep 2028</span><span>$25M</span></li>
+            <li><span>Series B · 2030</span><span>$20M</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-asks">
+    <div class="sec-head">
+      <span class="eyebrow">Needs the founder</span>
+      <h2 id="s-asks">Five things that need you next</h2>
+    </div>
+    <div class="asks">
+      <div class="ask"><span class="pill open">Before incorporating</span><h3>Indian legal opinion</h3><p>You live in India, so Indian rules on owning a foreign company apply. Book an Indian lawyer for a FEMA/ODI and tax opinion before forming the US company. Budget $600–2,500.</p></div>
+      <div class="ask"><span class="pill open">By Dec 2026</span><h3>Commission the name search</h3><p>You chose to keep LORE. Order a trademark clearance search ($1.5–4k). "LORE TRAVEL" is the fallback if it fails.</p></div>
+      <div class="ask"><span class="pill wip">Before buying a domain</span><h3>Pick a web domain</h3><p>Your email is now on the deck and one-pager. Check whether lore.travel or a close alternative is free before the website goes live.</p></div>
+      <div class="ask"><span class="pill wip">Before any walk test</span><h3>Fact-check the stories</h3><p>Verify the Mumbai and Rome facts against their sources, then do an editorial pass. A local historian or heritage-walk guide is the ideal reviewer.</p></div>
+      <div class="ask"><span class="pill wip">At DVT, mid 2027</span><h3>Square's cost</h3><p>The biggest swing in the plan. If landed cost stays near $227 instead of falling to about $185, the company needs about $19M more. The fallback is pricing Square at $329.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-dec">
+    <div class="sec-head">
+      <span class="eyebrow">Decisions log</span>
+      <h2 id="s-dec">21 decisions, and why</h2>
+      <p>The full reasoning and what would change each call is in <a href="https://github.com/nimb-ou/hello-world/blob/claude/lore-startup/company/decisions-log.md" target="_blank" rel="noopener">decisions-log.md</a>.</p>
+    </div>
+    <div class="decisions">
+      <div class="dec"><b>D1</b><span>Build a dedicated device; the phone app is the prototype and companion</span></div>
+      <div class="dec"><b>D2</b><span>Name LORE, tagline "Every street has a story."</span></div>
+      <div class="dec"><b>D3</b><span>Map Vision from sensors and map data instead of a camera on the first models</span></div>
+      <div class="dec"><b>D4</b><span>Every fact is checked and sourced; the AI may not invent history</span></div>
+      <div class="dec"><b>D5</b><span>Rome is the first city</span></div>
+      <div class="dec"><b>D6</b><span>Three models plus the LORE Pass subscription</span></div>
+      <div class="dec"><b>D7</b><span>Users bring their own earphones</span></div>
+      <div class="dec"><b>D8</b><span>Atlas raised to $599; annual plan $79; 30-day Trip Pass $49</span></div>
+      <div class="dec"><b>D9</b><span>London as second beta city; Florence next</span></div>
+      <div class="dec"><b>D10</b><span>Pebble uses the phone for AI, cutting its cost to about $90</span></div>
+      <div class="dec"><b>D11</b><span>Square moves to a cheaper LTE modem and keeps $299</span></div>
+      <div class="dec"><b>D12</b><span>Atlas is 13.5 mm and claims "2+ days" battery</span></div>
+      <div class="dec"><b>D13</b><span>Assembly in Vietnam or Malaysia to avoid tariffs</span></div>
+      <div class="dec"><b>D14</b><span>Pre-seed raised to $1.75M at a $12M cap</span></div>
+      <div class="dec"><b>D15</b><span>Shops get Pebble and Atlas first; Square sold direct until its cost falls</span></div>
+      <div class="dec"><b>D16</b><span>Plan for $55.5M of equity to reach break-even in 2031</span></div>
+      <div class="dec"><b>D17</b><span>Founder is in India: Indian legal opinion first; Indian staff via an employer of record</span></div>
+      <div class="dec"><b>D18</b><span>Keep the LORE name; clearance search with LORE TRAVEL as fallback</span></div>
+      <div class="dec"><b>D19</b><span>Mumbai's Fort and Kala Ghoda for walk tests; Rome for launch; Hampi next for offline</span></div>
+      <div class="dec"><b>D20</b><span>Pebble stays 42 mm with a smaller 2.2-day battery that fits</span></div>
+      <div class="dec"><b>D21</b><span>USB-C stays on every model until the EU charger rule is checked</span></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-gates">
+    <div class="sec-head">
+      <span class="eyebrow">Operating plan</span>
+      <h2 id="s-gates">Four gates before scale</h2>
+      <p>Each stage removes one risk before money is spent on the next.</p>
+    </div>
+    <div class="gates">
+      <div class="gate current"><span class="when">Now → Jan 2027</span><h3>G0 · The magic</h3><p>20 walk tests in Mumbai, plus remote Rome testers. At least 40% would be "very disappointed" without LORE; 5,000 on the waitlist.</p></div>
+      <div class="gate"><span class="when">Feb → May 2027</span><h3>G1 · The device</h3><p>50 prototype units. 1.5-day battery, left/right right 90%+ of the time in the real city.</p></div>
+      <div class="gate"><span class="when">Jun → Aug 2027</span><h3>G2 · Demand</h3><p>Kickstarter: $1M+ pledged from 3,000+ backers at under $60 per backer.</p></div>
+      <div class="gate"><span class="when">Sep 2027 → Apr 2028</span><h3>G3 · Shipping</h3><p>First 5,000 units. Returns under 5%, subscription take-up over 55%.</p></div>
+    </div>
+  </section>
+
+  <footer>LORE Labs · Founder: Nimit Jain, nimitjain.248@gmail.com · All numbers are planning estimates unless marked as measured · Source files in the nimb-ou/hello-world repository, branch claude/lore-startup</footer>
+</div>
+
+<script>
+(function(){
+  var data = {
+    bear:{rev:[0.30,5.15,16.04,33.90,56.15], eb:[-4.2,-5.7,-12.5,-18.2,-22.3]},
+    base:{rev:[0.60,10.12,31.60,67.10,111.30], eb:[-4.2,-4.3,-7.2,-5.4,0.8]},
+    bull:{rev:[0.86,14.77,46.66,99.51,166.13], eb:[-4.1,-3.0,-2.1,7.2,24.4]}
+  };
+  var years=["FY27","FY28","FY29","FY30","FY31"];
+  var svg=document.getElementById("chart"), eb=document.getElementById("ebitda");
+  var W=560,H=300,L=46,R=12,T=16,B=34, max=175, ticks=[0,50,100,150];
+  var ns="http://www.w3.org/2000/svg";
+  function el(n,a,t){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e;}
+  var y=function(v){return T+(H-T-B)*(1-v/max);};
+  ticks.forEach(function(t){
+    svg.appendChild(el("line",{x1:L,x2:W-R,y1:y(t),y2:y(t),style:"stroke:var(--line);stroke-width:1"}));
+    svg.appendChild(el("text",{x:L-8,y:y(t)+4,"text-anchor":"end",style:"font:11px var(--mono);fill:var(--muted)"},"$"+t+"M"));
+  });
+  var slot=(W-L-R)/years.length, bw=slot*0.56, bars=[], labels=[];
+  years.forEach(function(yr,i){
+    var x=L+slot*i+(slot-bw)/2;
+    var r=el("rect",{class:"bar",x:x,width:bw,y:y(0),height:0,rx:2,style:"fill:"+(i===4?"var(--bar)":"var(--bar-soft)")});
+    svg.appendChild(r); bars.push(r);
+    var lb=el("text",{x:x+bw/2,y:y(0)-6,"text-anchor":"middle",style:"font:12px var(--mono);fill:var(--ink)"},"");
+    svg.appendChild(lb); labels.push(lb);
+    svg.appendChild(el("text",{x:x+bw/2,y:H-12,"text-anchor":"middle",style:"font:11px var(--mono);fill:var(--muted)"},yr));
+  });
+  function fmt(v){return v<1?"$"+v.toFixed(1)+"M":"$"+Math.round(v)+"M";}
+  function draw(sc){
+    var d=data[sc];
+    d.rev.forEach(function(v,i){
+      var top=y(v); bars[i].setAttribute("y",top); bars[i].setAttribute("height",Math.max(1,y(0)-top));
+      labels[i].setAttribute("y",top-6); labels[i].textContent=fmt(v);
+    });
+    eb.innerHTML="";
+    d.eb.forEach(function(v,i){
+      var c=document.createElement("div");
+      c.innerHTML="<span>"+years[i]+"</span><b class='num "+(v<0?"neg":"pos")+"'>"+(v<0?"−$":"+$")+Math.abs(v).toFixed(1)+"M</b>";
+      eb.appendChild(c);
+    });
+    document.querySelectorAll(".toggle button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.sc===sc?"true":"false");});
+    svg.setAttribute("aria-label","Revenue by fiscal year, "+sc+" case: "+d.rev.map(function(v,i){return years[i]+" "+fmt(v);}).join(", "));
+  }
+  document.querySelectorAll(".toggle button").forEach(function(b){b.addEventListener("click",function(){draw(b.dataset.sc);});});
+  draw("base");
+})();
+</script>

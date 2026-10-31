@@ -1,0 +1,41 @@
+category,ref,description,manufacturer,mpn,qty,unit_1k,unit_10k,unit_100k,ext_1k,ext_10k,ext_100k,price_basis,supplier,alternates
+RF,U8,"GNSS L1+L5 module, GPS/GAL/BDS/QZSS/NavIC, 12.2x16x2.5 mm",Quectel,LC29HAA,1,7.80,6.30,5.30,7.80,6.30,5.30,D,Quectel / Mouser,u-blox NEO-F10N
+RF,ANT1-3,"Antennas: GNSS L1/L5 LDS, Wi-Fi/BT LDS on plastic carrier",Pulse / Sunway / Luxshare,LDS custom,1,1.40,1.05,0.80,1.40,1.05,0.80,E,Antenna house RFQ,FPC antennas
+Sensors,U20,"6-axis IMU + programmable fusion MCU (BSX, PDR, step/heading)",Bosch Sensortec,BHI360,1,4.70,3.95,3.30,4.70,3.95,3.30,D,Digi-Key/Future (franchised),TDK ICM-45686 + host fusion
+Sensors,U21,"3-axis magnetometer, +/-2000 uT, 0.1 uT noise-class, I3C/I2C",Bosch Sensortec,BMM350,1,2.10,1.65,1.35,2.10,1.65,1.35,D,Mouser/Future,MEMSIC MMC5983MA
+Sensors,U22,"Barometric pressure sensor (floor/look-up, altitude aid)",Bosch Sensortec,BMP390,1,2.40,1.90,1.50,2.40,1.90,1.50,E,Digi-Key/Future,Infineon DPS368
+Audio,MK1-2,"Digital MEMS mic, PDM, 73 dB SNR, IP57 (beamforming pair)",Infineon,IM73D122V01,2,1.15,0.92,0.75,2.30,1.84,1.50,E,Digi-Key/Avnet,Knowles SPH0690LM4H-1
+Audio,U30,"Smart Class-D speaker amp w/ boost + IV-sense speaker protection, I2S/TDM",Texas Instruments,TAS2563YFP,1,1.60,1.30,1.05,1.60,1.30,1.05,E,TI direct/Arrow,Analog Devices MAX98390
+Audio,LS1,"Micro-speaker 1309 box, 8 ohm 0.5 W, IP67 membrane",AAC / Goertek,SPK-1309-custom,1,1.00,0.75,0.58,1.00,0.75,0.58,E,AAC/Goertek RFQ,Knowles/ Merry
+Haptics,U31,"Haptic driver, LRA auto-resonance, ROM effects",Texas Instruments,DRV2605LYZFR,1,1.10,0.88,0.70,1.10,0.88,0.70,E,TI direct/Arrow,Awinic AW86224
+Haptics,M1,"X-axis linear resonant actuator 0.8 G, 170 Hz (custom 10x3.5x2.5 mm)",AAC / Jahwa,LRA-X1035-custom,1,1.30,0.95,0.75,1.30,0.95,0.75,E,AAC RFQ,Vybronics VG0832012
+UI,U50,24-ch constant-current LED driver (8 RGB LEDs ring),Texas Instruments,LP5024RSMR,1,1.25,1.00,0.80,1.25,1.00,0.80,E,TI,Awinic AW20036
+UI,LED1-8,RGB side-view LED 1.0x0.5 mm,Everlight / Kingbright,RGB-0402-SV,8,0.07,0.05,0.04,0.56,0.40,0.32,E,Distribution,
+UI,SW1-2,"Tact switch 4 N, 200k cycles (main button + volume rocker)",C&K / Alps,KMR2-class,2,0.14,0.11,0.09,0.28,0.22,0.18,E,Distribution,
+Security,U9,"Secure element (device identity, attestation keys, anti-clone)",NXP,SE050E2HQ1,1,2.10,1.70,1.35,2.10,1.70,1.35,E,NXP distribution,Infineon OPTIGA Trust M
+Power,BT1,"Li-ion polymer 650 mAh 3.87 V (2.52 Wh), 4.45 V HV, PCM+NTC, 5.5x35x32 mm",ATL / Sunwoda / SCUD,LP553532-650,1,3.30,2.70,2.25,3.30,2.70,2.25,E,Cell vendor RFQ,EVE / Desay
+Power,U41,"Li-ion charger (USB-C 5 V in, I2C, JEITA, ship mode)",Analog Devices,"MAX77654AENV+ (charger+3 buck-boost SIMO, rails for MCU/sensors)",1,3.20,2.55,2.10,3.20,2.55,2.10,E,TI direct/Arrow,SGMicro SGM41511 / Southchip SC8551
+Power,U42,"Fuel gauge ModelGauge m5 EZ, internal sense, cycle/age tracking",Analog Devices,MAX17262,1,1.55,1.25,1.00,1.55,1.25,1.00,E,ADI/Digi-Key,TI BQ27427
+Power,J1,"USB-C 16-pin mid-mount receptacle, IPX8-gasketed",Amphenol / Korea Hirose,USB-C-16P-WP,1,0.55,0.42,0.33,0.55,0.42,0.33,E,Amphenol RFQ,JAE DX07 series
+Power,D1-4,"ESD/TVS arrays (USB, buttons, pogo)",Nexperia / TI,PESD5V0X1BL / TPD4E05U06,4,0.08,0.06,0.05,0.32,0.24,0.20,E,Distribution,
+Power,J2,4-pin magnetic pogo receiver (dock / power-puck),CFE / Lotes,POGO-4P-1.5mm,1,0.60,0.45,0.35,0.60,0.45,0.35,E,Shenzhen pogo vendor RFQ,
+Passives,Y1-3,"Crystals / TCXO (32.768 kHz, 26 MHz SoC, 38.4 MHz radio)",Epson / NDK / TXC,various,1,0.70,0.55,0.45,0.70,0.55,0.45,E,Distribution,
+PCB,FPC1-2,"Flex: battery/pogo flex, button+LED flex",Career / Flexium / MFLEX,LORE-PB-FPC,1,1.40,1.05,0.85,1.40,1.05,0.85,E,FPC fab RFQ,
+PCB,SH1-3,"Stamped RF shield cans (frame+lid), nickel-silver",Local Shenzhen stamping,SHIELD-PB,3,0.22,0.16,0.12,0.66,0.48,0.36,E,Stamping vendor,
+PCB,J3-4,"Board-to-board connectors (battery, FPC)",Panasonic / Hirose,AXE6 / BM28 class,2,0.30,0.24,0.19,0.60,0.48,0.38,E,Distribution,
+Mechanical,MEC1,"Top shell PC+30%GF, soft-touch PU paint, Bone/Ink/Terracotta",Tier-1 molder (Dongguan),LORE-PB-TOP,1,1.60,1.10,0.80,1.60,1.10,0.80,E,Molder RFQ,
+Mechanical,MEC2,Bottom shell PC+GF with pogo bosses & clip rail,Tier-1 molder,LORE-PB-BOT,1,1.20,0.85,0.62,1.20,0.85,0.62,E,Molder RFQ,
+Mechanical,MEC3,"LED light-guide ring (PMMA, frosted) + diffuser",Tier-1 molder,LORE-PB-LGR,1,0.55,0.38,0.28,0.55,0.38,0.28,E,Molder RFQ,
+Mechanical,MEC4,"Button caps (zinc die-cast, PVD) + rubber keypad",Die-caster,LORE-PB-BTN,1,0.65,0.45,0.35,0.65,0.45,0.35,E,RFQ,
+Mechanical,MEC5,"Gaskets, PSA die-cuts, acoustic vents (ePTFE IP67)",Saati / Gore / 3M,various,1,1.10,0.85,0.68,1.10,0.85,0.68,E,Die-cut converter,
+Mechanical,MEC7,Detachable spring-steel clip with PC overmould,Stamping + molding,LORE-PB-CLIP,1,0.90,0.65,0.50,0.90,0.65,0.50,E,RFQ,
+Mechanical,MEC8,"Screws/inserts/magnets (dock alignment, N52 x2)",various,various,1,0.35,0.27,0.21,0.35,0.27,0.21,E,RFQ,
+Packaging,PKG1,"Rigid FSC box with sleeve, moulded-pulp insert",Shenzhen packaging house,LORE-PKG,1,3.20,2.40,1.85,3.20,2.40,1.85,E,Packaging RFQ,
+Packaging,PKG2,"Quick-start guide, regulatory leaflet, labels",Printer,LORE-QSG,1,0.30,0.22,0.17,0.30,0.22,0.17,E,Printer,
+Packaging,ACC1,"USB-C to USB-C braided 1 m cable (60 W, E-marker-less)",Cable OEM,CBL-C2C-1M,1,1.30,1.00,0.80,1.30,1.00,0.80,E,Cable OEM,
+Packaging,ACC2,Silicone lanyard loop,Accessory OEM,ACC,1,0.80,0.60,0.45,0.80,0.60,0.45,E,RFQ,
+Compute,U1,"Dual-mode BT 5.4 audio SoC (BR/EDR source + LE Audio/Auracast) + DSP, 8 MB flash",Airoha / Bestechnic / Realtek,AB159x / BES27xx / RTL8773 class (source FW),1,3.80,3.10,2.60,3.80,3.10,2.60,E,Vendor RFQ,
+Compute,U5,"Host MCU: sensor fusion, offline narration cache, BLE to phone",Nordic Semiconductor,nRF54L15,1,2.30,1.90,1.60,2.30,1.90,1.60,E,Nordic distribution,
+Compute,U4,"QSPI NOR 64 MB (story audio cache, 1 neighbourhood)",Winbond / GigaDevice,W25Q512 class,1,2.20,1.80,1.50,2.20,1.80,1.50,E,Distribution,
+Passives,R/C/L,Passives (~180 pcs),Murata/Samsung EM/Yageo,various,1,1.20,0.95,0.78,1.20,0.95,0.78,E,Distribution,
+PCB,PCB1,"Main PCB 6-layer HDI 1+4+1, 36 mm",Kinwong / SCC,LORE-PBL-MAIN,1,3.20,2.40,1.90,3.20,2.40,1.90,E,PCB RFQ,

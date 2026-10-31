@@ -39,14 +39,14 @@ The story engine uses only **checked facts with sources** (no invented history).
 | | **LORE Pebble** | **LORE Square** | **LORE Atlas** |
 |---|---|---|---|
 | Form | Clip-on rounded pebble, about 42×42×14 mm, no screen, 1 LED ring | Rounded square, about 54×54×12 mm, 1.6" round-corner AMOLED, crown/button | Same footprint as Square in titanium + sapphire, 1.6" AMOLED, wide-angle "Glance" camera |
-| Connectivity | BLE to phone + Wi-Fi; offline packs | LTE Cat-4 global eSIM + Wi-Fi + BT 5.4 LE Audio | LTE + eSIM + satellite SOS (NTN) |
+| Connectivity | BLE to phone + Wi-Fi; offline packs ("Lite" design: AI runs on the phone and in the cloud, offline pre-generated stories; see D10) | LTE Cat-1bis global eSIM + Wi-Fi + BT 5.4 LE Audio | LTE + eSIM + satellite SOS (NTN) |
 | AI | Cloud AI + small on-device model (~1B) | On-device 3B model + cloud | On-device 3–4B model + vision + cloud |
-| Battery | 1.5 days | 2 days | 3 days |
-| Target price | **$149** | **$299** | **$549** |
+| Battery | 1.5 days | 2 days | 2+ days (13.5 mm body) |
+| Target price | **$149** | **$299** | **$599** (raised from $549 per research/pricing-research.md) |
 
 **Subscription "LORE Pass":**
 - **Explorer** $9.99/mo: unlimited live AI, 1 GB/mo of data, all City Packs, safety features
-- **Trip Pass** $29 for 14 days, including 5 GB of data
+- **Trip Pass** $29 for 14 days, including 5 GB of data (also $49 for 30 days with 10 GB; Explorer annual plan $79)
 - **Free tier**: offline packs for 3 cities plus basic narration
 
 Every device comes with 3 months of Explorer.
@@ -91,8 +91,9 @@ Every device comes with 3 months of Explorer.
 - **Atlas:** Bead-blasted titanium, black DLC titanium; sapphire glass; brass-tone crown accent
 
 ## Launch plan basics
+- **Home test city: Mumbai** (Fort/Kala Ghoda heritage precinct; founder walk tests; D19). **Hampi** next for offline testing.
 - **Launch city / City Pack v1: Rome** (dense history, high tourism, great data). Next: Lisbon, Paris, London, Barcelona, Istanbul, Kyoto, New York.
-- **Company:** LORE Labs, Inc. (Delaware C-corp, planned). The founder is Nimit Jain.
+- **Company:** LORE Labs, Inc. (Delaware C-corp, planned). The founder is Nimit Jain (resident in India; contact nimitjain.248@gmail.com; see D17).
 - **Timeline:**
 
   | When | Milestone |
@@ -103,7 +104,7 @@ Every device comes with 3 months of Explorer.
   | Q4 2027 | First 5k units shipped |
   | 2028 | Retail + 20 cities |
 
-- **Fundraising:** pre-seed $1.5M now (a SAFE, $12M post-money valuation cap). Seed $6M after Kickstarter.
+- **Fundraising:** pre-seed $1.75M now (a SAFE, $12M post-money valuation cap; see D14). Seed $6M after Kickstarter.
 
 ## Repo layout (each team owns ONLY its folder)
 ```

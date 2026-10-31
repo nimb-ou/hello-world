@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LORE Type Specimen</title>
+<link rel="stylesheet" href="lore-fonts.css">
+<link rel="stylesheet" href="../palette/lore-colors.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--lore-bone); color: var(--lore-ink); width: 1600px; font-family: var(--lore-font-ui); -webkit-font-smoothing: antialiased; }
+  .wrap { padding: 80px 96px 96px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(20,22,26,.18); padding-bottom: 24px; }
+  header img { height: 34px; }
+  .ov { font: 500 12px/1 var(--lore-font-mono); letter-spacing: .16em; text-transform: uppercase; color: #6B7076; }
+  .hero { display: grid; grid-template-columns: 1.25fr 1fr; gap: 64px; padding: 72px 0 56px; border-bottom: 1px solid rgba(20,22,26,.18); }
+  .hero h1 { font: 370 168px/.92 var(--lore-font-display); letter-spacing: -.018em; font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0; }
+  .hero h1 em { font-style: italic; color: var(--lore-terracotta); font-weight: 300; }
+  .hero p { font: 400 20px/1.55 var(--lore-font-ui); color: #3A3D43; max-width: 540px; margin-top: 18px; }
+  .families { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-bottom: 1px solid rgba(20,22,26,.18); }
+  .fam { padding: 40px 32px 44px 0; }
+  .fam + .fam { padding-left: 32px; border-left: 1px solid rgba(20,22,26,.18); }
+  .fam .big { font-size: 128px; line-height: 1; margin: 22px 0 18px; }
+  .fam .name { font-size: 28px; margin-bottom: 6px; }
+  .fam .meta { font: 400 14px/1.6 var(--lore-font-ui); color: #5C5F66; }
+  .fam .glyphs { margin-top: 18px; font-size: 22px; line-height: 1.5; letter-spacing: .02em; color: #2A2D33; word-break: break-all; }
+  .f-dis { font-family: var(--lore-font-display); font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0; font-weight: 380; }
+  .f-ui { font-family: var(--lore-font-ui); font-weight: 450; }
+  .f-mono { font-family: var(--lore-font-mono); font-weight: 400; }
+  .scale { padding: 48px 0 24px; border-bottom: 1px solid rgba(20,22,26,.18); }
+  .row { display: grid; grid-template-columns: 200px 300px 1fr; align-items: baseline; gap: 24px; padding: 18px 0; border-top: 1px solid rgba(20,22,26,.08); }
+  .row:first-of-type { border-top: 0; }
+  .row .spec { font: 400 12px/1.6 var(--lore-font-mono); color: #5C5F66; }
+  .row .sample { white-space: nowrap; overflow: hidden; text-overflow: clip; }
+  .pair { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; padding: 56px 0; border-bottom: 1px solid rgba(20,22,26,.18); }
+  .article .kick { color: var(--lore-terracotta); }
+  .article h2 { margin: 14px 0 18px; }
+  .article p + p { margin-top: 14px; }
+  .article .src { margin-top: 22px; color: #6B7076; }
+  .devices { display: flex; gap: 36px; align-items: flex-start; }
+  .screen { width: 280px; height: 280px; border-radius: 50px; background: #000; color: var(--lore-bone); padding: 34px 30px; position: relative; box-shadow: 0 0 0 10px #1E2126, 0 0 0 11px #2C3036, 0 30px 60px rgba(13,27,42,.25); }
+  .screen .t { font: 500 13px/1 var(--lore-font-mono); letter-spacing: .12em; color: var(--lore-fog); text-transform: uppercase; }
+  .screen .h { font: 400 31px/1.08 var(--lore-font-display); font-variation-settings: "opsz" 36, "SOFT" 0, "WONK" 0; margin: 18px 0 12px; }
+  .screen .b { font: 450 19px/1.32 var(--lore-font-ui); color: #D9D3C9; font-variation-settings: "opsz" 24; }
+  .screen .dir { position: absolute; left: 30px; bottom: 30px; right: 30px; display: flex; justify-content: space-between; font: 500 15px/1 var(--lore-font-mono); color: var(--lore-terracotta); letter-spacing: .08em; }
+  .note { margin-top: 18px; font: 400 13px/1.6 var(--lore-font-ui); color: #5C5F66; max-width: 640px; }
+  .rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding-top: 48px; }
+  .rules h4 { font: 600 15px/1.3 var(--lore-font-ui); margin: 10px 0 6px; }
+  .rules p { font: 400 14px/1.55 var(--lore-font-ui); color: #3A3D43; }
+  .data { font-variant-numeric: tabular-nums slashed-zero; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="../logo/svg/lore-lockup-horizontal-ink.svg" alt="LORE">
+    <span class="ov">Typography · v1.0 · Fraunces / Inter / JetBrains Mono · all SIL OFL 1.1</span>
+  </header>
+
+  <section class="hero">
+    <h1>Look <em>up.</em></h1>
+    <div>
+      <span class="ov">Principle</span>
+      <p>Three voices, one conversation. <strong>Fraunces</strong> is the storyteller: the editorial serif for headlines and the moments that should feel like a good magazine. <strong>Inter</strong> is the local friend: clear and calm in every interface and on every label. <strong>JetBrains Mono</strong> is the field notebook: coordinates, timestamps, sources and specs.</p>
+      <p>Fraunces is always set with <span class="data" style="font-family:var(--lore-font-mono);font-size:16px">SOFT 0 · WONK 0</span>. Optical size follows point size. Never use Fraunces below 18 px on screen or 9 pt in print.</p>
+    </div>
+  </section>
+
+  <section class="families">
+    <div class="fam">
+      <span class="ov">Display · Editorial</span>
+      <div class="big f-dis">Aa</div>
+      <div class="name f-dis">Fraunces</div>
+      <div class="meta">Undercase Type, 2020 · variable opsz 9–144, wght 100–900, SOFT, WONK<br>Use: headlines, pull quotes, packaging, City Pack covers</div>
+      <div class="glyphs f-dis">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 &amp; ¶ § € £ ! ?</div>
+    </div>
+    <div class="fam">
+      <span class="ov">UI · Body</span>
+      <div class="big f-ui">Aa</div>
+      <div class="name f-ui">Inter</div>
+      <div class="meta">Rasmus Andersson · variable opsz 14–32, wght 100–900<br>Use: interface, body copy, device screen, labels, support docs</div>
+      <div class="glyphs f-ui">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 → ← ↑ ↓ ° ′ ″</div>
+    </div>
+    <div class="fam">
+      <span class="ov">Mono · Data</span>
+      <div class="big f-mono">Aa</div>
+      <div class="name f-mono">JetBrains Mono</div>
+      <div class="meta">JetBrains · variable wght 100–800<br>Use: coordinates, times, distances, sources, specs, overlines</div>
+      <div class="glyphs f-mono">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 {} [] # @ %</div>
+    </div>
+  </section>
+
+  <section class="scale">
+    <span class="ov">Type scale — web & app (px, 1.25 / 1.333 hybrid)</span>
+    <div style="margin-top:20px">
+      <div class="row"><span class="ov">Display 1</span><span class="spec">Fraunces 400 · 88/92 · −0.8% · opsz 144</span><span class="sample lore-display-1">Every street has a story.</span></div>
+      <div class="row"><span class="ov">Display 2</span><span class="spec">Fraunces 400 · 64/68 · −0.4% · opsz 96</span><span class="sample lore-display-2">Hear the city.</span></div>
+      <div class="row"><span class="ov">H1</span><span class="spec">Fraunces 400 · 48/54 · −1% · opsz 72</span><span class="sample lore-h1">The keyhole on the Aventine</span></div>
+      <div class="row"><span class="ov">H2</span><span class="spec">Fraunces 400 · 36/42 · opsz 48</span><span class="sample lore-h2">Rome City Pack, 2027 edition</span></div>
+      <div class="row"><span class="ov">H3</span><span class="spec">Inter 600 · 24/32 · −1%</span><span class="sample lore-h3">Walk Me Home is on. Sofia can see you.</span></div>
+      <div class="row"><span class="ov">Quote</span><span class="spec">Fraunces Italic 380 · 28/38</span><span class="sample lore-quote">“Look up at the bricked-up third-floor windows.”</span></div>
+      <div class="row"><span class="ov">Lead</span><span class="spec">Inter 400 · 20/30</span><span class="sample lore-lead">LORE tells you the stories of the city around you, through your own earphones.</span></div>
+      <div class="row"><span class="ov">Body</span><span class="spec">Inter 400 · 16/26 · max 68 ch</span><span class="sample lore-body">Double-press for what’s around you. Long-press for SOS. Your phone stays in your pocket.</span></div>
+      <div class="row"><span class="ov">Small</span><span class="spec">Inter 400 · 14/20</span><span class="sample lore-small">Includes 3 months of LORE Pass Explorer. Data in 150+ countries (Square, Atlas).</span></div>
+      <div class="row"><span class="ov">Overline</span><span class="spec">JetBrains Mono 500 · 12/16 · +14% · caps</span><span class="sample lore-overline">Pantheon · 41.8986° N, 12.4769° E · 2 min walk</span></div>
+      <div class="row"><span class="ov">Data</span><span class="spec">JetBrains Mono 400 · 13/18 · tnum zero</span><span class="sample lore-data">BATT 82% · GNSS L1+L5 · 7.2 km today · SRC: direzionemuseiroma.cultura.gov.it</span></div>
+    </div>
+  </section>
+
+  <section class="pair">
+    <div class="article">
+      <span class="lore-overline kick">Story · Piazza della Rotonda · 28 s</span>
+      <h2 class="lore-h1">A name on the porch that isn’t the builder’s</h2>
+      <p class="lore-lead">Look up at the inscription over the columns: M·AGRIPPA·L·F·COS·TERTIVM·FECIT, “Marcus Agrippa, son of Lucius, consul for the third time, made this.”</p>
+      <p class="lore-body">Agrippa’s temple burned. The building you’re facing is Hadrian’s rebuild, about AD 118–128, and he put the original builder’s name back on it. Step inside: when it rains, the water falls through the oculus and drains through 22 holes in the floor.</p>
+      <p class="lore-data src">SOURCES · direzionemuseiroma.cultura.gov.it/en/pantheon/historical-background · checked 2026-10</p>
+    </div>
+    <div>
+      <span class="ov">Device — LORE Square / Atlas 1.6″ AMOLED (illustrative)</span>
+      <div class="devices" style="margin-top:28px">
+        <div class="screen">
+          <div class="t">Now · Pantheon</div>
+          <div class="h">Look up at the porch.</div>
+          <div class="b">The name over the columns isn’t the builder’s.</div>
+          <div class="dir"><span>← LEFT</span><span>28 s</span></div>
+        </div>
+        <div class="screen" style="background:#0D1B2A">
+          <div class="t" style="color:#C4623A">Walk Me Home</div>
+          <div class="h">12 min to your hotel</div>
+          <div class="b">Next check-in 23:40. Sofia can see you.</div>
+          <div class="dir" style="color:#F3EEE6"><span>AHEAD 80 m</span><span>●</span></div>
+        </div>
+      </div>
+      <p class="note">On-device type: Inter 450–500 at opsz 24–32, minimum 18 px (≈ 2.4 mm cap height at ~ 326 ppi, estimate pending Design's panel spec). Fraunces only for one headline per screen at ≥ 30 px. No text on pure black below 60% opacity.</p>
+    </div>
+  </section>
+
+  <section class="rules">
+    <div><span class="ov">01</span><h4>Sentence case, always</h4><p>Headlines and buttons in sentence case. ALL CAPS only for the wordmark and mono overlines.</p></div>
+    <div><span class="ov">02</span><h4>One serif moment</h4><p>One Fraunces element per view. If everything is editorial, nothing is.</p></div>
+    <div><span class="ov">03</span><h4>Measure 52–68 characters</h4><p>Body copy never runs wider than 68 ch. Leading 1.5–1.65 for Inter body.</p></div>
+    <div><span class="ov">04</span><h4>Real typography</h4><p>Curly quotes, true apostrophes, en dashes for ranges (1723–1725), thin spaces in coordinates, tabular figures in data.</p></div>
+  </section>
+</div>
+</body>
+</html>

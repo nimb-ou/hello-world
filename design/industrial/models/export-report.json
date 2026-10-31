@@ -1,0 +1,37 @@
+{
+ "generated_by": "industrial/export.html",
+ "params_rev": "EVT-0 / ID-A3",
+ "units": {
+  "glb": "m",
+  "stl": "mm"
+ },
+ "models": [
+  {
+   "name": "lore-pebble-p1-bone",
+   "bbox_mm": [
+    42.45,
+    42.02,
+    13.56
+   ],
+   "triangles": 88632
+  },
+  {
+   "name": "lore-square-s1-ink",
+   "bbox_mm": [
+    56.31,
+    54.05,
+    12
+   ],
+   "triangles": 83556
+  },
+  {
+   "name": "lore-atlas-a1-titanium",
+   "bbox_mm": [
+    56.31,
+    54.05,
+    13.51
+   ],
+   "triangles": 83868
+  }
+ ]
+}

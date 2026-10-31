@@ -1,10 +1,10 @@
 # OKRs
 
-## Q4 2026 (now): "Make Rome magical"
+## Q4 2026 (now): "Make the walk magical" (Mumbai tests, Rome pack)
 **O1. Build an experience people love**
 - KR1: PWA prototype with simulation mode, published and usable on iOS Safari and Android Chrome
 - KR2: Rome City Pack v1: ≥300 places, ≥1,000 fact cards, 100% with sources, ≥98% passing the fact check
-- KR3: 20 walking tests in Rome; ≥40% "very disappointed" score (Sean Ellis test)
+- KR3: 20 walking tests in Mumbai (D19); ≥40% "very disappointed" score (Sean Ellis test)
 
 **O2. Prove people want it**
 - KR1: Landing page live; 5,000 waitlist sign-ups

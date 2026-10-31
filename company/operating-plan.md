@@ -4,8 +4,8 @@ The company's job is to remove the biggest risk at each stage before it spends m
 
 ## Stage 0: Prove the magic (Nov 2026 – Jan 2027)
 **Risk to remove:** do people *love* walking with LORE's stories?
-- Ship the **phone prototype (PWA)** and the **Rome City Pack v1**, with 300+ places checked by hand.
-- Run 20 walking tests in Rome plus 200 remote users in simulation mode.
+- Ship the **phone prototype (PWA)**, the **Mumbai test pack** (founder walk tests, D19) and the **Rome City Pack v1**, with 300+ places checked by hand.
+- Run 20 walking tests in Mumbai (Fort/Kala Ghoda) plus 200 remote users in Rome simulation mode; 5 tests in Rome before Kickstarter.
 - Run 20 user interviews and a survey with at least 500 responses (see `research/customer-survey.md`).
 - Build a waitlist landing page; target 5,000 sign-ups.
 - **Gate G0** (all must be true):
@@ -16,7 +16,7 @@ The company's job is to remove the biggest risk at each stage before it spends m
 ## Stage 1: Prove the device (Feb – May 2027)
 **Risk to remove:** can a small device beat the phone?
 - Build 50 hand-built **EVT** units (dev-board prototype in a 3D-printed or CNC-machined case). Software runs offline on the device.
-- Write the requirements for the contract manufacturer, ask 3 Shenzhen manufacturers for quotes, and lock the main chip (SoC) choice.
+- Write the requirements for the contract manufacturer, ask 3 contract manufacturers in Vietnam/Malaysia for quotes (D13), and lock the main chip (SoC) choice.
 - Raise the pre-seed: **$1.5M** SAFE at a **$12M** post-money valuation cap.
 - Hire the first team members: firmware lead, ML/voice engineer, industrial designer (contract), content lead.
 - **Gate G1:**

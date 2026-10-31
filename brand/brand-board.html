@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LORE Brand Board</title>
+<link rel="icon" href="logo/favicon.svg">
+<link rel="stylesheet" href="typography/lore-fonts.css">
+<link rel="stylesheet" href="palette/lore-colors.css">
+<style>
+  :root { --ink:#14161A; --bone:#F3EEE6; --terra:#C4623A; --brass:#B8935A; --olive:#5E6B4E; --fog:#9AA0A6; --night:#0D1B2A; --sand:#EAE3D7; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bone); color: var(--ink); width: 1920px; font-family: var(--lore-font-ui); -webkit-font-smoothing: antialiased; }
+  .ov { font: 500 12px/1.2 var(--lore-font-mono); letter-spacing: .16em; text-transform: uppercase; }
+  .serif { font-family: var(--lore-font-display); font-variation-settings: "opsz" 72, "SOFT" 0, "WONK" 0; }
+  .board { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; padding: 16px; }
+  .tile { border-radius: 4px; overflow: hidden; position: relative; padding: 32px; }
+  .cap { position: absolute; left: 32px; bottom: 26px; opacity: .75; }
+  /* hero */
+  .hero { grid-column: span 7; grid-row: span 2; background: var(--terra); color: var(--bone); min-height: 760px; display: flex; flex-direction: column; justify-content: space-between; padding: 48px; }
+  .hero .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .hero .top img { height: 54px; }
+  .hero h1 { font: 380 118px/.98 var(--lore-font-display); letter-spacing: 0; font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0; max-width: 900px; }
+  .hero h1 em { font-style: italic; color: var(--ink); }
+  .hero .key { position: absolute; right: 56px; top: 120px; width: 230px; opacity: .96; }
+  .hero p { font: 400 21px/1.5 var(--lore-font-ui); max-width: 620px; margin-top: 26px; color: #FBE9DF; }
+  /* manifesto */
+  .manifesto { grid-column: span 5; background: var(--night); color: var(--bone); min-height: 372px; }
+  .manifesto blockquote { font: italic 380 38px/1.22 var(--lore-font-display); font-variation-settings: "opsz" 48, "SOFT" 0, "WONK" 0; margin-top: 26px; }
+  .manifesto blockquote b { font-style: normal; font-weight: 400; color: var(--terra); }
+  .manifesto .src { margin-top: 22px; color: var(--fog); }
+  .icons { grid-column: span 5; background: var(--sand); min-height: 372px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; }
+  .icons .app { width: 208px; height: 208px; border-radius: 47px; box-shadow: 0 20px 40px rgba(13,27,42,.18); }
+  .icons .row { display: flex; gap: 18px; align-items: center; margin-top: 18px; }
+  .icons .row img { display: block; }
+  /* palette */
+  .palette { grid-column: span 12; display: grid; grid-template-columns: 3fr 2fr 1.2fr 1fr 1fr .8fr 1.6fr; padding: 0; height: 210px; }
+  .sw { padding: 22px 22px; display: flex; flex-direction: column; justify-content: space-between; }
+  .sw .n { font: 400 30px/1 var(--lore-font-display); font-variation-settings: "opsz" 36, "SOFT" 0, "WONK" 0; }
+  .sw .v { font: 400 12px/1.5 var(--lore-font-mono); letter-spacing: .04em; }
+  /* type */
+  .type { grid-column: span 6; background: #FBF8F2; min-height: 560px; }
+  .type .big { font: 380 200px/.9 var(--lore-font-display); font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0; letter-spacing: -.02em; margin: 26px 0 10px; }
+  .type .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; border-top: 1px solid rgba(20,22,26,.15); padding-top: 20px; margin-top: 18px; }
+  .type .trio div:nth-child(1) .s { font: 400 34px/1.1 var(--lore-font-display); font-variation-settings: "opsz" 36, "SOFT" 0, "WONK" 0; }
+  .type .trio div:nth-child(2) .s { font: 500 30px/1.1 var(--lore-font-ui); }
+  .type .trio div:nth-child(3) .s { font: 400 26px/1.15 var(--lore-font-mono); }
+  .type .trio p { font-size: 14px; color: #5C5F66; margin-top: 8px; line-height: 1.5; }
+  .type .sample { font: 400 17px/1.6 var(--lore-font-ui); max-width: 700px; margin-top: 26px; color: #2A2D33; }
+  /* map vision */
+  .map { grid-column: span 6; background: var(--ink); color: var(--bone); min-height: 560px; }
+  .map svg { position: absolute; left: 0; top: 0; width: 100%; height: 82% !important; }
+  .map .lbl { position: relative; z-index: 2; }
+  .map .say { position: absolute; z-index: 2; left: 32px; right: 32px; bottom: 32px; font: italic 380 26px/1.3 var(--lore-font-display); font-variation-settings: "opsz" 36, "SOFT" 0, "WONK" 0; }
+  /* devices */
+  .devices { grid-column: span 7; background: var(--sand); min-height: 470px; display: flex; align-items: flex-end; justify-content: space-around; padding-bottom: 76px; }
+  .dev { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .pebble { width: 150px; height: 150px; border-radius: 42%; background: radial-gradient(circle at 35% 30%, #D47A55, var(--terra) 55%, #A9502D); box-shadow: 0 26px 40px rgba(13,27,42,.22), inset 0 -6px 14px rgba(0,0,0,.18); position: relative; }
+  .pebble::after { content: ""; position: absolute; inset: 52px; border-radius: 50%; border: 3px solid rgba(243,238,230,.85); box-shadow: 0 0 18px rgba(243,238,230,.55); }
+  .square { width: 190px; height: 190px; border-radius: 44px; background: linear-gradient(145deg, #2A2E35, #121418); padding: 14px; box-shadow: 0 26px 40px rgba(13,27,42,.28); position: relative; }
+  .square .scr { width: 100%; height: 100%; border-radius: 32px; background: #000; color: var(--bone); padding: 20px 18px; }
+  .square .scr .t { font: 500 9px/1 var(--lore-font-mono); letter-spacing: .12em; color: var(--fog); }
+  .square .scr .h { font: 400 21px/1.08 var(--lore-font-display); font-variation-settings: "opsz" 24, "SOFT" 0, "WONK" 0; margin-top: 12px; }
+  .square .scr .d { font: 500 10px/1 var(--lore-font-mono); color: var(--terra); margin-top: 22px; letter-spacing: .1em; }
+  .square .crown { position: absolute; right: -9px; top: 70px; width: 9px; height: 46px; border-radius: 0 4px 4px 0; background: #2A2E35; }
+  .atlas { background: linear-gradient(145deg, #B9B5AE, #8C8882 55%, #6E6A64); }
+  .atlas .crown { background: linear-gradient(#D6B77E, var(--brass)); }
+  .dev .ov { color: #5C5F66; }
+  .dev .price { font: 400 22px/1 var(--lore-font-display); font-variation-settings: "opsz" 24, "SOFT" 0, "WONK" 0; }
+  /* sound */
+  .sound { grid-column: span 5; background: var(--olive); color: var(--bone); min-height: 470px; }
+  .sound h3 { font: 400 40px/1.1 var(--lore-font-display); font-variation-settings: "opsz" 48, "SOFT" 0, "WONK" 0; margin: 22px 0 10px; }
+  .sound p { font-size: 15px; line-height: 1.55; color: #E6E8DF; max-width: 560px; }
+  .sound svg { margin-top: 22px; }
+  /* photo direction */
+  .photo { grid-column: span 3; min-height: 400px; color: var(--bone); display: flex; align-items: flex-end; }
+  .photo .cap { opacity: .92; }
+  .ph1 { background: linear-gradient(180deg, rgba(13,27,42,.0) 40%, rgba(13,27,42,.55)), radial-gradient(120% 80% at 70% 10%, #F2C9A2 0%, #D98C5B 28%, #8A4E33 60%, #3A2620 100%); }
+  .ph2 { background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,.5)), linear-gradient(115deg, #2B3A2E 0 22%, #6E7B5B 22% 23%, #C9BFA6 23% 60%, #A69878 60% 61%, #E6DCC6 61%); }
+  .ph3 { background: #2A211B; }
+  .ph4 { background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.6)), linear-gradient(180deg, #0D1B2A 0%, #23364D 45%, #C4623A 46%, #8B3E22 60%, #14161A 100%); }
+  .photo .grain { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 3px 3px; mix-blend-mode: overlay; }
+  .photo .cap span { display: block; font: 400 15px/1.45 var(--lore-font-ui); letter-spacing: 0; text-transform: none; margin-top: 8px; max-width: 360px; opacity: .95; }
+  /* applications */
+  .apps { grid-column: span 6; background: #DCD4C6; min-height: 520px; padding: 0; }
+  .apps img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pack { grid-column: span 6; background: #E7E1D6; min-height: 520px; padding: 0; }
+  .pack img { width: 100%; height: 100%; object-fit: cover; object-position: 0 18%; display: block; }
+  /* voice + rules */
+  .voice { grid-column: span 4; background: #FBF8F2; min-height: 360px; }
+  .voice .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+  .voice .pair div { font-size: 16px; line-height: 1.45; }
+  .voice .no { color: #8A8F95; text-decoration: line-through; text-decoration-color: rgba(196,98,58,.7); }
+  .voice h4 { font: 500 11px/1 var(--lore-font-mono); letter-spacing: .14em; margin-bottom: 8px; color: #5C5F66; }
+  .names { grid-column: span 4; background: var(--ink); color: var(--bone); min-height: 360px; }
+  .names ul { list-style: none; margin-top: 22px; }
+  .names li { display: flex; justify-content: space-between; border-top: 1px solid rgba(243,238,230,.14); padding: 12px 0; font-size: 16px; }
+  .names li b { font: 400 22px/1 var(--lore-font-display); font-variation-settings: "opsz" 24, "SOFT" 0, "WONK" 0; }
+  .names li span { color: var(--fog); font-size: 14px; }
+  .principles { grid-column: span 4; background: var(--brass); color: var(--ink); min-height: 360px; }
+  .principles ol { list-style: none; counter-reset: p; margin-top: 18px; }
+  .principles li { counter-increment: p; padding: 11px 0; border-top: 1px solid rgba(20,22,26,.2); font: 400 19px/1.3 var(--lore-font-display); font-variation-settings: "opsz" 24, "SOFT" 0, "WONK" 0; }
+  .principles li::before { content: "0" counter(p); font: 500 11px/1 var(--lore-font-mono); letter-spacing: .1em; margin-right: 14px; vertical-align: 3px; }
+  footer { grid-column: span 12; display: flex; justify-content: space-between; align-items: center; padding: 18px 8px 8px; color: #5C5F66; }
+  footer img { height: 22px; }
+</style>
+</head>
+<body>
+<main class="board">
+
+  <section class="tile hero">
+    <div class="top">
+      <img src="logo/svg/lore-wordmark-bone.svg" alt="LORE">
+      <span class="ov">Brand board · v1.0 · Oct 2026</span>
+    </div>
+    <img class="key" src="logo/svg/lore-keyhole-glyph-ink.svg" alt="">
+    <div>
+      <span class="ov">Tagline</span>
+      <h1>Every street has <em>a story.</em></h1>
+      <p>LORE is a pocket-sized AI travel companion that tells you the stories of the city around you through your own earphones. Quiet luxury, warm travel: Leica’s restraint, Teenage Engineering’s play, Aesop’s warmth, Monocle’s curiosity.</p>
+    </div>
+  </section>
+
+  <section class="tile manifesto">
+    <span class="ov" style="color:var(--terra)">Brand idea · The Keyhole</span>
+    <blockquote>On the Aventine there’s a keyhole in a green door. Look through it and Rome hands you <b>St Peter’s dome</b>, framed by a hedge. LORE is that keyhole for every street.</blockquote>
+    <p class="ov src">Piazza dei Cavalieri di Malta · Piranesi, c. 1765</p>
+  </section>
+
+  <section class="tile icons">
+    <div>
+      <span class="ov">App icon · favicon</span>
+      <img class="app" style="margin-top:22px" src="logo/png/lore-app-icon-1024.png" alt="LORE app icon">
+    </div>
+    <div>
+      <img class="app" style="width:120px;height:120px;border-radius:27px" src="logo/png/lore-app-icon-1024-dark.png" alt="">
+      <div class="row">
+        <img src="logo/svg/favicon.svg" width="64" height="64" alt="">
+        <img src="logo/svg/favicon.svg" width="32" height="32" alt="">
+        <img src="logo/svg/favicon.svg" width="16" height="16" alt="">
+      </div>
+      <p class="ov" style="margin-top:18px;color:#5C5F66">Terracotta / Ink · 1024 → 16 px</p>
+    </div>
+  </section>
+
+  <section class="tile palette">
+    <div class="sw" style="background:var(--bone);box-shadow:inset 0 0 0 1px rgba(20,22,26,.08)"><span class="n">Bone</span><span class="v">#F3EEE6 · 243 238 230<br>Ground · 60%</span></div>
+    <div class="sw" style="background:var(--ink);color:var(--bone)"><span class="n">Ink</span><span class="v">#14161A · 20 22 26<br>Text · 25%</span></div>
+    <div class="sw" style="background:var(--terra);color:var(--bone)"><span class="n">Terracotta</span><span class="v">#C4623A · PMS 7591 C*<br>Accent · 7%</span></div>
+    <div class="sw" style="background:var(--brass)"><span class="n">Brass</span><span class="v">#B8935A<br>Detail</span></div>
+    <div class="sw" style="background:var(--olive);color:var(--bone)"><span class="n">Olive</span><span class="v">#5E6B4E<br>Maps</span></div>
+    <div class="sw" style="background:var(--fog)"><span class="n">Fog</span><span class="v">#9AA0A6<br>Lines</span></div>
+    <div class="sw" style="background:var(--night);color:var(--bone)"><span class="n">Night</span><span class="v">#0D1B2A · 13 27 42<br>Night mode, Walk Me Home</span></div>
+  </section>
+
+  <section class="tile type">
+    <span class="ov">Typography</span>
+    <div class="big">Look <em style="color:var(--terra)">up.</em></div>
+    <div class="trio">
+      <div><div class="s">Fraunces</div><p>The storyteller. Headlines, quotes, packaging. SOFT 0 · WONK 0.</p></div>
+      <div><div class="s">Inter</div><p>The local friend. Interface, body, device screen.</p></div>
+      <div><div class="s">JetBrains Mono</div><p>The field notebook. Coordinates, sources, specs.</p></div>
+    </div>
+    <p class="sample">Look up at the inscription over the columns: <i>M·AGRIPPA·L·F·COS·TERTIVM·FECIT</i>. The name belongs to the first builder. The building is Hadrian’s rebuild, about AD 118–128.</p>
+  </section>
+
+  <section class="tile map">
+    <svg viewBox="0 0 936 560" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="cone" cx="0.5" cy="1" r="1"><stop offset="0" stop-color="#C4623A" stop-opacity=".55"/><stop offset="1" stop-color="#C4623A" stop-opacity="0"/></radialGradient>
+        <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#F3EEE6" stroke-opacity=".12" stroke-width="2"/></pattern>
+      </defs>
+      <!-- building footprints (illustrative) -->
+      <g fill="url(#hatch)" stroke="#F3EEE6" stroke-opacity=".28" stroke-width="1">
+        <path d="M80 70h230v150h-230z"/><path d="M80 250h230v190h-230z"/>
+        <path d="M560 60h300v120h-300z"/><path d="M560 210h140v240h-140z"/><path d="M720 210h140v240h-140z"/>
+      </g>
+      <path d="M560 210h140v240h-140z" fill="#C4623A" fill-opacity=".22" stroke="#C4623A" stroke-width="2"/>
+      <!-- street -->
+      <path d="M330 0v560M540 0v560" stroke="#F3EEE6" stroke-opacity=".18" stroke-width="1" stroke-dasharray="3 6"/>
+      <!-- view cone and walker -->
+      <path d="M435 400 L330 150 A270 270 0 0 1 540 150 Z" fill="url(#cone)"/>
+      <circle cx="435" cy="400" r="34" fill="none" stroke="#F3EEE6" stroke-opacity=".3"/>
+      <circle cx="435" cy="400" r="11" fill="#F3EEE6"/>
+      <path d="M435 400 L630 330" stroke="#C4623A" stroke-width="2" stroke-dasharray="6 5"/>
+      <circle cx="630" cy="330" r="6" fill="#C4623A"/>
+      <g font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1.8" fill="#F3EEE6" fill-opacity=".8">
+        <text x="415" y="138">AHEAD</text><text x="350" y="410">LEFT</text><text x="470" y="410">RIGHT</text><text x="405" y="470">BEHIND</text>
+        <text x="575" y="300" fill="#C4623A" fill-opacity="1">RIGHT · 38 m · ↑ 3F</text>
+      </g>
+    </svg>
+    <div class="lbl"><span class="ov" style="color:var(--terra)">Map Vision</span><p class="ov" style="margin-top:8px;color:var(--fog)">GNSS L1+L5 · 9-axis IMU · footprints · no camera</p></div>
+    <p class="say">“The building on your right was a plague hospital in 1665 — look up at the bricked-up third-floor windows.”</p>
+  </section>
+
+  <section class="tile devices">
+    <span class="ov" style="position:absolute;left:32px;top:32px">Product family</span>
+    <div class="dev"><div class="pebble"></div><span class="ov">LORE Pebble</span><span class="price">$149</span></div>
+    <div class="dev"><div class="square"><div class="scr"><div class="t">NOW · PANTHEON</div><div class="h">Look up at the porch.</div><div class="d">← LEFT · 28 s</div></div><div class="crown"></div></div><span class="ov">LORE Square</span><span class="price">$299</span></div>
+    <div class="dev"><div class="square atlas"><div class="scr" style="background:#0D1B2A"><div class="t" style="color:var(--terra)">WALK ME HOME</div><div class="h">12 min to your hotel</div><div class="d" style="color:var(--bone)">AHEAD 80 m</div></div><div class="crown"></div></div><span class="ov">LORE Atlas</span><span class="price">$599</span></div>
+    <span class="ov cap" style="color:#5C5F66">Illustrative silhouettes — Design owns CMF & renders · target prices</span>
+  </section>
+
+  <section class="tile sound">
+    <span class="ov">Sonic identity</span>
+    <h3>Three notes, like a door opening.</h3>
+    <p>The LORE sonic logo: a rising perfect fifth and a soft octave (D5 → A5 → D6), struck on a felted kalimba with a short brass-bowl tail. 1.2 s. Every earcon is built from these three pitches.</p>
+    <svg width="560" height="120" viewBox="0 0 560 120" aria-hidden="true">
+      <g fill="none" stroke="#F3EEE6" stroke-linecap="round">
+        <path d="M0 60 H560" stroke-opacity=".25"/>
+        <path d="M20 60 q6 -34 12 0 t12 0 t12 0 t12 0" stroke-width="2"/>
+        <path d="M160 60 q6 -44 12 0 t12 0 t12 0 t12 0 t12 0" stroke-width="2"/>
+        <path d="M320 60 q5 -52 10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0" stroke-width="2"/>
+        <path d="M400 60 q10 -18 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0" stroke-width="1.2" stroke-opacity=".55"/>
+      </g>
+      <g font-family="JetBrains Mono, monospace" font-size="11" fill="#F3EEE6" letter-spacing="1.5">
+        <text x="20" y="112">D5 · 0 ms</text><text x="160" y="112">A5 · 180 ms</text><text x="320" y="112">D6 · 360 ms</text><text x="440" y="112">TAIL → 1200 ms</text>
+      </g>
+    </svg>
+  </section>
+
+  <section class="tile photo ph1"><div class="grain"></div><p class="ov cap">Photo 01 · Golden hour, eye-level<span>Real light, real people seen from behind or at a distance. Never posed tourists pointing at things.</span></p></section>
+  <section class="tile photo ph2"><div class="grain"></div><p class="ov cap">Photo 02 · Look up<span>Cornices, inscriptions, saints on corners. Shoot upward, 35 mm, no tilt correction.</span></p></section>
+  <section class="tile photo ph3"><svg style="position:absolute;inset:0" width="100%" height="100%" viewBox="0 0 450 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F1DDB4"/><stop offset=".6" stop-color="#D9A877"/><stop offset="1" stop-color="#6E7B5B"/></linearGradient><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></linearGradient></defs><path d="M150 400V170a75 75 0 0 1 150 0V400Z" fill="url(#sky)"/><circle cx="225" cy="250" r="34" fill="#8C8A80"/><path d="M191 250h68v40h-68z" fill="#8C8A80"/><rect width="450" height="400" fill="url(#fade)"/></svg><div class="grain"></div><p class="ov cap">Photo 03 · Through the frame<span>Doorways, arches, keyholes. The story is the thing behind the opening.</span></p></section>
+  <section class="tile photo ph4"><div class="grain"></div><p class="ov cap">Photo 04 · Walk me home<span>Blue hour and night. Calm, safe, lit streets. Never fear-based imagery.</span></p></section>
+
+  <section class="tile pack"><img src="packaging/png/box-art.png" alt="Packaging art"><span class="ov cap" style="color:var(--ink)">Packaging · FSC paper, moulded fibre, zero plastic</span></section>
+  <section class="tile apps"><img src="stationery/png/stationery-mockup.png" alt="Stationery"><span class="ov cap" style="color:var(--ink);top:26px;bottom:auto">Stationery</span></section>
+
+  <section class="tile voice">
+    <span class="ov">Voice · a local friend, not a megaphone</span>
+    <div class="pair">
+      <div><h4>WE SAY</h4>Look up. See the bricked-up windows on the third floor? There’s a reason.</div>
+      <div class="no"><h4>NOT</h4>Welcome to this AMAZING historic landmark!!! Did you know…</div>
+    </div>
+    <div class="pair">
+      <div><h4>WE SAY</h4>Crossing now. I’ll pick this up on the other side.</div>
+      <div class="no"><h4>NOT</h4>Warning! Pedestrian hazard detected. Content paused.</div>
+    </div>
+  </section>
+
+  <section class="tile names">
+    <span class="ov" style="color:var(--terra)">Naming system</span>
+    <ul>
+      <li><b>Map Vision</b><span>sees without a camera</span></li>
+      <li><b>City Packs</b><span>offline maps + stories</span></li>
+      <li><b>LORE Pass</b><span>Explorer · Trip Pass</span></li>
+      <li><b>Walk Me Home</b><span>timed check-ins</span></li>
+      <li><b>LORE Kit</b><span>clip, lanyard, Buds, dock</span></li>
+    </ul>
+  </section>
+
+  <section class="tile principles">
+    <span class="ov">Brand pillars</span>
+    <ol>
+      <li>True stories, with sources.</li>
+      <li>Eyes up, phone down.</li>
+      <li>A friend, never a guide-bus.</li>
+      <li>Made to last, made of paper and metal.</li>
+      <li>Safe by design, quiet by default.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <img src="logo/svg/lore-lockup-horizontal-ink.svg" alt="LORE">
+    <span class="ov">LORE Labs, Inc. · brand/brand-guidelines.md · Photo tiles are art-direction placeholders, not photography</span>
+  </footer>
+</main>
+</body>
+</html>

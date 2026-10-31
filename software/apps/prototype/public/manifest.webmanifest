@@ -1,0 +1,10 @@
+{
+  "name": "LORE Rome",
+  "short_name": "LORE",
+  "description": "Every street has a story.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#14161A",
+  "theme_color": "#14161A",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

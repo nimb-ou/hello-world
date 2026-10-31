@@ -1,0 +1,10 @@
+name,hex,r,g,b,c,m,y,k,pantone_candidate_unverified,contrast_vs_ink,contrast_vs_bone,role
+Ink,#14161A,20,22,26,23,15,0,90,"Black 6 C",1.00,15.68,"Primary text, device Ink finish, wordmark on light"
+Bone,#F3EEE6,243,238,230,0,2,5,5,"Warm Gray 1 C @ 25% / natural uncoated stock",15.68,1.00,"Primary ground, paper, packaging stock"
+Terracotta,#C4623A,196,98,58,0,50,70,23,"7591 C",4.45,3.53,"Primary accent: symbol, calls-to-action, LED 'story' state"
+Brass,#B8935A,184,147,90,0,20,51,28,"7562 C (solid) / 871 C (metallic)",6.35,2.47,"Premium detail: foil, Atlas crown, dividers"
+Olive,#5E6B4E,94,107,78,12,0,27,58,"5753 C",3.18,4.93,"Secondary accent: maps, parks, 'offline ready'"
+Fog,#9AA0A6,154,160,166,7,4,0,35,"429 C",6.86,2.29,"Secondary text, hairlines, disabled"
+Night,#0D1B2A,13,27,42,69,36,0,84,"5395 C",1.04,15.06,"Dark ground, night mode, Walk Me Home"
+Signal,#D2392B,210,57,43,0,73,80,18,"485 C (approx.)",3.76,4.17,"SOS and safety-critical alerts ONLY"
+Verdigris,#3F7F74,63,127,116,50,0,9,50,"5545 C (approx.)",3.88,4.04,"Confirmations, arrived, check-in OK"

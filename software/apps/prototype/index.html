@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#14161A" />
+  <meta name="description" content="LORE prototype: the stories of the city around you, in your earphones." />
+  <title>LORE City Walks</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand"><span class="wordmark">LORE</span><select id="citySel" class="city city-select" aria-label="City pack"><option value="rome">Rome</option><option value="mumbai">Mumbai</option></select></div>
+      <span id="modeChip" class="chip mono">LIVE</span>
+    </header>
+
+    <section class="now" aria-live="polite">
+      <div class="now-meta"><span id="dirBadge" class="dir">Waiting for location</span><span id="distance" class="mono muted"></span></div>
+      <h1 id="poiName" class="poi">Every street has a story.</h1>
+      <p id="narration" class="narration">Start a walk, or try the simulated walk through the city centre.</p>
+      <div id="sources" class="sources"></div>
+    </section>
+
+    <section class="radar-wrap">
+      <svg id="radar" class="radar" viewBox="-100 -100 200 200" role="img" aria-label="Places around you, relative to the direction you face"></svg>
+      <div class="radar-side">
+        <div class="stat"><span class="label">Heading</span><span id="heading" class="mono">-</span></div>
+        <div class="stat"><span class="label">GPS</span><span id="gps" class="mono">-</span></div>
+        <div class="stat"><span class="label">State</span><span id="state" class="mono">idle</span></div>
+      </div>
+    </section>
+
+    <section class="actions">
+      <button id="btnMore" class="btn primary">Tell me more</button>
+      <button id="btnAround" class="btn">What's around me</button>
+      <button id="btnQuiet" class="btn" aria-pressed="false">Quiet</button>
+    </section>
+
+    <section id="around" class="around" hidden></section>
+
+    <section class="panel">
+      <h2>Simulation</h2>
+      <div class="row">
+        <button id="btnSim" class="btn small">Start simulated walk</button>
+        <button id="btnLive" class="btn small ghost">Use my location</button>
+        <select id="simSpeed" class="select" aria-label="Simulation speed">
+          <option value="1">1x</option><option value="5">5x</option><option value="10" selected>10x</option><option value="30">30x</option>
+        </select>
+      </div>
+      <div class="progress"><div id="simBar" class="bar"></div></div>
+      <div id="simLabel" class="muted small mono">Simulated walk</div>
+    </section>
+
+    <section class="panel">
+      <h2>Interests</h2>
+      <div id="interests" class="chips"></div>
+      <h2>Voice</h2>
+      <div id="personas" class="segmented"></div>
+      <label class="toggle"><input id="cloud" type="checkbox" /> Cloud narration (backend /narrate, falls back offline)</label>
+    </section>
+
+    <footer class="foot muted small">Prototype. Facts from LORE City Packs, with sources. Stays quiet while you cross roads.</footer>
+  </div>
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LORE · Every street has a story</title>
+<meta name="description" content="LORE is a pocket-sized AI travel companion that tells you the true stories of the city around you through your own earphones. Global data, offline City Packs, 2-day battery. Join the waitlist.">
+<meta property="og:title" content="LORE · Every street has a story">
+<meta property="og:description" content="The stories of every street, in your earphones. Launching on Kickstarter in 2027.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Fraunces;src:url(assets/fraunces-latin-full-normal.woff2) format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:Fraunces;src:url(assets/fraunces-latin-full-italic.woff2) format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:Inter;src:url(assets/inter-latin-wght-normal.woff2) format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(assets/jetbrains-mono-latin-wght-normal.woff2) format('woff2');font-weight:100 800;font-display:swap}
+:root{
+ --ink:#14161A;--bone:#F3EEE6;--terra:#C4623A;--brass:#B8935A;--olive:#5E6B4E;--fog:#9AA0A6;--night:#0D1B2A;
+ --surface:#EAE3D7;--muted:#5C5F66;--hair:#D2CEC7;--link:#A84E2A;--signal:#D2392B;--ok:#3F7F74;
+ --maxw:1200px;--r:22px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bone);color:var(--ink);font:400 17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--link)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+.kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--terra)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:400;letter-spacing:-.02em;line-height:1.05;margin:0}
+h1 em,h2 em{color:var(--terra);font-style:italic}
+h2{font-size:clamp(34px,4.6vw,60px)}
+.lead{font-size:clamp(18px,1.7vw,21px);color:#33363c;max-width:620px}
+section{padding:110px 0}
+/* nav */
+header{position:sticky;top:0;z-index:20;background:rgba(243,238,230,.88);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.scrolled{border-color:var(--hair)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav img{height:22px;display:block}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:15px}
+.nav ul a{color:var(--ink);text-decoration:none}.nav ul a:hover{color:var(--link)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--terra);color:var(--bone);font:600 15px Inter;padding:13px 22px;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s}
+.btn:hover{background:#b0552f;transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+/* hero */
+.hero{padding:70px 0 90px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(48px,7.4vw,104px);margin:22px 0 26px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;align-items:center}
+.hero .note{font-size:14px;color:var(--muted)}
+.stage{position:relative;aspect-ratio:1/1.08;border-radius:32px;background:var(--ink);overflow:hidden}
+.stage svg.street{position:absolute;inset:0;width:100%;height:100%}
+.bubble{position:absolute;left:7%;right:7%;bottom:7%;background:var(--bone);border-radius:18px;padding:18px 20px;box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.bubble .who{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.12em;color:var(--link);text-transform:uppercase;display:flex;gap:8px;align-items:center}
+.bubble .who i{width:8px;height:8px;border-radius:50%;background:var(--terra);animation:pulse 1.6s infinite}
+.bubble p{margin:8px 0 0;font-family:Fraunces;font-size:clamp(17px,1.6vw,21px);line-height:1.3}
+@keyframes pulse{50%{opacity:.25}}
+.pebble{position:absolute;right:11%;top:12%;width:24%;aspect-ratio:1;border-radius:44%;background:radial-gradient(circle at 35% 30%,#D98863,#C4623A 55%,#9c4a2a);box-shadow:0 24px 40px rgba(0,0,0,.45)}
+.pebble:after{content:"";position:absolute;inset:30%;border-radius:50%;border:3px solid rgba(243,238,230,.85);box-shadow:0 0 16px rgba(243,238,230,.6)}
+.tag{position:absolute;font:500 11px 'JetBrains Mono';letter-spacing:.12em;color:var(--bone);background:rgba(13,27,42,.7);border:1px solid rgba(184,147,90,.6);padding:6px 9px;border-radius:6px}
+/* strip */
+.strip{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:22px 0}
+.strip .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.strip div{font-family:'JetBrains Mono';font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.strip b{color:var(--ink);font-weight:600}
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.card{background:#fff;border:1px solid var(--hair);border-radius:var(--r);padding:30px}
+.card .n{font-family:'JetBrains Mono';font-size:13px;color:var(--link)}
+.card h3{font-size:28px;margin:14px 0 10px}
+.card p{margin:0;color:#3d4046}
+.press{display:flex;gap:8px;margin-top:22px}
+.press span{flex:1;font:500 12px 'JetBrains Mono';text-align:center;border:1px solid var(--hair);border-radius:10px;padding:10px 4px;color:var(--muted)}
+/* map vision */
+.dark{background:var(--night);color:var(--bone)}
+.dark .kicker,.dark .lead{color:#c9ccd0}
+.mv{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.sensors{list-style:none;padding:0;margin:34px 0 0;display:grid;gap:0}
+.sensors li{display:grid;grid-template-columns:200px 1fr;gap:16px;padding:16px 0;border-top:1px solid rgba(243,238,230,.14);font-size:15px}
+.sensors li b{font-family:'JetBrains Mono';font-weight:500;font-size:13px;letter-spacing:.06em;color:var(--brass);text-transform:uppercase}
+/* why */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:56px}
+.why .card h3{font-size:24px}
+.why .big{font-family:Fraunces;font-size:46px;color:var(--terra);line-height:1}
+/* trust */
+.trust{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+.fact{background:#fff;border:2px solid var(--ink);border-radius:24px;padding:30px;box-shadow:14px 14px 0 var(--terra)}
+.fact .row{display:grid;grid-template-columns:130px 1fr;font:13px 'JetBrains Mono';padding:10px 0;border-top:1px dashed var(--fog)}
+.fact .row span:first-child{color:var(--muted)}
+.fact blockquote{margin:16px 0 20px;font-family:Fraunces;font-size:24px;line-height:1.3}
+/* models */
+.models{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.model{background:#fff;border:1px solid var(--hair);border-radius:var(--r);padding:30px;display:flex;flex-direction:column}
+.model.feat{border:2px solid var(--terra);position:relative}
+.model.feat:before{content:"Most travellers";position:absolute;top:-13px;left:24px;background:var(--terra);color:var(--bone);font:600 11px 'JetBrains Mono';letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.dev{height:150px;display:grid;place-items:center;margin-bottom:18px}
+.dev .p{width:110px;height:110px;border-radius:44%;background:radial-gradient(circle at 35% 30%,#D98863,#C4623A 55%,#9c4a2a);position:relative}
+.dev .p:after{content:"";position:absolute;inset:32px;border-radius:50%;border:3px solid rgba(243,238,230,.85)}
+.dev .s{width:124px;height:124px;border-radius:30px;background:linear-gradient(145deg,#2a2d33,#14161A);display:grid;place-items:center}
+.dev .s i{width:88px;height:88px;border-radius:22px;background:#000;display:block}
+.dev .a{width:124px;height:124px;border-radius:30px;background:linear-gradient(145deg,#e1e1de,#9AA0A6 60%,#7b8086);display:grid;place-items:center;position:relative}
+.dev .a i{width:88px;height:88px;border-radius:22px;background:var(--night);display:block}
+.dev .a:after{content:"";position:absolute;right:-7px;top:46px;width:9px;height:30px;border-radius:4px;background:var(--brass)}
+.model h3{font-size:34px}
+.model .price{font-family:'JetBrains Mono';font-size:14px;color:var(--muted);margin:6px 0 18px}
+.model .price b{font-size:22px;color:var(--ink);font-weight:600}
+.model ul{list-style:none;padding:0;margin:0 0 6px;font-size:15px}
+.model li{padding:9px 0;border-top:1px solid var(--hair)}
+.fine{font-size:13px;color:var(--muted);margin-top:22px}
+/* safety */
+.safety{background:var(--olive);color:var(--bone)}
+.safety .kicker{color:#e3e6dc}.safety .kicker:before{background:var(--bone)}
+.safe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+.safe-grid div{border-top:1px solid rgba(243,238,230,.35);padding-top:20px}
+.safe-grid h3{font-size:28px;margin-bottom:8px}
+/* waitlist */
+.wl{background:var(--ink);color:var(--bone);border-radius:36px;padding:70px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.wl .kicker{color:#c9ccd0}
+form{display:grid;gap:14px}
+label{font-size:14px;font-weight:500}
+input[type=email],select{width:100%;font:16px Inter;padding:15px 16px;border-radius:12px;border:1.5px solid #3a3d43;background:#1c1f24;color:var(--bone);outline:none}
+input[type=email]:focus,select:focus{border-color:var(--terra);box-shadow:0 0 0 3px rgba(196,98,58,.35)}
+input[aria-invalid=true]{border-color:#e26b5c}
+.err{min-height:18px;font-size:13px;color:#f09a8d}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#c9ccd0}
+.check input{margin-top:3px;accent-color:var(--terra);width:16px;height:16px}
+.check a{color:#E59A78}
+.ok{display:none;background:#1c1f24;border:1.5px solid var(--ok);border-radius:16px;padding:22px}
+.ok h3{font-size:28px;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0}
+.chips span{display:inline-block;border:1.5px solid #3a3d43;border-radius:999px;padding:8px 14px;font-size:14px}
+.chips input:checked+span{background:var(--terra);border-color:var(--terra)}
+.chips input:focus-visible+span{outline:2px solid var(--bone)}
+/* faq */
+details{border-top:1px solid var(--hair);padding:20px 0}
+details:last-child{border-bottom:1px solid var(--hair)}
+summary{cursor:pointer;font-family:Fraunces;font-size:24px;list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary:after{content:"+";font-family:Inter;color:var(--terra)}
+details[open] summary:after{content:"–"}
+details p{color:#3d4046;max-width:760px;margin:12px 0 0}
+footer{padding:60px 0 50px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-end}
+footer img{height:24px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.bubble .who i{animation:none}}
+/* responsive */
+@media (max-width:980px){
+ .hero-grid,.mv,.trust,.wl{grid-template-columns:1fr}
+ .why{grid-template-columns:1fr 1fr}
+ .how,.models,.safe-grid{grid-template-columns:1fr}
+ .nav ul{display:none}
+ .wl{padding:40px 26px;border-radius:26px}
+ section{padding:76px 0}
+ .sensors li{grid-template-columns:1fr;gap:4px}
+}
+@media (max-width:560px){
+ .why{grid-template-columns:1fr}
+ .wrap{padding:0 16px}
+ .hero{padding-top:36px}
+}
+</style>
+</head>
+<body>
+<header id="top"><div class="wrap nav">
+ <a href="#top" aria-label="LORE home"><img src="assets/lore-wordmark-ink.svg" alt="LORE"></a>
+ <ul><li><a href="#how">How it works</a></li><li><a href="#models">Models</a></li><li><a href="#safety">Safety</a></li><li><a href="#faq">FAQ</a></li></ul>
+ <a class="btn" href="#waitlist">Join the waitlist</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap hero-grid">
+ <div>
+  <div class="kicker">Pocket AI travel companion · First city: Rome</div>
+  <h1>Every street has a <em>story.</em></h1>
+  <p class="lead">LORE clips to your bag and tells you the true story of what's on your left, your right and above your head, through your own earphones. It has global data, offline City Packs and a battery that outlasts your phone's.</p>
+  <div class="ctas"><a class="btn" href="#waitlist">Get early access →</a><a class="btn ghost" href="#how">See how it works</a></div>
+  <p class="note" style="margin-top:18px">Launching on Kickstarter in 2027. The waitlist gets first access and the best price.</p>
+ </div>
+ <div class="stage reveal" role="img" aria-label="Illustration: a Roman street at dusk with a LORE Pebble and a spoken story">
+  <svg class="street" viewBox="0 0 500 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+   <defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0D1B2A"/><stop offset=".6" stop-color="#3a2a2a"/><stop offset="1" stop-color="#C4623A"/></linearGradient></defs>
+   <rect width="500" height="540" fill="url(#sk)"/>
+   <path d="M0 540V90h120v450z" fill="#1a1d22"/><path d="M380 540V60h120v480z" fill="#1a1d22"/>
+   <path d="M120 540V170l70-40v410z" fill="#22262c"/><path d="M380 540V150l-70-30v420z" fill="#22262c"/>
+   <g fill="#B8935A" opacity=".85">
+    <rect x="20" y="130" width="22" height="34" rx="11"/><rect x="66" y="130" width="22" height="34" rx="11"/>
+    <rect x="20" y="200" width="22" height="34" rx="11"/><rect x="66" y="200" width="22" height="34" rx="11"/>
+    <rect x="404" y="110" width="22" height="34" rx="11"/><rect x="450" y="110" width="22" height="34" rx="11"/>
+   </g>
+   <g fill="#14161A" stroke="#B8935A" stroke-opacity=".5"><rect x="404" y="180" width="22" height="34"/><rect x="450" y="180" width="22" height="34"/></g>
+   <path d="M250 205a14 14 0 0 1 14 14v40h-28v-40a14 14 0 0 1 14-14z" fill="#F3EEE6" opacity=".9"/>
+   <path d="M190 540l50-280h20l50 280z" fill="#2c2f35"/>
+  </svg>
+  <span class="tag" style="left:7%;top:8%">↑ LOOK UP</span>
+  <span class="tag" style="right:7%;top:42%">RIGHT · 4 M</span>
+  <div class="pebble" aria-hidden="true"></div>
+  <div class="bubble"><div class="who"><i></i>LORE · in your earphones</div>
+   <p>“On your right: see the bricked-up windows on the third floor? Look up. There's a story there.”</p></div>
+ </div>
+</div></section>
+
+<div class="strip"><div class="wrap">
+ <div><b>150+</b> countries of built-in data*</div><div><b>Offline</b> City Packs</div><div><b>2–3 day</b> battery (target)</div><div><b>100%</b> sourced stories</div>
+</div></div>
+
+<section id="how"><div class="wrap">
+ <div class="kicker">How it works</div>
+ <h2 style="margin-top:16px;max-width:820px">Phone in your pocket. <em>Eyes on the city.</em></h2>
+ <div class="how">
+  <div class="card reveal"><div class="n">01 · CLIP IT ON</div><h3>Wear it, forget it</h3><p>Clip LORE to a strap, lanyard or wrist strap. Pair your own Bluetooth earphones (LE Audio or Classic), or use the small built-in speaker.</p></div>
+  <div class="card reveal"><div class="n">02 · JUST WALK</div><h3>Stories find you</h3><p>LORE knows which way you're facing and tells you 20–40 second stories about what's around you. Say “tell me more” to go deeper. It goes quiet when you cross a road.</p></div>
+  <div class="card reveal"><div class="n">03 · ONE BUTTON</div><h3>Ask anything</h3><p>Press to ask. Double-press for “what's around me”. Long-press for SOS.</p>
+   <div class="press"><span>PRESS</span><span>×2</span><span>HOLD · SOS</span></div></div>
+ </div>
+</div></section>
+
+<section class="dark"><div class="wrap mv">
+ <div>
+  <div class="kicker">Map Vision</div>
+  <h2 style="margin-top:16px">No camera. It still knows what's <em>on your left.</em></h2>
+  <p class="lead" style="margin-top:20px">LORE combines precise positioning, motion sensing and the real shape of the streets, so it can say <i>left, right, ahead, behind</i> and <i>look up</i>.</p>
+  <ul class="sensors">
+   <li><b>Dual-band GNSS</b><span>L1 + L5 satellite positioning, which holds up better in narrow old streets</span></li>
+   <li><b>9-axis IMU + compass</b><span>Which way you're facing and turning</span></li>
+   <li><b>Step detection</b><span>Walking, stopping, turning back</span></li>
+   <li><b>Map geometry</b><span>Building footprints, street sides, entrances</span></li>
+   <li><b>Places & live data</b><span>Opening hours, closures, what's nearby</span></li>
+  </ul>
+ </div>
+ <svg viewBox="0 0 460 460" class="reveal" role="img" aria-label="Diagram: a walker between two buildings with direction labels">
+  <rect x="10" y="10" width="150" height="440" fill="#13263A" stroke="#B8935A" stroke-width="1.5"/>
+  <rect x="300" y="10" width="150" height="440" fill="#13263A" stroke="#B8935A" stroke-width="1.5"/>
+  <rect x="300" y="160" width="150" height="130" fill="#C4623A" fill-opacity=".18" stroke="#C4623A" stroke-dasharray="5 5"/>
+  <g fill="none" stroke="#C4623A"><circle cx="230" cy="300" r="34" stroke-opacity=".7"/><circle cx="230" cy="300" r="70" stroke-opacity=".4"/><circle cx="230" cy="300" r="106" stroke-opacity=".2"/></g>
+  <circle cx="230" cy="300" r="12" fill="#C4623A"/><path d="M230 246l14 32h-28z" fill="#F3EEE6"/>
+  <g font-family="JetBrains Mono" font-size="15" fill="#F3EEE6" text-anchor="middle"><text x="85" y="310">← LEFT</text><text x="375" y="140">RIGHT →</text><text x="230" y="50">↑ AHEAD</text><text x="375" y="228" fill="#E59A78">1665 · LOOK UP</text></g>
+ </svg>
+</div></section>
+
+<section><div class="wrap trust">
+ <div class="fact reveal" aria-label="Sample fact card">
+  <div class="mono" style="font-size:12px;letter-spacing:.12em;color:var(--muted);display:flex;justify-content:space-between"><span>FACT CARD · SAMPLE</span><span>ROME</span></div>
+  <blockquote>“Piazza Navona follows the outline of the Stadium of Domitian.”</blockquote>
+  <div class="row"><span>PLACE</span><span>Piazza Navona</span></div>
+  <div class="row"><span>DATE</span><span>1st century AD</span></div>
+  <div class="row"><span>SOURCE</span><span>Shown for every card</span></div>
+  <div class="row"><span>REVIEW</span><span>Checked by the story team</span></div>
+ </div>
+ <div>
+  <div class="kicker">Stories you can trust</div>
+  <h2 style="margin-top:16px">Our AI tells the story. <em>It can't make up the facts.</em></h2>
+  <p class="lead" style="margin-top:20px">LORE only tells stories built from fact cards our team has checked, and every card has a source you can see. If we get something wrong, you can flag it in one tap. We fix it and log what changed.</p>
+ </div>
+</div></section>
+
+<section style="background:var(--surface)"><div class="wrap">
+ <div class="kicker">Why a device, not just an app</div>
+ <h2 style="margin-top:16px;max-width:860px">Your phone has better things to do.</h2>
+ <div class="why">
+  <div class="card reveal"><div class="big">150+</div><h3>Countries of data</h3><p>Built-in global eSIM on Square and Atlas. No roaming bill, no SIM swap.*</p></div>
+  <div class="card reveal"><div class="big">0 bars</div><h3>Still works</h3><p>Offline City Packs: maps, routing, stories and on-device AI.</p></div>
+  <div class="card reveal"><div class="big">2–3 d</div><h3>Battery</h3><p>Leaves your phone's battery for tickets, photos and payments. (Target, by model.)</p></div>
+  <div class="card reveal"><div class="big">0</div><h3>Phones in hand</h3><p>Eyes up, more present, and less of a target in crowds.</p></div>
+ </div>
+</div></section>
+
+<section id="models"><div class="wrap">
+ <div class="kicker">Three LOREs</div>
+ <h2 style="margin-top:16px">Pick your <em>companion.</em></h2>
+ <div class="models">
+  <div class="model reveal"><div class="dev"><div class="p"></div></div><h3>Pebble</h3><div class="price"><b>$149</b> target retail</div>
+   <ul><li>Clip-on, ~42 × 42 × 14 mm, LED ring</li><li>Uses your phone's data (Bluetooth) + Wi-Fi</li><li>Offline City Packs</li><li>1.5-day battery (target)</li><li>Bone · Ink · Terracotta</li></ul></div>
+  <div class="model feat reveal"><div class="dev"><div class="s"><i></i></div></div><h3>Square</h3><div class="price"><b>$299</b> target retail</div>
+   <ul><li>1.6" AMOLED + crown/button</li><li>Global eSIM LTE in 150+ countries*</li><li>On-device 3B model + cloud</li><li>2-day battery (target)</li><li>Ink · Sand anodised aluminium</li></ul></div>
+  <div class="model reveal"><div class="dev"><div class="a"><i></i></div></div><h3>Atlas</h3><div class="price"><b>$599</b> target retail</div>
+   <ul><li>Titanium + sapphire, brass-tone crown</li><li>LTE + satellite SOS (coverage-dependent)</li><li>Wide-angle “Glance” camera</li><li>3-day battery (target)</li><li>Bead-blasted · Black DLC titanium</li></ul></div>
+ </div>
+ <p class="fine">Every LORE includes 3 months of LORE Pass Explorer (unlimited live AI, 1 GB/month of data, all City Packs). After that: $9.99/month, a $29 Trip Pass for 14 days, or the free tier (3 offline cities + basic narration). Prices are targets and may change before launch. Device illustrations are not product renders. *Country list to be published before shipping.</p>
+</div></section>
+
+<section class="safety" id="safety"><div class="wrap">
+ <div class="kicker">Solo, never alone</div>
+ <h2 style="margin-top:16px;max-width:820px">Built for walking home alone at 1 a.m.</h2>
+ <div class="safe-grid">
+  <div><h3>SOS</h3><p>Long-press to alert the contacts you choose, with your live location.</p></div>
+  <div><h3>Walk me home</h3><p>Set a check-in timer. If you don't check in, someone you trust is told.</p></div>
+  <div><h3>Live location sharing</h3><p>Off until you turn it on. Shared only with the people you pick, for as long as you choose.</p></div>
+ </div>
+ <p style="font-size:13px;opacity:.8;margin-top:36px">LORE is not an emergency service. In an emergency, call local emergency numbers (112 in the EU).</p>
+</div></section>
+
+<section id="waitlist"><div class="wrap">
+ <div class="wl">
+  <div>
+   <div class="kicker">Early access</div>
+   <h2 style="margin-top:16px">Be first to hear <em>the city.</em></h2>
+   <p style="color:#c9ccd0;margin-top:18px">Join the waitlist to get first access to our Kickstarter, up to 34% off the target retail price, and a new “Secret of Rome” in your inbox every week. No spam. You can unsubscribe in one click.</p>
+  </div>
+  <div>
+   <form id="wl-form" novalidate>
+    <div>
+     <label for="email">Email address</label>
+     <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-describedby="email-err" required>
+     <div class="err" id="email-err" role="alert"></div>
+    </div>
+    <fieldset style="border:0;padding:0;margin:0"><legend style="font-size:14px;font-weight:500;margin-bottom:8px">Which LORE interests you most? <span style="color:var(--fog)">(optional)</span></legend>
+     <div class="chips">
+      <label><input type="radio" name="model" value="pebble"><span>Pebble</span></label>
+      <label><input type="radio" name="model" value="square"><span>Square</span></label>
+      <label><input type="radio" name="model" value="atlas"><span>Atlas</span></label>
+      <label><input type="radio" name="model" value="unsure"><span>Not sure yet</span></label>
+     </div></fieldset>
+    <div>
+     <label for="trips">International trips per year <span style="color:var(--fog)">(optional)</span></label>
+     <select id="trips" name="trips"><option value="">Choose…</option><option>0–1</option><option>2–3</option><option>4–6</option><option>7+</option></select>
+    </div>
+    <div>
+     <label class="check"><input type="checkbox" id="consent" name="consent" aria-describedby="consent-err"> <span>I agree to receive LORE emails about the launch and Kickstarter. See our <a href="#privacy">privacy notice</a>.</span></label>
+     <div class="err" id="consent-err" role="alert"></div>
+    </div>
+    <button class="btn" type="submit" style="justify-content:center;padding:16px">Join the waitlist →</button>
+   </form>
+   <div class="ok" id="wl-ok" role="status" aria-live="polite" tabindex="-1">
+    <h3>You're on the list.</h3>
+    <p style="color:#c9ccd0;margin:0">Check your inbox to confirm your email (we use double opt-in). Your first Secret of Rome is on its way.</p>
+   </div>
+  </div>
+ </div>
+</div></section>
+
+<section id="faq" style="padding-top:20px"><div class="wrap">
+ <div class="kicker">FAQ</div>
+ <h2 style="margin:16px 0 34px">Good questions.</h2>
+ <details><summary>When can I get one?</summary><p>We plan to launch on Kickstarter in 2027, with the first units shipping from late 2027 (estimated). Waitlist members hear first.</p></details>
+ <details><summary>Do I need my phone?</summary><p>Only for setup, through the LORE app. Square and Atlas then work on their own with built-in data. Pebble uses your phone's connection over Bluetooth, but your phone can stay in your bag.</p></details>
+ <details><summary>Which earphones work?</summary><p>Any Bluetooth earphones (Classic A2DP or LE Audio). In cities we recommend open-ear headphones so you can hear traffic.</p></details>
+ <details><summary>Does it work without signal?</summary><p>Yes, with a downloaded City Pack: offline maps, routing, stories and on-device AI. Live information needs data.</p></details>
+ <details><summary>Which cities?</summary><p>Rome first. Next on the roadmap: Lisbon, Paris, London, Barcelona, Istanbul, Kyoto and New York.</p></details>
+ <details><summary>Is my location private?</summary><p>Location is processed on the device wherever possible, and we never sell location data. Sharing is off until you turn it on.</p></details>
+</div></section>
+</main>
+
+<footer id="privacy"><div class="wrap">
+ <div><img src="assets/lore-wordmark-ink.svg" alt="LORE"><p style="margin:12px 0 0">Every street has a story.<br>© 2026 LORE Labs, Inc. (in formation). Specifications and prices are targets and subject to change.</p></div>
+ <div class="mono" style="font-size:12px;letter-spacing:.08em">INSTAGRAM · TIKTOK · YOUTUBE @lore.travel<br>PRIVACY: we only use your email to send LORE updates. Unsubscribe any time.</div>
+</div></footer>
+
+<script>
+(function(){
+ var h=document.querySelector('header');
+ addEventListener('scroll',function(){h.classList.toggle('scrolled',scrollY>8)},{passive:true});
+ var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12}):null;
+ document.querySelectorAll('.reveal').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+ // Client-side validation only. No data is sent anywhere.
+ var f=document.getElementById('wl-form'),em=document.getElementById('email'),ee=document.getElementById('email-err'),
+     c=document.getElementById('consent'),ce=document.getElementById('consent-err'),ok=document.getElementById('wl-ok');
+ var re=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+ var disposable=['mailinator.com','10minutemail.com','guerrillamail.com','tempmail.com','yopmail.com'];
+ function checkEmail(){
+  var v=em.value.trim(),msg='';
+  if(!v)msg='Please enter your email address.';
+  else if(!re.test(v))msg='That doesn’t look like a valid email. Check for typos.';
+  else if(disposable.indexOf(v.split('@')[1].toLowerCase())>-1)msg='Please use a permanent email address.';
+  ee.textContent=msg;em.setAttribute('aria-invalid',msg?'true':'false');return !msg;
+ }
+ em.addEventListener('blur',checkEmail);
+ em.addEventListener('input',function(){if(em.getAttribute('aria-invalid')==='true')checkEmail()});
+ f.addEventListener('submit',function(e){
+  e.preventDefault();
+  var a=checkEmail(),b=c.checked;
+  ce.textContent=b?'':'Please tick the box so we can email you.';
+  if(!a){em.focus();return}
+  if(!b){c.focus();return}
+  try{localStorage.setItem('lore_waitlist_demo',JSON.stringify({ts:Date.now()}))}catch(_){}
+  f.style.display='none';ok.style.display='block';ok.focus();
+ });
+})();
+</script>
+</body>
+</html>

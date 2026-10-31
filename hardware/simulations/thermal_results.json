@@ -1,0 +1,104 @@
+{
+ "Square (Al, 54x54x12)": {
+  "open air / lanyard": {
+   "sustainable_w_25C": 2.21,
+   "sustainable_w_35C": 1.0
+  },
+  "held in hand": {
+   "sustainable_w_25C": 1.77,
+   "sustainable_w_35C": 0.8
+  },
+  "in jacket pocket": {
+   "sustainable_w_25C": 1.0,
+   "sustainable_w_35C": 0.45
+  },
+  "sustained LLM": {
+   "max_shell_C_no_gov": 57.6,
+   "time_to_43C_s_no_gov": 456,
+   "avg_power_with_gov_last10min": 2.2,
+   "max_junction_C": 86.7
+  },
+  "dense conversation 50 %": {
+   "max_shell_C_no_gov": 46.5,
+   "time_to_43C_s_no_gov": 949,
+   "avg_power_with_gov_last10min": 1.87,
+   "max_junction_C": 71.8
+  },
+  "burst 8 s / 60 s": {
+   "max_shell_C_no_gov": 31.9,
+   "time_to_43C_s_no_gov": null,
+   "avg_power_with_gov_last10min": 0.88,
+   "max_junction_C": 47.8
+  }
+ },
+ "Atlas (Ti, 54x54x13.5)": {
+  "open air / lanyard": {
+   "sustainable_w_25C": 1.99,
+   "sustainable_w_35C": 0.9
+  },
+  "held in hand": {
+   "sustainable_w_25C": 1.59,
+   "sustainable_w_35C": 0.72
+  },
+  "in jacket pocket": {
+   "sustainable_w_25C": 0.89,
+   "sustainable_w_35C": 0.4
+  },
+  "sustained LLM": {
+   "max_shell_C_no_gov": 61.1,
+   "time_to_43C_s_no_gov": 492,
+   "avg_power_with_gov_last10min": 1.46,
+   "max_junction_C": 87.7
+  },
+  "dense conversation 50 %": {
+   "max_shell_C_no_gov": 49.0,
+   "time_to_43C_s_no_gov": 916,
+   "avg_power_with_gov_last10min": 1.32,
+   "max_junction_C": 73.0
+  },
+  "burst 8 s / 60 s": {
+   "max_shell_C_no_gov": 32.8,
+   "time_to_43C_s_no_gov": null,
+   "avg_power_with_gov_last10min": 0.96,
+   "max_junction_C": 49.3
+  }
+ },
+ "Pebble (PC-GF, 42x42x14)": {
+  "open air / lanyard": {
+   "sustainable_w_25C": 1.58,
+   "sustainable_w_35C": 0.72
+  },
+  "held in hand": {
+   "sustainable_w_25C": 1.26,
+   "sustainable_w_35C": 0.57
+  },
+  "in jacket pocket": {
+   "sustainable_w_25C": 0.71,
+   "sustainable_w_35C": 0.32
+  },
+  "sustained LLM": {
+   "max_shell_C_no_gov": 52.6,
+   "time_to_43C_s_no_gov": 464,
+   "avg_power_with_gov_last10min": 1.51,
+   "max_junction_C": 77.1
+  },
+  "dense conversation 50 %": {
+   "max_shell_C_no_gov": 45.4,
+   "time_to_43C_s_no_gov": 889,
+   "avg_power_with_gov_last10min": 1.2,
+   "max_junction_C": 66.7
+  },
+  "burst 8 s / 60 s": {
+   "max_shell_C_no_gov": 31.3,
+   "time_to_43C_s_no_gov": null,
+   "avg_power_with_gov_last10min": 0.55,
+   "max_junction_C": 42.4
+  }
+ },
+ "decode_estimate_tok_s": {
+  "1B INT4 (~0.65 GB)": 23.6,
+  "3B INT4 (~1.75 GB)": 8.8,
+  "4B INT4 (~2.3 GB)": 6.7
+ },
+ "square_3B_sustained_tok_s_open_air_25C": 4.5
+}

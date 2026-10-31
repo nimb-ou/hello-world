@@ -1,0 +1,84 @@
+{
+ "A": {
+  "name": "A Raw compass (ideal mount) [L1+L5]",
+  "heading_rmse_deg": 11.5,
+  "heading_median_deg": 4.8,
+  "heading_p95_deg": 23.3,
+  "left_right_accuracy": 0.9812,
+  "left_right_acc_min_run": 0.9277
+ },
+ "A_L1": {
+  "name": "A Raw compass (ideal mount) [L1-only GNSS]",
+  "heading_rmse_deg": 11.5,
+  "heading_median_deg": 4.8,
+  "heading_p95_deg": 23.3,
+  "left_right_accuracy": 0.9183,
+  "left_right_acc_min_run": 0.8235
+ },
+ "B": {
+  "name": "B GNSS course only [L1+L5]",
+  "heading_rmse_deg": 8.8,
+  "heading_median_deg": 4.0,
+  "heading_p95_deg": 17.8,
+  "left_right_accuracy": 0.9835,
+  "left_right_acc_min_run": 0.9277
+ },
+ "B_L1": {
+  "name": "B GNSS course only [L1-only GNSS]",
+  "heading_rmse_deg": 14.9,
+  "heading_median_deg": 7.2,
+  "heading_p95_deg": 31.5,
+  "left_right_accuracy": 0.9309,
+  "left_right_acc_min_run": 0.8588
+ },
+ "C": {
+  "name": "C Complementary gyro+mag [L1+L5]",
+  "heading_rmse_deg": 8.5,
+  "heading_median_deg": 4.1,
+  "heading_p95_deg": 16.9,
+  "left_right_accuracy": 0.982,
+  "left_right_acc_min_run": 0.9277
+ },
+ "C_L1": {
+  "name": "C Complementary gyro+mag [L1-only GNSS]",
+  "heading_rmse_deg": 8.8,
+  "heading_median_deg": 4.4,
+  "heading_p95_deg": 17.5,
+  "left_right_accuracy": 0.9221,
+  "left_right_acc_min_run": 0.8471
+ },
+ "D": {
+  "name": "D EKF gyro+mag(gated)+GNSS [L1+L5]",
+  "heading_rmse_deg": 7.6,
+  "heading_median_deg": 3.9,
+  "heading_p95_deg": 15.6,
+  "left_right_accuracy": 0.9888,
+  "left_right_acc_min_run": 0.9518
+ },
+ "D_L1": {
+  "name": "D EKF gyro+mag(gated)+GNSS [L1-only GNSS]",
+  "heading_rmse_deg": 8.1,
+  "heading_median_deg": 4.2,
+  "heading_p95_deg": 16.8,
+  "left_right_accuracy": 0.9556,
+  "left_right_acc_min_run": 0.9036
+ },
+ "E": {
+  "name": "E EKF + map-matching (Map Vision) [L1+L5]",
+  "heading_rmse_deg": 3.9,
+  "heading_median_deg": 0.9,
+  "heading_p95_deg": 3.4,
+  "left_right_accuracy": 0.9992,
+  "left_right_acc_min_run": 0.988
+ },
+ "E_L1": {
+  "name": "E EKF + map-matching (Map Vision) [L1-only GNSS]",
+  "heading_rmse_deg": 4.6,
+  "heading_median_deg": 0.9,
+  "heading_p95_deg": 3.4,
+  "left_right_accuracy": 0.9963,
+  "left_right_acc_min_run": 0.9765
+ },
+ "mag_update_rejection_rate": 0.377,
+ "runs": 16
+}

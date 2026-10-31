@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>LORE model export</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<script type="importmap">{"imports":{"three":"../assets/vendor/three/three.module.js","three/addons/":"../assets/vendor/three/jsm/"}}</script>
+</head><body>
+<script type="module">
+// Exports the three LORE devices from lib/lore-geometry.js (same code as the renders) to models/.
+// Run from design/:  node tools/render.mjs industrial/scripts/jobs-export.json
+// GLB: metres (glTF convention), Y-up, device front (display / LED ring) facing +Z, PBR materials + textures embedded.
+// STL: millimetres, binary, all meshes merged (visual mesh for review / 3D print mock-ups, not a CAD solid).
+import * as THREE from 'three';
+import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import { STLExporter } from 'three/addons/exporters/STLExporter.js';
+import * as G from './lib/lore-geometry.js';
+
+const PR = await (await fetch('params.json')).json();
+await Promise.all(['500 40px Fraunces', '400 40px Inter', '500 20px Inter'].map((f) => document.fonts.load(f)));
+
+async function screenTex() { // UX home screen if rendered, drawn to a canvas so GLTFExporter can embed it
+  const c = document.createElement('canvas'); c.width = c.height = 932; const g = c.getContext('2d');
+  try { const r = await fetch('../ux/device-screens/png/01-home-compass.png'); if (!r.ok) throw 0; g.drawImage(await createImageBitmap(await r.blob()), 0, 0, 932, 932); }
+  catch { g.fillStyle = '#000'; g.fillRect(0, 0, 932, 932); g.fillStyle = '#F3EEE6'; g.font = '300 184px Fraunces'; g.textAlign = 'center'; g.fillText('14:32', 466, 500); }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+const tex = await screenTex();
+const b64 = (buf) => { const u = new Uint8Array(buf.buffer ? buf.buffer : buf); let s = ''; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); };
+const LED = { color: 0xE8784A, intensity: 2.0 };
+const items = [
+  ['lore-pebble-p1-bone', () => G.buildPebble(PR, 'bone', { led: LED })],
+  ['lore-square-s1-ink', () => G.buildDevice(PR, 'square', 'sq-ink', { screenTexture: tex })],
+  ['lore-atlas-a1-titanium', () => G.buildDevice(PR, 'atlas', 'at-ti', { screenTexture: tex })],
+];
+const out = {}; const gltf = new GLTFExporter(), stl = new STLExporter();
+const report = [];
+for (const [name, build] of items) {
+  const dev = build(); dev.name = name;
+  // centre on the plan origin, back face at z = 0 (as modelled)
+  const root = new THREE.Scene(); const s = new THREE.Group(); s.name = name + '_m'; s.scale.setScalar(0.001); s.add(dev); root.add(s);
+  root.updateMatrixWorld(true);
+  const glb = await gltf.parseAsync(root, { binary: true, onlyVisible: true, maxTextureSize: 1024 });
+  out[name + '.glb'] = b64(glb);
+  const mm = new THREE.Scene(); mm.add(build()); mm.updateMatrixWorld(true);
+  out[name + '.stl'] = b64(stl.parse(mm, { binary: true }));
+  const bb = new THREE.Box3().setFromObject(mm); const sz = bb.getSize(new THREE.Vector3());
+  let tris = 0; mm.traverse((o) => { if (o.isMesh) tris += (o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3; });
+  report.push({ name, bbox_mm: [sz.x, sz.y, sz.z].map((v) => +v.toFixed(2)), triangles: Math.round(tris) });
+}
+out['export-report.json'] = btoa(JSON.stringify({ generated_by: 'industrial/export.html', params_rev: PR.rev, units: { glb: 'm', stl: 'mm' }, models: report }, null, 1));
+window.__exports = out; window.__done = true;
+</script></body></html>

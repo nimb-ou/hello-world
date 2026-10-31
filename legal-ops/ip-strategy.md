@@ -43,7 +43,7 @@ Use **pre-approved USPTO ID Manual wording** to avoid the **$200/class free-text
 | 41 (secondary) | Educational / cultural content | Providing information in the field of history and culture; providing non-downloadable audio and audio-visual content featuring history and culture |
 | 45 (secondary) | Safety features | Personal safety monitoring services; providing information on personal safety for travellers |
 
-**Budget base case:** classes **9, 38, 39, 42** (as briefed). Add **41** if clearance is clean; content is core to the brand.
+**Budget base case:** classes **9, 38, 39, 42** (as briefed). **Do not file class 41**: it conflicts with the "Lore" folklore podcast (see §2.3).
 
 ### 2.3 Conflict risk notes (preliminary; MUST be confirmed by a clearance search)
 
@@ -59,6 +59,7 @@ A quick web search (30 Oct 2026) of third-party USPTO-data aggregators turned up
 | **YLORE** (Serial 98220528) | (unknown) | 9: software for creating/sharing **location-based tours** | Unclear | **HIGH relatedness**: the closest goods to ours ([Justia](https://trademark.justia.com/982/20/ylore-98220528.html)) |
 | "Your Lore" (UK00004411651) | (unknown) | 9, 42 (UK) | Published July 2026 | MEDIUM (UK) ([UK IPO journal](https://www.ipo.gov.uk/t-tmj/tm-journals/2026-030/UK00004411651.html)) |
 | "Lore Games, LLC" portfolio | Lore Games, LLC | games | various | LOW–MEDIUM ([trademarkdir](https://trademarkdir.com/owner/lore-games-llc)) |
+| **"LORE" folklore podcast** (Aaron Mahnke / Grim & Mild; podcast since 2015, books, Amazon TV series 2017–18) **(flagged by Brand)** | Owner entity not yet identified [verify] | Likely **41** (entertainment: podcasts, audio programmes about history/folklore), possibly **9** (downloadable podcasts/audio recordings) and **16** (books) [verify registrations] | Well-known, long-used mark; registrations not verified | **HIGH in class 41**, and **MEDIUM–HIGH spill-over into class 9 audio content**. Both are audio storytelling about history and legends, so goods/services are closely related, the confusion risk is real, and **"history/legends narrated in your ears" is very close to their brand space**. Fame could support a dilution/passing-off argument even outside class 41 |
 
 **Assessment (preliminary):** "LORE" is a **crowded dictionary word in software classes**. A plain word-mark registration of **LORE alone in classes 9 and 42 in the US looks difficult**, and an Epic Games opposition is a real risk. Options, roughly in order of preference after a clearance opinion:
 
@@ -66,6 +67,13 @@ A quick web search (30 Oct 2026) of third-party USPTO-data aggregators turned up
 2. **Focus on class 39 / 38 / 41** (travel guide services, telecom, cultural content), where LORE may be clearer, plus class 9 limited to "**portable GNSS audio travel-guide devices**" with careful ID wording. Seek a **coexistence agreement** with lower-risk owners.
 3. **Rename** (last resort; do it **before** Kickstarter if needed. Renaming after shipping 5k units costs far more).
 4. Domain **lore.travel** reduces confusion with games/software owners and supports a "travel" compound.
+
+**Class 41 / Lore podcast specific plan:**
+- **Drop class 41 from the base filing** (recommended earlier as "add 41 if clean": it isn't clean). Don't describe LORE content as a "podcast" or "audio show" in marketing, ID wording or app-store categories.
+- Class 9 ID: claim **"downloadable audio travel-guide content provided via GNSS-enabled devices"**, not "downloadable podcasts" or "audio recordings featuring folklore".
+- Avoid copy that echoes the podcast's positioning (dark folklore/legends, "true stories of…" horror tone). Keep LORE's voice as "local friend, history, places".
+- Counsel to assess: (a) a **coexistence/consent agreement** with the podcast owner (the fields are different: device/travel vs entertainment podcast); (b) USPTO §2(d) refusal risk for class 9 audio content; (c) whether a compound mark ("LORE TRAVEL" / "LOREWALK") clears both Epic and the podcast. Budget for the outreach/coexistence negotiation: $2k–$8k legal (e).
+- Ask the clearance vendor to include **common-law use** (podcast directories, Amazon, Apple Podcasts), not just registry data.
 
 **Action:** Brand must not lock packaging or Kickstarter creative until the clearance opinion arrives (target **Dec 2026**). Legal will commission a **CompuMark / Corsearch full search** (~$1k–$2.5k) and attorney review (~$500–$1.5k).
 
@@ -185,7 +193,9 @@ Our most defensible IP is probably **know-how + data**, not patents.
 | TripAdvisor / Yelp content | Proprietary API terms | Display rules; no offline storage |
 | Transit GTFS feeds | Varies by agency | Per feed |
 
-### 5.4 AI model licences (on-device 1B–4B models + cloud)
+### 5.4 AI model licences (on-device models + cloud)
+
+> **Decision D10 (31 Oct 2026):** Pebble becomes the "Lite" design: AI runs via the phone over BLE, and offline it plays **pre-generated stories** with **no on-device LLM**. So model-weight distribution obligations (Llama naming/NOTICE, Gemma terms copy) apply only to **Square/Atlas firmware** and to any model shipped inside the **phone app**. Pre-generated story audio/text is model *output*: check each licence's output terms (e.g., the Llama licence's restriction on using outputs to improve other LLMs) [verify].
 
 | Model family | Licence (verify current model card) | Key obligations / restrictions for LORE |
 |---|---|---|

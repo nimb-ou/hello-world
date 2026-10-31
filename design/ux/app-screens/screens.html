@@ -1,0 +1,360 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>LORE companion app screens</title>
+<!--
+  LORE companion app (iOS reference, 390 x 844 pt). One file, three views:
+    ?s=<id>          one screen (captured as #cap)
+    (no params)      labelled contact sheet (#sheet)
+    ?view=mockup     3 screens in phone frames on Bone (#sheet)
+  Rendered by ux/scripts/render-app-screens.mjs. Device images are the real device screens,
+  embedded from ../device-screens/screens.html?frame=1.
+-->
+<link rel="stylesheet" href="../../assets/fonts.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#E9E4DB;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.light{--bg:#F3EEE6;--card:#FBF8F2;--sunk:#EAE3D7;--fg:#14161A;--mut:#5C5F66;--soft:#848280;--hair:#DDD6CA;--acc:#C4623A;--acct:#A84E2A;--bar:rgba(243,238,230,.94);--inv:#F3EEE6}
+.dark{--bg:#14161A;--card:#1D1F23;--sunk:#1A1C20;--fg:#F3EEE6;--mut:#9AA0A6;--soft:#6c7076;--hair:#2C2E33;--acc:#D9774E;--acct:#E59A78;--bar:rgba(20,22,26,.94);--inv:#14161A}
+.night{--bg:#0D1B2A;--card:#13263A;--sunk:#102234;--fg:#F3EEE6;--mut:#9AA0A6;--soft:#6f7f90;--hair:#22364B;--acc:#D9774E;--acct:#E59A78;--bar:rgba(13,27,42,.94);--inv:#0D1B2A}
+.ph{position:relative;width:390px;height:844px;overflow:hidden;background:var(--bg);color:var(--fg)}
+.abs{position:absolute}
+.sb{position:absolute;top:0;left:0;right:0;height:54px;display:flex;justify-content:space-between;align-items:center;padding:6px 26px 0 40px;font:600 17px Inter;letter-spacing:-.01em;color:var(--fg);z-index:20}
+.hi{position:absolute;bottom:8px;left:128px;width:134px;height:5px;border-radius:3px;background:var(--fg);z-index:30}
+.ov{font:500 11px "JetBrains Mono";letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.h1{font:400 34px/1.08 Fraunces;letter-spacing:-.012em}
+.h2{font:400 24px/1.15 Fraunces;letter-spacing:-.006em}
+.body{font:400 15px/1.5 Inter;color:var(--mut)}
+.pad{position:absolute;left:24px;right:24px}
+.card{background:var(--card);border-radius:20px}
+.hair{border-bottom:1px solid var(--hair)}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;height:56px;border-radius:28px;font:600 17px Inter;letter-spacing:-.01em}
+.btn.pri{background:var(--acc);color:#F3EEE6}
+.btn.ink{background:var(--fg);color:var(--inv)}
+.btn.ghost{border:1.5px solid var(--hair);color:var(--fg)}
+.pill{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 14px;border-radius:17px;border:1.25px solid var(--hair);font:500 14px Inter;color:var(--fg);white-space:nowrap}
+.pill.on{background:var(--fg);border-color:var(--fg);color:var(--inv)}
+.row{display:flex;align-items:center;gap:14px;padding:14px 0}
+.t1{font:500 16px Inter;color:var(--fg);letter-spacing:-.01em}
+.t2{font:400 13.5px/1.4 Inter;color:var(--mut);margin-top:2px}
+.mono{font:500 12px "JetBrains Mono";letter-spacing:.06em}
+.tabs{position:absolute;left:0;right:0;bottom:0;height:84px;background:var(--bar);border-top:1px solid var(--hair);display:flex;justify-content:space-around;padding:9px 18px 0;z-index:25}
+.tab{display:flex;flex-direction:column;align-items:center;gap:4px;width:70px;font:500 10.5px Inter;color:var(--soft)}
+.tab.on{color:var(--fg)}
+.tog{flex:none;width:51px;height:31px;border-radius:16px;background:var(--hair);position:relative}
+.tog i{position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.18)}
+.tog.on{background:var(--fg)}.tog.on i{left:22px;background:var(--inv)}
+.av{flex:none;display:grid;place-items:center;border-radius:50%;font:italic 400 20px Fraunces}
+.devframe{position:relative}
+.devframe iframe{position:absolute;left:0;top:0;width:1000px;height:1000px;border:0;transform-origin:0 0;background:transparent}
+</style></head><body>
+<div id="root"></div>
+<script>
+const Q = new URLSearchParams(location.search);
+// ---------- icons (1.5 px stroke, round caps: brand §11) ----------
+const P = {
+  today: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  map: '<path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/>',
+  packs: '<path d="M12 3 21 8l-9 5-9-5z"/><path d="m3 12.5 9 5 9-5M3 16.5l9 5 9-5"/>',
+  you: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+  chevL: '<path d="M15 5 8 12l7 7"/>', chevR: '<path d="m9 5 7 7-7 7"/>', close: '<path d="M6 6l12 12M18 6 6 18"/>',
+  check: '<path d="M5 12.5 10 17l9-10"/>', plus: '<path d="M12 5v14M5 12h14"/>', search: '<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>',
+  share: '<path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>',
+  star: '<path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/>',
+  lookup: '<path d="M3 15.5c2.7-3.4 5.7-5 9-5s6.3 1.6 9 5c-2.7 3.4-5.7 5-9 5s-6.3-1.6-9-5z"/><circle cx="12" cy="15.5" r="2.4"/><path d="M7 6.5Q12 2 17 6.5"/>',
+  shield: '<path d="M12 3 5 6v5.5c0 4.6 3 8 7 9.5 4-1.5 7-4.9 7-9.5V6z"/>',
+  route: '<circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 18h7.5a3.5 3.5 0 0 0 0-7h-7a3.5 3.5 0 0 1 0-7H16"/>',
+  head: '<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3.5" y="14" width="4" height="6.5" rx="1.6"/><rect x="16.5" y="14" width="4" height="6.5" rx="1.6"/>',
+  wifi: '<path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.2" r=".9"/>',
+  down: '<path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/>', chip: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2.5v3.5M15 2.5v3.5M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5"/>',
+  bubble: '<path d="M4 5h16v11H9l-5 4z"/>', lock: '<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/>',
+  book: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20"/>',
+  locate: '<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',
+  pin: '<path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  quote: '<path d="M5 18c0-5 1.5-8.5 5-10M14 18c0-5 1.5-8.5 5-10"/>',
+};
+const I = (n, s = 24, c = 'currentColor', w = 1.5) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" style="flex:none;display:block">${P[n]}</svg>`;
+const sb = (t = '9:41') => `<div class="sb"><span>${t}</span><span style="display:flex;gap:7px;align-items:center">
+  <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+  <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.1-1.2A10.2 10.2 0 0 0 8 .5 10.2 10.2 0 0 0 .9 3.4L2 4.6a8.6 8.6 0 0 1 6-2.4zm0 3.4c1.4 0 2.6.5 3.6 1.4l1.1-1.2A7 7 0 0 0 8 4 7 7 0 0 0 3.3 5.8L4.4 7c1-.9 2.2-1.4 3.6-1.4zM8 9l2.2-1.9a3.4 3.4 0 0 0-4.4 0z"/></svg>
+  <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="17" height="9" rx="2.4" fill="currentColor"/><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2z" fill="currentColor" opacity=".45"/></svg></span></div>`;
+const hi = '<div class="hi"></div>';
+const tabs = (on) => `<div class="tabs">${[['today', 'Today'], ['map', 'Map'], ['packs', 'Packs'], ['you', 'You']].map(([k, l]) => `<div class="tab ${on === k ? 'on' : ''}">${I(k, 25)}${l}</div>`).join('')}</div>`;
+const tog = (on) => `<div class="tog ${on ? 'on' : ''}"><i></i></div>`;
+const device = (screen, size) => { const sc = size / 876; return `<div class="devframe" style="width:${size + 44 * sc}px;height:${size}px"><iframe src="../device-screens/screens.html?frame=1&s=${screen}" style="transform:translate(${-80 * sc}px,${-62 * sc}px) scale(${sc})"></iframe></div>`; };
+
+// Pantheon elevation: single-weight line drawing, one detail (the inscription you look up at) in Terracotta (brand §12)
+function pantheon(w, stroke, accent, sw = 1.2) {
+  let s = `<svg viewBox="0 0 320 190" width="${w}" fill="none" stroke="${stroke}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" style="display:block">`;
+  s += `<path d="M96 46 A 66 32 0 0 1 224 46"/><path d="M118 30 h84" opacity=".55"/><path d="M152 15.5 h16 v-4 h-16z"/>`;
+  s += `<path d="M84 46 H236 M70 70 V52 H250 V70"/><path d="M70 52 L160 40 L250 52" opacity=".55"/>`;
+  s += `<path d="M30 98 L160 62 L290 98 Z"/><path d="M46 94 L160 68.5 L274 94" opacity=".55"/>`;
+  s += `<rect x="34" y="98" width="252" height="18"/>`;
+  s += `<text x="160" y="110.2" text-anchor="middle" fill="${accent}" stroke="none" font-family="Fraunces" font-size="7.4" letter-spacing="1.25">M·AGRIPPA·L·F·COS·TERTIVM·FECIT</text>`;
+  for (let i = 0; i < 8; i++) { const x = 44 + i * 31.4; s += `<rect x="${x - 2}" y="116" width="16" height="5"/><path d="M${x} 121 V166 M${x + 12} 121 V166" /><path d="M${x + 6} 124 V163" opacity=".35"/><rect x="${x - 2}" y="166" width="16" height="4"/>`; }
+  s += `<path d="M24 170 H296 V176 H24 Z M16 176 H304 V182 H16 Z"/><path d="M0 182 H320" opacity=".55"/></svg>`;
+  return s;
+}
+// seeded RNG for the stylised map
+function rng(seed) { return () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646; }
+
+// Stylised Centro Storico map, north up, ~3 m per px. Not real tiles.
+function romeMap() {
+  const r = rng(7); let blocks = '';
+  for (let gy = -1; gy < 22; gy++) for (let gx = -1; gx < 16; gx++) {
+    const x0 = gx * 27 + (gy % 2) * 9, y0 = gy * 23;
+    const split = r() < .35;
+    const w = 27 - 4 - r() * 3, h = 23 - 4 - r() * 3;
+    if (split) { const a = w * (.4 + r() * .2); blocks += `<rect x="${x0}" y="${y0}" width="${a - 2}" height="${h}" rx="2"/><rect x="${x0 + a + 1}" y="${y0}" width="${w - a - 1}" height="${h}" rx="2"/>`; }
+    else blocks += `<rect x="${x0}" y="${y0}" width="${w}" height="${h}" rx="2"/>`;
+  }
+  const road = (d, w = 11) => `<path d="${d}" stroke="#D9D0BF" stroke-width="${w + 2}" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#FAF7F1" stroke-width="${w}" fill="none" stroke-linecap="round"/>`;
+  const corso = 'M-10 300 C 60 325, 110 345, 170 358 S 260 385, 330 398 L 400 402';
+  return `<svg class="abs" style="left:0;top:0" width="390" height="844" viewBox="0 0 390 844">
+  <rect width="390" height="844" fill="#EFE9DE"/>
+  <g fill="#E3DACA" transform="rotate(-7 195 300)">${blocks}</g>
+  ${road(corso, 13)}${road('M196 90 L 192 372', 9)}${road('M-10 140 L 128 176', 7)}${road('M196 252 L 272 244', 6)}${road('M376 -10 L 384 520', 10)}${road('M142 412 L 262 420', 6)}${road('M150 312 L 128 392', 6)}${road('M300 280 L 296 396', 6)}
+  <path d="M-30 30 C 30 120, 55 220, 25 300 S -5 430, 55 560" stroke="#C9D3CF" stroke-width="46" fill="none"/>
+  <path d="M-30 30 C 30 120, 55 220, 25 300 S -5 430, 55 560" stroke="#BFCBC7" stroke-width="1" fill="none" transform="translate(23 0)"/>
+  <rect x="133" y="186" width="36" height="128" rx="18" fill="#F7F3EC" stroke="#D3C9B7"/>
+  <rect x="264" y="194" width="52" height="34" rx="3" fill="#F7F3EC" stroke="#D3C9B7"/>
+  <circle cx="290" cy="262" r="19" fill="#D6CBB8"/><rect x="279" y="228" width="22" height="18" fill="#D6CBB8"/>
+  <rect x="102" y="396" width="42" height="30" rx="3" fill="#F7F3EC" stroke="#D3C9B7" transform="rotate(-8 123 411)"/>
+  <rect x="260" y="400" width="62" height="40" rx="3" fill="#E9E1D2" stroke="#D3C9B7"/>
+  ${[[274, 412], [288, 410], [302, 413], [280, 426], [298, 428]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.6" fill="#CFC3AE"/>`).join('')}
+  <path id="corso" d="${corso}" fill="none"/>
+  <text font-family="JetBrains Mono" font-size="7.5" letter-spacing="1.6" fill="#8d8a84"><textPath href="#corso" startOffset="34%">CORSO VITTORIO EMANUELE II</textPath></text>
+  <text x="22" y="150" font-family="JetBrains Mono" font-size="7.5" letter-spacing="1.4" fill="#8d8a84" transform="rotate(15 22 150)">VIA DEI CORONARI</text>
+  <text x="34" y="236" font-family="Fraunces" font-style="italic" font-size="13" fill="#7f8f8b" transform="rotate(84 34 236)">Tevere</text>
+  <g font-family="Fraunces" font-style="italic" font-size="13.5" fill="#55565a">
+    <text x="126" y="204" text-anchor="end">Piazza</text><text x="126" y="220" text-anchor="end">Navona</text>
+    <text x="322" y="292">Pantheon</text>
+    <text x="96" y="452">Campo de' Fiori</text>
+    <text x="291" y="458" text-anchor="middle">Largo di Torre Argentina</text></g>
+  <path d="M286 236 L 252 241 L 198 249 L 196 300 L 178 306 L 168 292 L 166 266" fill="none" stroke="#14161A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M166 262 L 160 312 L 150 330 L 132 392" fill="none" stroke="#14161A" stroke-width="2.5" stroke-dasharray="1 7" stroke-linecap="round" opacity=".7"/>
+  <path d="M166 266 L 152 228 A 40 40 0 0 1 180 228 Z" fill="#14161A" opacity=".12"/>
+  <circle cx="150" cy="248" r="20" fill="#C4623A" opacity=".14"/><circle cx="150" cy="248" r="12" fill="#C4623A" stroke="#F7F3EC" stroke-width="2.5"/><text x="150" y="252.5" text-anchor="middle" font-family="Inter" font-weight="600" font-size="11" fill="#F7F3EC">3</text>
+  <circle cx="300" cy="262" r="11" fill="#14161A" stroke="#F7F3EC" stroke-width="2.5"/><text x="300" y="266" text-anchor="middle" font-family="Inter" font-weight="600" font-size="10" fill="#F7F3EC">2</text>
+  <circle cx="122" cy="411" r="9" fill="#F7F3EC" stroke="#14161A" stroke-width="1.6"/><circle cx="291" cy="420" r="9" fill="#F7F3EC" stroke="#14161A" stroke-width="1.6"/>
+  <circle cx="166" cy="266" r="8.5" fill="#14161A" stroke="#F7F3EC" stroke-width="3"/>
+  <g transform="translate(316 140)"><rect x="0" y="0" width="64" height="26" rx="13" fill="#FBF8F2" stroke="#D3C9B7"/><text x="10" y="17" font-family="Inter" font-weight="500" font-size="11.5" fill="#14161A">Trevi ↗</text></g>
+  </svg>`;
+}
+// small schematic of the whole day for the recap
+function dayMap() {
+  const pts = [[268, 30, '1'], [214, 52, '2'], [160, 54, '3'], [150, 82, '4'], [212, 84, '5'], [178, 116, '6']];
+  return `<svg width="342" height="140" viewBox="0 0 342 140" style="display:block">
+  <rect width="342" height="140" rx="18" fill="#EAE3D7"/>
+  <path d="M70 -10 C 120 40, 128 80, 104 110 S 96 160, 140 190" stroke="#D3DAD6" stroke-width="22" fill="none"/>
+  <path d="M${pts.map((p) => p[0] + ' ' + p[1]).join(' L ')}" fill="none" stroke="#14161A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+  ${pts.map(([x, y, n], i) => `<circle cx="${x}" cy="${y}" r="9.5" fill="${i === 5 ? '#C4623A' : '#14161A'}" stroke="#EAE3D7" stroke-width="2"/><text x="${x}" y="${y + 3.6}" text-anchor="middle" font-family="Inter" font-weight="600" font-size="9.5" fill="#F3EEE6">${n}</text>`).join('')}
+  <text x="18" y="26" font-family="JetBrains Mono" font-size="9" letter-spacing="1.4" fill="#848280">09:40 → 18:55</text>
+  <text x="194" y="120" font-family="Fraunces" font-style="italic" font-size="11.5" fill="#5C5F66">Aventine</text></svg>`;
+}
+
+const S = {};
+// 01 · Welcome (Ink: brand moment, reverse lockup)
+S['01-welcome'] = () => `<div class="ph dark">${sb()}
+  <div class="abs" style="left:32px;top:96px;display:flex;align-items:center;gap:12px"><img src="../../assets/brand/lore-symbol-terracotta.svg" style="width:30px"><img src="../../assets/brand/lore-wordmark-bone.svg" style="height:19px"></div>
+  <div class="abs" style="left:32px;right:28px;top:196px;font:300 48px/1.04 Fraunces;letter-spacing:-.018em">Every street<br>has a story.<br><i style="color:var(--acc)">Let's hear it.</i></div>
+  <div class="abs body" style="left:32px;right:40px;top:376px;font-size:16.5px">LORE tells you the city through your own earphones: its history, the hidden details, the way home. Your phone stays in your pocket.</div>
+  <div class="abs" style="left:24px;top:500px;opacity:.9">${pantheon(342, '#3d4046', '#D9774E', 1.1)}</div>
+  <div class="pad" style="top:706px"><div class="btn" style="background:#F3EEE6;color:#14161A">Get started</div></div>
+  <div class="abs" style="left:0;right:0;top:778px;text-align:center;font:500 15px Inter;color:var(--mut)">I already have an account</div>${hi}</div>`;
+// 02 · Pair
+S['02-pair'] = () => `<div class="ph light">${sb()}
+  <div class="abs" style="left:16px;top:58px">${I('chevL', 28)}</div><div class="abs ov" style="left:0;right:0;top:66px;text-align:center">Step 2 of 5</div>
+  <div class="pad h1" style="top:112px">Say hello to<br>your LORE.</div>
+  <div class="pad body" style="top:200px">Keep it next to your phone. When the keyhole appears, press and hold the Talk key.</div>
+  <div class="abs" style="left:40px;top:276px">${device('x-pair', 250)}</div>
+  <div class="abs" style="left:302px;top:438px;width:40px;border-top:1.25px solid #14161A"></div>
+  <div class="abs" style="left:348px;top:429px;font:600 12.5px Inter;color:var(--acct);line-height:1.3">Talk<br><span style="font-weight:400;color:var(--mut)">hold</span></div>
+  <div class="pad card" style="top:566px;padding:16px 18px;display:flex;align-items:center;gap:14px">
+    <div style="width:44px;height:44px;border-radius:12px;background:var(--sunk);display:grid;place-items:center">${I('wifi', 22)}</div>
+    <div style="flex:1"><div class="t1">LORE Square · Ink</div><div class="t2">S1-4F2A · 20 cm away</div></div>
+    <div class="mono" style="color:var(--acct);font-size:11px">WAITING</div></div>
+  <div class="pad" style="top:652px">${[['globe', 'Global eSIM turns on by itself', '150+ countries, no roaming bill'], ['chip', 'LORE OS 1.4.2', 'Already up to date']].map(([i, a, b]) => `<div class="row" style="padding:9px 0">${I(i, 22, 'var(--mut)')}<div><div class="t1" style="font-size:15px">${a}</div><div class="t2">${b}</div></div></div>`).join('')}</div>
+  <div class="abs" style="left:0;right:0;top:786px;display:flex;justify-content:center;gap:8px">${[0, 1, 0, 0, 0].map((a, i) => `<span style="width:${a ? 22 : 7}px;height:7px;border-radius:4px;background:${i <= 1 ? 'var(--fg)' : 'var(--hair)'}"></span>`).join('')}</div>${hi}</div>`;
+// 03 · Interests + narrator persona
+S['03-interests-persona'] = () => `<div class="ph light">${sb()}
+  <div class="abs" style="left:16px;top:58px">${I('chevL', 28)}</div><div class="abs ov" style="left:0;right:0;top:66px;text-align:center">Step 3 of 5</div>
+  <div class="pad h1" style="top:104px;font-size:32px">What makes you<br>stop and look?</div>
+  <div class="pad" style="top:192px;display:flex;flex-wrap:wrap;gap:8px 6px">${[['Architecture', 1], ['Food', 1], ['Dark history', 1], ['Art', 1], ['Ancient Rome', 0], ['Saints & popes', 0], ['Local life', 0], ['Film', 0], ['Myths', 0], ['Science', 0]].map(([t, on]) => `<span class="pill ${on ? 'on' : ''}" style="padding:0 11px;font-size:13.5px;gap:5px">${on ? I('check', 15, 'currentColor', 2) : ''}${t}</span>`).join('')}</div>
+  <div class="pad" style="top:308px"><div style="display:flex;justify-content:space-between;align-items:baseline"><div class="ov" style="color:var(--fg)">Depth</div><div class="mono" style="color:var(--mut);font-size:11px">4 of 5 interests</div></div>
+    <div style="position:relative;height:30px;margin-top:12px"><div style="position:absolute;left:0;right:0;top:13px;height:3px;border-radius:2px;background:var(--hair)"></div><div style="position:absolute;left:0;width:50%;top:13px;height:3px;border-radius:2px;background:var(--fg)"></div><div style="position:absolute;left:calc(50% - 13px);top:2px;width:26px;height:26px;border-radius:50%;background:var(--card);border:1.5px solid var(--fg);box-shadow:0 2px 6px rgba(20,22,26,.12)"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;font:400 13px Inter;color:var(--mut)"><span>Light</span><span style="color:var(--fg);font-weight:600">Curious</span><span>Deep</span></div></div>
+  <div class="pad ov" style="top:408px;color:var(--fg)">Your narrator</div>
+  <div class="pad" style="top:430px">${[['I', 'Isla', 'The Historian', 'Warm and precise. Dates, makers, why it matters.', 1], ['M', 'Marco', 'The Local', 'Wry, food-first. Which bar people actually use.', 0], ['N', 'Nell', 'The Storyteller', 'Slower and theatrical. Yes, the gory version.', 0]].map(([l, n, r, d, on]) => `<div class="card" style="display:flex;gap:14px;align-items:center;padding:13px 14px;margin-bottom:9px;${on ? 'box-shadow:inset 0 0 0 1.5px #14161A' : 'box-shadow:inset 0 0 0 1px var(--hair);background:transparent'}">
+      <div class="av" style="width:44px;height:44px;${on ? 'background:var(--fg);color:var(--inv)' : 'background:var(--sunk);color:var(--mut)'}">${l}</div>
+      <div style="flex:1"><div class="t1">${n} <span style="font:italic 400 15px Fraunces;color:var(--mut)">· ${r}</span></div><div class="t2">${d}</div></div>
+      <div style="width:34px;height:34px;border-radius:50%;border:1.25px solid var(--hair);display:grid;place-items:center"><svg width="11" height="12" viewBox="0 0 11 12"><path d="M1 1l9 5-9 5z" fill="#14161A"/></svg></div></div>`).join('')}</div>
+  <div class="pad" style="top:722px"><div class="btn ink">Continue</div></div>${hi}</div>`;
+// 04 · City Pack store
+S['04-city-pack-store'] = () => `<div class="ph light">${sb()}
+  <div class="pad" style="top:66px;display:flex;justify-content:space-between;align-items:center"><div class="h1" style="font-size:36px">City Packs</div><div style="width:40px;height:40px;border-radius:50%;background:var(--card);display:grid;place-items:center">${I('search', 20)}</div></div>
+  <div class="pad body" style="top:114px">Download once. Then it works with no signal.</div>
+  <div class="pad card" style="top:160px;overflow:hidden">
+    <div style="background:var(--sunk);padding:20px 22px 12px;display:flex;justify-content:center">${pantheon(270, '#14161A', '#C4623A', 1.05)}</div>
+    <div style="padding:16px 20px 18px"><div style="display:flex;justify-content:space-between;align-items:center"><div class="ov">Italy · launch city</div><div class="mono" style="font-size:11px;display:flex;gap:6px;align-items:center">${I('check', 14, '#14161A', 2)}ON YOUR LORE</div></div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:6px"><div><div class="h2" style="font-size:30px">Rome</div><div class="t2" style="margin-top:4px">86 places · 215 stories · 1.2 GB</div></div><div class="pill" style="height:36px">Open</div></div></div></div>
+  <div class="pad" style="top:500px;display:flex;justify-content:space-between;align-items:baseline"><div class="ov" style="color:var(--fg)">Coming next</div><div class="mono" style="font-size:11px;color:var(--mut)">FREE: 3 CITIES · 1 USED</div></div>
+  <div class="pad" style="top:520px">${[['Lisbon', 'Portugal · spring 2027'], ['Paris', 'France · spring 2027'], ['London', 'UK · summer 2027']].map(([c, m], i) => `<div class="row ${i < 2 ? 'hair' : ''}" style="padding:12px 0"><div class="av" style="width:40px;height:40px;background:var(--sunk);color:var(--fg);font-size:19px">${c[0]}</div><div style="flex:1"><div style="font:400 19px Fraunces">${c}</div><div class="t2" style="margin-top:0">${m}</div></div><div class="pill" style="height:32px;font-size:13px">Notify me</div></div>`).join('')}</div>
+  ${tabs('packs')}${hi}</div>`;
+// 05 · Rome pack detail
+S['05-rome-pack-detail'] = () => `<div class="ph light">
+  <div class="abs" style="left:0;right:0;top:0;height:318px;background:var(--sunk)"></div>${sb()}
+  <div class="abs" style="left:20px;top:58px;width:40px;height:40px;border-radius:50%;background:var(--card);display:grid;place-items:center">${I('chevL', 22)}</div>
+  <div class="abs" style="right:20px;top:58px;width:40px;height:40px;border-radius:50%;background:var(--card);display:grid;place-items:center">${I('share', 20)}</div>
+  <div class="abs" style="left:39px;top:110px">${pantheon(312, '#14161A', '#C4623A', 1.05)}</div>
+  <div class="pad ov" style="top:340px">City Pack · v3.2 · 28 Oct 2026</div>
+  <div class="pad" style="top:360px;font:400 48px/1 Fraunces;letter-spacing:-.015em">Rome</div>
+  <div class="pad" style="top:416px;font:italic 400 17px/1.35 Fraunces;color:var(--mut)">From Largo Argentina to the Aventine keyhole.</div>
+  <div class="pad" style="top:462px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)">${[['86', 'places'], ['215', 'stories'], ['1.2', 'GB'], ['100%', 'offline']].map(([n, l], i) => `<div style="padding:14px 0 12px;${i ? 'border-left:1px solid var(--hair);padding-left:14px' : ''}"><div style="font:300 28px/1 Fraunces">${n}</div><div class="t2" style="margin-top:6px">${l}</div></div>`).join('')}</div>
+  <div class="pad" style="top:540px">${[['map', 'Offline maps and walking routes'], ['bubble', 'Ask anything: on-device answers'], ['book', 'Every story cited · 412 sources'], ['head', 'Italian phrasebook, spoken']].map(([i, t]) => `<div class="row" style="padding:7px 0">${I(i, 20, 'var(--mut)')}<div class="t1" style="font-size:15px;font-weight:400">${t}</div></div>`).join('')}</div>
+  <div class="pad" style="top:692px"><div class="btn pri">${I('down', 20, '#F3EEE6', 1.8)}Download to LORE · 1.2 GB</div><div style="text-align:center;margin-top:10px;font:400 12.5px Inter;color:var(--mut)">Best on Wi-Fi · about 3 min · included in Explorer</div></div>${hi}</div>`;
+// 06 · Live walk map
+S['06-live-walk-map'] = () => `<div class="ph light">${romeMap()}${sb('11:10')}
+  <div class="pad card" style="top:58px;padding:12px 12px 12px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 24px rgba(20,22,26,.10)">
+    <div><div style="font:400 19px Fraunces">Centro Storico</div><div class="mono" style="font-size:10.5px;color:var(--mut);margin-top:3px">2.6 KM · 9 STORIES · OFFLINE-READY</div></div>
+    <div style="width:42px;height:42px;border-radius:50%;background:var(--bg);display:grid;place-items:center">${I('locate', 21)}</div></div>
+  <div class="abs card" style="left:0;right:0;top:474px;bottom:0;border-radius:28px 28px 0 0;box-shadow:0 -10px 30px rgba(20,22,26,.10)">
+    <div style="width:38px;height:5px;border-radius:3px;background:var(--hair);margin:8px auto 0"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:12px 24px 0"><div class="ov" style="color:var(--acct)">● Now narrating</div><div class="mono" style="font-size:11px;color:var(--mut)">0:18 / 0:32</div></div>
+    <div style="display:flex;gap:16px;align-items:center;margin:14px 24px 0">
+      <svg width="64" height="40" viewBox="0 0 64 40" style="flex:none"><path d="M6 36 A26 26 0 0 1 58 36" fill="none" stroke="#DDD6CA" stroke-width="5" stroke-linecap="round"/><path d="M6 36 A26 26 0 0 1 19 13.5" fill="none" stroke="#C4623A" stroke-width="5" stroke-linecap="round"/><circle cx="32" cy="36" r="4" fill="#14161A"/></svg>
+      <div><div style="font:600 13px Inter;color:var(--acct);letter-spacing:.01em">◀ On your left · 40 m</div><div style="font:400 21px/1.15 Fraunces;margin-top:3px;white-space:nowrap">Fontana dei Quattro Fiumi</div></div></div>
+    <div style="margin:12px 24px 0;font:italic 400 16px/1.45 Fraunces;color:#3f4146">“Look up: the river god is shielding his eyes, they say from Borromini's church. A great story, and it's false. The fountain was finished first.”</div>
+    <div style="margin:14px 24px 0;height:3px;border-radius:2px;background:var(--hair)"><div style="width:56%;height:3px;border-radius:2px;background:var(--fg)"></div></div>
+    <div style="display:flex;align-items:center;gap:8px;margin:14px 24px 0">
+      <div style="width:44px;height:44px;border-radius:50%;background:var(--fg);display:grid;place-items:center"><svg width="14" height="16" viewBox="0 0 14 16" fill="#F3EEE6"><rect x="1" y="1" width="4" height="14" rx="1.2"/><rect x="9" y="1" width="4" height="14" rx="1.2"/></svg></div>
+      <span class="pill">Tell me more</span><span class="pill">${I('book', 15)}2 sources</span><span class="pill" style="padding:0 10px">${I('star', 16)}</span></div></div>
+  ${tabs('map')}${hi}</div>`;
+// 07 · Day recap
+S['07-day-recap'] = () => `<div class="ph light">${sb('19:02')}
+  <div class="pad ov" style="top:66px">Saturday 31 October · Day 2</div>
+  <div class="pad h1" style="top:88px;font-size:38px">Today in Rome</div>
+  <div class="pad" style="top:146px;display:flex;gap:0">${[['17', 'stories'], ['4.2', 'km walked'], ['3', 'saved']].map(([n, l], i) => `<div style="flex:1;${i ? 'border-left:1px solid var(--hair);padding-left:16px' : ''}"><div style="font:300 40px/1 Fraunces;letter-spacing:-.01em">${n}</div><div class="t2" style="margin-top:6px">${l}</div></div>`).join('')}</div>
+  <div class="pad" style="top:228px">${dayMap()}</div>
+  <div class="pad" style="top:384px">${[['09:40', 'Fontana di Trevi', 'Where the coins actually go', 0], ['10:25', 'Pantheon', 'The inscription that takes the credit', 0], ['11:10', 'Piazza Navona', 'A feud that never was', 1], ['12:30', 'Campo de\' Fiori', 'The hooded man in the market', 0], ['15:05', 'Largo di Torre Argentina', 'Where Caesar actually fell', 1], ['18:40', 'The Aventine keyhole', 'St Peter\'s through a keyhole', 1]].map(([t, p, s, sv], i) => `<div style="display:flex;gap:14px;align-items:flex-start;padding:6px 0;${i < 5 ? 'border-bottom:1px solid var(--hair)' : ''}">
+      <div class="mono" style="width:40px;font-size:11px;color:var(--mut);padding-top:3px">${t}</div>
+      <div style="flex:1"><div style="font:400 16.5px Fraunces">${p}</div><div class="t2" style="margin-top:1px;font-size:13px">${s}</div></div>
+      <div style="padding-top:4px">${sv ? I('star', 17, '#14161A') : ''}</div></div>`).join('')}</div>
+  <div class="abs" style="left:0;right:0;top:712px;text-align:center;font:500 13.5px Inter;color:var(--acct)">See all 17 stories</div>
+  ${tabs('today')}${hi}</div>`;
+// 08 · Safety (Night: the Walk Me Home colour)
+S['08-safety'] = () => `<div class="ph night">${sb('22:41')}
+  <div class="abs" style="left:16px;top:58px;display:flex;align-items:center;gap:2px;font:500 16px Inter;color:var(--mut)">${I('chevL', 24)}You</div>
+  <div class="pad h1" style="top:100px;font-size:36px">Safety</div>
+  <div class="pad body" style="top:146px">Who LORE tells, and when. Nothing is shared until you start a walk or hold SOS.</div>
+  <div class="pad ov" style="top:204px">Trusted contacts</div>
+  <div class="pad card" style="top:224px;padding:2px 16px">${[['SL', 'Sara Lin', 'Sister · SMS + live link'], ['TA', 'Tom Adeyemi', 'Friend in Rome · WhatsApp + SMS']].map(([a, n, m]) => `<div class="row hair"><div class="av" style="width:40px;height:40px;background:#1E3550;font:600 13px Inter;color:#F3EEE6">${a}</div><div style="flex:1"><div class="t1">${n}</div><div class="t2">${m}</div></div>${I('chevR', 18, 'var(--soft)')}</div>`).join('')}
+    <div class="row" style="color:var(--mut)">${I('plus', 20)}<span style="font:500 15px Inter">Add a contact</span></div></div>
+  <div class="pad ov" style="top:428px">Walk me home</div>
+  <div class="pad card" style="top:448px;padding:2px 16px">
+    <div class="row hair"><div style="flex:1"><div class="t1">Suggest it after 22:00</div><div class="t2">When you head back to your hotel</div></div>${tog(1)}</div>
+    <div class="row hair"><div style="flex:1"><div class="t1">Prefer lit, busy streets</div><div class="t2">Even if it adds a few minutes</div></div>${tog(1)}</div>
+    <div class="row"><div style="flex:1"><div class="t1">Check in with me if I…</div><div class="t2">stop 4 min off route, drift 150 m or run 10 min late. No answer in 60 s: Sara and Tom get my location.</div></div></div></div>
+  <div class="pad" style="top:712px"><div class="btn" style="background:#F3EEE6;color:#0D1B2A">${I('route', 20, '#0D1B2A', 1.7)}Start Walk Me Home</div></div>
+  <div class="abs" style="left:0;right:0;top:786px;text-align:center;font:400 12.5px Inter;color:var(--mut)">SOS: hold the side key 2 s · calls 112 in Italy</div>${hi}</div>`;
+// 09 · LORE Pass
+S['09-lore-pass'] = () => `<div class="ph light">${sb()}
+  <div class="abs" style="right:20px;top:58px;width:36px;height:36px;border-radius:50%;background:var(--sunk);display:grid;place-items:center">${I('close', 18)}</div>
+  <div class="pad ov" style="top:72px">LORE Pass</div>
+  <div class="pad h1" style="top:94px;font-size:36px">The whole city,<br>in your ear.</div>
+  <div class="pad" style="top:190px;display:flex;background:var(--sunk);border-radius:14px;padding:3px">${[['Monthly', 0], ['Yearly · save 34%', 1]].map(([t, on]) => `<div style="flex:1;height:36px;border-radius:11px;display:grid;place-items:center;font:${on ? 600 : 500} 14px Inter;${on ? 'background:var(--card);box-shadow:0 1px 4px rgba(20,22,26,.12)' : 'color:var(--mut)'}">${t}</div>`).join('')}</div>
+  <div class="pad" style="top:246px;background:#14161A;color:#F3EEE6;border-radius:22px;padding:20px 20px 18px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div style="font:400 26px Fraunces">Explorer</div><div class="mono" style="font-size:10.5px;color:#D9774E;border:1px solid #5a3a2c;border-radius:10px;padding:4px 8px">3 MONTHS INCLUDED</div></div>
+    <div style="margin-top:10px;display:flex;align-items:baseline;gap:8px"><span style="font:300 44px/1 Fraunces;letter-spacing:-.01em">$79</span><span style="font:400 15px Inter;color:#9AA0A6">/ year · or $9.99 / month</span></div>
+    <div style="margin-top:14px;border-top:1px solid #2C2E33;padding-top:6px">${['Unlimited live AI and “tell me more”', '1 GB of data a month, 150+ countries', 'Every City Pack, offline', 'Walk Me Home, live location, SOS'].map((t) => `<div style="display:flex;gap:10px;align-items:center;padding:6px 0;font:400 14.5px Inter">${I('check', 17, '#F3EEE6', 1.8)}${t}</div>`).join('')}</div></div>
+  <div class="pad" style="top:540px;border:1.25px solid var(--hair);border-radius:22px;padding:16px 18px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font:400 21px Fraunces">Trip Pass</div><div class="t2" style="margin:0">One-off · no renewal</div></div>
+    <div style="display:flex;gap:10px;margin-top:12px">${[['$29', '14 days', '5 GB data'], ['$49', '30 days', '10 GB data']].map(([p, d, g]) => `<div style="flex:1;background:var(--card);border-radius:14px;padding:12px 14px"><div style="font:300 26px/1 Fraunces">${p}</div><div class="t2" style="margin-top:6px;color:var(--fg)">${d}</div><div class="t2" style="margin:0">${g}</div></div>`).join('')}</div></div>
+  <div class="pad" style="top:718px"><div class="btn pri">Continue with Explorer yearly</div></div>
+  <div class="abs" style="left:28px;right:28px;top:784px;text-align:center;font:400 11.5px/1.4 Inter;color:var(--mut)">Free plan: offline packs for 3 cities + basic narration. Prices in USD. Cancel anytime.</div>${hi}</div>`;
+// 10 · Device settings
+S['10-device-settings'] = () => `<div class="ph light">${sb()}
+  <div class="abs" style="left:16px;top:58px;display:flex;align-items:center;gap:2px;font:500 16px Inter;color:var(--mut)">${I('chevL', 24)}You</div>
+  <div class="pad" style="top:96px;display:flex;align-items:center;gap:14px">
+    <div style="width:118px;height:118px;flex:none">${device('01-home-compass', 112)}</div>
+    <div><div class="h1" style="font-size:30px">Maya's LORE</div><div class="t2" style="margin-top:6px">LORE Square · Ink · S1-4F2A</div><div class="mono" style="font-size:10.5px;color:var(--mut);margin-top:8px;display:flex;gap:6px;align-items:center"><span style="width:7px;height:7px;border-radius:50%;background:#3F7F74"></span>CONNECTED · LTE · TIM</div></div></div>
+  <div class="pad card" style="top:234px;padding:18px 18px 16px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end"><div><span style="font:300 42px/1 Fraunces">82</span><span style="font:400 18px Inter;color:var(--mut)"> %</span></div><div class="t2" style="text-align:right">About 2 days 4 h<br>at today's pace</div></div>
+    <div style="height:6px;border-radius:3px;background:var(--hair);margin-top:12px"><div style="width:82%;height:6px;border-radius:3px;background:var(--fg)"></div></div>
+    <div style="display:flex;background:var(--sunk);border-radius:12px;padding:3px;margin-top:14px">${['Normal', 'Saver', 'Ultra'].map((t, i) => `<div style="flex:1;height:32px;border-radius:9px;display:grid;place-items:center;font:${i ? 500 : 600} 13.5px Inter;${i ? 'color:var(--mut)' : 'background:var(--card);box-shadow:0 1px 3px rgba(20,22,26,.12)'}">${t}</div>`).join('')}</div>
+    <div class="t2" style="margin-top:10px;font-size:12.5px">The last 3 % is always kept for SOS and Walk Me Home.</div></div>
+  <div class="pad card" style="top:432px;padding:2px 16px">
+    <div class="row hair">${I('chip', 21, 'var(--mut)')}<div style="flex:1"><div class="t1">LORE OS 1.4.2</div><div class="t2">Up to date · checked 08:12</div></div>${I('chevR', 18, 'var(--soft)')}</div>
+    <div class="row">${I('packs', 21, 'var(--mut)')}<div style="flex:1"><div class="t1">Rome pack v3.2</div><div class="t2">1.2 GB of 16 GB used</div></div>${I('chevR', 18, 'var(--soft)')}</div></div>
+  <div class="pad ov" style="top:584px">Buttons</div>
+  <div class="pad" style="top:600px">${[['Talk · press', "Pause, or “What's this?”"], ['Talk · double', "What's around me"], ['Talk · hold', 'Talk to LORE'], ['SOS key · hold 2 s', 'SOS countdown']].map(([a, b], i) => `<div style="display:flex;justify-content:space-between;padding:8px 0;${i < 3 ? 'border-bottom:1px solid var(--hair)' : ''}"><span class="t1" style="font-size:14.5px">${a}</span><span style="font:400 14px Inter;color:var(--mut)">${b}</span></div>`).join('')}</div>
+  ${tabs('you')}${hi}</div>`;
+// 11 · Story detail (sources visible: brand "Cite sources in the app")
+S['11-story-detail'] = () => `<div class="ph light">${sb('11:14')}
+  <div class="abs" style="left:16px;top:58px;display:flex;align-items:center;gap:2px;font:500 16px Inter;color:var(--mut)">${I('chevL', 24)}Today</div>
+  <div class="abs" style="right:24px;top:60px;display:flex;gap:18px">${I('star', 22, '#14161A')}${I('share', 22)}</div>
+  <div class="pad ov" style="top:108px">Piazza Navona · 11:10 · 0:32</div>
+  <div class="pad h1" style="top:130px;font-size:32px">A feud that<br>never was</div>
+  <div class="pad" style="top:220px;display:flex;align-items:center;gap:12px">
+    <div style="width:46px;height:46px;border-radius:50%;background:var(--fg);display:grid;place-items:center"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M2 1l11 7-11 7z" fill="#F3EEE6"/></svg></div>
+    <div style="flex:1"><div style="height:3px;border-radius:2px;background:var(--hair)"><div style="width:100%;height:3px;border-radius:2px;background:var(--fg)"></div></div><div style="display:flex;justify-content:space-between;margin-top:7px" class="mono"><span style="font-size:10.5px;color:var(--mut)">LISTEN AGAIN</span><span style="font-size:10.5px;color:var(--mut)">ISLA · 0:32</span></div></div></div>
+  <div class="pad" style="top:300px;font:400 18px/1.55 Fraunces;color:#2a2c30"><span style="font:600 12px Inter;letter-spacing:.06em;color:var(--acct);text-transform:uppercase">On your left</span>, the fountain's river god is covering his eyes. Legend says Bernini made him flinch at Borromini's church across the square. It's a great story, and it's false: the fountain was finished first. <span style="box-shadow:inset 0 -2px 0 #C4623A">Look up at the church's twin towers</span>; they came later.</div>
+  <div class="pad ov" style="top:520px;color:var(--fg)">Sources</div>
+  <div class="pad" style="top:540px">${[['1', 'Fountain completed, 1651', 'Rome pack · ref. NAV-0031'], ['2', 'Sant\'Agnese in Agone, Borromini\'s works begin 1653', 'Rome pack · ref. NAV-0034']].map(([n, a, b], i) => `<div style="display:flex;gap:12px;padding:10px 0;${i ? '' : 'border-bottom:1px solid var(--hair)'}"><div class="mono" style="font-size:11px;color:var(--mut);padding-top:2px">[${n}]</div><div><div class="t1" style="font-size:14.5px">${a}</div><div class="t2">${b}</div></div></div>`).join('')}</div>
+  <div class="pad card" style="top:676px;padding:14px 16px;display:flex;align-items:center;gap:14px">${I('lookup', 26)}<div style="flex:1"><div class="t1" style="font-size:15px">Tell me more · Innocent X's palace</div><div class="t2">Deeper layer · 0:52</div></div>${I('chevR', 18, 'var(--soft)')}</div>
+  ${hi}</div>`;
+// 12 · Dinner booking (evening, Ink)
+S['12-dinner-booking'] = () => `<div class="ph dark">${sb('19:48')}
+  <div class="abs" style="left:16px;top:58px;display:flex;align-items:center;gap:2px;font:500 16px Inter;color:var(--mut)">${I('chevL', 24)}Today</div>
+  <div class="pad ov" style="top:104px">Dinner · open now · cacio e pepe</div>
+  <div class="pad h1" style="top:126px;font-size:34px">Three good ones,<br><i>not touristy.</i></div>
+  <div class="pad" style="top:226px">${[['1', 'Trattoria da Enzo*', '6 min walk · €16 · mostly Roman reviews', 1], ['2', 'Osteria Sant\'Ana*', '9 min walk · €14 · quiet courtyard', 0], ['3', 'Roscioli Salumeria*', '4 min walk · €18 · busy, book ahead', 0]].map(([n, a, b, on]) => `<div class="card" style="padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;${on ? 'box-shadow:inset 0 0 0 1.5px #F3EEE6' : ''}"><div style="font:300 26px/1 Fraunces;color:${on ? 'var(--acc)' : 'var(--soft)'};width:16px">${n}</div><div style="flex:1"><div style="font:400 19px Fraunces">${a}</div><div class="t2">${b}</div></div></div>`).join('')}</div
+  ><div class="pad ov" style="top:530px;color:var(--fg)">Table for one</div>
+  <div class="pad" style="top:552px;display:flex;gap:8px">${['19:45', '20:15', '20:45', '21:30'].map((t, i) => `<div class="pill" style="height:40px;flex:1;justify-content:center;${i === 1 ? 'background:#F3EEE6;color:#14161A;border-color:#F3EEE6;font-weight:600' : ''}">${t}</div>`).join('')}</div>
+  <div class="pad" style="top:622px;font:400 13px/1.5 Inter;color:var(--mut)">Booked through a partner; LORE may earn a small fee. Fees never change the ranking. *Illustrative venues.</div>
+  <div class="pad" style="top:718px"><div class="btn pri">Book 20:15 · Trattoria da Enzo</div></div>${hi}</div>`;
+
+const CAP = {
+  '01-welcome': 'Brand moment, reverse lockup on Ink', '02-pair': 'Device found, hold Talk to confirm',
+  '03-interests-persona': 'Interests, depth, narrator persona', '04-city-pack-store': 'Rome installed, next cities',
+  '05-rome-pack-detail': '86 places · 215 stories · 1.2 GB · offline', '06-live-walk-map': 'Stylised map, story on your left',
+  '07-day-recap': 'Today in Rome: 17 stories, 4.2 km', '08-safety': 'Trusted contacts + Walk Me Home rules',
+  '09-lore-pass': 'Explorer $79/yr or $9.99/mo · Trip Pass', '10-device-settings': 'Battery modes, firmware, buttons',
+  '11-story-detail': 'Transcript, look-up cue, sources', '12-dinner-booking': 'Three picks, time slots, fee disclosure',
+};
+const ids = Object.keys(S);
+const root = document.getElementById('root');
+const one = Q.get('s'), view = Q.get('view');
+const phone = (k, sc = 1) => `<div style="position:relative;width:${430 * sc}px;height:${884 * sc}px"><div style="position:absolute;left:0;top:0;zoom:${sc}">
+  <div style="position:relative;width:430px;height:884px">
+    <div style="position:absolute;left:20px;right:20px;bottom:-60px;height:150px;background:radial-gradient(50% 50% at 50% 50%,rgba(52,38,24,.26),rgba(52,38,24,0))"></div>
+    <div style="position:absolute;left:-3px;top:178px;width:5px;height:34px;border-radius:2px;background:#2b2c30"></div>
+    <div style="position:absolute;left:-3px;top:236px;width:5px;height:62px;border-radius:2px;background:#2b2c30"></div>
+    <div style="position:absolute;left:-3px;top:310px;width:5px;height:62px;border-radius:2px;background:#2b2c30"></div>
+    <div style="position:absolute;right:-3px;top:262px;width:5px;height:98px;border-radius:2px;background:#2b2c30"></div>
+    <div style="position:absolute;inset:0;border-radius:68px;background:linear-gradient(140deg,#6d6f74,#26272b 30%,#1b1c1f 65%,#4a4b50);box-shadow:0 34px 60px -26px rgba(52,38,24,.42),0 12px 24px -8px rgba(52,38,24,.2)"></div>
+    <div style="position:absolute;inset:4px;border-radius:64px;background:#050506"></div>
+    <div style="position:absolute;left:20px;top:20px;width:390px;height:844px;border-radius:50px;overflow:hidden">${S[k]()}</div>
+    <div style="position:absolute;left:154px;top:31px;width:122px;height:36px;border-radius:18px;background:#000;z-index:40"></div>
+    <div style="position:absolute;left:20px;top:20px;width:390px;height:844px;border-radius:50px;pointer-events:none;background:linear-gradient(155deg,rgba(255,255,255,.10),rgba(255,255,255,0) 28%)"></div>
+  </div></div></div>`;
+if (one) root.innerHTML = `<div id="cap" style="width:390px;height:844px">${S[one]()}</div>`;
+else if (view === 'mockup') {
+  root.innerHTML = `<div id="sheet" style="position:relative;width:1900px;height:1200px;overflow:hidden;background:radial-gradient(90% 80% at 50% 45%,#F8F5EF 0%,#F3EEE6 45%,#E7E0D3 100%);color:#14161A">
+    <div style="position:absolute;left:96px;top:84px;display:flex;align-items:center;gap:12px"><img src="../../assets/brand/lore-symbol-terracotta.svg" style="width:28px"><img src="../../assets/brand/lore-wordmark-ink.svg" style="height:20px"></div>
+    <div style="position:absolute;right:96px;top:90px;font:500 13px 'JetBrains Mono';letter-spacing:.16em;color:#5C5F66;text-transform:uppercase">Companion app · iOS · EVT-0</div>
+    <div style="position:absolute;left:96px;top:190px;width:420px"><div style="font:300 58px/1.04 Fraunces;letter-spacing:-.015em">The day,<br><i>kept for you.</i></div>
+      <div style="margin-top:22px;font:400 18px/1.55 Inter;color:#5C5F66">The phone stays in your pocket while you walk. Afterwards it holds the map, the stories and their sources, and the packs that make LORE work with no signal.</div>
+      <div style="margin-top:34px;font:500 12px/2 'JetBrains Mono';letter-spacing:.14em;color:#A84E2A;text-transform:uppercase">05 Rome pack · 06 Live walk · 07 Today in Rome</div></div>
+    <div style="position:absolute;left:600px;top:250px">${phone('05-rome-pack-detail', .86)}</div>
+    <div style="position:absolute;left:1004px;top:150px;z-index:2">${phone('06-live-walk-map', 1)}</div>
+    <div style="position:absolute;left:1468px;top:250px">${phone('07-day-recap', .86)}</div>
+  </div>`;
+} else {
+  root.innerHTML = `<div id="sheet" style="padding:64px;background:#E9E4DB;width:max-content"><div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:44px;color:#14161A"><div style="font:400 44px Fraunces">LORE companion app · screens</div><div style="font:500 15px 'JetBrains Mono';letter-spacing:.12em;color:#6b6f75">iOS · 390 × 844 PT · ${ids.length} SCREENS · LIGHT / INK / NIGHT · EVT-0</div></div>
+  <div style="display:grid;grid-template-columns:repeat(6,390px);gap:48px 40px">${ids.map((k) => `<div><div style="border-radius:44px;overflow:hidden;box-shadow:0 0 0 1px rgba(20,22,26,.12),0 18px 40px -18px rgba(52,38,24,.35)">${S[k]()}</div><div style="margin-top:22px;font:500 14px 'JetBrains Mono';letter-spacing:.1em;color:#4a4d52;text-transform:uppercase">${k.replace('-', ' · ').replace(/-/g, ' ')}</div><div style="margin-top:6px;font:400 15px Inter;color:#6b6f75">${CAP[k]}</div></div>`).join('')}</div></div>`;
+}
+const waits = [document.fonts.ready,
+  ...[...document.images].map((im) => im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; })),
+  ...[...document.querySelectorAll('iframe')].map((f) => new Promise((r) => { f.onload = () => { const w = f.contentWindow; const t = () => (w.__done ? r() : setTimeout(t, 50)); try { t(); } catch (e) { r(); } }; }))];
+Promise.all(waits).then(() => setTimeout(() => { window.__done = true; }, 150));
+</script></body></html>

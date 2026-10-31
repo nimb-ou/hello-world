@@ -1,0 +1,826 @@
+{
+  "schema_version": "seed-1",
+  "city": "rome",
+  "name": "Rome",
+  "bbox": [41.870, 12.445, 41.925, 12.510],
+  "curation_note": "Curated offline by LORE Labs software team from well-established, widely documented facts. Each fact cites the Wikipedia article (or other source) where it can be checked. review_status=curated means: written from established knowledge, pending automated source verification (`python -m lore_citypack verify`) and human editorial review before shipping to customers. Coordinates are approximate (typically within ~30 m of the feature's centre). Facts phrased as legend are flagged is_legend.",
+  "pois": [
+    {
+      "slug": "colosseum", "name": "Colosseum", "lat": 41.8902, "lng": 12.4922, "category": "monument",
+      "tags": ["ancient-rome", "landmark", "unesco"], "editorial_interest": 1.0, "visible_range_m": 350, "height_m": 48,
+      "wikipedia": "https://en.wikipedia.org/wiki/Colosseum", "wikidata": "Q10285",
+      "facts": [
+        {"text": "Its real name is the Flavian Amphitheatre. Construction began under the emperor Vespasian around 72 AD and it was completed under his son Titus in 80 AD.", "kind": "history", "depth": 1},
+        {"text": "It could hold an estimated 50,000 to 80,000 spectators, who came for gladiator fights, animal hunts and public spectacles.", "kind": "history", "depth": 1},
+        {"text": "The nickname Colosseum probably comes from a colossal bronze statue of Nero that stood nearby.", "kind": "history", "depth": 2},
+        {"text": "Much of its missing stone was quarried away in later centuries and reused in other buildings around Rome.", "kind": "architecture", "depth": 3}
+      ]
+    },
+    {
+      "slug": "arch-of-constantine", "name": "Arch of Constantine", "lat": 41.8898, "lng": 12.4906, "category": "monument",
+      "tags": ["ancient-rome", "landmark"], "editorial_interest": 0.8, "visible_range_m": 150, "height_m": 21,
+      "wikipedia": "https://en.wikipedia.org/wiki/Arch_of_Constantine",
+      "facts": [
+        {"text": "It was dedicated in 315 AD to celebrate Constantine's victory over Maxentius at the Battle of the Milvian Bridge in 312.", "kind": "history", "depth": 1},
+        {"text": "Many of its sculpted panels were taken from earlier monuments of Trajan, Hadrian and Marcus Aurelius, with the emperors' heads recut to look like Constantine.", "kind": "art", "depth": 2, "look_up": true}
+      ]
+    },
+    {
+      "slug": "roman-forum", "name": "Roman Forum", "lat": 41.8925, "lng": 12.4853, "category": "ruin",
+      "tags": ["ancient-rome", "landmark"], "editorial_interest": 0.95, "visible_range_m": 250,
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman_Forum",
+      "facts": [
+        {"text": "For centuries this valley was the centre of public life in ancient Rome: elections, trials, triumphal processions and speeches all happened here.", "kind": "history", "depth": 1},
+        {"text": "Before it was paved, the area was a marshy valley that was drained by the Cloaca Maxima, one of the world's earliest sewers.", "kind": "history", "depth": 2},
+        {"text": "Over the centuries the ruins were buried under so much earth that the area became a cattle pasture known as the Campo Vaccino.", "kind": "history", "depth": 3}
+      ]
+    },
+    {
+      "slug": "palatine-hill", "name": "Palatine Hill", "lat": 41.8894, "lng": 12.4875, "category": "ruin",
+      "tags": ["ancient-rome"], "editorial_interest": 0.8, "visible_range_m": 250,
+      "wikipedia": "https://en.wikipedia.org/wiki/Palatine_Hill",
+      "facts": [
+        {"text": "This is the centremost of Rome's seven hills, and according to legend it is where Romulus founded the city.", "kind": "legend", "depth": 1, "is_legend": true},
+        {"text": "Emperors built their palaces up here, and the word palace itself comes from the hill's name, Palatium.", "kind": "history", "depth": 1}
+      ]
+    },
+    {
+      "slug": "circus-maximus", "name": "Circus Maximus", "lat": 41.8861, "lng": 12.4851, "category": "ruin",
+      "tags": ["ancient-rome", "sport"], "editorial_interest": 0.75, "visible_range_m": 300,
+      "wikipedia": "https://en.wikipedia.org/wiki/Circus_Maximus",
+      "facts": [
+        {"text": "This long grassy valley was ancient Rome's largest chariot-racing stadium, with seating for an estimated 150,000 people or more.", "kind": "history", "depth": 1},
+        {"text": "The last recorded races here were held in the sixth century, under the Ostrogothic king Totila.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "piazza-del-campidoglio", "name": "Piazza del Campidoglio", "lat": 41.8934, "lng": 12.4828, "category": "square",
+      "tags": ["renaissance", "michelangelo", "landmark"], "editorial_interest": 0.85, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Piazza_del_Campidoglio",
+      "facts": [
+        {"text": "Michelangelo designed this square on top of the Capitoline Hill, starting in the 1530s, including the star-shaped pattern on the pavement.", "kind": "architecture", "depth": 1},
+        {"text": "The bronze horseman in the centre is a copy of the statue of Marcus Aurelius. The ancient original is kept indoors in the Capitoline Museums.", "kind": "art", "depth": 1},
+        {"text": "The original statue survived the Middle Ages, when most pagan bronzes were melted down, largely because people believed it showed Constantine, the first Christian emperor.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "santa-maria-in-aracoeli", "name": "Santa Maria in Aracoeli", "lat": 41.8939, "lng": 12.4834, "category": "church",
+      "tags": ["medieval", "stairs"], "editorial_interest": 0.55, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Santa_Maria_in_Aracoeli",
+      "facts": [
+        {"text": "The steep marble staircase up to this church was completed in 1348, reportedly as a thanksgiving after the Black Death.", "kind": "history", "depth": 1},
+        {"text": "A medieval legend says the emperor Augustus had a vision of the Virgin and Child on this spot.", "kind": "legend", "depth": 2, "is_legend": true}
+      ]
+    },
+    {
+      "slug": "vittoriano", "name": "Victor Emmanuel II Monument", "lat": 41.8946, "lng": 12.4831, "category": "monument",
+      "tags": ["modern-italy", "landmark", "viewpoint"], "editorial_interest": 0.8, "visible_range_m": 350, "height_m": 70,
+      "wikipedia": "https://en.wikipedia.org/wiki/Victor_Emmanuel_II_Monument",
+      "facts": [
+        {"text": "This huge white marble monument honours Victor Emmanuel the Second, the first king of unified Italy. It was inaugurated in 1911 and completed in 1935.", "kind": "history", "depth": 1},
+        {"text": "Romans have given it irreverent nicknames such as the wedding cake and the typewriter.", "kind": "culture", "depth": 1},
+        {"text": "It holds the Tomb of the Unknown Soldier, guarded around the clock, with an eternal flame.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "palazzo-venezia", "name": "Palazzo Venezia", "lat": 41.8964, "lng": 12.4818, "category": "palace",
+      "tags": ["renaissance", "20th-century"], "editorial_interest": 0.6, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Palazzo_Venezia",
+      "facts": [
+        {"text": "This is one of the first great Renaissance palaces in Rome, begun in the fifteenth century for the Venetian cardinal Pietro Barbo, later Pope Paul the Second.", "kind": "history", "depth": 1},
+        {"text": "Mussolini had his office here and gave speeches to crowds in the square from its central balcony.", "kind": "history", "depth": 1, "look_up": true}
+      ]
+    },
+    {
+      "slug": "madama-lucrezia", "name": "Madama Lucrezia", "lat": 41.8962, "lng": 12.4822, "category": "statue",
+      "tags": ["talking-statues", "hidden-gem", "satire"], "editorial_interest": 0.6, "visible_range_m": 30,
+      "wikipedia": "https://en.wikipedia.org/wiki/Talking_statues_of_Rome",
+      "facts": [
+        {"text": "This battered colossal bust is Madama Lucrezia, the only female member of Rome's talking statues, where anonymous satirical verses were posted for centuries.", "kind": "culture", "depth": 1},
+        {"text": "The bust is thought to come from an ancient statue, possibly of the Egyptian goddess Isis.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "trajans-column", "name": "Trajan's Column", "lat": 41.8958, "lng": 12.4843, "category": "monument",
+      "tags": ["ancient-rome", "landmark"], "editorial_interest": 0.85, "visible_range_m": 150, "height_m": 35,
+      "wikipedia": "https://en.wikipedia.org/wiki/Trajan%27s_Column",
+      "facts": [
+        {"text": "Completed in 113 AD, the column is wrapped by a spiral frieze that tells the story of Trajan's wars against the Dacians, in present-day Romania.", "kind": "history", "depth": 1, "look_up": true},
+        {"text": "A statue of Trajan once stood on top. Since 1587 it has been crowned by a statue of Saint Peter.", "kind": "history", "depth": 2, "look_up": true},
+        {"text": "Trajan's ashes were placed in a chamber in the base of the column.", "kind": "history", "depth": 3}
+      ]
+    },
+    {
+      "slug": "trajans-market", "name": "Trajan's Market", "lat": 41.8961, "lng": 12.4862, "category": "ruin",
+      "tags": ["ancient-rome", "architecture"], "editorial_interest": 0.7, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Trajan%27s_Market",
+      "facts": [
+        {"text": "This curved brick complex was built around 100 to 110 AD and is often described as one of the world's oldest shopping malls, though historians think much of it housed administrative offices.", "kind": "history", "depth": 1},
+        {"text": "It is usually attributed to Apollodorus of Damascus, Trajan's favourite architect.", "kind": "people", "depth": 2}
+      ]
+    },
+    {
+      "slug": "pantheon", "name": "Pantheon", "lat": 41.8986, "lng": 12.4769, "category": "monument",
+      "tags": ["ancient-rome", "architecture", "landmark", "raphael"], "editorial_interest": 1.0, "visible_range_m": 150, "height_m": 43,
+      "wikipedia": "https://en.wikipedia.org/wiki/Pantheon,_Rome", "wikidata": "Q99309",
+      "facts": [
+        {"text": "The building you see was rebuilt under the emperor Hadrian around 113 to 125 AD. Yet the inscription on the front credits Marcus Agrippa, who built an earlier temple on the site.", "kind": "history", "depth": 1, "look_up": true},
+        {"text": "Its dome, about 43 metres across, is still the largest unreinforced concrete dome in the world, nearly two thousand years later.", "kind": "architecture", "depth": 1},
+        {"text": "In 609 it was consecrated as a church, which is a big reason it survived so well.", "kind": "history", "depth": 2},
+        {"text": "The painter Raphael is buried inside, as are the first two kings of unified Italy.", "kind": "people", "depth": 3}
+      ]
+    },
+    {
+      "slug": "elephant-and-obelisk", "name": "Elephant and Obelisk", "lat": 41.8980, "lng": 12.4778, "category": "statue",
+      "tags": ["baroque", "bernini", "obelisk", "hidden-gem"], "editorial_interest": 0.8, "visible_range_m": 60, "height_m": 12,
+      "wikipedia": "https://en.wikipedia.org/wiki/Elephant_and_Obelisk",
+      "facts": [
+        {"text": "This little elephant carrying an Egyptian obelisk was designed by Gian Lorenzo Bernini and unveiled in 1667. The carving was done by his assistant Ercole Ferrata.", "kind": "art", "depth": 1},
+        {"text": "The obelisk is ancient Egyptian and was discovered in the garden of the Dominican convent right behind it.", "kind": "history", "depth": 2},
+        {"text": "Romans affectionately nicknamed the elephant Il Pulcino della Minerva, the Minerva's chick.", "kind": "culture", "depth": 1}
+      ]
+    },
+    {
+      "slug": "santa-maria-sopra-minerva", "name": "Santa Maria sopra Minerva", "lat": 41.8981, "lng": 12.4782, "category": "church",
+      "tags": ["gothic", "michelangelo"], "editorial_interest": 0.7, "visible_range_m": 80,
+      "wikipedia": "https://en.wikipedia.org/wiki/Santa_Maria_sopra_Minerva",
+      "facts": [
+        {"text": "This is one of the few Gothic churches in Rome. Its name means Saint Mary above Minerva, because it was long believed to be built over a temple of Minerva.", "kind": "architecture", "depth": 1},
+        {"text": "Inside is Michelangelo's marble statue Christ the Redeemer, and the tomb of the painter Fra Angelico.", "kind": "art", "depth": 2},
+        {"text": "Look at the plaques on the facade: they mark the heights reached by floods of the Tiber over the centuries.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "pie-di-marmo", "name": "Piè di Marmo", "lat": 41.8978, "lng": 12.4794, "category": "statue",
+      "tags": ["ancient-rome", "hidden-gem"], "editorial_interest": 0.55, "visible_range_m": 30,
+      "wikipedia": "https://it.wikipedia.org/wiki/Pi%C3%A8_di_marmo",
+      "facts": [
+        {"text": "That giant marble foot on the street corner is a fragment of a colossal ancient Roman statue. The street itself is named after it: Via del Piè di Marmo.", "kind": "history", "depth": 1},
+        {"text": "It is thought to come from a temple of Isis and Serapis that once stood in this area.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "sant-ignazio", "name": "Sant'Ignazio di Loyola", "lat": 41.8991, "lng": 12.4797, "category": "church",
+      "tags": ["baroque", "illusion", "hidden-gem"], "editorial_interest": 0.8, "visible_range_m": 80,
+      "wikipedia": "https://en.wikipedia.org/wiki/Church_of_St._Ignatius_of_Loyola_at_Campus_Martius",
+      "facts": [
+        {"text": "Inside, the dome is fake. The real dome was never built, so in 1685 the Jesuit painter Andrea Pozzo painted a flat canvas that looks like a dome.", "kind": "art", "depth": 1},
+        {"text": "A marble disc in the floor of the nave marks the spot where Pozzo's ceiling illusion works best.", "kind": "art", "depth": 2},
+        {"text": "The little square outside was designed in the eighteenth century by Filippo Raguzzini to look like a stage set.", "kind": "architecture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "temple-of-hadrian", "name": "Temple of Hadrian", "lat": 41.8999, "lng": 12.4798, "category": "ruin",
+      "tags": ["ancient-rome", "hidden-gem"], "editorial_interest": 0.65, "visible_range_m": 70, "height_m": 15,
+      "wikipedia": "https://en.wikipedia.org/wiki/Temple_of_Hadrian",
+      "facts": [
+        {"text": "These eleven huge marble columns belonged to a temple dedicated to the deified emperor Hadrian in 145 AD by his adopted son, Antoninus Pius.", "kind": "history", "depth": 1, "look_up": true},
+        {"text": "The columns are now built into the facade of a later building, which for a long time housed Rome's stock exchange.", "kind": "architecture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "column-of-marcus-aurelius", "name": "Column of Marcus Aurelius", "lat": 41.9008, "lng": 12.4800, "category": "monument",
+      "tags": ["ancient-rome"], "editorial_interest": 0.7, "visible_range_m": 120, "height_m": 40,
+      "wikipedia": "https://en.wikipedia.org/wiki/Column_of_Marcus_Aurelius",
+      "facts": [
+        {"text": "This spiral column, modelled on Trajan's, celebrates Marcus Aurelius's wars along the Danube. It was finished around 193 AD.", "kind": "history", "depth": 1, "look_up": true},
+        {"text": "The statue on top today is Saint Paul, placed there in 1589 on the orders of Pope Sixtus the Fifth.", "kind": "history", "depth": 2, "look_up": true},
+        {"text": "The palace beside it, Palazzo Chigi, is the official seat of the Italian prime minister.", "kind": "practical", "depth": 2}
+      ]
+    },
+    {
+      "slug": "obelisk-of-montecitorio", "name": "Obelisk of Montecitorio", "lat": 41.9009, "lng": 12.4786, "category": "monument",
+      "tags": ["obelisk", "ancient-rome", "egypt"], "editorial_interest": 0.6, "visible_range_m": 100, "height_m": 22,
+      "wikipedia": "https://en.wikipedia.org/wiki/Obelisk_of_Montecitorio",
+      "facts": [
+        {"text": "This Egyptian obelisk of the pharaoh Psamtik the Second was brought to Rome by Augustus, who used it as the pointer of a giant sundial.", "kind": "history", "depth": 1},
+        {"text": "It lay broken and buried for centuries and was re-erected here in front of the Italian Chamber of Deputies in 1792.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "il-facchino", "name": "Il Facchino", "lat": 41.8987, "lng": 12.4809, "category": "statue",
+      "tags": ["talking-statues", "hidden-gem", "fountain"], "editorial_interest": 0.55, "visible_range_m": 25,
+      "wikipedia": "https://en.wikipedia.org/wiki/Talking_statues_of_Rome",
+      "facts": [
+        {"text": "This small wall fountain of a man holding a barrel is Il Facchino, the porter, one of Rome's talking statues, where satirical notes were once left.", "kind": "culture", "depth": 1},
+        {"text": "His face is badly worn. One popular story says people threw stones at it, mistaking it for a bust of Martin Luther.", "kind": "legend", "depth": 2, "is_legend": true}
+      ]
+    },
+    {
+      "slug": "trevi-fountain", "name": "Trevi Fountain", "lat": 41.9009, "lng": 12.4833, "category": "fountain",
+      "tags": ["baroque", "landmark", "film", "water"], "editorial_interest": 1.0, "visible_range_m": 90, "height_m": 26,
+      "wikipedia": "https://en.wikipedia.org/wiki/Trevi_Fountain", "wikidata": "Q186579",
+      "facts": [
+        {"text": "The fountain was designed by Nicola Salvi and completed in 1762, after his death, by Giuseppe Pannini.", "kind": "art", "depth": 1},
+        {"text": "It sits at the end of the Aqua Virgo, an aqueduct built in 19 BC by Marcus Agrippa, which still supplies water to fountains in the city centre.", "kind": "history", "depth": 1},
+        {"text": "Tradition says that if you throw a coin over your shoulder into the fountain, you will return to Rome. The coins are collected and given to charity.", "kind": "legend", "depth": 2, "is_legend": true},
+        {"text": "Anita Ekberg's famous night-time wade into the fountain is a scene from Federico Fellini's 1960 film La Dolce Vita.", "kind": "film", "depth": 2}
+      ]
+    },
+    {
+      "slug": "piazza-navona", "name": "Piazza Navona", "lat": 41.8992, "lng": 12.4731, "category": "square",
+      "tags": ["baroque", "ancient-rome", "landmark", "bernini"], "editorial_interest": 1.0, "visible_range_m": 140,
+      "wikipedia": "https://en.wikipedia.org/wiki/Piazza_Navona",
+      "facts": [
+        {"text": "Notice the long oval shape. The square follows the outline of the Stadium of Domitian, built in the first century AD for athletic contests.", "kind": "history", "depth": 1},
+        {"text": "The buildings around the edge sit on the old stadium's seating, and you can still see some of its ruins underground at the north end.", "kind": "architecture", "depth": 2},
+        {"text": "For about two centuries, on summer weekends in August, the square was deliberately flooded so that Romans could splash about and parade their carriages through the water.", "kind": "culture", "depth": 3}
+      ]
+    },
+    {
+      "slug": "fountain-of-the-four-rivers", "name": "Fountain of the Four Rivers", "lat": 41.8988, "lng": 12.4731, "category": "fountain",
+      "tags": ["baroque", "bernini", "obelisk", "water"], "editorial_interest": 0.95, "visible_range_m": 80, "height_m": 30,
+      "wikipedia": "https://en.wikipedia.org/wiki/Fontana_dei_Quattro_Fiumi",
+      "facts": [
+        {"text": "Gian Lorenzo Bernini completed this fountain in 1651 for Pope Innocent the Tenth. The four giants represent the Nile, the Ganges, the Danube and the Río de la Plata.", "kind": "art", "depth": 1},
+        {"text": "The Nile's head is covered by a cloth, because at the time nobody knew where the river's source was.", "kind": "art", "depth": 1},
+        {"text": "A popular story says the statues recoil from Borromini's church opposite, out of rivalry. It's a myth: the fountain was finished before Borromini's facade was begun.", "kind": "legend", "depth": 2, "is_legend": true}
+      ]
+    },
+    {
+      "slug": "sant-agnese-in-agone", "name": "Sant'Agnese in Agone", "lat": 41.8988, "lng": 12.4726, "category": "church",
+      "tags": ["baroque", "borromini"], "editorial_interest": 0.7, "visible_range_m": 90, "height_m": 40,
+      "wikipedia": "https://en.wikipedia.org/wiki/Sant%27Agnese_in_Agone",
+      "facts": [
+        {"text": "The concave facade of this church is the work of Francesco Borromini, Bernini's great rival.", "kind": "architecture", "depth": 1},
+        {"text": "It stands on the site where, according to tradition, the young Saint Agnes was martyred in the stadium of Domitian.", "kind": "legend", "depth": 2, "is_legend": true}
+      ]
+    },
+    {
+      "slug": "pasquino", "name": "Pasquino", "lat": 41.8977, "lng": 12.4724, "category": "statue",
+      "tags": ["talking-statues", "hidden-gem", "satire"], "editorial_interest": 0.85, "visible_range_m": 35,
+      "wikipedia": "https://en.wikipedia.org/wiki/Pasquino",
+      "facts": [
+        {"text": "This battered torso is Pasquino, the most famous of Rome's talking statues. For five centuries Romans have stuck anonymous satirical poems on it, mocking popes and politicians.", "kind": "culture", "depth": 1},
+        {"text": "It is a damaged ancient Hellenistic sculpture, set up on this corner in 1501 by Cardinal Oliviero Carafa.", "kind": "history", "depth": 2},
+        {"text": "These anonymous lampoons gave the English language the word pasquinade.", "kind": "culture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "abate-luigi", "name": "Abate Luigi", "lat": 41.8963, "lng": 12.4741, "category": "statue",
+      "tags": ["talking-statues", "hidden-gem"], "editorial_interest": 0.5, "visible_range_m": 25,
+      "wikipedia": "https://en.wikipedia.org/wiki/Talking_statues_of_Rome",
+      "facts": [
+        {"text": "This late-Roman statue of a man in a toga is Abate Luigi, another of Rome's talking statues.", "kind": "culture", "depth": 1},
+        {"text": "Its head has been stolen several times over the years and replaced.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "san-luigi-dei-francesi", "name": "San Luigi dei Francesi", "lat": 41.8995, "lng": 12.4746, "category": "church",
+      "tags": ["caravaggio", "baroque", "art"], "editorial_interest": 0.85, "visible_range_m": 60,
+      "wikipedia": "https://en.wikipedia.org/wiki/San_Luigi_dei_Francesi",
+      "facts": [
+        {"text": "This is the French national church in Rome, and it holds three masterpieces by Caravaggio about the life of Saint Matthew.", "kind": "art", "depth": 1},
+        {"text": "The Matthew paintings, in the Contarelli Chapel, were painted between 1599 and 1602, and they made Caravaggio famous.", "kind": "art", "depth": 2},
+        {"text": "In The Calling of Saint Matthew, a beam of light follows Christ's pointing hand toward the tax collector at his table.", "kind": "art", "depth": 3}
+      ]
+    },
+    {
+      "slug": "palazzo-madama", "name": "Palazzo Madama", "lat": 41.8987, "lng": 12.4741, "category": "palace",
+      "tags": ["politics", "renaissance"], "editorial_interest": 0.45, "visible_range_m": 70,
+      "wikipedia": "https://en.wikipedia.org/wiki/Palazzo_Madama,_Rome",
+      "facts": [
+        {"text": "Since 1871 this palace has been the seat of the Senate of the Italian Republic and, before that, of the Kingdom.", "kind": "practical", "depth": 1},
+        {"text": "Madama refers to Margaret of Parma, an illegitimate daughter of the emperor Charles the Fifth, who lived here in the sixteenth century.", "kind": "people", "depth": 2}
+      ]
+    },
+    {
+      "slug": "sant-ivo-alla-sapienza", "name": "Sant'Ivo alla Sapienza", "lat": 41.8983, "lng": 12.4746, "category": "church",
+      "tags": ["baroque", "borromini", "architecture"], "editorial_interest": 0.7, "visible_range_m": 100, "height_m": 40,
+      "wikipedia": "https://en.wikipedia.org/wiki/Sant%27Ivo_alla_Sapienza",
+      "facts": [
+        {"text": "Look for the corkscrew spire above the rooftops. It belongs to Borromini's church of Sant'Ivo, one of the boldest buildings of the Roman Baroque.", "kind": "architecture", "depth": 1, "look_up": true},
+        {"text": "The church was the chapel of the old University of Rome, La Sapienza, whose courtyard it closes.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "sant-agostino", "name": "Sant'Agostino", "lat": 41.9008, "lng": 12.4748, "category": "church",
+      "tags": ["caravaggio", "raphael", "art"], "editorial_interest": 0.65, "visible_range_m": 60,
+      "wikipedia": "https://en.wikipedia.org/wiki/Sant%27Agostino,_Rome",
+      "facts": [
+        {"text": "Inside hangs Caravaggio's Madonna of Loreto, which caused a scandal because the kneeling pilgrims have dirty bare feet.", "kind": "art", "depth": 1},
+        {"text": "The church also has a fresco of the prophet Isaiah by Raphael.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "santa-maria-della-pace", "name": "Santa Maria della Pace and the Bramante Cloister", "lat": 41.9001, "lng": 12.4717, "category": "church",
+      "tags": ["renaissance", "raphael", "bramante", "hidden-gem"], "editorial_interest": 0.6, "visible_range_m": 50,
+      "wikipedia": "https://en.wikipedia.org/wiki/Santa_Maria_della_Pace",
+      "facts": [
+        {"text": "The cloister next to this church was Donato Bramante's first work in Rome, completed in the early 1500s.", "kind": "architecture", "depth": 1},
+        {"text": "Inside the church, Raphael painted the Sibyls in the Chigi Chapel.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "via-dei-coronari", "name": "Via dei Coronari", "lat": 41.9003, "lng": 12.4705, "category": "street",
+      "tags": ["shopping", "medieval", "pilgrims"], "editorial_interest": 0.45, "visible_range_m": 60,
+      "wikipedia": "https://en.wikipedia.org/wiki/Via_dei_Coronari",
+      "facts": [
+        {"text": "This street was part of the old pilgrims' route to Saint Peter's, and it is named after the sellers of rosaries, the coronari, who worked here.", "kind": "history", "depth": 1},
+        {"text": "Today it is known for its antique shops.", "kind": "practical", "depth": 2}
+      ]
+    },
+    {
+      "slug": "campo-de-fiori", "name": "Campo de' Fiori", "lat": 41.8956, "lng": 12.4722, "category": "square",
+      "tags": ["market", "food", "renaissance"], "editorial_interest": 0.9, "visible_range_m": 90, "height_m": 9,
+      "wikipedia": "https://en.wikipedia.org/wiki/Campo_de%27_Fiori",
+      "facts": [
+        {"text": "The hooded bronze figure in the centre is the philosopher Giordano Bruno, who was burned alive on this square for heresy on the 17th of February, 1600.", "kind": "history", "depth": 1},
+        {"text": "His statue, by Ettore Ferrari, was put up in 1889 and faces toward the Vatican.", "kind": "art", "depth": 2},
+        {"text": "The name means field of flowers: the area was a meadow before it was built up in the fifteenth century. There has been a daily market here since 1869.", "kind": "history", "depth": 1}
+      ]
+    },
+    {
+      "slug": "palazzo-farnese", "name": "Palazzo Farnese", "lat": 41.8947, "lng": 12.4710, "category": "palace",
+      "tags": ["renaissance", "michelangelo"], "editorial_interest": 0.75, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Palazzo_Farnese",
+      "facts": [
+        {"text": "This is one of the most important High Renaissance palaces in Rome, built for the Farnese family. Michelangelo worked on it, including the great cornice at the top.", "kind": "architecture", "depth": 1, "look_up": true},
+        {"text": "Today it is the French Embassy in Italy.", "kind": "practical", "depth": 1},
+        {"text": "The two fountains in the square use huge granite basins taken from the Baths of Caracalla.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "galleria-spada", "name": "Palazzo Spada and Borromini's Perspective", "lat": 41.8941, "lng": 12.4716, "category": "museum",
+      "tags": ["baroque", "borromini", "illusion", "hidden-gem"], "editorial_interest": 0.75, "visible_range_m": 50,
+      "wikipedia": "https://en.wikipedia.org/wiki/Palazzo_Spada",
+      "facts": [
+        {"text": "In the courtyard of this palace is Borromini's famous forced-perspective gallery. It looks like a long colonnade with a life-size statue at the end, but it is less than 9 metres long and the statue is small.", "kind": "architecture", "depth": 1},
+        {"text": "The palace is home to the Galleria Spada, a seventeenth-century art collection, and to Italy's Council of State.", "kind": "practical", "depth": 2}
+      ]
+    },
+    {
+      "slug": "arco-degli-acetari", "name": "Arco degli Acetari", "lat": 41.8957, "lng": 12.4706, "category": "hidden_gem",
+      "tags": ["medieval", "hidden-gem", "photography"], "editorial_interest": 0.65, "visible_range_m": 20,
+      "wikipedia": "https://it.wikipedia.org/wiki/Via_del_Pellegrino",
+      "facts": [
+        {"text": "Through the low archway at Via del Pellegrino number 19 is a tiny hidden courtyard of medieval houses, the Arco degli Acetari, one of the most photographed secret corners of Rome.", "kind": "architecture", "depth": 1},
+        {"text": "It is a residential courtyard, so if you go in, keep your voice down.", "kind": "practical", "depth": 1}
+      ]
+    },
+    {
+      "slug": "sant-andrea-della-valle", "name": "Sant'Andrea della Valle", "lat": 41.8960, "lng": 12.4737, "category": "church",
+      "tags": ["baroque", "opera"], "editorial_interest": 0.7, "visible_range_m": 120, "height_m": 80,
+      "wikipedia": "https://en.wikipedia.org/wiki/Sant%27Andrea_della_Valle",
+      "facts": [
+        {"text": "The first act of Puccini's opera Tosca is set inside this church.", "kind": "culture", "depth": 1},
+        {"text": "Its dome, by Carlo Maderno, is the second tallest in Rome after Saint Peter's.", "kind": "architecture", "depth": 1, "look_up": true}
+      ]
+    },
+    {
+      "slug": "largo-di-torre-argentina", "name": "Largo di Torre Argentina", "lat": 41.8955, "lng": 12.4768, "category": "ruin",
+      "tags": ["ancient-rome", "julius-caesar", "cats", "landmark"], "editorial_interest": 0.95, "visible_range_m": 90,
+      "wikipedia": "https://en.wikipedia.org/wiki/Largo_di_Torre_Argentina",
+      "facts": [
+        {"text": "Down in this sunken square are four temples from the Roman Republic, uncovered during demolition works between 1926 and 1929.", "kind": "history", "depth": 1},
+        {"text": "Behind the temples was the Curia of Pompey, the meeting hall where Julius Caesar was assassinated on the Ides of March, 44 BC.", "kind": "history", "depth": 1},
+        {"text": "The ruins are also home to a famous cat sanctuary, run by volunteers.", "kind": "culture", "depth": 2},
+        {"text": "The name has nothing to do with Argentina. It comes from Argentoratum, the Latin name of Strasbourg, the home town of Johannes Burckard, a papal official who built a tower here.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "chiesa-del-gesu", "name": "Church of the Gesù", "lat": 41.8959, "lng": 12.4800, "category": "church",
+      "tags": ["baroque", "jesuits", "art"], "editorial_interest": 0.7, "visible_range_m": 100,
+      "wikipedia": "https://en.wikipedia.org/wiki/Church_of_the_Gesù",
+      "facts": [
+        {"text": "This is the mother church of the Jesuit order, consecrated in 1584. Its design was copied by Jesuit churches all over the world.", "kind": "architecture", "depth": 1},
+        {"text": "Inside, Giovanni Battista Gaulli's ceiling fresco, the Triumph of the Name of Jesus, seems to spill out of its frame over the vault.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "turtle-fountain", "name": "Turtle Fountain", "lat": 41.8937, "lng": 12.4777, "category": "fountain",
+      "tags": ["renaissance", "hidden-gem", "water", "ghetto"], "editorial_interest": 0.7, "visible_range_m": 40,
+      "wikipedia": "https://en.wikipedia.org/wiki/Fontana_delle_Tartarughe",
+      "facts": [
+        {"text": "The Turtle Fountain was built in the 1580s, designed by Giacomo della Porta with bronze youths by Taddeo Landini.", "kind": "art", "depth": 1},
+        {"text": "The little turtles were added later, in the 1650s, and are often attributed to Bernini. The ones you see today are copies.", "kind": "art", "depth": 1}
+      ]
+    },
+    {
+      "slug": "portico-of-octavia", "name": "Portico of Octavia", "lat": 41.8925, "lng": 12.4780, "category": "ruin",
+      "tags": ["ancient-rome", "ghetto", "jewish-heritage"], "editorial_interest": 0.7, "visible_range_m": 70,
+      "wikipedia": "https://en.wikipedia.org/wiki/Porticus_Octaviae",
+      "facts": [
+        {"text": "These ruins are the gateway of a portico that the emperor Augustus dedicated to his sister Octavia.", "kind": "history", "depth": 1},
+        {"text": "In the Middle Ages the ruins hosted Rome's fish market, and the church built into them is still called Sant'Angelo in Pescheria.", "kind": "history", "depth": 2},
+        {"text": "This street is the heart of the old Jewish Ghetto, which Pope Paul the Fourth established in 1555.", "kind": "history", "depth": 1}
+      ]
+    },
+    {
+      "slug": "great-synagogue", "name": "Great Synagogue of Rome", "lat": 41.8918, "lng": 12.4777, "category": "church",
+      "tags": ["jewish-heritage", "ghetto", "architecture"], "editorial_interest": 0.65, "visible_range_m": 120, "height_m": 40,
+      "wikipedia": "https://en.wikipedia.org/wiki/Great_Synagogue_of_Rome",
+      "facts": [
+        {"text": "The Great Synagogue was completed in 1904. Its square aluminium dome makes it stand out from every church dome on the skyline.", "kind": "architecture", "depth": 1, "look_up": true},
+        {"text": "Rome's Jewish community is one of the oldest in the world outside the Middle East, present here since before the time of Christ.", "kind": "history", "depth": 1},
+        {"text": "In 1986 John Paul the Second came here, the first visit by a pope to a synagogue in modern times.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "theatre-of-marcellus", "name": "Theatre of Marcellus", "lat": 41.8918, "lng": 12.4799, "category": "ruin",
+      "tags": ["ancient-rome", "architecture"], "editorial_interest": 0.75, "visible_range_m": 120, "height_m": 32,
+      "wikipedia": "https://en.wikipedia.org/wiki/Theatre_of_Marcellus",
+      "facts": [
+        {"text": "This ancient theatre was completed by Augustus and named after his nephew Marcellus, who died young.", "kind": "history", "depth": 1},
+        {"text": "Look up above the ancient arches: in the Middle Ages and Renaissance a palace was built on top, and apartments are still lived in up there today.", "kind": "architecture", "depth": 1, "look_up": true}
+      ]
+    },
+    {
+      "slug": "tiber-island", "name": "Tiber Island", "lat": 41.8906, "lng": 12.4775, "category": "neighbourhood",
+      "tags": ["ancient-rome", "river", "medicine"], "editorial_interest": 0.75, "visible_range_m": 150,
+      "wikipedia": "https://en.wikipedia.org/wiki/Tiber_Island",
+      "facts": [
+        {"text": "The only island in Rome's stretch of the Tiber has been linked to healing for over two thousand years: a temple to the god of medicine, Asclepius, was founded here in 291 BC.", "kind": "history", "depth": 1},
+        {"text": "That tradition continues: the island is still home to a hospital, the Fatebenefratelli.", "kind": "practical", "depth": 1},
+        {"text": "The Romans faced part of the island with stone to make it look like the prow of a ship.", "kind": "architecture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "ponte-fabricio", "name": "Ponte Fabricio", "lat": 41.8913, "lng": 12.4782, "category": "bridge",
+      "tags": ["ancient-rome", "river"], "editorial_interest": 0.7, "visible_range_m": 80,
+      "wikipedia": "https://en.wikipedia.org/wiki/Pons_Fabricius",
+      "facts": [
+        {"text": "This bridge was built in 62 BC by Lucius Fabricius and is the oldest Roman bridge in Rome still standing in its original state.", "kind": "history", "depth": 1},
+        {"text": "Romans call it the Ponte dei Quattro Capi, after the two ancient four-headed marble pillars on it.", "kind": "culture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "bocca-della-verita", "name": "Bocca della Verità", "lat": 41.8881, "lng": 12.4814, "category": "statue",
+      "tags": ["legend", "film", "medieval", "landmark"], "editorial_interest": 0.9, "visible_range_m": 60,
+      "wikipedia": "https://en.wikipedia.org/wiki/Bocca_della_Verit%C3%A0",
+      "facts": [
+        {"text": "The Mouth of Truth is a big marble face in the portico of the church of Santa Maria in Cosmedin. It may originally have been an ancient Roman drain cover.", "kind": "history", "depth": 1},
+        {"text": "Medieval legend says that if you tell a lie with your hand in its mouth, it will bite your hand off.", "kind": "legend", "depth": 1, "is_legend": true},
+        {"text": "It became world-famous from the 1953 film Roman Holiday, when Gregory Peck pretends his hand has been bitten and terrifies Audrey Hepburn.", "kind": "film", "depth": 2}
+      ]
+    },
+    {
+      "slug": "temple-of-hercules-victor", "name": "Temple of Hercules Victor", "lat": 41.8887, "lng": 12.4808, "category": "ruin",
+      "tags": ["ancient-rome"], "editorial_interest": 0.6, "visible_range_m": 80,
+      "wikipedia": "https://en.wikipedia.org/wiki/Temple_of_Hercules_Victor",
+      "facts": [
+        {"text": "This round temple dates from the second century BC and is the oldest surviving marble building in Rome.", "kind": "history", "depth": 1},
+        {"text": "It survived because it was converted into a church in the Middle Ages.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "temple-of-portunus", "name": "Temple of Portunus", "lat": 41.8893, "lng": 12.4806, "category": "ruin",
+      "tags": ["ancient-rome", "river"], "editorial_interest": 0.55, "visible_range_m": 80,
+      "wikipedia": "https://en.wikipedia.org/wiki/Temple_of_Portunus",
+      "facts": [
+        {"text": "This rectangular temple, one of the best preserved from the Roman Republic, was dedicated to Portunus, the god of ports, near Rome's ancient river harbour.", "kind": "history", "depth": 1},
+        {"text": "Like its round neighbour, it survived because it was turned into a church, in the ninth century.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "arch-of-janus", "name": "Arch of Janus", "lat": 41.8894, "lng": 12.4823, "category": "monument",
+      "tags": ["ancient-rome", "hidden-gem"], "editorial_interest": 0.5, "visible_range_m": 70,
+      "wikipedia": "https://en.wikipedia.org/wiki/Arch_of_Janus",
+      "facts": [
+        {"text": "This square, four-sided arch from the fourth century AD stood in the Forum Boarium, Rome's ancient cattle market.", "kind": "history", "depth": 1},
+        {"text": "Despite its name, it probably had nothing to do with the god Janus. The name comes from the Latin word for a covered passage.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "keyhole-knights-of-malta", "name": "Keyhole of the Knights of Malta", "lat": 41.8833, "lng": 12.4787, "category": "hidden_gem",
+      "tags": ["hidden-gem", "viewpoint", "knights", "piranesi"], "editorial_interest": 0.9, "visible_range_m": 40,
+      "wikipedia": "https://en.wikipedia.org/wiki/Villa_del_Priorato_di_Malta",
+      "facts": [
+        {"text": "Find the big green door of the Priory of the Knights of Malta and look through the keyhole: you'll see the dome of Saint Peter's perfectly framed at the end of a garden avenue.", "kind": "practical", "depth": 1},
+        {"text": "The square in front, and the priory church, were redesigned in the 1760s by Giovanni Battista Piranesi, better known as an engraver.", "kind": "architecture", "depth": 2},
+        {"text": "The Order of Malta is a sovereign entity under international law, and this property enjoys extraterritorial status.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "giardino-degli-aranci", "name": "Orange Garden (Parco Savello)", "lat": 41.8851, "lng": 12.4795, "category": "park",
+      "tags": ["viewpoint", "park", "sunset"], "editorial_interest": 0.7, "visible_range_m": 90,
+      "wikipedia": "https://en.wikipedia.org/wiki/Parco_Savello",
+      "facts": [
+        {"text": "This terrace garden full of orange trees sits on the Aventine Hill and has one of the best free views across the Tiber to Saint Peter's.", "kind": "practical", "depth": 1},
+        {"text": "It was laid out in 1932 by the architect Raffaele De Vico, inside the walls of a medieval Savelli family fortress.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "santa-sabina", "name": "Santa Sabina", "lat": 41.8845, "lng": 12.4800, "category": "church",
+      "tags": ["early-christian", "hidden-gem"], "editorial_interest": 0.65, "visible_range_m": 80,
+      "wikipedia": "https://en.wikipedia.org/wiki/Santa_Sabina",
+      "facts": [
+        {"text": "Built in the fifth century, Santa Sabina is one of the best preserved early Christian basilicas in Rome.", "kind": "history", "depth": 1},
+        {"text": "Its carved cypress-wood doors are original and include one of the earliest known depictions of the Crucifixion.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "pyramid-of-cestius", "name": "Pyramid of Cestius", "lat": 41.8765, "lng": 12.4808, "category": "monument",
+      "tags": ["ancient-rome", "egypt", "tomb"], "editorial_interest": 0.75, "visible_range_m": 200, "height_m": 36,
+      "wikipedia": "https://en.wikipedia.org/wiki/Pyramid_of_Cestius",
+      "facts": [
+        {"text": "Yes, a pyramid. It is the tomb of a Roman magistrate, Gaius Cestius, built around 18 to 12 BC when Egyptian style was fashionable after the conquest of Egypt.", "kind": "history", "depth": 1},
+        {"text": "An inscription records that it was completed in 330 days. It survived because it was built into the Aurelian Walls in the third century.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "non-catholic-cemetery", "name": "Non-Catholic Cemetery", "lat": 41.8764, "lng": 12.4793, "category": "park",
+      "tags": ["poets", "keats", "hidden-gem"], "editorial_interest": 0.65, "visible_range_m": 100,
+      "wikipedia": "https://en.wikipedia.org/wiki/Protestant_Cemetery,_Rome",
+      "facts": [
+        {"text": "The poets John Keats and Percy Bysshe Shelley are buried in this cemetery, as is the Italian political thinker Antonio Gramsci.", "kind": "people", "depth": 1},
+        {"text": "Keats's grave does not carry his name. It reads: Here lies One Whose Name was writ in Water.", "kind": "people", "depth": 2}
+      ]
+    },
+    {
+      "slug": "monte-testaccio", "name": "Monte Testaccio", "lat": 41.8758, "lng": 12.4756, "category": "hidden_gem",
+      "tags": ["ancient-rome", "hidden-gem", "food"], "editorial_interest": 0.65, "visible_range_m": 150, "height_m": 35,
+      "wikipedia": "https://en.wikipedia.org/wiki/Monte_Testaccio",
+      "facts": [
+        {"text": "This hill is artificial. It is made almost entirely of broken ancient Roman amphorae, tens of millions of them, mostly jars that carried olive oil.", "kind": "history", "depth": 1},
+        {"text": "Restaurants and wine cellars around the base were dug into the hill, where the shards keep things cool.", "kind": "culture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "baths-of-caracalla", "name": "Baths of Caracalla", "lat": 41.8790, "lng": 12.4924, "category": "ruin",
+      "tags": ["ancient-rome", "opera"], "editorial_interest": 0.8, "visible_range_m": 200, "height_m": 37,
+      "wikipedia": "https://en.wikipedia.org/wiki/Baths_of_Caracalla",
+      "facts": [
+        {"text": "These enormous public baths were built between about 212 and 216 AD under the emperor Caracalla.", "kind": "history", "depth": 1},
+        {"text": "In summer the ruins become an open-air stage for the Rome Opera. The first Three Tenors concert was held here in 1990.", "kind": "culture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "san-clemente", "name": "Basilica of San Clemente", "lat": 41.8893, "lng": 12.4975, "category": "church",
+      "tags": ["layers", "hidden-gem", "early-christian", "ancient-rome"], "editorial_interest": 0.85, "visible_range_m": 60,
+      "wikipedia": "https://en.wikipedia.org/wiki/Basilica_of_Saint_Clement",
+      "facts": [
+        {"text": "San Clemente is Rome in layers. The twelfth-century church sits on top of a fourth-century basilica, which sits on top of first-century Roman buildings.", "kind": "history", "depth": 1},
+        {"text": "On the lowest level is a temple of Mithras, the god of a mystery cult popular with Roman soldiers, and you can hear underground water running.", "kind": "history", "depth": 2},
+        {"text": "Irish Dominican friars have looked after the basilica since 1667.", "kind": "history", "depth": 3}
+      ]
+    },
+    {
+      "slug": "domus-aurea", "name": "Domus Aurea", "lat": 41.8913, "lng": 12.4953, "category": "ruin",
+      "tags": ["ancient-rome", "nero", "art"], "editorial_interest": 0.7, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Domus_Aurea",
+      "facts": [
+        {"text": "Under this hill are the remains of Nero's Golden House, the vast palace he built after the Great Fire of 64 AD.", "kind": "history", "depth": 1},
+        {"text": "Renaissance artists, including Raphael, lowered themselves into its buried rooms to study the paintings. Because the rooms looked like grottoes, the style became known as grotesque.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "santa-maria-maggiore", "name": "Santa Maria Maggiore", "lat": 41.8976, "lng": 12.4984, "category": "church",
+      "tags": ["early-christian", "mosaics", "papal-basilica", "bernini"], "editorial_interest": 0.85, "visible_range_m": 200, "height_m": 75,
+      "wikipedia": "https://en.wikipedia.org/wiki/Santa_Maria_Maggiore",
+      "facts": [
+        {"text": "This is one of Rome's four major papal basilicas, and its mosaics from the fifth century are among the oldest in the city.", "kind": "art", "depth": 1},
+        {"text": "Legend says the site was chosen after a miraculous summer snowfall in the fourth century. The event is still remembered every August 5 with white petals falling from the ceiling.", "kind": "legend", "depth": 2, "is_legend": true},
+        {"text": "Gian Lorenzo Bernini is buried here in a simple tomb, and so is Pope Francis, who died in 2025.", "kind": "people", "depth": 2}
+      ]
+    },
+    {
+      "slug": "santa-maria-della-vittoria", "name": "Santa Maria della Vittoria", "lat": 41.9046, "lng": 12.4944, "category": "church",
+      "tags": ["baroque", "bernini", "art"], "editorial_interest": 0.75, "visible_range_m": 60,
+      "wikipedia": "https://en.wikipedia.org/wiki/Santa_Maria_della_Vittoria,_Rome",
+      "facts": [
+        {"text": "This small church holds Bernini's Ecstasy of Saint Teresa, in the Cornaro Chapel, one of the masterpieces of Baroque sculpture.", "kind": "art", "depth": 1},
+        {"text": "Bernini designed the chapel like a theatre: members of the Cornaro family are carved in boxes on the side walls, as if watching the scene.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "quattro-fontane", "name": "Quattro Fontane", "lat": 41.9015, "lng": 12.4911, "category": "fountain",
+      "tags": ["renaissance", "water", "urban-planning"], "editorial_interest": 0.55, "visible_range_m": 40,
+      "wikipedia": "https://en.wikipedia.org/wiki/Quattro_Fontane",
+      "facts": [
+        {"text": "At this crossroads there is a fountain on each of the four corners, built in the late sixteenth century under Pope Sixtus the Fifth.", "kind": "history", "depth": 1},
+        {"text": "Standing here, you can see three obelisks along the straight streets Sixtus laid out, part of his plan to link Rome's great churches for pilgrims.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "san-carlo-alle-quattro-fontane", "name": "San Carlo alle Quattro Fontane", "lat": 41.9016, "lng": 12.4907, "category": "church",
+      "tags": ["baroque", "borromini", "architecture"], "editorial_interest": 0.65, "visible_range_m": 50,
+      "wikipedia": "https://en.wikipedia.org/wiki/San_Carlo_alle_Quattro_Fontane",
+      "facts": [
+        {"text": "This tiny church was Borromini's first major independent commission, begun in 1638. Its waving facade and oval dome made it a model for Baroque architects across Europe.", "kind": "architecture", "depth": 1},
+        {"text": "Romans call it San Carlino because it is so small.", "kind": "culture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "palazzo-barberini", "name": "Palazzo Barberini", "lat": 41.9034, "lng": 12.4900, "category": "museum",
+      "tags": ["baroque", "bernini", "borromini", "raphael", "art"], "editorial_interest": 0.7, "visible_range_m": 100,
+      "wikipedia": "https://en.wikipedia.org/wiki/Palazzo_Barberini",
+      "facts": [
+        {"text": "This palace was built for the family of Pope Urban the Eighth, and both Bernini and Borromini worked on it.", "kind": "architecture", "depth": 1},
+        {"text": "Today it houses the national gallery of ancient art, including Raphael's portrait known as La Fornarina, and a vast ceiling fresco by Pietro da Cortona.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "triton-fountain", "name": "Triton Fountain", "lat": 41.9038, "lng": 12.4886, "category": "fountain",
+      "tags": ["baroque", "bernini", "water"], "editorial_interest": 0.65, "visible_range_m": 70,
+      "wikipedia": "https://en.wikipedia.org/wiki/Triton_Fountain",
+      "facts": [
+        {"text": "Bernini made this fountain of a sea god blowing water through a conch shell in the early 1640s for Pope Urban the Eighth.", "kind": "art", "depth": 1},
+        {"text": "Look for the bees: they are the heraldic symbol of the pope's family, the Barberini, and they appear all over this part of Rome.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "capuchin-crypt", "name": "Capuchin Crypt", "lat": 41.9046, "lng": 12.4887, "category": "church",
+      "tags": ["macabre", "hidden-gem"], "editorial_interest": 0.75, "visible_range_m": 50,
+      "wikipedia": "https://en.wikipedia.org/wiki/Capuchin_Crypt",
+      "facts": [
+        {"text": "Under the church of Santa Maria della Concezione are small chapels decorated with the bones of about 3,700 Capuchin friars, arranged in patterns.", "kind": "culture", "depth": 1},
+        {"text": "A sign in the crypt reads, in several languages: what you are now, we once were; what we are now, you shall be.", "kind": "culture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "spanish-steps", "name": "Spanish Steps", "lat": 41.9060, "lng": 12.4828, "category": "monument",
+      "tags": ["baroque", "landmark", "poets", "keats"], "editorial_interest": 0.95, "visible_range_m": 150, "height_m": 30,
+      "wikipedia": "https://en.wikipedia.org/wiki/Spanish_Steps",
+      "facts": [
+        {"text": "The 135 steps were built between 1723 and 1725, designed by Francesco de Sanctis, to link the Spanish square below with the French church of Trinità dei Monti above.", "kind": "architecture", "depth": 1},
+        {"text": "They are called Spanish because of the Spanish embassy to the Holy See, which stands on the square. But they were largely paid for with a bequest from a French diplomat.", "kind": "history", "depth": 1},
+        {"text": "The poet John Keats died in 1821 in the house at the foot of the steps, on the right. It is now the Keats-Shelley House museum.", "kind": "people", "depth": 2},
+        {"text": "Sitting on the steps is now banned, and you can be fined for it.", "kind": "practical", "depth": 2}
+      ]
+    },
+    {
+      "slug": "barcaccia", "name": "Fontana della Barcaccia", "lat": 41.9057, "lng": 12.4823, "category": "fountain",
+      "tags": ["baroque", "bernini", "water"], "editorial_interest": 0.7, "visible_range_m": 60,
+      "wikipedia": "https://en.wikipedia.org/wiki/Fontana_della_Barcaccia",
+      "facts": [
+        {"text": "This sinking-boat fountain was made between 1627 and 1629 by Pietro Bernini, probably with help from his son, Gian Lorenzo.", "kind": "art", "depth": 1},
+        {"text": "It sits low because the water pressure of the Aqua Virgo here is weak, so a boat half-sunk in its basin was a clever solution.", "kind": "architecture", "depth": 2},
+        {"text": "A local story says it was inspired by a boat stranded in the square after the great Tiber flood of 1598.", "kind": "legend", "depth": 2, "is_legend": true}
+      ]
+    },
+    {
+      "slug": "trinita-dei-monti", "name": "Trinità dei Monti", "lat": 41.9062, "lng": 12.4836, "category": "church",
+      "tags": ["renaissance", "obelisk", "viewpoint"], "editorial_interest": 0.65, "visible_range_m": 200, "height_m": 40,
+      "wikipedia": "https://en.wikipedia.org/wiki/Trinit%C3%A0_dei_Monti",
+      "facts": [
+        {"text": "This twin-towered church at the top of the Spanish Steps was built under the patronage of the kings of France and is still looked after by the French state.", "kind": "history", "depth": 1},
+        {"text": "The obelisk in front is a Roman imitation: its hieroglyphs were copied from an Egyptian obelisk now in Piazza del Popolo.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "villa-medici", "name": "Villa Medici", "lat": 41.9083, "lng": 12.4830, "category": "palace",
+      "tags": ["renaissance", "art", "viewpoint"], "editorial_interest": 0.55, "visible_range_m": 100,
+      "wikipedia": "https://en.wikipedia.org/wiki/Villa_Medici",
+      "facts": [
+        {"text": "Since 1803 this villa has been home to the French Academy in Rome, where French artists come to live and work.", "kind": "culture", "depth": 1},
+        {"text": "It takes its name from Cardinal Ferdinando de' Medici, who acquired it in 1576.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "via-margutta", "name": "Via Margutta", "lat": 41.9076, "lng": 12.4794, "category": "street",
+      "tags": ["film", "art", "hidden-gem", "fellini"], "editorial_interest": 0.75, "visible_range_m": 80,
+      "wikipedia": "https://en.wikipedia.org/wiki/Via_Margutta",
+      "facts": [
+        {"text": "This quiet street has been Rome's artists' street for centuries, full of studios, galleries and workshops.", "kind": "culture", "depth": 1},
+        {"text": "In Roman Holiday, Gregory Peck's character lives at Via Margutta 51.", "kind": "film", "depth": 1},
+        {"text": "Federico Fellini lived on this street, at number 110, with his wife, the actress Giulietta Masina.", "kind": "people", "depth": 2}
+      ]
+    },
+    {
+      "slug": "babuino", "name": "Il Babuino", "lat": 41.9074, "lng": 12.4801, "category": "statue",
+      "tags": ["talking-statues", "hidden-gem"], "editorial_interest": 0.5, "visible_range_m": 25,
+      "wikipedia": "https://en.wikipedia.org/wiki/Talking_statues_of_Rome",
+      "facts": [
+        {"text": "This reclining figure of the satyr Silenus is one of Rome's talking statues. Romans found him so ugly they nicknamed him the baboon, Il Babuino.", "kind": "culture", "depth": 1},
+        {"text": "The whole street, Via del Babuino, is named after him.", "kind": "culture", "depth": 1}
+      ]
+    },
+    {
+      "slug": "piazza-del-popolo", "name": "Piazza del Popolo", "lat": 41.9107, "lng": 12.4763, "category": "square",
+      "tags": ["obelisk", "egypt", "landmark", "urban-planning"], "editorial_interest": 0.85, "visible_range_m": 200, "height_m": 36,
+      "wikipedia": "https://en.wikipedia.org/wiki/Piazza_del_Popolo",
+      "facts": [
+        {"text": "For centuries this was the first thing travellers from the north saw when they entered Rome through the gate here.", "kind": "history", "depth": 1},
+        {"text": "The obelisk in the centre dates from the reigns of the pharaohs Seti the First and Ramesses the Second. Augustus brought it from Egypt, and it was raised here in 1589.", "kind": "history", "depth": 1},
+        {"text": "The two nearly identical churches at the south end frame the start of three streets fanning out into the city, a layout known as the Trident.", "kind": "architecture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "santa-maria-del-popolo", "name": "Santa Maria del Popolo", "lat": 41.9115, "lng": 12.4762, "category": "church",
+      "tags": ["caravaggio", "raphael", "bernini", "art"], "editorial_interest": 0.8, "visible_range_m": 70,
+      "wikipedia": "https://en.wikipedia.org/wiki/Santa_Maria_del_Popolo",
+      "facts": [
+        {"text": "In the Cerasi Chapel are two Caravaggios, the Conversion of Saint Paul and the Crucifixion of Saint Peter, painted in 1601.", "kind": "art", "depth": 1},
+        {"text": "The Chigi Chapel was designed by Raphael and later completed by Bernini.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "pincio", "name": "Pincio Terrace", "lat": 41.9112, "lng": 12.4790, "category": "viewpoint",
+      "tags": ["viewpoint", "park", "sunset"], "editorial_interest": 0.7, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Pincian_Hill",
+      "facts": [
+        {"text": "This terrace on the Pincian Hill looks straight over Piazza del Popolo to the dome of Saint Peter's, a classic sunset spot.", "kind": "practical", "depth": 1},
+        {"text": "The terrace and the ramps up from the piazza were designed in the early nineteenth century by Giuseppe Valadier.", "kind": "architecture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "ara-pacis", "name": "Ara Pacis", "lat": 41.9062, "lng": 12.4754, "category": "museum",
+      "tags": ["ancient-rome", "augustus", "art"], "editorial_interest": 0.75, "visible_range_m": 90,
+      "wikipedia": "https://en.wikipedia.org/wiki/Ara_Pacis",
+      "facts": [
+        {"text": "Inside the modern glass building is the Altar of Augustan Peace, consecrated in 9 BC to celebrate peace after Augustus's campaigns in Spain and Gaul.", "kind": "history", "depth": 1},
+        {"text": "The museum building around it, by the American architect Richard Meier, opened in 2006 and was controversial with many Romans.", "kind": "architecture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "mausoleum-of-augustus", "name": "Mausoleum of Augustus", "lat": 41.9060, "lng": 12.4764, "category": "ruin",
+      "tags": ["ancient-rome", "augustus", "tomb"], "editorial_interest": 0.7, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Mausoleum_of_Augustus",
+      "facts": [
+        {"text": "This great round mound is the tomb Augustus began building for himself and his family in 28 BC.", "kind": "history", "depth": 1},
+        {"text": "Over the centuries it was used as a fortress, a garden, and even a concert hall, before being restored and reopened to visitors in 2021.", "kind": "history", "depth": 2}
+      ]
+    },
+    {
+      "slug": "ponte-sant-angelo", "name": "Ponte Sant'Angelo", "lat": 41.9014, "lng": 12.4664, "category": "bridge",
+      "tags": ["ancient-rome", "baroque", "bernini", "river"], "editorial_interest": 0.85, "visible_range_m": 150,
+      "wikipedia": "https://en.wikipedia.org/wiki/Ponte_Sant%27Angelo",
+      "facts": [
+        {"text": "The emperor Hadrian built this bridge, completed in 134 AD, to lead to his mausoleum, the round fortress across the river.", "kind": "history", "depth": 1},
+        {"text": "The ten angels lining the bridge, each holding a symbol of Christ's Passion, were designed by Bernini's workshop in the late 1660s.", "kind": "art", "depth": 1},
+        {"text": "Bernini's own two angels were considered too beautiful to leave outdoors. The originals are in the church of Sant'Andrea delle Fratte, and copies stand on the bridge.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "castel-sant-angelo", "name": "Castel Sant'Angelo", "lat": 41.9031, "lng": 12.4663, "category": "monument",
+      "tags": ["ancient-rome", "papal", "opera", "landmark"], "editorial_interest": 0.9, "visible_range_m": 300, "height_m": 48,
+      "wikipedia": "https://en.wikipedia.org/wiki/Castel_Sant%27Angelo",
+      "facts": [
+        {"text": "This fortress began life as the Mausoleum of Hadrian, the emperor's tomb, in the second century AD. Popes later turned it into a castle and prison.", "kind": "history", "depth": 1},
+        {"text": "Its name comes from a legend that the Archangel Michael appeared on top in 590, sheathing his sword to signal the end of a plague. A bronze angel stands there today.", "kind": "legend", "depth": 1, "is_legend": true, "look_up": true},
+        {"text": "A fortified corridor, the Passetto di Borgo, links it to the Vatican. Pope Clement the Seventh fled along it during the Sack of Rome in 1527.", "kind": "history", "depth": 2},
+        {"text": "In Puccini's Tosca, the heroine leaps to her death from its battlements.", "kind": "culture", "depth": 3}
+      ]
+    },
+    {
+      "slug": "st-peters-square", "name": "St. Peter's Square", "lat": 41.9022, "lng": 12.4572, "category": "square",
+      "tags": ["vatican", "baroque", "bernini", "obelisk", "landmark"], "editorial_interest": 1.0, "visible_range_m": 250, "height_m": 25,
+      "wikipedia": "https://en.wikipedia.org/wiki/St._Peter%27s_Square",
+      "facts": [
+        {"text": "Bernini designed this square between 1656 and 1667. Its curved colonnades are meant to be the motherly arms of the Church embracing visitors.", "kind": "architecture", "depth": 1},
+        {"text": "The obelisk in the middle was brought from Egypt by the emperor Caligula and moved here in 1586 by the engineer Domenico Fontana.", "kind": "history", "depth": 1},
+        {"text": "Look for the round stone discs in the pavement between the obelisk and the fountains. Stand on one and the four rows of columns line up into a single row.", "kind": "architecture", "depth": 2}
+      ]
+    },
+    {
+      "slug": "st-peters-basilica", "name": "St. Peter's Basilica", "lat": 41.9022, "lng": 12.4539, "category": "church",
+      "tags": ["vatican", "renaissance", "michelangelo", "landmark"], "editorial_interest": 1.0, "visible_range_m": 400, "height_m": 136,
+      "wikipedia": "https://en.wikipedia.org/wiki/St._Peter%27s_Basilica",
+      "facts": [
+        {"text": "The present basilica took over a century to build and was consecrated in 1626. Bramante, Michelangelo, Maderno and Bernini all worked on it.", "kind": "architecture", "depth": 1},
+        {"text": "The dome was designed by Michelangelo. It rises about 136 metres and is the tallest dome in the world.", "kind": "architecture", "depth": 1, "look_up": true},
+        {"text": "By tradition, the basilica stands over the tomb of Saint Peter.", "kind": "legend", "depth": 2, "is_legend": true}
+      ]
+    },
+    {
+      "slug": "santa-maria-in-trastevere", "name": "Santa Maria in Trastevere", "lat": 41.8895, "lng": 12.4703, "category": "church",
+      "tags": ["mosaics", "medieval", "early-christian"], "editorial_interest": 0.8, "visible_range_m": 90,
+      "wikipedia": "https://en.wikipedia.org/wiki/Santa_Maria_in_Trastevere",
+      "facts": [
+        {"text": "This is one of the oldest churches in Rome. The present building dates from the 1140s, on a site of worship going back to the third century.", "kind": "history", "depth": 1},
+        {"text": "Look up at the facade: its golden mosaic of the Virgin and Child shines at night when the square is lit.", "kind": "art", "depth": 1, "look_up": true},
+        {"text": "Inside, the mosaics of the life of the Virgin are by Pietro Cavallini, from the late thirteenth century.", "kind": "art", "depth": 2}
+      ]
+    },
+    {
+      "slug": "villa-farnesina", "name": "Villa Farnesina", "lat": 41.8935, "lng": 12.4672, "category": "museum",
+      "tags": ["renaissance", "raphael", "art"], "editorial_interest": 0.65, "visible_range_m": 60,
+      "wikipedia": "https://en.wikipedia.org/wiki/Villa_Farnesina",
+      "facts": [
+        {"text": "This villa was built for the banker Agostino Chigi, one of the richest men of Renaissance Europe, by the architect Baldassare Peruzzi.", "kind": "history", "depth": 1},
+        {"text": "Inside is Raphael's fresco the Triumph of Galatea.", "kind": "art", "depth": 1}
+      ]
+    },
+    {
+      "slug": "fontana-acqua-paola", "name": "Fontana dell'Acqua Paola", "lat": 41.8886, "lng": 12.4652, "category": "fountain",
+      "tags": ["baroque", "viewpoint", "film", "water"], "editorial_interest": 0.7, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Fontana_dell%27Acqua_Paola",
+      "facts": [
+        {"text": "Romans call this monumental fountain il Fontanone, the big fountain. It was built in 1612 for Pope Paul the Fifth, to mark the end of a restored aqueduct.", "kind": "history", "depth": 1},
+        {"text": "It appears in the opening of Paolo Sorrentino's Oscar-winning film The Great Beauty.", "kind": "film", "depth": 2},
+        {"text": "The terrace in front has one of the widest views over the rooftops and domes of Rome.", "kind": "practical", "depth": 1}
+      ]
+    },
+    {
+      "slug": "tempietto", "name": "Bramante's Tempietto", "lat": 41.8885, "lng": 12.4666, "category": "monument",
+      "tags": ["renaissance", "bramante", "architecture", "hidden-gem"], "editorial_interest": 0.7, "visible_range_m": 40,
+      "wikipedia": "https://en.wikipedia.org/wiki/San_Pietro_in_Montorio",
+      "facts": [
+        {"text": "In the courtyard of San Pietro in Montorio is Bramante's Tempietto, a tiny round temple from the early 1500s often called the perfect building of the High Renaissance.", "kind": "architecture", "depth": 1},
+        {"text": "It was built on the spot that tradition held to be the place of Saint Peter's crucifixion.", "kind": "legend", "depth": 2, "is_legend": true}
+      ]
+    },
+    {
+      "slug": "quartiere-coppede", "name": "Quartiere Coppedè", "lat": 41.9177, "lng": 12.5040, "category": "neighbourhood",
+      "tags": ["art-nouveau", "hidden-gem", "film", "architecture"], "editorial_interest": 0.8, "visible_range_m": 120,
+      "wikipedia": "https://en.wikipedia.org/wiki/Quartiere_Copped%C3%A8",
+      "facts": [
+        {"text": "This fairy-tale cluster of buildings, mixing Art Nouveau, Gothic, Baroque and medieval motifs, was designed by the architect Gino Coppedè from 1913 until his death in 1927.", "kind": "architecture", "depth": 1},
+        {"text": "Walk in under the great arch with its hanging iron chandelier, and look up at the carvings.", "kind": "practical", "depth": 1, "look_up": true},
+        {"text": "In the centre of Piazza Mincio is the Fountain of the Frogs, from 1924.", "kind": "art", "depth": 2},
+        {"text": "The district's eerie mood made it a favourite location for horror director Dario Argento.", "kind": "film", "depth": 3}
+      ]
+    }
+  ]
+}

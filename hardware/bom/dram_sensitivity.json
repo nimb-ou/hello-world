@@ -1,0 +1,22 @@
+{
+ "pebble": {
+  "dram_10k": 26.0,
+  "normalised": 12.0,
+  "landed_ex_nre_normalised": 111.96905000000002
+ },
+ "square": {
+  "dram_10k": 38.0,
+  "normalised": 18.0,
+  "landed_ex_nre_normalised": 206.00950000000006
+ },
+ "atlas": {
+  "dram_10k": 50.0,
+  "normalised": 24.0,
+  "landed_ex_nre_normalised": 289.54269999999997
+ },
+ "pebble_lite": {
+  "dram_10k": 0,
+  "normalised": 0.0,
+  "landed_ex_nre_normalised": 63.32754999999999
+ }
+}

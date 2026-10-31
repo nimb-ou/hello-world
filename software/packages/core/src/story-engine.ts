@@ -219,10 +219,11 @@ export class StoryEngine {
     if (ctx.crossingRoad) this.lastCrossingAt = ctx.t;
     if (ctx.userTalking) this.lastTalkAt = ctx.t;
     if (ctx.t < this.manualQuietUntil) return "manual-quiet";
-    if (ctx.t < this.speakingUntil) return "speaking";
+    // Safety / social reasons first: they also block explicit requests (which get deferred).
     if (ctx.crossingRoad || ctx.t - this.lastCrossingAt < this.config.postCrossingQuietMs) return "crossing-road";
     if (ctx.userTalking || ctx.t - this.lastTalkAt < this.config.postTalkQuietMs) return "user-talking";
     if (ctx.speedMps > this.config.maxNarrationSpeedMps) return "moving-fast";
+    if (ctx.t < this.speakingUntil) return "speaking";
     if (!ignoreGap && ctx.t - this.lastEndAt < this.config.minGapMs) return "cooldown";
     return null;
   }
@@ -310,7 +311,9 @@ export class StoryEngine {
 
   /** Main tick. Call ~1 Hz with fused context. */
   update(ctx: EngineContext): Decision {
-    const quiet = this.quietReason(ctx, this.pendingMore);
+    let quiet = this.quietReason(ctx, this.pendingMore);
+    // A deferred explicit request may interrupt LORE's own speech, never a safety quiet moment.
+    if (this.pendingMore && (quiet === "speaking" || quiet === "manual-quiet")) quiet = null;
     if (quiet) return { kind: "silent", reason: quiet, deferred: this.pendingMore || undefined, t: ctx.t };
     if (this.pendingMore) {
       this.pendingMore = false;

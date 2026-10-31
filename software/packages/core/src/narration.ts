@@ -45,7 +45,7 @@ export const PERSONAS: Record<Persona, { label: string; description: string; wpm
   minimalist: { label: "Minimalist", description: "Just the facts. Shortest possible.", wpm: 160 },
 };
 
-const LEGEND_RE = /\b(legend|tradition|traditionally|said to|story goes|reputed|popular belief|myth|according to)\b/i;
+const LEGEND_RE = /\b(legend|tradition|traditionally|said to|story goes|reputed|popular belief|myth|according to|story says|popular story)\b/i;
 
 function cap(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -63,8 +63,15 @@ function where(input: NarrationInput): string {
   return directionPhrase(input.direction, input.direction.distanceM);
 }
 
+const ARTICLE_RE = /^(Pantheon|Colosseum|Fountain|Basilica|Church|Temple|Theatre|Arch|Column|Mausoleum|Baths|Pyramid|Keyhole|Orange|Great|Capuchin|Victor|Obelisk|Portico|Non-Catholic|Spanish|Roman|Palatine|Circus|Elephant|Turtle|Triton|Tiber|Pincio|Quattro Fontane|Ara Pacis|Domus|Bocca|Trevi|Gateway|Taj|Oval|Asiatic|Reserve|Bombay(?! House)|University|Afghan|Art Deco|General|National|David Sassoon|Hanging|Fort|Knesset|Rajabai|Flora|Esplanade|BMC|Wellington|Sir J)\b/;
+
+/** "Fountain of the Four Rivers" -> "the Fountain of the Four Rivers"; Italian proper names unchanged. */
+export function withArticle(name: string): string {
+  return ARTICLE_RE.test(name) ? `the ${name}` : name;
+}
+
 function opener(input: NarrationInput): string {
-  const name = input.poi.name;
+  const name = withArticle(input.poi.name);
   const w = where(input);
   const W = cap(w);
   if (input.followUp === "tell-me-more") {
@@ -135,7 +142,8 @@ export function templateNarration(input: NarrationInput): NarrationScript {
   facts.forEach((f, i) => {
     let sentence = f.text.trim();
     if (f.is_legend && !LEGEND_RE.test(sentence)) sentence = `${legendHedge(input.persona)} ${sentence}`;
-    if (f.look_up && input.directionReliable !== false) sentence = `Look up. ${sentence}`;
+    if (f.look_up && input.directionReliable !== false)
+      sentence = `${input.direction?.direction === "behind" ? "Turn around and look up." : "Look up."} ${sentence}`;
     else sentence = joinConnector(connector(input.persona, i), sentence);
     parts.push(`${sentence} [f:${f.id}]`);
   });
@@ -209,7 +217,7 @@ export interface ValidationResult {
 
 /** Words that may appear capitalised mid-sentence without being in the facts. */
 const PROPER_NOUN_ALLOW = new Set([
-  "I", "LORE", "Rome", "Roman", "Romans", "Look", "Right", "Okay", "Legend", "Locals", "And", "But", "So", "Now", "Here",
+  "I", "LORE", "According", "Turn", "Tradition", "Rome", "Roman", "Romans", "Look", "Right", "Okay", "Legend", "Locals", "And", "But", "So", "Now", "Here",
   "Also", "Note", "Further", "Additionally", "There", "This", "That", "The", "It", "Its", "Say", "Ask", "Quick", "See",
   "Slow", "One", "Since", "A", "An", "If", "You", "Your", "Just", "On", "In", "Behind", "Ahead", "Today", "Tonight",
 ]);
