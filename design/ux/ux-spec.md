@@ -114,7 +114,7 @@ The ring has 8 RGB segments behind frosted PMMA. Brightness is capped at 40 cd/m
 | Battery low | 2 segments blink ×3 every 60 s | Amber |
 | Pairing | full ring spin | Blue (only use of blue) |
 | Walk Me Home active | 1 segment slow heartbeat every 5 s (visible to the user, discreet to others) | Brass |
-| **SOS countdown** | full ring, flashing at 2 Hz | Red `#E5484D` |
+| **SOS countdown** | full ring, flashing at 2 Hz | Signal red `#D2392B` (brand token) |
 | SOS sent / live | full ring solid 1 s every 5 s | Red |
 | Error / not understood | 2 segments flicker once | Fog |
 
