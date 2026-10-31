@@ -1,6 +1,6 @@
 # LORE walk simulation: Pantheon to Trevi (simulated walk)
 
-> **SIMULATED DATA.** GNSS, compass, gyro and step signals are synthetic (seeded noise, a 7 deg compass bias, magnetic disturbance near Via del Corso). Narration uses the offline deterministic template path from verified City Pack fact cards. Regenerate with `npm run sim`.
+> **SIMULATED DATA.** GNSS, compass, gyro and step signals are synthetic (seeded noise, a 7 deg compass bias, magnetic disturbance zones on busy roads). Narration uses the offline deterministic template path from verified City Pack fact cards. Regenerate with `npm run sim`.
 
 Persona: **local-friend**, seed 42. Route 1.93 km, 26.5 min including stops.
 
