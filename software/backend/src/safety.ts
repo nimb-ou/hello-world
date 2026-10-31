@@ -91,22 +91,19 @@ export class SafetyService {
   /** Run periodically (and on read): escalate overdue timers exactly once. */
   async sweep(): Promise<number> {
     let n = 0;
-    for (const t of this.timers.values()) if (this.evaluate(t)) {
-      await this.notifier.notify(t.contacts, `LORE safety: a walk-home check-in is overdue. Live location: ${this.publicBase}/${t.share_token}`);
-      n++;
+    for (const t of this.timers.values()) {
+      this.evaluate(t);
+      if (t.status === "overdue" && !t.escalated_at) {
+        t.escalated_at = this.clock();
+        await this.notifier.notify(t.contacts, `LORE safety: a walk-home check-in is overdue. Live location: ${this.publicBase}/${t.share_token}`);
+        n++;
+      }
     }
     return n;
   }
 
-  private evaluate(t: WalkHomeTimer): boolean {
-    if (t.status === "active" && this.clock() > t.due_at) {
-      t.status = "overdue";
-    }
-    if (t.status === "overdue" && !t.escalated_at) {
-      t.escalated_at = this.clock();
-      return true;
-    }
-    return false;
+  private evaluate(t: WalkHomeTimer): void {
+    if (t.status === "active" && this.clock() > t.due_at) t.status = "overdue";
   }
 
   private mustGet(id: string): WalkHomeTimer {
