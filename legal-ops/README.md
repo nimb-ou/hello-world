@@ -24,7 +24,7 @@ Costs are estimates unless sourced in the linked file. Owners: **CEO** (Nimit Ja
 ### Phase 0: Formation (Nov 2026)
 | ✓ | Task | Owner | Timing | Cost (est.) |
 |---|---|---|---|---|
-| ☐ | Indian FEMA/tax opinion on founder residency (ODI; step-down subsidiary restriction) | COO + Indian counsel | **Before incorporating** | $600–$2.5k |
+| ☐ | **Required: the founder is resident in India (confirmed, D17).** Indian FEMA/tax opinion on founder residency (ODI; step-down subsidiary restriction) | COO + Indian counsel | **Before incorporating** | $600–$2.5k |
 | ☐ | Choose Clerky ($819 lifetime) / Stripe Atlas ($500) / law firm | CEO | Week 0 | $500–$819 (+ Delaware fees, revised 1 Aug 2026) |
 | ☐ | File the Certificate of Incorporation (10M shares, low par); bylaws; board consent | Counsel | Week 0 | incl. |
 | ☐ | Founder RSPA (4-yr/1-yr cliff, double trigger) + IP assignment + CIIAA | CEO | Week 0–1 | incl. |

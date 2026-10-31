@@ -91,8 +91,9 @@ Every device comes with 3 months of Explorer.
 - **Atlas:** Bead-blasted titanium, black DLC titanium; sapphire glass; brass-tone crown accent
 
 ## Launch plan basics
+- **Home test city: Mumbai** (Fort/Kala Ghoda heritage precinct; founder walk tests; D19). **Hampi** next for offline testing.
 - **Launch city / City Pack v1: Rome** (dense history, high tourism, great data). Next: Lisbon, Paris, London, Barcelona, Istanbul, Kyoto, New York.
-- **Company:** LORE Labs, Inc. (Delaware C-corp, planned). The founder is Nimit Jain.
+- **Company:** LORE Labs, Inc. (Delaware C-corp, planned). The founder is Nimit Jain (resident in India; contact nimitjain.248@gmail.com; see D17).
 - **Timeline:**
 
   | When | Milestone |

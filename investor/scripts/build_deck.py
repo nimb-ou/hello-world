@@ -698,7 +698,7 @@ def fill_ask(use_of_funds, runway_note):
          "Live prototype demo on request. Data room index: investor/data-room-index.md", size=12, color=BONE)
     text(s, Inches(7.3), Inches(5.55), Inches(5.4), Inches(1.2),
          [[("Nimit Jain", {"bold": True, "size": 15})], "Founder & CEO, LORE Labs, Inc.",
-          "[founder email]  ·  lore.travel (domain to be confirmed)"],
+          "nimitjain.248@gmail.com  ·  India"],
          size=12, color=BONE, spacing=1.15, space_after=2)
     footer(s, dark=True)
 

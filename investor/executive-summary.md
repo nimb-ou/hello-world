@@ -91,4 +91,4 @@ EBITDA break-even comes in FY2031. We plan **$55.5M** of total equity to get the
 
 The round funds gates G0 to G2 and positions us for the $6M seed.
 
-**Contact:** Nimit Jain, Founder & CEO, LORE Labs, Inc. The data room is indexed at `investor/data-room-index.md`.
+**Contact:** Nimit Jain, Founder & CEO, LORE Labs, Inc. · nimitjain.248@gmail.com. The data room is indexed at `investor/data-room-index.md`.

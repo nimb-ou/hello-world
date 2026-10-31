@@ -1,6 +1,6 @@
 # LORE: Every street has a story.
 
-**LORE Labs, Inc.** (Delaware C-corp, planned) · Founder & CEO: Nimit Jain · Pre-seed, November 2026 · Confidential
+**LORE Labs, Inc.** (Delaware C-corp, planned) · Founder & CEO: Nimit Jain (nimitjain.248@gmail.com) · Pre-seed, November 2026 · Confidential
 
 **The ask: $1.75M pre-seed SAFE at a $12M post-money cap** ($1.5M plus a $250k top-up, decision D14). Seed of $6M planned after Kickstarter (Aug 2027).
 

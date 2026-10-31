@@ -4,8 +4,8 @@ The company's job is to remove the biggest risk at each stage before it spends m
 
 ## Stage 0: Prove the magic (Nov 2026 – Jan 2027)
 **Risk to remove:** do people *love* walking with LORE's stories?
-- Ship the **phone prototype (PWA)** and the **Rome City Pack v1**, with 300+ places checked by hand.
-- Run 20 walking tests in Rome plus 200 remote users in simulation mode.
+- Ship the **phone prototype (PWA)**, the **Mumbai test pack** (founder walk tests, D19) and the **Rome City Pack v1**, with 300+ places checked by hand.
+- Run 20 walking tests in Mumbai (Fort/Kala Ghoda) plus 200 remote users in Rome simulation mode; 5 tests in Rome before Kickstarter.
 - Run 20 user interviews and a survey with at least 500 responses (see `research/customer-survey.md`).
 - Build a waitlist landing page; target 5,000 sign-ups.
 - **Gate G0** (all must be true):
