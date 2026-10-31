@@ -36,6 +36,7 @@ h1 em{font-style:italic;color:var(--terra)}
 .rule{height:2px;background:currentColor;opacity:.18}
 .pill{display:inline-block;border:2px solid currentColor;border-radius:999px;padding:14px 30px;font-weight:600;font-size:28px;letter-spacing:.01em}
 .pill.fill{background:var(--terra);border-color:var(--terra);color:var(--bone)}
+.c > div[style*='width:'] > svg, .c > div[style*='width:']>svg{width:100%;height:auto;display:block}
 .src{font-family:'JetBrains Mono',monospace;font-size:20px;opacity:.7;letter-spacing:.04em}
 `;
 
@@ -180,7 +181,7 @@ export const designs = [
 { id: 'story-03-pasquino', w: 1080, h: 1920, title: 'TikTok cover: Pasquino, the talking statue', body: `
 <div class="c bone grain" style="padding:250px 90px 350px">
  <div class="kicker"><span class="dot"></span>Secrets of Rome · Nº 07</div>
- <svg viewBox="0 0 600 700" style="position:absolute;right:-40px;top:560px;width:760px">
+ <svg viewBox="0 0 600 700" style="position:absolute;right:-60px;top:1000px;width:620px">
   <rect x="160" y="560" width="300" height="140" fill="#D2CEC7"/><rect x="140" y="540" width="340" height="30" fill="#B0ADA9"/>
   <path d="M220 540 C200 420 230 330 300 300 C380 270 430 330 420 420 C415 480 400 520 380 540 Z" fill="#B0ADA9"/>
   <circle cx="330" cy="250" r="70" fill="#B0ADA9"/>
@@ -216,7 +217,7 @@ export const designs = [
 <div class="c night dark grain" style="padding:250px 90px 350px">
  <div class="kicker"><span class="dot"></span>How LORE sees · Map Vision</div>
  <h1 style="font-size:104px;margin-top:70px">No camera. It still knows what’s on your <em>left.</em></h1>
- <svg viewBox="0 0 900 760" style="position:absolute;left:90px;top:860px;width:900px">
+ <svg viewBox="0 0 900 760" style="position:absolute;left:130px;top:760px;width:820px">
   <rect x="0" y="0" width="300" height="760" fill="#13263A" stroke="#B8935A" stroke-width="2"/><rect x="600" y="0" width="300" height="760" fill="#13263A" stroke="#B8935A" stroke-width="2"/>
   <rect x="40" y="60" width="220" height="200" fill="none" stroke="#B8935A" stroke-opacity=".5" stroke-dasharray="6 6"/><rect x="640" y="300" width="220" height="260" fill="none" stroke="#B8935A" stroke-opacity=".5" stroke-dasharray="6 6"/>
   ${[1,2,3].map(r=>`<circle cx="450" cy="520" r="${r*60}" fill="none" stroke="#C4623A" stroke-opacity="${.6-r*.15}" stroke-width="3"/>`).join('')}

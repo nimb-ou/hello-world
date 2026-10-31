@@ -42,11 +42,11 @@ The story engine uses only **checked facts with sources** (no invented history).
 | Connectivity | BLE to phone + Wi-Fi; offline packs | LTE Cat-4 global eSIM + Wi-Fi + BT 5.4 LE Audio | LTE + eSIM + satellite SOS (NTN) |
 | AI | Cloud AI + small on-device model (~1B) | On-device 3B model + cloud | On-device 3–4B model + vision + cloud |
 | Battery | 1.5 days | 2 days | 3 days |
-| Target price | **$149** | **$299** | **$549** |
+| Target price | **$149** | **$299** | **$599** (raised from $549 per research/pricing-research.md) |
 
 **Subscription "LORE Pass":**
 - **Explorer** $9.99/mo: unlimited live AI, 1 GB/mo of data, all City Packs, safety features
-- **Trip Pass** $29 for 14 days, including 5 GB of data
+- **Trip Pass** $29 for 14 days, including 5 GB of data (also $49 for 30 days with 10 GB; Explorer annual plan $79)
 - **Free tier**: offline packs for 3 cities plus basic narration
 
 Every device comes with 3 months of Explorer.

@@ -9,3 +9,5 @@
 | D5 | 2026-10 | **Rome** is City #1 | History per square metre, tourism volume, rich open data, reachable for walk tests | `research/launch-markets.md` scores another city much higher |
 | D6 | 2026-10 | Three models: Pebble $149 / Square $299 / Atlas $549 + LORE Pass subscription | Good / better / best price ladder; the subscription brings recurring revenue | Research pricing study and Finance margin analysis |
 | D7 | 2026-10 | Users bring their own earphones; LORE Buds are an optional accessory | Lower barrier to buying; avoids headphone design and battery complexity | — |
+| D8 | 2026-10-31 | Atlas price raised **$549 → $599**; add an Explorer annual plan at $79 and a 30-day Trip Pass at $49 | Research pricing study: Atlas sits between Garmin inReach Mini 3 Plus ($499) and Ray-Ban Display / Watch Ultra ($799) | The survey shows $599 loses >20% of purchase intent compared with $549 |
+| D9 | 2026-10-31 | London as a parallel development and beta city; Florence as "City 1.5" | Launch-market scoring: Rome 8.65, London 8.60, Paris 8.40 | — |

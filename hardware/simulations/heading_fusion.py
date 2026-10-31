@@ -180,6 +180,7 @@ def run_estimators(tr, se, rng, map_match_route):
     p = se["gpos"][0].copy(); Pp = np.eye(2) * 25
     step_phase = 0.0
     mag_rej = 0; mag_tot = 0
+    rej_mag_run = 0; rej_gnss_run = 0; rej_pos_run = 0; alpha_init = False
     for k in range(n):
         w = se["gyro"][k]
         # --- C
@@ -200,8 +201,10 @@ def run_estimators(tr, se, rng, map_match_route):
             if abs(se["bnorm"][k] - H_EARTH) < 2.5 and yv * yv / S < 6.6:
                 K = P @ Hm / S
                 x = x + K * yv; x[0] = wrap(x[0]); P = P - np.outer(K, Hm) @ P
+                rej_mag_run = 0
             else:
                 mag_rej += 1
+                rej_mag_run += 1
         if k in k1set:
             i = k1set[k]
             v = se["gvel"][i]; spd = np.hypot(*v)
@@ -210,6 +213,10 @@ def run_estimators(tr, se, rng, map_match_route):
                 last = course
                 # C: learn mounting offset slowly
                 alpha_c = wrap(alpha_c + 0.05 * wrap(psi_c - alpha_c - course))
+                if not alpha_init:          # initialise mounting offset from first good course
+                    x[2] = wrap(x[0] - course); P[2, 2] = (20 * D2R) ** 2; alpha_init = True
+                if rej_gnss_run >= 5:        # re-acquisition: filter has locked out - inflate
+                    P[0, 0] += (25 * D2R) ** 2; P[2, 2] += (15 * D2R) ** 2; rej_gnss_run = 0
                 if abs(w) < 15 * D2R:
                     Hg = np.array([1.0, 0, -1.0])
                     yv = wrap(course - (x[0] - x[2]))
@@ -218,6 +225,9 @@ def run_estimators(tr, se, rng, map_match_route):
                     if yv * yv / S < 9:
                         K = P @ Hg / S
                         x = x + K * yv; x[0] = wrap(x[0]); x[2] = wrap(x[2]); P = P - np.outer(K, Hg) @ P
+                        rej_gnss_run = 0
+                    else:
+                        rej_gnss_run += 1
             gpos_hold = se["gpos"][i]
             # position KF GNSS update with gating
             yv = se["gpos"][i] - p
@@ -227,6 +237,11 @@ def run_estimators(tr, se, rng, map_match_route):
             if d2 < 13.8:
                 K = Pp @ np.linalg.inv(S)
                 p = p + K @ yv; Pp = (np.eye(2) - K) @ Pp
+                rej_pos_run = 0
+            else:
+                rej_pos_run += 1
+                if rej_pos_run >= 8:         # position lock-out recovery
+                    Pp = Pp + np.eye(2) * 100.0; rej_pos_run = 0
         hB[k] = last
         hC[k] = wrap(psi_c - alpha_c)
         hD[k] = wrap(x[0] - x[2])
