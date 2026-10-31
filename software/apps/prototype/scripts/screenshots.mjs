@@ -14,7 +14,7 @@ const outDir = join(here, "../screenshots");
 mkdirSync(outDir, { recursive: true });
 const PORT = 4173;
 
-const server = spawn("npx", ["vite", "preview", "--config", "apps/prototype/vite.config.ts", "--port", String(PORT), "--strictPort"], { cwd: root, stdio: "pipe" });
+const server = spawn("npx", ["vite", "preview", "--config", "apps/prototype/vite.config.ts", "--port", String(PORT), "--strictPort"], { cwd: root, stdio: "pipe", detached: true });
 await new Promise((res, rej) => {
   const to = setTimeout(() => rej(new Error("preview did not start")), 20000);
   server.stdout.on("data", (d) => String(d).includes(String(PORT)) && (clearTimeout(to), res()));
@@ -58,5 +58,6 @@ try {
   console.log("saved 08-sim-dark-storyteller.png");
 } finally {
   await browser.close();
-  server.kill();
+  try { process.kill(-server.pid, "SIGTERM"); } catch { server.kill(); }
 }
+process.exit(0);

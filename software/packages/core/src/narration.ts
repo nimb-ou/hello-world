@@ -63,7 +63,7 @@ function where(input: NarrationInput): string {
   return directionPhrase(input.direction, input.direction.distanceM);
 }
 
-const ARTICLE_RE = /^(Pantheon|Colosseum|Fountain|Basilica|Church|Temple|Theatre|Arch|Column|Mausoleum|Baths|Pyramid|Keyhole|Orange|Great|Capuchin|Victor|Obelisk|Portico|Non-Catholic|Spanish|Roman|Palatine|Circus|Elephant|Turtle|Triton|Tiber|Pincio|Quattro Fontane|Ara Pacis|Domus|Bocca)\b/;
+const ARTICLE_RE = /^(Pantheon|Colosseum|Fountain|Basilica|Church|Temple|Theatre|Arch|Column|Mausoleum|Baths|Pyramid|Keyhole|Orange|Great|Capuchin|Victor|Obelisk|Portico|Non-Catholic|Spanish|Roman|Palatine|Circus|Elephant|Turtle|Triton|Tiber|Pincio|Quattro Fontane|Ara Pacis|Domus|Bocca|Trevi)\b/;
 
 /** "Fountain of the Four Rivers" -> "the Fountain of the Four Rivers"; Italian proper names unchanged. */
 export function withArticle(name: string): string {

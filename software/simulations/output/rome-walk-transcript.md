@@ -153,6 +153,6 @@ Facts: rome-column-of-marcus-aurelius-1, rome-column-of-marcus-aurelius-2, rome-
 
 *proximity, short tier, ~26 s. Said: **ahead** (ground truth: ahead), 89 m away.*
 
-> Quick one: Trevi Fountain is just ahead. The fountain was designed by Nicola Salvi and completed in 1762, after his death, by Giuseppe Pannini. And here's the fun part: It sits at the end of the Aqua Virgo, an aqueduct built in 19 BC by Marcus Agrippa, which still supplies water to fountains in the city centre. Say 'tell me more' if you want the rest.
+> Quick one: the Trevi Fountain is just ahead. The fountain was designed by Nicola Salvi and completed in 1762, after his death, by Giuseppe Pannini. And here's the fun part: It sits at the end of the Aqua Virgo, an aqueduct built in 19 BC by Marcus Agrippa, which still supplies water to fountains in the city centre. Say 'tell me more' if you want the rest.
 
 Facts: rome-trevi-fountain-1, rome-trevi-fountain-2. Sources: https://en.wikipedia.org/wiki/Trevi_Fountain

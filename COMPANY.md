@@ -39,9 +39,9 @@ The story engine uses only **checked facts with sources** (no invented history).
 | | **LORE Pebble** | **LORE Square** | **LORE Atlas** |
 |---|---|---|---|
 | Form | Clip-on rounded pebble, about 42×42×14 mm, no screen, 1 LED ring | Rounded square, about 54×54×12 mm, 1.6" round-corner AMOLED, crown/button | Same footprint as Square in titanium + sapphire, 1.6" AMOLED, wide-angle "Glance" camera |
-| Connectivity | BLE to phone + Wi-Fi; offline packs | LTE Cat-4 global eSIM + Wi-Fi + BT 5.4 LE Audio | LTE + eSIM + satellite SOS (NTN) |
+| Connectivity | BLE to phone + Wi-Fi; offline packs ("Lite" design: AI runs on the phone and in the cloud, offline pre-generated stories; see D10) | LTE Cat-1bis global eSIM + Wi-Fi + BT 5.4 LE Audio | LTE + eSIM + satellite SOS (NTN) |
 | AI | Cloud AI + small on-device model (~1B) | On-device 3B model + cloud | On-device 3–4B model + vision + cloud |
-| Battery | 1.5 days | 2 days | 3 days |
+| Battery | 1.5 days | 2 days | 2+ days (13.5 mm body) |
 | Target price | **$149** | **$299** | **$599** (raised from $549 per research/pricing-research.md) |
 
 **Subscription "LORE Pass":**
