@@ -7,9 +7,9 @@
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "pack:build": "cd city-pack && python3 -m lore_citypack build --city rome --seed data/rome_seed.json --out output && node ../scripts/copy-pack.mjs",
+    "pack:build": "cd city-pack && python3 -m lore_citypack build --city rome --seed data/rome_seed.json --out output && python3 -m lore_citypack build --city mumbai --seed data/mumbai_seed.json --out output && node ../scripts/copy-pack.mjs",
     "pack:test": "cd city-pack && python3 -m pytest -q",
-    "sim": "tsx simulations/walk-sim.ts",
+    "sim": "tsx simulations/walk-sim.ts && tsx simulations/walk-sim.ts --city mumbai",
     "app:dev": "vite --config apps/prototype/vite.config.ts",
     "app:build": "vite build --config apps/prototype/vite.config.ts",
     "app:preview": "vite preview --config apps/prototype/vite.config.ts --port 4173 --strictPort",

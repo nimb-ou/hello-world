@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#14161A" />
   <meta name="description" content="LORE prototype: the stories of the city around you, in your earphones." />
-  <title>LORE Rome</title>
+  <title>LORE City Walks</title>
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,14 +16,14 @@
 <body>
   <div class="app">
     <header class="top">
-      <div class="brand"><span class="wordmark">LORE</span><span class="city">Rome</span></div>
+      <div class="brand"><span class="wordmark">LORE</span><select id="citySel" class="city city-select" aria-label="City pack"><option value="rome">Rome</option><option value="mumbai">Mumbai</option></select></div>
       <span id="modeChip" class="chip mono">LIVE</span>
     </header>
 
     <section class="now" aria-live="polite">
       <div class="now-meta"><span id="dirBadge" class="dir">Waiting for location</span><span id="distance" class="mono muted"></span></div>
       <h1 id="poiName" class="poi">Every street has a story.</h1>
-      <p id="narration" class="narration">Start a walk, or try the simulated walk from the Pantheon to the Trevi Fountain.</p>
+      <p id="narration" class="narration">Start a walk, or try the simulated walk through the city centre.</p>
       <div id="sources" class="sources"></div>
     </section>
 
@@ -54,7 +54,7 @@
         </select>
       </div>
       <div class="progress"><div id="simBar" class="bar"></div></div>
-      <div id="simLabel" class="muted small mono">Pantheon to Trevi, 1.9 km</div>
+      <div id="simLabel" class="muted small mono">Simulated walk</div>
     </section>
 
     <section class="panel">
@@ -65,7 +65,7 @@
       <label class="toggle"><input id="cloud" type="checkbox" /> Cloud narration (backend /narrate, falls back offline)</label>
     </section>
 
-    <footer class="foot muted small">Prototype. Facts from the LORE Rome City Pack with sources. Stays quiet while you cross roads.</footer>
+    <footer class="foot muted small">Prototype. Facts from LORE City Packs, with sources. Stays quiet while you cross roads.</footer>
   </div>
   <script type="module" src="./src/main.ts"></script>
 </body>

@@ -6,7 +6,7 @@
  * URL params: ?sim=1 (start simulation), &speed=10, &mute=1, &backend=http://localhost:8787, &persona=storyteller
  */
 import {
-  HeadingKalman, PERSONAS, ROME_DEMO_ROUTE, StoryEngine, bearing, directionTo, haversine, interpolateAlong, pathLength,
+  DEMO_ROUTES, HeadingKalman, PERSONAS, StoryEngine, bearing, directionTo, haversine, interpolateAlong, pathLength,
   templateNarration, angleDiff, type CityPack, type Decision, type EngineContext, type InterestProfile, type NarrationScript,
   type NarrateDecision, type Persona,
 } from "../../../packages/core/src/index.ts";
@@ -15,6 +15,8 @@ const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getEleme
 const params = new URLSearchParams(location.search);
 const muted = params.get("mute") === "1";
 const backend = params.get("backend") ?? "http://localhost:8787";
+const CITIES: Record<string, string> = { rome: "Rome", mumbai: "Mumbai" };
+const city = params.get("city") && CITIES[params.get("city")!] ? params.get("city")! : "rome";
 
 const INTERESTS: { id: string; label: string; tags?: string[]; categories?: string[] }[] = [
   { id: "ancient", label: "Ancient Rome", tags: ["ancient-rome", "julius-caesar", "augustus"] },
@@ -63,7 +65,7 @@ function profile(): InterestProfile {
 }
 
 async function loadPack(): Promise<CityPack> {
-  const res = await fetch("./packs/rome.pack.json");
+  const res = await fetch(`./packs/${city}.pack.json`);
   if (!res.ok) throw new Error(`pack load failed: ${res.status}`);
   return res.json();
 }
@@ -186,7 +188,7 @@ function startLive() {
 }
 
 // ---------- simulation ----------
-const route = ROME_DEMO_ROUTE;
+const route = DEMO_ROUTES[city];
 const routeLen = pathLength(route.path);
 let simRand = 7;
 const rnd = () => ((simRand = (simRand * 1664525 + 1013904223) >>> 0) / 2 ** 32);
@@ -224,7 +226,7 @@ function startSim() {
     tick();
     if (at.done) {
       stopSim();
-      $("simLabel").textContent = "Arrived at the Trevi Fountain. Simulation complete.";
+      $("simLabel").textContent = `Arrived: ${[...route.path].reverse().find((p) => p.label)?.label}. Simulation complete.`;
     }
   };
   clearInterval(state.simTimer);
@@ -356,6 +358,14 @@ function renderControls() {
 
 // ---------- boot ----------
 async function boot() {
+  const sel = $("citySel") as HTMLSelectElement;
+  sel.value = city;
+  sel.onchange = () => {
+    const q = new URLSearchParams(location.search);
+    q.set("city", sel.value);
+    location.search = q.toString();
+  };
+  document.title = `LORE ${CITIES[city]}`;
   renderControls();
   try {
     state.pack = await loadPack();

@@ -20,8 +20,26 @@ await new Promise((res, rej) => {
   server.stdout.on("data", (d) => String(d).includes(String(PORT)) && (clearTimeout(to), res()));
 });
 
+const only = process.argv[2]; // "rome" | "mumbai" | undefined (both)
 const browser = await chromium.launch();
 try {
+  if (only !== "rome") {
+    const m = await (await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, colorScheme: "light", isMobile: true, hasTouch: true })).newPage();
+    m.on("pageerror", (e) => console.error("pageerror:", e.message));
+    await m.goto(`http://localhost:${PORT}/?city=mumbai&sim=1&speed=30&mute=1&nosw=1`);
+    const mPoi = (t) => m.waitForFunction((t) => document.getElementById("poiName").textContent.includes(t), t, { timeout: 120000 });
+    const mShot = async (n, full = false) => { await m.screenshot({ path: join(outDir, n), fullPage: full }); console.log("saved", n); };
+    await mPoi("Gateway");
+    await m.waitForTimeout(300);
+    await mShot("mumbai-01-sim-gateway-of-india.png");
+    await mPoi("Kala Ghoda");
+    await mShot("mumbai-02-sim-kala-ghoda.png");
+    await mPoi("Terminus");
+    await m.click("#btnAround");
+    await m.waitForTimeout(300);
+    await mShot("mumbai-03-sim-csmt-whats-around.png", true);
+  }
+  if (only === "mumbai") throw new Error("__done");
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, colorScheme: "light", isMobile: true, hasTouch: true });
   const page = await ctx.newPage();
   page.on("pageerror", (e) => console.error("pageerror:", e.message));
@@ -56,6 +74,8 @@ try {
   await p2.waitForFunction(() => document.getElementById("poiName").textContent.includes("Navona"), null, { timeout: 120000 });
   await p2.screenshot({ path: join(outDir, "08-sim-dark-storyteller.png") });
   console.log("saved 08-sim-dark-storyteller.png");
+} catch (e) {
+  if (e.message !== "__done") throw e;
 } finally {
   await browser.close();
   try { process.kill(-server.pid, "SIGTERM"); } catch { server.kill(); }

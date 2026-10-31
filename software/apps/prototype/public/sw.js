@@ -1,7 +1,7 @@
 // Offline-first service worker: app shell + City Pack cached on first load.
-const CACHE = "lore-proto-v1";
+const CACHE = "lore-proto-v2";
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(["./", "./index.html", "./packs/rome.pack.json", "./icon.svg", "./manifest.webmanifest"])).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(["./", "./index.html", "./packs/rome.pack.json", "./packs/mumbai.pack.json", "./icon.svg", "./manifest.webmanifest"])).then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 self.addEventListener("fetch", (e) => {

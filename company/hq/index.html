@@ -91,6 +91,11 @@ figcaption{font:.75rem/1.4 var(--mono);color:var(--muted);padding:10px 2px 0;bac
 .metrics dd{margin:0;font:500 1rem/1.4 var(--mono);font-variant-numeric:tabular-nums;text-align:right}
 .note{font-size:.85rem;color:var(--muted);border-left:2px solid var(--brass);padding-left:12px}
 
+.cmp{width:100%;border-collapse:collapse;font-size:.92rem}
+.cmp th{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:right;padding:0 0 10px 12px;border-bottom:1px solid var(--line)}
+.cmp td{padding:10px 0 10px 12px;border-bottom:1px solid var(--line);text-align:right;font:500 .92rem/1.4 var(--mono);font-variant-numeric:tabular-nums}
+.cmp td:first-child,.cmp th:first-child{text-align:left;padding-left:0;font:400 .92rem/1.4 var(--body);color:var(--muted)}
+
 /* numbers */
 .numbers{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px;align-items:start}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;display:grid;gap:16px;min-width:0}
@@ -161,8 +166,8 @@ footer{font:.78rem/1.6 var(--mono);color:var(--muted);border-top:1px solid var(-
     </figure>
     <div class="facts">
       <span><b>3</b> devices</span>
-      <span><b>Rome</b> launch city · 86 places · 215 sourced facts</span>
-      <span><b>77</b> automated tests passing</span>
+      <span><b>Rome</b> launch pack · <b>Mumbai</b> test pack · 148 places</span>
+      <span><b>87</b> automated tests passing</span>
       <span><b>$1.75M</b> pre-seed ask</span>
     </div>
   </header>
@@ -255,25 +260,33 @@ footer{font:.78rem/1.6 var(--mono);color:var(--muted);border-top:1px solid var(-
   <section class="sec" aria-labelledby="s-proto">
     <div class="sec-head">
       <span class="eyebrow">Prototype</span>
-      <h2 id="s-proto">A working walk through Rome</h2>
-      <p>The phone prototype replays a walk from the Pantheon to the Trevi Fountain, narrating what is on each side of you. The numbers come from the automated walk simulation with simulated sensors.</p>
+      <h2 id="s-proto">Working walks through Rome and Mumbai</h2>
+      <p>The phone prototype replays two walks and narrates what is on each side of you: Pantheon to Trevi in Rome, and Gateway of India to CSMT in Mumbai, where you will run the first real tests. The numbers come from automated walk simulations with simulated sensors.</p>
     </div>
     <div class="proto">
       <div class="phones">
         <figure class="plate"><img src="assets/app-pantheon.jpg" alt="Prototype narrating the Pantheon" width="520" height="1125" loading="lazy"></figure>
         <figure class="plate"><img src="assets/app-around.jpg" alt="Prototype listing what is around the listener at Largo Argentina" width="520" height="1125" loading="lazy"></figure>
         <figure class="plate"><img src="assets/app-trevi.jpg" alt="Prototype narrating the Trevi Fountain" width="520" height="1125" loading="lazy"></figure>
+        <figure class="plate"><img src="assets/mum-gateway.jpg" alt="Prototype narrating the Gateway of India in Mumbai" width="520" height="1125" loading="lazy"></figure>
+        <figure class="plate"><img src="assets/mum-kala.jpg" alt="Prototype narrating Kala Ghoda in Mumbai" width="520" height="1125" loading="lazy"></figure>
+        <figure class="plate"><img src="assets/mum-csmt.jpg" alt="Prototype showing what is around the listener at CSMT in Mumbai" width="520" height="1125" loading="lazy"></figure>
       </div>
       <div class="sec" style="gap:18px">
-        <dl class="metrics">
-          <div><dt>Route</dt><dd>1.93 km</dd></div>
-          <div><dt>Stories told</dt><dd>17</dd></div>
-          <div><dt>Repeated facts</dt><dd>0</dd></div>
-          <div><dt>Stories started while crossing a road</dt><dd>0</dd></div>
-          <div><dt>Left / right called correctly</dt><dd>100%</dd></div>
-          <div><dt>Average heading error</dt><dd>4.3°</dd></div>
-        </dl>
-        <p class="note">The 215 Rome facts were written from well-established sources, but this environment could not open the source pages to check them. Each needs a fact-check before anyone hears it.</p>
+        <table class="cmp">
+          <thead><tr><th></th><th>Rome</th><th>Mumbai</th></tr></thead>
+          <tbody>
+            <tr><td>Route</td><td>1.93 km</td><td>2.32 km</td></tr>
+            <tr><td>Places in pack</td><td>86</td><td>62</td></tr>
+            <tr><td>Sourced facts</td><td>215</td><td>144</td></tr>
+            <tr><td>Stories told</td><td>17</td><td>16</td></tr>
+            <tr><td>Repeated facts</td><td>0</td><td>0</td></tr>
+            <tr><td>Stories started while crossing</td><td>0</td><td>0</td></tr>
+            <tr><td>Left / right called correctly</td><td>100%</td><td>93.8%</td></tr>
+            <tr><td>Average heading error</td><td>4.3°</td><td>2.8°</td></tr>
+          </tbody>
+        </table>
+        <p class="note">The facts were written from well-established sources, but this environment could not open the source pages to check them. Each needs a fact-check before anyone hears it. Mumbai coordinates may be 30–60 m off until your first real walk corrects them.</p>
       </div>
     </div>
   </section>
