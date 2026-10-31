@@ -100,6 +100,14 @@ function colourway(st, sku, fins, title, sub, bg) {
   st.target.set(0, 22, 0); ttl(title, sub);
   return persp(16, [0, 80, 120 + n * 105], [0, 22, 0]);
 }
+S['colourways'] = (st) => { st.scene.background.set(0xD9D3C8); st.floor.material.color.set(0xD9D3C8);
+  const list = [['pebble','bone'],['pebble','ink'],['pebble','terracotta'],['square','sq-ink'],['square','sq-sand'],['atlas','at-ti'],['atlas','at-dlc']];
+  let x = -205; list.forEach(([sku, f], i) => { const w = sku === 'pebble' ? 42 : 54; x += w / 2;
+    const o = sku === 'pebble' ? G.buildPebble(PR, f, i === 0 ? { led: LED } : {}) : dev(sku, f);
+    const a = placeOnFloor(upright(o, 0, 0.15)); a.position.x = x; st.scene.add(a); x += w / 2 + 14; });
+  st.target.set(0, 22, 0); ttl('Colourways', 'Pebble: Bone · Ink · Terracotta  /  Square: Ink · Sand  /  Atlas: Titanium · Black DLC');
+  cap('Soft-touch PC-GF10 · anodised 6013 aluminium · Grade 5 titanium (bead-blast / DLC)');
+  return persp(16, [0, 120, 900], [0, 24, 0]); };
 S['colourways-pebble'] = (st) => { cap('Bone · Ink · Terracotta — 2K soft-touch PU over PC-GF10'); return colourway(st, 'pebble', ['bone', 'ink', 'terracotta'], 'Pebble colourways', 'Bone · Ink · Terracotta', 0xDDD6CA); };
 S['colourways-square'] = (st) => { cap('Ink · Sand — bead-blast + Type II anodise, diamond-cut chamfer, Terracotta Talk key'); return colourway(st, 'square', ['sq-ink', 'sq-sand'], 'Square colourways', 'Ink · Sand', 0xD9D3C8); };
 S['colourways-atlas'] = (st) => { cap('Bead-blasted titanium · Black DLC titanium — sapphire, ZrN brass-tone crown'); return colourway(st, 'atlas', ['at-ti', 'at-dlc'], 'Atlas colourways', 'Titanium · Black DLC', 0xCFC9BF); };

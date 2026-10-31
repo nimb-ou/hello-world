@@ -1,0 +1,44 @@
+[
+ {
+  "url": "industrial/render.html?shot=hero-pebble&w=2400&h=1600&frames=24",
+  "out": "industrial/renders/hero-pebble.png",
+  "width": 2400,
+  "height": 1600,
+  "waitFor": "window.__done===true"
+ },
+ {
+  "url": "industrial/render.html?shot=hero-square&w=2400&h=1600&frames=24",
+  "out": "industrial/renders/hero-square.png",
+  "width": 2400,
+  "height": 1600,
+  "waitFor": "window.__done===true"
+ },
+ {
+  "url": "industrial/render.html?shot=hero-atlas&w=2400&h=1600&frames=24",
+  "out": "industrial/renders/hero-atlas.png",
+  "width": 2400,
+  "height": 1600,
+  "waitFor": "window.__done===true"
+ },
+ {
+  "url": "industrial/render.html?shot=lineup&w=2400&h=1600&frames=24",
+  "out": "industrial/renders/lineup.png",
+  "width": 2400,
+  "height": 1600,
+  "waitFor": "window.__done===true"
+ },
+ {
+  "url": "industrial/render.html?shot=colourways&w=2400&h=1600&frames=24",
+  "out": "industrial/renders/colourways.png",
+  "width": 2400,
+  "height": 1600,
+  "waitFor": "window.__done===true"
+ },
+ {
+  "url": "industrial/render.html?shot=exploded-square&w=2400&h=1600&frames=24",
+  "out": "industrial/renders/exploded-square.png",
+  "width": 2400,
+  "height": 1600,
+  "waitFor": "window.__done===true"
+ }
+]
