@@ -1,6 +1,6 @@
 # ODM / Manufacturing and Supply Agreement: Term Sheet (TEMPLATE)
 
-> **TEMPLATE. NOT LEGAL ADVICE. NON-BINDING** except for the Confidentiality, Exclusivity-of-negotiation (if any) and Governing Law clauses. A lawyer experienced in Asian contract manufacturing must review this before signature. Used for selecting an ODM/EMS for LORE Pebble, Square and Atlas (candidate regions: Shenzhen/Dongguan CN; Vietnam; Malaysia/Penang; Taiwan; India (Noida/Chennai) under the PLI scheme). Volumes and prices are **planning estimates** to be replaced by the Hardware/Finance BOM.
+> **TEMPLATE. NOT LEGAL ADVICE. NON-BINDING** except for the Confidentiality, Exclusivity-of-negotiation (if any) and Governing Law clauses. A lawyer experienced in Asian contract manufacturing must review this before signature. Used for selecting an ODM/EMS for LORE Pebble, Square and Atlas (**final assembly in Vietnam or Malaysia per founder decision D13**; Shenzhen acceptable for proto/EVT only; India a later alternative). Volumes and prices are **planning estimates** to be replaced by the Hardware/Finance BOM.
 
 | # | Term | Proposed position (LORE) | Notes / fallback |
 |---|---|---|---|
@@ -10,7 +10,7 @@
 | 4 | Phases & dates | EVT 50 units (Q1 2027), DVT 300 (Q2 2027), PVT 1,000 (Q3 2027), **MP from Sep 2027; first 5,000 units shipped Q4 2027** | Gate reviews with exit criteria (yield, test coverage, certification pass) |
 | 5 | NRE | Fixed NRE quote per phase: est. **$80k–$250k** (EE/ME support, test fixtures, firmware integration support, programme management) | Pay 30/40/30 on milestones; NRE **refundable/creditable** against unit price after [50k] units |
 | 6 | Tooling (moulds, CNC fixtures) | **Paid by LORE; owned by LORE**; tagged "Property of LORE Labs, Inc."; asset register + photos; insured by ODM; **returned on demand within 15 days**; ODM may not use tooling for others | Est. $40k–$150k (Pebble PC/GF moulds, Square alu CNC fixtures, Atlas titanium) |
-| 7 | Pricing | Unit price per BOM + MVA (manufacturing value-add) + yield loss + packaging + margin; **open-book BOM** costing; quote in USD, FOB [Shenzhen/Yantian] or FCA factory | MVA target ≤ 8–12% of ex-works price (estimate); annual cost-down **3–5%** |
+| 7 | Pricing | Unit price per BOM + MVA (manufacturing value-add) + yield loss + packaging + margin; **open-book BOM** costing; quote in USD, FOB [Hai Phong / Port Klang / Penang] or FCA factory | MVA target ≤ 8–12% of ex-works price (estimate); annual cost-down **3–5%** |
 | 8 | Price review | Quarterly; component price changes beyond ±5% shared at cost with evidence | Currency: USD fixed; CNY swings > ±5% trigger review |
 | 9 | Forecast & POs | Rolling 12-month forecast, monthly updates; **months 1–2 frozen (binding)**, months 3–4 flexible ±25%, 5–12 non-binding | **LORE liability for long-lead components (LTE module, SoC, AMOLED, eSIM eUICC, sapphire)**: only for parts on an agreed **LLT/NCNR list** ordered against the forecast |
 | 10 | MOQ | Per SKU per colour: Pebble 1,000; Square 1,000; Atlas 300 (estimate) | Negotiate colour-split flexibility |
@@ -28,6 +28,7 @@
 | 22 | Capacity & continuity | Capacity reservation for Kickstarter MP ramp; **business continuity plan**; second line; notification of disasters/shortages within 48 hours | Right to dual-source (move tooling to a second ODM) |
 | 23 | Exclusivity | **None** on LORE's side. ODM may not make **competing** location-narration travel devices for 2 years | |
 | 24 | Term & termination | 3 years, auto-renew; termination for convenience by LORE on 6 months' notice (buy LLT inventory at cost); for breach (30-day cure); on insolvency/change of control of the ODM | **Transition assistance**: tooling, fixtures, test software, documentation handed over |
+| 24a | **Country of origin** | ODM warrants **VN/MY origin** under US substantial-transformation rules and EU non-preferential origin rules. It provides a process dossier, bill of materials by origin and certificates of origin, and cooperates with CBP ruling requests and EAPA inquiries. **Any transshipment is a material breach**, and the ODM indemnifies duties/penalties | D13 |
 | 25 | Governing law & disputes | **English law or Singapore law; SIAC or HKIAC arbitration** (Singapore/HK seat; New York Convention enforceable in mainland China via the HK–mainland arrangement for HKIAC) | Avoid US courts (judgments are hard to enforce in China) |
 | 26 | Anti-bribery & sanctions | FCPA/UK Bribery Act; export controls (EAR) on encryption parts; OFAC/BIS entity-list screening of sub-suppliers | |
 | 27 | Data | Device serials/IMEIs/EIDs are confidential; any test-time user data prohibited; secure provisioning of keys (HSM, key injection in a secure room) | Firmware signing keys **never** leave LORE's HSM; ODM gets only per-device provisioning |

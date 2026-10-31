@@ -14,12 +14,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FIN = os.path.dirname(HERE)
 PY = sys.executable
 CASES = [
-    ("Base (Research prices, hardware/bom COGS)", {}),
-    ("Square MSRP $349 (CFO recommendation)", {"msrp_sq": 349, "ks_sq": 259, "pre_sq": 299}),
-    ("Square value-engineered to $185 FOB (DRAM/LTE Cat-1bis)", {"bom_sq": 185.0}),
-    ("Square $349 + VE $185 FOB", {"msrp_sq": 349, "ks_sq": 259, "pre_sq": 299, "bom_sq": 185.0}),
-    ("Atlas back to $549", {"msrp_atl": 549, "ks_atl": 405, "pre_atl": 459}),
-    ("Pebble full spec (on-device 1B, $125 FOB)", {"bom_peb": 125.06}),
+    ("Base (Research prices, hardware COGS, D11 Square cost-down to $185 ex-NRE from Jul-28)", {}),
+    ("Square fallback price $329 (D11 trigger)", {"msrp_sq": 329, "ks_sq": 226, "pre_sq": 285}),
+    ("Square cost-down fails: stays at $227 ex-NRE", {"sq_index": 1.0}),
+    ("Square cost-down fails + price $329", {"sq_index": 1.0, "msrp_sq": 329, "pre_sq": 285}),
+    ("Square hits D11 target: $168 ex-NRE (<=$240 incl. NRE) from Jul-28", {"sq_index": {str(i): v for i, v in [(20, .74), (21, .74), (22, .74), (23, .74), (24, .74), (25, .74), (26, .73), (27, .71), (28, .69)]}}),
+    ("Atlas back to $549", {"msrp_atl": 549, "pre_atl": 459}),
     ("China FATP tariff (+20% of FOB)", {"freight_duty": 0.21}),
     ("Explorer attach -25% (all SKUs)", {"attach_peb": 0.21, "attach_sq": 0.30, "attach_atl": 0.41}),
     ("Churn 8%/mo instead of 6%", {"churn": 0.08}),
@@ -27,6 +27,7 @@ CASES = [
     ("eSIM data $3.00/GB instead of $1.60", {"data_cost_gb": 3.0}),
     ("Retail margin 45% instead of 38%", {"retail_margin": 0.45}),
     ("DTC promo discount 12% instead of 6%", {"dtc_disc": 0.12}),
+    ("Kickstarter half of base (2,300 backers)", {"ks_units": 2300, "pre_units": 350}),
 ]
 
 

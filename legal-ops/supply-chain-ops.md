@@ -16,9 +16,9 @@ Owner: COO. Partners: Hardware (BOM, NPI), Finance (cash and inventory), GTM (Ki
 | PVT | Q3 2027 | 1,000 | ODM MP line | Line yield ≥95% FPY; test-station validation; packaging drop (ISTA 3A); certification samples for retail |
 | **MP** | **from Sep 2027; 5k units shipped Q4 2027** | 5,000 → 20k/yr | ODM (+ second source by 2028) | Weekly build reviews; AQL inspection; DG shipping |
 
-**ODM selection process (Nov 2026–Jan 2027):** RFI to 8 → RFQ to 4 → factory audits (2) → selection by **31 Jan 2027**. Scorecard in the term sheet. **Tariff hedge:** shortlist at least one ODM with a **Vietnam/Malaysia/Thailand or India** final-assembly plant (US Section 301 duties apply to China origin; see `compliance-matrix.md` §4).
+**ODM selection process (Nov 2026–Jan 2027):** RFI to 8 → RFQ to 4 → factory audits (2) → selection by **31 Jan 2027**. Scorecard in the term sheet. **Decision D13: final assembly in Vietnam/Malaysia.** Shortlist ODM/EMS partners with VN plants (Bac Ninh/Bac Giang/Hai Phong) or MY plants (Penang/Johor). Many Shenzhen ODMs run VN lines. Do PCBA SMT, final assembly, test and firmware provisioning **in-country** to support substantial transformation (no US Section 301; see `compliance-matrix.md` §4). Plan for longer component lead times (China-sourced parts move to VN/MY) and **+5–10% MVA vs Shenzhen (e) [verify]**. Proto/EVT may still be built in Shenzhen.
 
-**Critical long-lead parts (place orders by DVT):** LTE Cat-4 module (16–26 weeks), application SoC/NPU, 1.6" AMOLED (custom FPC), eUICC, GNSS L1/L5 chip, Li-ion cells (custom size), sapphire (Atlas), titanium bar stock. **Kickstarter cash funds the LLT buys.**
+**Critical long-lead parts (place orders by DVT):** LTE Cat-1bis module for Square (D11) / Atlas LTE module (16–26 weeks), application SoC/NPU (Square/Atlas only; Pebble Lite has no on-device LLM per D10), 1.6" AMOLED (custom FPC), eUICC, GNSS L1/L5 chip, Li-ion cells (custom size), sapphire (Atlas), titanium bar stock. **Kickstarter cash funds the LLT buys.**
 
 **Quality system:** a lightweight QMS from DVT (Notion + Linear): specifications control, ECN log, FAI reports, AQL plans, 8D for failures, supplier corrective-action requests (SCAR). Hire a **Quality/Supply Chain Manager in China/Taiwan** (or use a sourcing agent at 3–5%) by DVT (see `hr-hiring.md`).
 
@@ -27,7 +27,7 @@ Owner: COO. Partners: Hardware (BOM, NPI), Finance (cash and inventory), GTM (Ki
 ## 2. Logistics architecture
 
 ```
-ODM (Shenzhen or VN)  ──ocean FCL/LCL (batteries OK as UN3481 under IMDG SP188)──►  US 3PL (CA or NJ/PA)  ──► US/CA backers
+ODM/EMS (Vietnam or Malaysia, per D13)  ──ocean FCL/LCL (batteries OK as UN3481 under IMDG SP188)──►  US 3PL (CA or NJ/PA)  ──► US/CA backers
           │                                                                         ├─► EU 3PL (NL/DE) ──► EU backers (DDP, OSS VAT)
           │──air freight (UN3481 PI 967 Sec II, ≤30% SoC recommended)──►            ├─► UK 3PL ──► UK backers (DDP)
           └─► APAC 3PL (HK/SG/JP) ──► JP/AU/Asia backers                              
@@ -159,7 +159,7 @@ Example: 5,000 units × blended ASP $260 = $1.3M revenue → **$45.5k reserve** 
 5. **How accurate is it?** Usually within a few metres outdoors. Accuracy drops in very narrow streets, indoors and underground. If LORE isn't sure, it says "nearby" instead of "on your right".
 6. **Are the stories true?** *LORE's story engine is built to use checked facts with sources, and legends are flagged as legends. It's AI, so mistakes can happen. Say "that's wrong" and our editors review it.*
 7. **Will it talk while I cross the road?** LORE tries to stay quiet at crossings, when you stop to talk to someone, or when you're moving fast. *It can't detect traffic. Always look for yourself.*
-8. **How long does the battery last?** Pebble about 1.5 days, Square about 2 days, Atlas about 3 days in typical use (targets; final figures at launch).
+8. **How long does the battery last?** Pebble about 1.5 days, Square about 2 days, Atlas **2+ days** (D12) in typical use (targets; final tested figures at launch).
 9. **Does it work without signal?** Yes. Download City Packs (maps, routes, stories and on-device AI) before you go. Live info and "ask anything" need data.
 10. **Which countries does the data work in?** 150+ countries via our connectivity partner. See lore.travel/coverage.
 11. **What does LORE Pass cost?** Free (3 cities offline), Explorer $9.99/month (unlimited live AI, 1 GB data, all City Packs) or Trip Pass $29 for 14 days with 5 GB. New devices include 3 months of Explorer.

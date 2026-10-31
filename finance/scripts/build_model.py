@@ -458,6 +458,9 @@ def by_period(monthly_map=None, annual=None, default=0.0, year_default=None):
 
 
 def ts_in(name, label, vals, fmt=F_NUM, basis=""):
+    if name in OVERRIDES:  # scalar -> all periods; dict {period_index: value}
+        o = OVERRIDES[name]
+        vals = [o] * NP if not isinstance(o, dict) else [o.get(str(i), v) for i, v in enumerate(vals)]
     r = _ar[0]
     asm.cell(r, 1, label)
     asm.cell(r, 2, name).font = NOTE
