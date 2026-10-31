@@ -305,7 +305,7 @@ export function buildSlate(PR, sku = 'square', finishKey = 'sq-ink', opts = {}) 
       { t: `${S.name.replace('LORE ', '')} · ${S.code}`, y: -16.6, size: 1.1, weight: 500, track: 0.2 },
       { t: 'Designed by LORE Labs · Model A26' + (sku === 'atlas' ? '20' : '10') + ' · IMEI on device', y: -18.8, size: 0.75 },
       { t: sku === 'atlas' ? 'Grade 5 titanium · sapphire crystal' : '6013 aluminium · Gorilla Glass Victus 2', y: 14.0, size: 0.8 }] });
-  const backMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, ...bt, metalness: 1, roughness: 1, clearcoat: F.backClear || 0.15, clearcoatRoughness: 0.3 });
+  const backMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, ...bt, metalness: 1, roughness: 1, clearcoat: F.backClear || 0.15, clearcoatRoughness: 0.3, side: THREE.DoubleSide });
   const backProf = [];
   for (let k = 0; k <= 30; k++) { const s = k / 30; backProf.push({ o: 0, s, z: -(zb - 0.12) * (1 - s * s) - 0.12 }); }
   backProf.push({ o: 0, s: 1, z: 0.05 });
@@ -416,7 +416,7 @@ export function buildSlateExploded(PR, sku, finish, opts = {}) {
     sku === 'atlas' ? 'Unibody · Grade 5 titanium, CNC 5-axis' : 'Unibody · 6013-T6 aluminium, CNC 5-axis', '4 nano-moulded antenna splits · USB-C (IPx7 receptacle)');
   const crown = find('crown')[0], key = find('talk_key')[0];
   parts.remove(crown); parts.remove(key); fr.add(crown, key);
-  crown.position.x += gap * 1.0; key.position.x += gap * 1.0;
+  crown.position.x += gap * 0.45; key.position.x += gap * 0.45;
   // midframe + display + glass
   const mid = box(46, 46, 0.9, 8, M.plasticDark(), 'midframe_pc_gf'); mid.position.z = 0;
   layer([mid], gap * 2.0, 'Midframe · PC-GF30 + Mg stiffener', 'display seal: 0.25 mm PSA gasket');

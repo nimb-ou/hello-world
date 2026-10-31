@@ -90,7 +90,7 @@ S['lineup'] = (st) => { st.scene.background.set(BONE); st.floor.material.color.s
   const items = [[G.buildPebble(PR, 'terracotta', { led: LED }), -78], [dev('square', 'sq-ink'), 0], [dev('atlas', 'at-ti'), 84]];
   for (const [o, x] of items) { const a = placeOnFloor(upright(o, 0, 0.16)); a.position.x = x; st.scene.add(a); }
   st.target.set(0, 25, 0); st.keyDir.set(-0.5, 0.9, 0.7).normalize();
-  ttl('The LORE family', 'Pebble · Square · Atlas'); cap('$149 · $299 · $549 target retail · shown at 1:1 relative scale');
+  ttl('The LORE family', 'Pebble · Square · Atlas'); cap('$149 · $299 · $599 target retail · shown at 1:1 relative scale');
   return persp(16, [0, 110, 620], [0, 24, 0]); };
 function colourway(st, sku, fins, title, sub, bg) {
   st.scene.background.set(bg); st.floor.material.color.set(bg);
@@ -107,7 +107,7 @@ S['colourways'] = (st) => { st.scene.background.set(0xD9D3C8); st.floor.material
     const a = placeOnFloor(upright(o, 0, 0.15)); a.position.x = x; st.scene.add(a); x += w / 2 + 14; });
   st.target.set(0, 22, 0); ttl('Colourways', 'Pebble: Bone · Ink · Terracotta  /  Square: Ink · Sand  /  Atlas: Titanium · Black DLC');
   cap('Soft-touch PC-GF10 · anodised 6013 aluminium · Grade 5 titanium (bead-blast / DLC)');
-  return persp(16, [0, 120, 900], [0, 24, 0]); };
+  return persp(16, [0, 115, 1300], [0, 30, 0]); };
 S['colourways-pebble'] = (st) => { cap('Bone · Ink · Terracotta — 2K soft-touch PU over PC-GF10'); return colourway(st, 'pebble', ['bone', 'ink', 'terracotta'], 'Pebble colourways', 'Bone · Ink · Terracotta', 0xDDD6CA); };
 S['colourways-square'] = (st) => { cap('Ink · Sand — bead-blast + Type II anodise, diamond-cut chamfer, Terracotta Talk key'); return colourway(st, 'square', ['sq-ink', 'sq-sand'], 'Square colourways', 'Ink · Sand', 0xD9D3C8); };
 S['colourways-atlas'] = (st) => { cap('Bead-blasted titanium · Black DLC titanium — sapphire, ZrN brass-tone crown'); return colourway(st, 'atlas', ['at-ti', 'at-dlc'], 'Atlas colourways', 'Titanium · Black DLC', 0xCFC9BF); };
@@ -134,7 +134,7 @@ function explodedShot(st, build, title, sub, span, bg = 0xE3DDD3) {
       const b = new THREE.Box3().setFromObject(L); const c = b.getCenter(new THREE.Vector3());
       const right = new THREE.Vector3(b.max.x, c.y, c.z);
       const p = project(cam, c, W, H), pr = project(cam, right, W, H);
-      const x0 = Math.max(pr.x, p.x) + 20, xl = W * 0.66;
+      const x0 = Math.max(pr.x, p.x) + 20, xl = W * 0.70;
       svg += `<line x1="${x0}" y1="${p.y}" x2="${xl - 14}" y2="${p.y}" stroke="#8a857c" stroke-width="1.5"/><circle cx="${x0}" cy="${p.y}" r="4" fill="#C4623A"/>`;
       ov.insertAdjacentHTML('beforeend', `<div class="lab" style="left:${xl}px;top:${p.y - W / 160}px"><b>${L.userData.label}</b>${L.userData.sub ? `<span>${L.userData.sub}</span>` : ''}</div>`);
     }

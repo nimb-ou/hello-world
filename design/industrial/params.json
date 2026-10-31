@@ -114,8 +114,8 @@
     "code": "A1",
     "name": "LORE Atlas",
     "inherits": "square",
-    "thickness_total": 12.4,
-    "frame_h": 11.45,
+    "thickness_total": 13.5,
+    "frame_h": 12.55,
     "glass_t": 0.8,
     "back_bulge": 0.8,
     "camera_y": 19.0,
@@ -126,7 +126,8 @@
     "finishes": [
       "titanium",
       "dlc"
-    ]
+    ],
+    "_note": "D12: Atlas thickened to 13.5 mm for a bigger cell (2+ days claim)"
   },
   "densities": {
     "PC_GF10": 1.27,
