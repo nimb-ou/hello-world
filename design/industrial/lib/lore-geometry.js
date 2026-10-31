@@ -292,7 +292,7 @@ export function buildSlate(PR, sku = 'square', finishKey = 'sq-ink', opts = {}) 
   // display active area (466x466 AMOLED) as an emissive plane on the glass
   const a = S.display_active;
   const dg = normalizeUV(new THREE.ShapeGeometry(roundedRectShape(a, a, S.display_r), 24));
-  const screenMat = new THREE.MeshPhysicalMaterial({ color: 0x000000, roughness: 0.03, clearcoat: 1, clearcoatRoughness: 0.02,
+  const screenMat = new THREE.MeshPhysicalMaterial({ color: 0x000000, roughness: 0.04, ior: sku === 'atlas' ? 1.77 : 1.52, specularIntensity: sku === 'atlas' ? 0.45 : 0.55, envMapIntensity: 0.6,
     emissive: 0xffffff, emissiveIntensity: opts.screenOn === false ? 0 : (opts.screenIntensity ?? 1.0), emissiveMap: opts.screenTexture || null });
   if (!opts.screenTexture) screenMat.emissive.set(0x000000);
   const screen = named(new THREE.Mesh(dg, screenMat), 'display_466', 'screen');
@@ -354,6 +354,7 @@ export function buildSlate(PR, sku = 'square', finishKey = 'sq-ink', opts = {}) 
   parts.add(named(onSide(ol, ia, zMid, hole(1.8, hm)), 'tether_hole', 'port'));
   // Atlas: Glance camera + privacy LED in the top glass band
   if (sku === 'atlas') {
+    screenMat.iridescence = 0.25; screenMat.iridescenceIOR = 1.3; screenMat.iridescenceThicknessRange = [180, 320];
     const zt = H + S.glass_proud + 0.006;
     const ringG = new THREE.RingGeometry(S.camera_lens_d / 2 + 0.25, S.camera_window_d / 2, 96);
     const ring = named(new THREE.Mesh(ringG, M.steelPolish()), 'camera_trim', 'camera');
@@ -411,20 +412,20 @@ export function buildSlateExploded(PR, sku, finish, opts = {}) {
   if (sku === 'atlas') { const cam = box(6.5, 6.5, 4.2, 0.8, M.plasticBlack(), 'camera_module'); cam.position.set(0, 18.5, 0.8); pcb.add(cam); }
   layer([pcb], -gap * 0.9, 'Main logic board · 10-layer HDI, SiP + LTE Cat-4 modem', sku === 'atlas' ? 'Glance camera module · 1511 speaker · Ø8 LRA' : '1511 speaker box (ePTFE vent) · Ø8 LRA haptic');
   // frame with buttons
-  const fr = layer([...find('frame_unibody'), ...find('diamond_cut_chamfer'), ...find('antenna_split'), ...parts.children.filter((c) => c.userData.role === 'port')], gap * 0.4,
+  const fr = layer([...find('frame_unibody'), ...find('diamond_cut_chamfer'), ...find('antenna_split'), ...parts.children.filter((c) => c.userData.role === 'port')], gap * 0.2,
     sku === 'atlas' ? 'Unibody · Grade 5 titanium, CNC 5-axis' : 'Unibody · 6013-T6 aluminium, CNC 5-axis', '4 nano-moulded antenna splits · USB-C (IPx7 receptacle)');
   const crown = find('crown')[0], key = find('talk_key')[0];
   parts.remove(crown); parts.remove(key); fr.add(crown, key);
   crown.position.x += gap * 1.0; key.position.x += gap * 1.0;
   // midframe + display + glass
   const mid = box(46, 46, 0.9, 8, M.plasticDark(), 'midframe_pc_gf'); mid.position.z = 0;
-  layer([mid], gap * 1.5, 'Midframe · PC-GF30 + Mg stiffener', 'display seal: 0.25 mm PSA gasket');
+  layer([mid], gap * 2.0, 'Midframe · PC-GF30 + Mg stiffener', 'display seal: 0.25 mm PSA gasket');
   const disp = new THREE.Group();
   const panel = box(31.5, 31.5, 0.9, 6, M.plasticBlack(), 'display_module'); disp.add(panel);
   const flex = box(10, 9, 0.12, 1, M.flex(), 'display_flex'); flex.position.set(0, -20, 0.2); disp.add(flex);
-  layer([disp], gap * 2.4, '1.6" AMOLED · 466 × 466 · 412 ppi · LTPO 1–60 Hz', 'peak 1,500 nits (outdoor), AOD');
+  layer([disp], gap * 2.75, '1.6" AMOLED · 466 × 466 · 412 ppi · LTPO 1–60 Hz', 'peak 1,500 nits (outdoor), AOD');
   const glassObjs = parts.children.filter((c) => ['cover_glass', 'cover_sapphire', 'display_466', 'camera_trim', 'camera_lens', 'privacy_led'].includes(c.name) || (c.geometry && c.geometry.type === 'CircleGeometry' && c.position.z > S.frame_h));
-  const gl = layer(glassObjs, gap * 3.3, sku === 'atlas' ? 'Cover · sapphire 0.8 mm, AR + oleophobic' : 'Cover · Gorilla Glass Victus 2, 0.7 mm 2.5D', 'black ink mask, ALS window');
+  const gl = layer(glassObjs, gap * 3.55, sku === 'atlas' ? 'Cover · sapphire 0.8 mm, AR + oleophobic' : 'Cover · Gorilla Glass Victus 2, 0.7 mm 2.5D', 'black ink mask, ALS window');
   for (const o of glassObjs) o.position.z -= S.frame_h; // keep glass close to its layer origin
   g.add(parts);
   g.userData = { ...dev.userData, exploded: true };
@@ -439,16 +440,16 @@ export function buildPebbleExploded(PR, finish, opts = {}) {
   const g = new THREE.Group();
   const take = (pred) => parts.children.filter(pred);
   const layer = (objs, z, lab, sub) => { const grp = new THREE.Group(); for (const o of objs) { parts.remove(o); grp.add(o); } grp.position.z = z; label(grp, lab, sub); g.add(grp); return grp; };
-  layer(take((c) => c.name === 'housing_back' || c.name === 'tether_hole'), -gap * 2.6, 'Back housing · PC-GF10, 2K soft-touch PU', 'LORE Mount insert (316L) · N52 ring magnet · 2× Au pogo');
-  const bat = box(30, 26, 5.2, 4, M.pouch(), 'battery'); layer([bat], -gap * 1.5, 'Battery · 3.85 V 600 mAh Li-ion polymer (est.)', '');
+  layer(take((c) => c.name === 'housing_back' || c.name === 'tether_hole'), -gap * 3.0, 'Back housing · PC-GF10, 2K soft-touch PU', 'LORE Mount insert (316L) · N52 ring magnet · 2× Au pogo');
+  const bat = box(30, 26, 5.2, 4, M.pouch(), 'battery'); layer([bat], -gap * 1.8, 'Battery · 3.85 V 600 mAh Li-ion polymer (est.)', '');
   const pcb = new THREE.Group(); const board = box(32, 30, 0.8, 8, M.pcb(), 'main_pcb'); pcb.add(board);
   const can = box(12, 11, 1.3, 0.6, M.shield(), 'shield_soc'); can.position.set(-4, 3, 0.8); pcb.add(can);
   const spk = box(15, 11, 3, 1.2, M.plasticBlack(), 'speaker'); spk.position.set(5, -8, 0.8); pcb.add(spk);
   const ant = box(10, 10, 1.6, 0.4, M.ceramicWhite(), 'gnss_patch'); ant.position.set(8, 8, 0.8); pcb.add(ant);
-  layer([pcb], -gap * 0.4, 'Logic board · nRF54H20-class BLE SoC + NPU co-processor', 'L1+L5 GNSS · 9-axis IMU · 1511 speaker');
-  layer(take((c) => c.name === 'housing_top_shell' || c.userData.role === 'port'), gap * 0.6, 'Top housing · PC-GF10, 2K soft-touch PU', 'ePTFE mic + speaker membranes (IP67)');
-  layer(take((c) => c.name === 'led_ring_lightguide'), gap * 1.6, 'Light guide · frosted PMMA, 12× RGB LED', 'Talk-button travel 0.35 mm, metal dome 2.4 N');
-  layer(take((c) => c.name === 'talk_button_cap'), gap * 2.4, 'Talk cap · floating, full-face press', '');
+  layer([pcb], -gap * 0.6, 'Logic board · nRF54H20-class BLE SoC + NPU co-processor', 'L1+L5 GNSS · 9-axis IMU · 1511 speaker');
+  layer(take((c) => c.name === 'housing_top_shell' || c.userData.role === 'port'), gap * 0.7, 'Top housing · PC-GF10, 2K soft-touch PU', 'ePTFE mic + speaker membranes (IP67)');
+  layer(take((c) => c.name === 'led_ring_lightguide'), gap * 3.2, 'Light guide · frosted PMMA, 12× RGB LED', 'Talk-button travel 0.35 mm, metal dome 2.4 N');
+  layer(take((c) => c.name === 'talk_button_cap'), gap * 4.3, 'Talk cap · floating, full-face press', '');
   g.add(parts);
   const outer = new THREE.Group(); outer.add(g); outer.position.z = 0; outer.userData = { ...dev.userData, exploded: true }; outer.name = dev.name + ' (exploded)';
   return outer;
@@ -496,9 +497,10 @@ export function buildLanyard(PR, { length = 420, color = 0x7A4A2C } = {}) {
   const tab = box(10, 18, 2.4, 3, M.leather(color), 'lanyard_yoke_leather'); tab.position.set(0, 14, -1.2); yoke.add(tab);
   g.add(yoke);
   const ring = named(new THREE.Mesh(new THREE.TorusGeometry(4.2, 0.9, 24, 64), M.brass()), 'brass_ring', 'accessory'); ring.position.set(0, 26, 0); ring.rotation.y = Math.PI / 2; g.add(ring);
-  const L = length, pts = [];
-  for (let k = 0; k <= 24; k++) { const t = k / 24, a = (t - 0.5) * Math.PI * 1.9; pts.push(new THREE.Vector3(Math.sin(a) * 70 * Math.sin(t * Math.PI) * 0.9, 30 + (1 - Math.cos(a)) * L * 0.1 + Math.sin(t * Math.PI) * L * 0.42, -6 * Math.sin(t * Math.PI))); }
-  g.add(tubeAlong(pts, 9, 2.2, M.leather(color), 'lanyard_strap'));
+  for (const sx of [-1, 1]) {
+    const pts = [new THREE.Vector3(sx * 1.5, 26, 0), new THREE.Vector3(sx * 2.2, 40, -0.5), new THREE.Vector3(sx * 2.6, 56, -1), new THREE.Vector3(sx * 12, 140, -4), new THREE.Vector3(sx * 34, 280, -10), new THREE.Vector3(sx * 58, length, -16)];
+    g.add(tubeAlong(pts, 2.2, 9, M.leather(color), 'lanyard_strap'));
+  }
   const slider = box(12, 8, 5, 2, M.brass(), 'brass_slider'); slider.position.set(0, 52, 0); g.add(slider);
   return g;
 }
@@ -621,7 +623,7 @@ export function buildHand(color = 0xD8CDBF) {
   }
   const thumb = new THREE.Mesh(new THREE.CapsuleGeometry(10.5, 48, 12, 32), m);
   thumb.position.set(-52, 2, 11); thumb.rotation.z = 0.85; g.add(named(thumb, 'thumb', 'prop'));
-  const wrist = new THREE.Mesh(new THREE.CapsuleGeometry(24, 40, 12, 48), m);
-  wrist.position.set(0, -78, 12); wrist.scale.set(1.45, 1, 0.6); g.add(named(wrist, 'wrist', 'prop'));
+  const wrist = new THREE.Mesh(new THREE.CapsuleGeometry(22, 40, 12, 48), m);
+  wrist.position.set(0, -72, 12); wrist.scale.set(1.25, 1, 0.55); g.add(named(wrist, 'wrist', 'prop'));
   return g;
 }

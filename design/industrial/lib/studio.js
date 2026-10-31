@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-export function makeStudio({ width, height, bg = 0xE7E1D7, env = 0.85, exposure = 1.0, sweep = true }) {
+export function makeStudio({ width, height, bg = 0xE7E1D7, env = 0.6, exposure = 0.92, sweep = true }) {
   const canvas = document.createElement('canvas');
   canvas.width = width; canvas.height = height;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true, alpha: false });
@@ -31,18 +31,18 @@ export function makeStudio({ width, height, bg = 0xE7E1D7, env = 0.85, exposure 
       p.setXYZ(i, p.getX(i), y, z - 300);
     }
     geo.computeVertexNormals();
-    floor = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: bg, roughness: 0.95, metalness: 0 }));
+    floor = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: bg, roughness: 0.95, metalness: 0, envMapIntensity: 0.35 }));
     floor.receiveShadow = true; scene.add(floor);
   }
-  const key = new THREE.DirectionalLight(0xfff4e8, 2.2);
+  const key = new THREE.DirectionalLight(0xfff4e8, 1.8);
   key.castShadow = true; key.shadow.mapSize.set(4096, 4096);
-  const sc = key.shadow.camera; sc.left = -260; sc.right = 260; sc.top = 260; sc.bottom = -260; sc.near = 10; sc.far = 3000;
+  const sc = key.shadow.camera; sc.left = -260; sc.right = 260; sc.top = 260; sc.bottom = -260; sc.near = 10; sc.far = 3000; sc.updateProjectionMatrix();
   key.shadow.bias = -0.0002; key.shadow.normalBias = 0.15;
   scene.add(key, key.target);
   const fill = new THREE.DirectionalLight(0xe8f0ff, 0.35); scene.add(fill);
   const rim = new THREE.DirectionalLight(0xffffff, 0.0); scene.add(rim);
-  const sky = new THREE.DirectionalLight(0xffffff, 0.6); sky.castShadow = true; sky.shadow.mapSize.set(2048, 2048);
-  Object.assign(sky.shadow.camera, { left: -260, right: 260, top: 260, bottom: -260, near: 10, far: 3000 }); sky.shadow.bias = -0.0003; sky.shadow.normalBias = 0.2;
+  const sky = new THREE.DirectionalLight(0xffffff, 0.45); sky.castShadow = true; sky.shadow.mapSize.set(2048, 2048);
+  Object.assign(sky.shadow.camera, { left: -260, right: 260, top: 260, bottom: -260, near: 10, far: 3000 }); sky.shadow.camera.updateProjectionMatrix(); sky.shadow.bias = -0.0003; sky.shadow.normalBias = 0.2;
   scene.add(sky, sky.target);
   return { canvas, renderer, scene, key, fill, rim, sky, floor,
     keyDir: new THREE.Vector3(-0.55, 1.0, 0.65).normalize(), keySpread: 0.12, target: new THREE.Vector3() };

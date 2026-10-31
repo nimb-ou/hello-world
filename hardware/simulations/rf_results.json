@@ -1,0 +1,38 @@
+{
+ "Phone reference": {
+  "LTE_MAPL_low_band_dB": 133.4,
+  "LTE_MAPL_mid_band_dB": 135.4,
+  "GNSS_L1_CN0_dBHz_open_sky_min_signal": 37.5,
+  "GNSS_L5_CN0_dBHz_open_sky_min_signal": 37.6,
+  "BT_to_earbud_margin_dB_1m_through_body": 37.8,
+  "NTN_uplink_CN0_dBHz": 37.3
+ },
+ "Pebble (PC-GF)": {
+  "GNSS_L1_CN0_dBHz_open_sky_min_signal": 35.5,
+  "GNSS_L5_CN0_dBHz_open_sky_min_signal": 35.6,
+  "BT_to_earbud_margin_dB_1m_through_body": 36.8
+ },
+ "Square (Al + NMT splits)": {
+  "LTE_MAPL_low_band_dB": 129.4,
+  "LTE_MAPL_mid_band_dB": 132.4,
+  "GNSS_L1_CN0_dBHz_open_sky_min_signal": 33.5,
+  "GNSS_L5_CN0_dBHz_open_sky_min_signal": 33.6,
+  "BT_to_earbud_margin_dB_1m_through_body": 35.8,
+  "LTE_low_band_cell_range_vs_phone": 0.77
+ },
+ "Atlas (Ti + ceramic back)": {
+  "LTE_MAPL_low_band_dB": 128.4,
+  "LTE_MAPL_mid_band_dB": 131.4,
+  "GNSS_L1_CN0_dBHz_open_sky_min_signal": 32.5,
+  "GNSS_L5_CN0_dBHz_open_sky_min_signal": 32.6,
+  "BT_to_earbud_margin_dB_1m_through_body": 34.8,
+  "NTN_uplink_CN0_dBHz": 34.3,
+  "LTE_low_band_cell_range_vs_phone": 0.72
+ },
+ "thresholds": {
+  "GNSS_tracking_dBHz": 28,
+  "GNSS_acquisition_dBHz": 33,
+  "NTN_single_tone_3k75_0dB_SNR_dBHz": 35.7,
+  "BT_margin_target_dB": 15
+ }
+}

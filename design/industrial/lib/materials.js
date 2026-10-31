@@ -36,11 +36,11 @@ export const FINISHES = {
 
   // ---------------- Square: 6013-T6 aluminium, bead-blast + Type II anodise; diamond-cut chamfer
   'sq-ink': { label: 'Ink', sku: 'square',
-    frame: () => blasted({ color: 0x3A3E45, metalness: 1, roughness: 0.42 }, 0.35),
+    frame: () => blasted({ color: 0x3B3C40, metalness: 1, roughness: 0.42 }, 0.35),
     chamfer: () => P({ color: 0x80858E, metalness: 1, roughness: 0.1 }),
     back: '#1C1E22', backRough: 0.5, backText: 'rgba(140,145,152,0.9)',
     split: 0x15171a, key: () => blasted({ color: 0xC4623A, metalness: 1, roughness: 0.38 }, 0.3),
-    crown: () => blasted({ color: 0x3A3E45, metalness: 1, roughness: 0.32 }, 0.2) },
+    crown: () => blasted({ color: 0x3B3C40, metalness: 1, roughness: 0.32 }, 0.2) },
   'sq-sand': { label: 'Sand', sku: 'square',
     frame: () => blasted({ color: 0xCDBDA3, metalness: 1, roughness: 0.42 }, 0.35),
     chamfer: () => P({ color: 0xF0E4D0, metalness: 1, roughness: 0.1 }),
@@ -64,10 +64,10 @@ export const FINISHES = {
 };
 
 export const M = {
-  glass: () => P({ color: 0x050607, roughness: 0.03, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.02, ior: 1.52, specularIntensity: 1 }),
-  sapphire: () => P({ color: 0x040506, roughness: 0.02, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.01, ior: 1.77, specularIntensity: 1,
+  glass: () => P({ color: 0x050607, roughness: 0.04, metalness: 0, ior: 1.52, specularIntensity: 0.55, envMapIntensity: 0.6 }),
+  sapphire: () => P({ color: 0x040506, roughness: 0.03, metalness: 0, ior: 1.77, specularIntensity: 0.45, envMapIntensity: 0.6,
     iridescence: 0.25, iridescenceIOR: 1.3, iridescenceThicknessRange: [180, 320] }),
-  hole: () => new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.9 }),
+  hole: () => new THREE.MeshStandardMaterial({ color: 0x1a1816, roughness: 0.9 }),
   usbTongue: () => new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.5 }),
   ledOff: () => P({ color: 0xEDE6DA, roughness: 0.35, transmission: 0, sheen: 0.2, emissive: 0x000000 }),
   ledOn: (hex = 0xF2A27A, i = 2.2) => P({ color: 0xF5E9DD, roughness: 0.3, emissive: hex, emissiveIntensity: i }),

@@ -49,36 +49,36 @@
  },
  "D": {
   "name": "D EKF gyro+mag(gated)+GNSS [L1+L5]",
-  "heading_rmse_deg": 18.2,
-  "heading_median_deg": 4.1,
-  "heading_p95_deg": 24.4,
-  "left_right_accuracy": 0.9204,
-  "left_right_acc_min_run": 0.6296
+  "heading_rmse_deg": 7.6,
+  "heading_median_deg": 3.9,
+  "heading_p95_deg": 15.6,
+  "left_right_accuracy": 0.9888,
+  "left_right_acc_min_run": 0.9518
  },
  "D_L1": {
   "name": "D EKF gyro+mag(gated)+GNSS [L1-only GNSS]",
-  "heading_rmse_deg": 16.7,
-  "heading_median_deg": 4.3,
-  "heading_p95_deg": 22.1,
-  "left_right_accuracy": 0.8765,
-  "left_right_acc_min_run": 0.6049
+  "heading_rmse_deg": 8.1,
+  "heading_median_deg": 4.2,
+  "heading_p95_deg": 16.8,
+  "left_right_accuracy": 0.9556,
+  "left_right_acc_min_run": 0.9036
  },
  "E": {
   "name": "E EKF + map-matching (Map Vision) [L1+L5]",
-  "heading_rmse_deg": 18.5,
-  "heading_median_deg": 1.0,
-  "heading_p95_deg": 31.2,
-  "left_right_accuracy": 0.9491,
-  "left_right_acc_min_run": 0.6173
+  "heading_rmse_deg": 3.9,
+  "heading_median_deg": 0.9,
+  "heading_p95_deg": 3.4,
+  "left_right_accuracy": 0.9992,
+  "left_right_acc_min_run": 0.988
  },
  "E_L1": {
   "name": "E EKF + map-matching (Map Vision) [L1-only GNSS]",
-  "heading_rmse_deg": 15.9,
-  "heading_median_deg": 1.0,
-  "heading_p95_deg": 25.8,
-  "left_right_accuracy": 0.9569,
-  "left_right_acc_min_run": 0.7619
+  "heading_rmse_deg": 4.6,
+  "heading_median_deg": 0.9,
+  "heading_p95_deg": 3.4,
+  "left_right_accuracy": 0.9963,
+  "left_right_acc_min_run": 0.9765
  },
- "mag_update_rejection_rate": 0.394,
+ "mag_update_rejection_rate": 0.377,
  "runs": 16
 }

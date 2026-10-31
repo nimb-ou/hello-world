@@ -1,0 +1,234 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>LORE render</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  html,body{margin:0;background:#111;overflow:hidden}
+  #stage{position:relative}
+  #out{display:block}
+  #ov{position:absolute;inset:0;pointer-events:none;font-family:Inter,sans-serif}
+  .lab{position:absolute;color:#2a2c30;font-size:var(--fs,22px);line-height:1.25;white-space:nowrap}
+  .lab b{font-weight:600;display:block}
+  .lab span{color:#6b6f75;font-size:.82em}
+  .dark .lab{color:#ECE6DC}.dark .lab span{color:#9AA0A6}
+  .cap{position:absolute;left:var(--m);bottom:var(--m);font-family:"JetBrains Mono",monospace;font-size:var(--cs);letter-spacing:.06em;color:#7c7a74;text-transform:uppercase}
+  .ttl{position:absolute;left:var(--m);top:var(--m);font-family:Fraunces,serif;font-size:var(--ts);color:#2a2c30;font-weight:400;letter-spacing:-.01em}
+  .ttl small{display:block;font-family:Inter;font-size:.36em;letter-spacing:.14em;text-transform:uppercase;color:#7c7a74;margin-top:.5em}
+  .dark .ttl{color:#ECE6DC}.dark .cap{color:#8b8f95}
+  svg{position:absolute;inset:0}
+</style>
+<script type="importmap">{"imports":{"three":"../assets/vendor/three/three.module.js","three/addons/":"../assets/vendor/three/jsm/"}}</script>
+</head><body><div id="stage"><canvas id="out"></canvas><div id="ov"></div></div>
+<script type="module">
+import * as THREE from 'three';
+import { makeStudio, placeOnFloor, accumulate, project } from './lib/studio.js';
+import * as G from './lib/lore-geometry.js';
+
+const q = new URLSearchParams(location.search);
+const shot = q.get('shot') || 'hero-square';
+const W = +q.get('w') || 2400, H = +q.get('h') || 1600, FR = +q.get('frames') || 24;
+const PR = await (await fetch('params.json')).json();
+await Promise.all(['500 40px Fraunces', '400 40px Fraunces', '500 20px Inter', '400 20px Inter', '500 20px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+
+// ---- screen texture: real UX mockup if rendered, else a canvas fallback
+async function screenTex(name = 'home') {
+  const files = { home: '../ux/device-screens/png/01-home-compass.png', narr: '../ux/device-screens/png/02-now-narrating.png', clock: '../ux/device-screens/png/12-nightstand.png', nav: '../ux/device-screens/png/04-navigation.png' };
+  try {
+    const r = await fetch(files[name]); if (!r.ok) throw 0;
+    const img = await createImageBitmap(await r.blob());
+    const t = new THREE.Texture(img); t.colorSpace = THREE.SRGBColorSpace; t.needsUpdate = true; t.anisotropy = 8; return t;
+  } catch {
+    const c = document.createElement('canvas'); c.width = c.height = 932; const g = c.getContext('2d'); g.scale(2, 2);
+    g.fillStyle = '#000'; g.fillRect(0, 0, 466, 466);
+    g.strokeStyle = 'rgba(243,238,230,.18)'; g.lineWidth = 2; g.beginPath(); g.arc(233, 233, 170, 0, 7); g.stroke();
+    g.strokeStyle = '#C4623A'; g.lineWidth = 6; g.lineCap = 'round'; g.beginPath(); g.arc(233, 233, 170, -1.95, -1.2); g.stroke();
+    g.fillStyle = '#F3EEE6'; g.textAlign = 'center'; g.font = '300 92px Fraunces'; g.fillText('14:32', 233, 250);
+    g.font = '500 17px Inter'; g.fillStyle = '#9AA0A6'; g.letterSpacing = '3px'; g.fillText('VIA DEI CORONARI', 233, 292);
+    g.font = '400 19px Inter'; g.fillStyle = '#F3EEE6'; g.letterSpacing = '0px'; g.fillText('Pantheon · 240 m ahead', 233, 330);
+    g.fillStyle = '#C4623A'; g.beginPath(); g.moveTo(233, 52); g.lineTo(224, 70); g.lineTo(242, 70); g.fill();
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+}
+const home = await screenTex('home');
+
+const flat = (o, yaw = 0) => { const g = new THREE.Group(); o.rotation.x = -Math.PI / 2; g.add(o); g.rotation.y = yaw; return g; };
+const upright = (o, yaw = 0, lean = 0) => { const g = new THREE.Group(); o.rotation.x = -lean; g.add(o); g.rotation.y = yaw; return g; };
+const dev = (sku, fin, opts = {}) => G.buildDevice(PR, sku, fin, { screenTexture: home, ...opts });
+const LED = { color: 0xE8784A, intensity: 2.0 };
+
+function persp(fov, pos, look) { const c = new THREE.PerspectiveCamera(fov, W / H, 5, 5000); c.position.set(...pos); c.lookAt(new THREE.Vector3(...look)); return c; }
+function ortho(span, pos, look, up = [0, 1, 0]) { const a = W / H; const c = new THREE.OrthographicCamera(-span * a / 2, span * a / 2, span / 2, -span / 2, 1, 5000); c.position.set(...pos); c.up.set(...up); c.lookAt(new THREE.Vector3(...look)); return c; }
+
+const ov = document.getElementById('ov');
+const m = Math.round(W * 0.03);
+ov.style.setProperty('--m', m + 'px'); ov.style.setProperty('--cs', Math.round(W / 140) + 'px'); ov.style.setProperty('--ts', Math.round(W / 38) + 'px'); ov.style.setProperty('--fs', Math.round(W / 105) + 'px');
+const cap = (t) => { ov.insertAdjacentHTML('beforeend', `<div class="cap">${t}</div>`); };
+const ttl = (t, s) => { ov.insertAdjacentHTML('beforeend', `<div class="ttl">${t}<small>${s}</small></div>`); };
+
+// ---- shot library
+const S = {};
+const BONE = 0xE6E0D6, STONE = 0xD3CCC1, INK = 0x1B1D21, NIGHT = 0x16202B, SAND = 0xDCCFBC;
+
+S['hero-pebble'] = (st) => { st.scene.background.set(BONE); st.floor.material.color.set(BONE);
+  const a = placeOnFloor(flat(G.buildPebble(PR, 'bone', { led: LED }), 0.35));
+  st.scene.add(a); st.target.set(0, 5, 0); st.keyDir.set(-0.6, 1, 0.5).normalize();
+  cap('LORE Pebble · P1 · Bone · soft-touch PC-GF10 · 42 × 42 × 14 mm · est. 29 g');
+  return persp(15, [0, 150, 175], [0, 2, 0]); };
+S['hero-square'] = (st) => { st.scene.background.set(STONE); st.floor.material.color.set(STONE);
+  const a = placeOnFloor(flat(dev('square', 'sq-ink'), -0.42)); st.scene.add(a); st.target.set(0, 5, 0);
+  cap('LORE Square · S1 · Ink anodised 6013 aluminium · 54 × 54 × 12 mm · est. 52 g');
+  return persp(15, [-30, 170, 200], [0, 3, 0]); };
+S['hero-atlas'] = (st) => { st.scene.background.set(0x2A2A2C); st.floor.material.color.set(0x2A2A2C); st.scene.environmentIntensity = 1.0;
+  ov.classList.add('dark');
+  const a = placeOnFloor(flat(dev('atlas', 'at-ti'), 0.5)); st.scene.add(a); st.target.set(0, 5, 0); st.key.intensity = 2.6;
+  cap('LORE Atlas · A1 · Bead-blasted Grade 5 titanium · sapphire · ZrN brass-tone crown · est. 66 g');
+  return persp(15, [20, 165, 205], [0, 3, 0]); };
+S['hero-square-upright'] = (st) => { st.scene.background.set(SAND); st.floor.material.color.set(SAND);
+  const a = placeOnFloor(upright(dev('square', 'sq-sand'), -0.55, 0.12)); st.scene.add(a); st.target.set(0, 25, 0);
+  cap('LORE Square · S1 · Sand anodised aluminium');
+  return persp(14, [10, 70, 270], [0, 26, 0]); };
+S['lineup'] = (st) => { st.scene.background.set(BONE); st.floor.material.color.set(BONE);
+  const items = [[G.buildPebble(PR, 'terracotta', { led: LED }), -78], [dev('square', 'sq-ink'), 0], [dev('atlas', 'at-ti'), 84]];
+  for (const [o, x] of items) { const a = placeOnFloor(upright(o, 0, 0.16)); a.position.x = x; st.scene.add(a); }
+  st.target.set(0, 25, 0); st.keyDir.set(-0.5, 0.9, 0.7).normalize();
+  ttl('The LORE family', 'Pebble · Square · Atlas'); cap('$149 · $299 · $549 target retail · shown at 1:1 relative scale');
+  return persp(16, [0, 110, 620], [0, 24, 0]); };
+function colourway(st, sku, fins, title, sub, bg) {
+  st.scene.background.set(bg); st.floor.material.color.set(bg);
+  const n = fins.length, step = sku === 'pebble' ? 60 : 72;
+  fins.forEach((f, i) => { const o = sku === 'pebble' ? G.buildPebble(PR, f, i === 0 ? { led: LED } : {}) : dev(sku, f);
+    const a = placeOnFloor(upright(o, 0, 0.15)); a.position.x = (i - (n - 1) / 2) * step; st.scene.add(a); });
+  st.target.set(0, 22, 0); ttl(title, sub);
+  return persp(16, [0, 80, 120 + n * 105], [0, 22, 0]);
+}
+S['colourways-pebble'] = (st) => { cap('Bone · Ink · Terracotta — 2K soft-touch PU over PC-GF10'); return colourway(st, 'pebble', ['bone', 'ink', 'terracotta'], 'Pebble colourways', 'Bone · Ink · Terracotta', 0xDDD6CA); };
+S['colourways-square'] = (st) => { cap('Ink · Sand — bead-blast + Type II anodise, diamond-cut chamfer, Terracotta Talk key'); return colourway(st, 'square', ['sq-ink', 'sq-sand'], 'Square colourways', 'Ink · Sand', 0xD9D3C8); };
+S['colourways-atlas'] = (st) => { cap('Bead-blasted titanium · Black DLC titanium — sapphire, ZrN brass-tone crown'); return colourway(st, 'atlas', ['at-ti', 'at-dlc'], 'Atlas colourways', 'Titanium · Black DLC', 0xCFC9BF); };
+for (const [sku, f, bg] of [['pebble', 'bone', 0xE6E0D6], ['pebble', 'ink', 0xD6D0C6], ['pebble', 'terracotta', 0xE6DDD0], ['square', 'sq-ink', 0xD3CCC1], ['square', 'sq-sand', 0xDCCFBC], ['atlas', 'at-ti', 0xCFC9BF], ['atlas', 'at-dlc', 0x2A2A2C]]) {
+  S[`finish-${sku}-${f}`] = (st) => { st.scene.background.set(bg); st.floor.material.color.set(bg); if (bg === 0x2A2A2C) ov.classList.add('dark');
+    const o = sku === 'pebble' ? G.buildPebble(PR, f, { led: LED }) : dev(sku, f);
+    const a = placeOnFloor(flat(o, -0.6)); a.position.x = -30; st.scene.add(a);
+    const o2 = sku === 'pebble' ? G.buildPebble(PR, f) : dev(sku, f); o2.rotation.x = Math.PI / 2; const b = new THREE.Group(); b.add(o2); b.rotation.y = 0.5; placeOnFloor(b); b.position.x = 38; b.position.z = -10; st.scene.add(b);
+    st.target.set(0, 5, 0); cap(`${PR[sku].name} · ${o.name.replace(PR[sku].name + ' ', '')} · front + back`);
+    return persp(15, [0, 190, 260], [4, 3, -4]); };
+}
+function explodedShot(st, build, title, sub, span, bg = 0xE3DDD3) {
+  st.scene.background.set(bg); st.floor.material.color.set(bg);
+  const ex = build(); const root = new THREE.Group(); ex.rotation.x = -Math.PI / 2; root.add(ex); root.rotation.y = -0.5; st.scene.add(root);
+  placeOnFloor(root, 4);
+  st.target.set(0, 60, 0); st.keyDir.set(-0.4, 1, 0.45).normalize(); st.keySpread = 0.2;
+  const cam = persp(17, [0, 190, 470], [0, 52, 0]);
+  ttl(title, sub);
+  root.updateMatrixWorld(true);
+  const layers = ex.children[0].children.filter((c) => c.userData.label);
+  st.after = () => {
+    let svg = `<svg width="${W}" height="${H}">`;
+    for (const L of layers) {
+      const b = new THREE.Box3().setFromObject(L); const c = b.getCenter(new THREE.Vector3());
+      const right = new THREE.Vector3(b.max.x, c.y, c.z);
+      const p = project(cam, c, W, H), pr = project(cam, right, W, H);
+      const x0 = Math.max(pr.x, p.x) + 20, xl = W * 0.66;
+      svg += `<line x1="${x0}" y1="${p.y}" x2="${xl - 14}" y2="${p.y}" stroke="#8a857c" stroke-width="1.5"/><circle cx="${x0}" cy="${p.y}" r="4" fill="#C4623A"/>`;
+      ov.insertAdjacentHTML('beforeend', `<div class="lab" style="left:${xl}px;top:${p.y - W / 160}px"><b>${L.userData.label}</b>${L.userData.sub ? `<span>${L.userData.sub}</span>` : ''}</div>`);
+    }
+    ov.insertAdjacentHTML('afterbegin', svg + '</svg>');
+  };
+  return cam;
+}
+S['exploded-square'] = (st) => { cap('Exploded stack · LORE Square S1 · internal component sizes are EVT-0 placeholders pending hardware/ layout');
+  return explodedShot(st, () => G.buildSlateExploded(PR, 'square', 'sq-ink', { screenTexture: home, gap: 13 }), 'Square, exploded', '7 layers · 12.0 mm stack'); };
+S['exploded-atlas'] = (st) => { cap('Exploded stack · LORE Atlas A1 · internal component sizes are EVT-0 placeholders');
+  return explodedShot(st, () => G.buildSlateExploded(PR, 'atlas', 'at-ti', { screenTexture: home, gap: 13 }), 'Atlas, exploded', 'titanium · sapphire · Glance camera'); };
+S['exploded-pebble'] = (st) => { cap('Exploded stack · LORE Pebble P1 · internal component sizes are EVT-0 placeholders');
+  return explodedShot(st, () => G.buildPebbleExploded(PR, 'bone', { led: LED, gap: 10 }), 'Pebble, exploded', '6 layers · 14.0 mm stack'); };
+S['scale-reference'] = (st) => { st.scene.background.set(0xEDE8DF); st.floor.material.color.set(0xEDE8DF);
+  const put = (o, x, z, yaw = 0) => { const a = placeOnFloor(flat(o, yaw)); a.position.x = x; a.position.z = z; st.scene.add(a); return a; };
+  put(G.buildCreditCard(), -95, 8); put(G.buildEuroCoin(), -95, -48);
+  put(G.buildPebble(PR, 'bone', { led: LED }), -10, 0); put(dev('square', 'sq-ink'), 55, 0); put(dev('atlas', 'at-dlc'), 122, 0);
+  st.target.set(15, 0, 0);
+  ttl('Scale reference', 'ID-1 card 85.6 × 54.0 mm · €1 coin Ø23.25 mm');
+  cap('Top view, orthographic · Pebble 42 mm · Square 54 mm · Atlas 54 mm · 1 grid = 10 mm');
+  st.scene.environmentIntensity = 0.3; st.keyDir.set(-0.85, 0.55, 0.35).normalize(); st.keySpread = 0.18;
+  const c = ortho(215, [15, 600, 0.001], [15, 0, 0], [0, 0, -1]);
+  st.after = () => { // 10 mm scale bar
+    const a = project(c, new THREE.Vector3(100, 0, 52), W, H), b = project(c, new THREE.Vector3(150, 0, 52), W, H);
+    ov.insertAdjacentHTML('beforeend', `<svg width="${W}" height="${H}"><line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="#2a2c30" stroke-width="3"/>${[0, 1, 2, 3, 4, 5].map((k) => `<line x1="${a.x + (b.x - a.x) * k / 5}" y1="${a.y - 10}" x2="${a.x + (b.x - a.x) * k / 5}" y2="${a.y}" stroke="#2a2c30" stroke-width="2"/>`).join('')}<text x="${(a.x + b.x) / 2}" y="${a.y + 34}" font-family="JetBrains Mono" font-size="${W / 110}" fill="#2a2c30" text-anchor="middle">50 mm</text></svg>`);
+  };
+  return c; };
+S['in-hand-square'] = (st) => { st.scene.background.set(0xCFC6B8); st.floor.material.color.set(0xCFC6B8);
+  const hand = G.buildHand(); const h = placeOnFloor(flat(hand, 0.25)); st.scene.add(h);
+  const d = dev('square', 'sq-sand'); const a = flat(d, 0.1); a.position.set(-4, 24, 2); st.scene.add(a);
+  st.target.set(0, 20, 0); st.keyDir.set(-0.45, 1, 0.3).normalize();
+  cap('In-hand scale · abstract P50 adult hand (length 189 mm, breadth 86 mm) · LORE Square Sand 54 mm');
+  return persp(20, [40, 360, 330], [0, 10, -8]); };
+S['in-hand-pebble'] = (st) => { st.scene.background.set(0xCFC6B8); st.floor.material.color.set(0xCFC6B8);
+  const hand = G.buildHand(); const h = placeOnFloor(flat(hand, -0.2)); st.scene.add(h);
+  const a = flat(G.buildPebble(PR, 'terracotta', { led: LED }), 0.4); a.position.set(2, 23.5, 4); st.scene.add(a);
+  st.target.set(0, 20, 0); st.keyDir.set(-0.45, 1, 0.3).normalize();
+  cap('In-hand scale · abstract P50 adult hand · LORE Pebble Terracotta 42 mm');
+  return persp(20, [-30, 360, 330], [0, 10, -8]); };
+// orthographic views (white, technical)
+for (const sku of ['pebble', 'square', 'atlas']) {
+  const fin = { pebble: 'bone', square: 'sq-ink', atlas: 'at-ti' }[sku];
+  S[`ortho-${sku}`] = (st) => { st.scene.background.set(0xF4F1EC); st.floor.visible = false; st.scene.environmentIntensity = 1.0;
+    const mk = () => (sku === 'pebble' ? G.buildPebble(PR, fin, { led: LED }) : dev(sku, fin));
+    const T = PR[sku].thickness_total;
+    const front = mk(); front.position.set(-40, 0, 0); // facing +Z (camera)
+    const side = mk(); side.rotation.y = -Math.PI / 2; side.position.set(0, 0, 0); // right side view (crown towards camera)
+    const top = mk(); top.rotation.x = Math.PI / 2; top.position.set(45, 0, 0); // top edge view
+    const back = mk(); back.rotation.y = Math.PI; back.position.set(100, 0, 0);
+    [front, side, top, back].forEach((o) => st.scene.add(o));
+    st.target.set(30, 0, 0); st.keyDir.set(-0.3, 0.5, 1).normalize(); st.sky.intensity = 0.25;
+    ttl(`${PR[sku].name} · orthographic`, 'front · right side · top · back');
+    cap(`${PR[sku].code} · ${PR[sku].plan_w ?? PR.square.plan_w} × ${PR[sku].plan_h ?? PR.square.plan_h} × ${T} mm · see drawings/${sku}.svg for dimensions`);
+    const c = ortho(142, [30, 0, 800], [30, 0, 0]);
+    st.after = () => { const lab = (x, t) => { const p = project(c, new THREE.Vector3(x, -40, 0), W, H); ov.insertAdjacentHTML('beforeend', `<div class="lab" style="left:${p.x}px;top:${p.y}px;transform:translateX(-50%);font-family:'JetBrains Mono';text-transform:uppercase;letter-spacing:.1em;color:#7c7a74">${t}</div>`); };
+      lab(-40, 'Front'); lab(sku === 'pebble' ? 0 : T / 2, 'Right'); lab(45, 'Top'); lab(100, 'Back'); };
+    return c; };
+}
+// --- accessory / context shots
+S['on-lanyard'] = (st) => { st.scene.background.set(0xD9D1C4); st.floor.material.color.set(0xD9D1C4);
+  const grp = new THREE.Group();
+  const lan = G.buildLanyard(PR, { length: 520 }); grp.add(lan);
+  const dd = dev('square', 'sq-ink'); dd.position.set(0, 0, 2.4); grp.add(dd);
+  grp.rotation.y = -0.4; grp.position.y = 40; st.scene.add(grp);
+  st.target.set(0, 80, 0); st.keyDir.set(-0.5, 0.8, 0.8).normalize();
+  cap('LORE Square on the Leather Lanyard · vegetable-tanned leather, brass slider, LORE Mount yoke');
+  return persp(22, [60, 120, 420], [0, 95, 0]); };
+S['on-clip'] = (st) => { st.scene.background.set(0xCDC5B6); st.floor.material.color.set(0xCDC5B6);
+  const grp = new THREE.Group();
+  const strap = new THREE.Mesh(G.sweep(G.squircleRect(42, 400, 4, 2, 96), G.slabProfile({ H: 4, rt: 1.6, rb: 1.6, cap: 6, fil: 6 })), (await_m()).webbing());
+  strap.castShadow = strap.receiveShadow = true; strap.position.z = -9.8; grp.add(strap);
+  const clip = G.buildClip(PR); clip.position.z = -2.4; grp.add(clip);
+  const p = G.buildPebble(PR, 'ink', { led: LED }); grp.add(p);
+  grp.rotation.x = -0.12; grp.rotation.y = 0.85; grp.position.y = 130; st.scene.add(grp);
+  st.target.set(0, 120, 0); st.keyDir.set(-0.5, 0.8, 0.8).normalize();
+  cap('LORE Pebble (Ink) on the LORE Clip · 17-7PH spring steel · on a 38 mm backpack strap');
+  return persp(20, [70, 150, 360], [0, 125, 0]); };
+
+// --- accessories (LORE Kit)
+function accShot(st, bg, build, capt, camPos, look, tgt) { st.scene.background.set(bg); st.floor.material.color.set(bg); build(st.scene); st.target.set(...tgt); cap(capt); return persp(18, camPos, look); }
+S['acc-clip'] = (st) => accShot(st, 0xDDD6CA, (sc) => { const c = G.buildClip(PR); const g = new THREE.Group(); c.rotation.x = -Math.PI / 2; c.rotation.z = 0.5; g.add(c); placeOnFloor(g); sc.add(g);
+  const p = placeOnFloor(flat(G.buildPebble(PR, 'bone', { led: LED }), 0.3)); p.position.x = 55; sc.add(p); }, 'LORE Clip · 17-7PH spring steel, bead-blast · LORE Mount puck · silicone grip pad · fits straps up to 6 mm', [0, 150, 210], [22, 2, 0], [20, 5, 0]);
+S['acc-lanyard'] = (st) => accShot(st, 0xD9D1C4, (sc) => { const l = G.buildLanyard(PR, { length: 300 }); l.rotation.x = -Math.PI / 2 + 0.02; const g = new THREE.Group(); g.add(l); g.rotation.y = 0.3; placeOnFloor(g); sc.add(g); }, 'LORE Leather Lanyard · 10 mm vegetable-tanned leather (Tuscany), brass slider + ring, LORE Mount yoke', [0, 380, 330], [0, 0, -110], [0, 0, -100]);
+S['acc-wrist-strap'] = (st) => accShot(st, 0xDDD6CA, (sc) => { const w = G.buildWristStrap(PR); w.rotation.x = -Math.PI / 2; const g = new THREE.Group(); g.add(w); placeOnFloor(g); sc.add(g); }, 'LORE Wrist Strap · leather loop with brass keeper · LORE Mount tab', [0, 260, 230], [0, 0, -30], [0, 0, -30]);
+S['acc-dock'] = (st) => accShot(st, 0xD3CCC1, (sc) => { const d = G.buildDock(PR); const s2 = dev('square', 'sq-ink'); s2.position.z = 10.4; d.userData.cradle.add(s2); d.rotation.y = -0.45; placeOnFloor(d); sc.add(d); }, 'LORE Dock · machined aluminium, 68° cradle, magnetic LORE Mount + pogo charge · nightstand mode', [0, 120, 300], [0, 26, 0], [0, 20, 0]);
+S['acc-rugged-case'] = (st) => accShot(st, 0xCFC8BC, (sc) => { const c = G.buildRuggedCase(PR); const s2 = dev('square', 'sq-ink'); c.add(s2); const a = placeOnFloor(flat(c, 0.5)); sc.add(a);
+  const c2 = G.buildRuggedCase(PR, { color: 0x1E2024 }); const b = placeOnFloor(upright(c2, -0.4, 0.15)); b.position.set(78, b.position.y, -30); sc.add(b); }, 'LORE Rugged Case · TPU 85A with PC back plate · 2 m drop corners · Olive / Ink', [20, 170, 260], [35, 5, -10], [35, 10, -10]);
+S['acc-buds'] = (st) => accShot(st, 0xDDD6CA, (sc) => { const b = G.buildBuds(PR); b.rotation.x = -Math.PI / 2; const g = new THREE.Group(); g.add(b); g.rotation.y = 0.2; placeOnFloor(g); sc.add(g); }, 'LORE Buds · open-ear bone-conduction · Ti memory-alloy band · LE Audio (LC3) · brass accent', [0, 260, 260], [0, 0, -30], [0, 0, -30]);
+S['acc-power-puck'] = (st) => accShot(st, 0xD3CCC1, (sc) => { const p = G.buildPowerPuck(PR); const pb = G.buildPebble(PR, 'terracotta', { led: LED }); pb.position.z = 17.2; p.add(pb); const a = placeOnFloor(flat(p, 0.4)); sc.add(a); }, 'LORE Power Puck · 5,000 mAh / 19.3 Wh · USB-C PD 20 W in/out · LORE Mount pad charges any LORE', [0, 170, 220], [0, 8, 0], [0, 8, 0]);
+S['acc-family'] = (st) => { st.scene.background.set(0xDDD6CA); st.floor.material.color.set(0xDDD6CA);
+  const put = (o, x, z, yaw = 0) => { const a = placeOnFloor(flat(o, yaw)); a.position.x = x; a.position.z = z; st.scene.add(a); return a; };
+  put(G.buildDock(PR), -120, -40); put(G.buildPowerPuck(PR), -10, -50, 0.3); const c = G.buildRuggedCase(PR); put(c, 90, -45, -0.2);
+  put(G.buildClip(PR), -95, 55, 0.4); put(G.buildBuds(PR), 30, 50, 0.1); const w = G.buildWristStrap(PR); put(w, 140, 60, -0.3);
+  st.target.set(0, 0, 0); ttl('LORE Kit', 'Clip · Lanyard · Wrist strap · Dock · Rugged case · Buds · Power puck'); cap('Accessories share one interface: the LORE Mount (twist-lock + N52 magnet + 2-pin pogo)');
+  return persp(20, [0, 420, 470], [10, 0, 5]); };
+import { M as MAT } from './lib/materials.js';
+function await_m() { return MAT; }
+
+const st = makeStudio({ width: W, height: H });
+const out = document.getElementById('out'); out.width = W; out.height = H; out.style.width = W + 'px'; out.style.height = H + 'px';
+const cam = S[shot](st);
+await accumulate(st, cam, { frames: FR, out });
+if (st.after) st.after();
+window.__done = true;
+</script></body></html>

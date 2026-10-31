@@ -338,27 +338,29 @@ a_in("Annual salary inflation (from 2028)", "salary_infl", 0.03, "%/yr", "Estima
 
 a_sec("Hardware pricing (MSRP from COMPANY.md; KS prices = early-bird)")
 a_in("LORE Pebble MSRP", "msrp_peb", 149, "$", "COMPANY.md target price.")
-a_in("LORE Square MSRP", "msrp_sq", 299, "$", "COMPANY.md target price.")
-a_in("LORE Atlas MSRP", "msrp_atl", 549, "$", "COMPANY.md target price. Atlas launches Sep-2028 (CFO assumption: NTN + camera + titanium need a separate EVT/DVT cycle).")
-a_in("Kickstarter early-bird price -- Pebble", "ks_peb", 109, "$", "~27% off MSRP; hardware KS early-birds typically 25-40% off.")
-a_in("Kickstarter early-bird price -- Square", "ks_sq", 219, "$", "~27% off MSRP.")
-a_in("Post-campaign pre-order price -- Pebble", "pre_peb", 129, "$", "BackerKit/website pre-order, ~13% off.")
-a_in("Post-campaign pre-order price -- Square", "pre_sq", 259, "$", "~13% off.")
+a_in("LORE Square MSRP", "msrp_sq", 299, "$", "Research final (holds COMPANY.md). CFO FLAG: with hardware/bom landed $227 @10k the DTC hardware margin is single-digit until DRAM normalises & 100k-tier pricing; see pricing-margin-sensitivity.md.")
+a_in("LORE Atlas MSRP", "msrp_atl", 599, "$", "Research recommends $599 (COMPANY.md $549). Atlas launches Sep-2028 (CFO assumption: NTN + camera + titanium need a separate EVT/DVT cycle).")
+a_in("Kickstarter blended pledge price -- Pebble", "ks_peb", 112, "$", "Research tiers $99 / $115 / $129, weighted ~25/45/30.")
+a_in("Kickstarter blended pledge price -- Square", "ks_sq", 226, "$", "Research tiers $199 / $229 / $259, weighted ~25/45/30.")
+a_in("Post-campaign pre-order price -- Pebble", "pre_peb", 129, "$", "BackerKit/website pre-order, ~13% off (Research).")
+a_in("Kickstarter blended pledge price -- Atlas", "ks_atl", 442, "$", "Research tiers $399 / $449 / $499.")
+a_in("Post-campaign pre-order price -- Atlas", "pre_atl", 499, "$", "Research KS standard tier.")
+a_in("Post-campaign pre-order price -- Square", "pre_sq", 259, "$", "~13% off $299 (Research).")
 a_in("Average DTC promo discount vs MSRP", "dtc_disc", 0.06, "%", "Blended codes/bundles/Black Friday.")
 a_in("Retailer / distributor margin (off MSRP)", "retail_margin", 0.38, "%", "Consumer electronics retail margins typically 30-45% incl. distributor; estimate.")
 a_in("Returns & refunds allowance (of HW revenue)", "returns_pct", 0.04, "%", "Consumer electronics 3-8%; estimate.")
 
-a_sec("Landed COGS per unit at 10k+ volume (CFO estimate; reconciled to hardware/bom/ if available)")
-a_in("Pebble -- BOM (FOB components)", "bom_peb", 44.0, "$", "BLE/Wi-Fi SoC w/ NPU, 512MB-1GB RAM, L1+L5 GNSS, 9-axis IMU, LED ring, ~500mAh cell, PC/GF housing.")
-a_in("Pebble -- assembly, test, yield loss", "asm_peb", 6.0, "$", "ODM CM fee + FCT/RF test.")
-a_in("Pebble -- packaging & inserts", "pkg_peb", 4.0, "$", "Premium FSC board box.")
-a_in("Square -- BOM", "bom_sq", 112.0, "$", "LTE Cat-4 module + eSIM (eUICC), 1.6in AMOLED, SoC w/ NPU + 4GB LPDDR (3B model), L1+L5 GNSS, Al housing.")
-a_in("Square -- assembly, test, yield loss", "asm_sq", 9.0, "$", "Incl. RF conducted/OTA test.")
-a_in("Square -- packaging", "pkg_sq", 5.0, "$", "")
-a_in("Atlas -- BOM", "bom_atl", 198.0, "$", "Ti CNC housing, sapphire, NTN-capable modem, camera, 8GB RAM.")
-a_in("Atlas -- assembly, test, yield loss", "asm_atl", 14.0, "$", "Ti/sapphire yields lower.")
-a_in("Atlas -- packaging", "pkg_atl", 8.0, "$", "")
-a_in("Inbound freight, insurance & duties (% of FOB)", "freight_duty", 0.09, "%", "Ocean/air blend + US import duties for SE-Asia assembly; tariff risk in sensitivity doc.")
+a_sec("Landed COGS per unit, 10k tier (RECONCILED to hardware/bom/cogs_summary.csv, 30-Oct-2026); NRE (cert/tooling) is expensed/capitalised separately")
+a_in("Pebble (ships as Pebble Lite ECR spec) -- FOB incl. conversion & yield", "bom_peb", 62.03, "$", "hardware/bom: Pebble Lite (ECR, cloud AI, no DRAM) FOB @10k $62.03. Full-spec Pebble (on-device 1B model) is $125.06 FOB -> negative margin at $149, so CFO base case ships the ECR spec.")
+a_in("Pebble -- royalties", "asm_peb", 0.0, "$", "hardware/bom: none (no cellular).")
+a_in("Pebble -- extra packaging (included in FOB)", "pkg_peb", 0.0, "$", "Included in hardware/bom FOB.")
+a_in("Square -- FOB incl. conversion & yield", "bom_sq", 219.11, "$", "hardware/bom @10k (DRAM priced at 2026-27 shortage levels; normalised DRAM saves ~$20).")
+a_in("Square -- cellular SEP royalties", "asm_sq", 5.80, "$", "hardware/bom estimate.")
+a_in("Square -- extra packaging (included in FOB)", "pkg_sq", 0.0, "$", "")
+a_in("Atlas -- FOB incl. conversion & yield", "bom_atl", 305.55, "$", "hardware/bom @10k.")
+a_in("Atlas -- royalties", "asm_atl", 8.70, "$", "hardware/bom estimate.")
+a_in("Atlas -- extra packaging (included in FOB)", "pkg_atl", 0.0, "$", "")
+a_in("Inbound freight, insurance & duties (% of FOB)", "freight_duty", 0.01, "%", "hardware/bom: freight $1.3-2.2/unit; 0% US duty assumes VN/MY FATP (China FATP adds ~20% of FOB -- see sensitivity).")
 a_in("Warranty reserve (% of HW revenue)", "warranty_pct", 0.02, "%", "1-2 yr warranty; estimate.")
 a_in("DTC outbound shipping + 3PL pick/pack per unit", "dtc_ship", 11.0, "$", "3PL ~$3-4 + ground/intl blend.")
 a_in("Retail distribution cost per unit", "retail_dist", 4.0, "$", "Palletised to DC.")
@@ -367,9 +369,10 @@ a_in("Card processing -- % (DTC)", "pay_pct", 0.029, "%", "Stripe/Shopify Paymen
 a_in("Card processing -- fixed per order", "pay_fixed", 0.30, "$", "")
 
 a_sec("Kickstarter / pre-orders (Q2-2027 campaign; ships Nov-2027 to Jan-2028)")
-a_in("Kickstarter backer units (base, before scenario)", "ks_units", 4800, "units", "~$0.84M raised; see kickstarter-economics.md for benchmarks.")
-a_in("Post-campaign pre-order units (BackerKit / website)", "pre_units", 1200, "units", "Late pledges typically 15-30% of campaign units.")
-a_in("Pre-order SKU mix -- Pebble share", "pre_mix_peb", 0.45, "%", "Atlas not offered on KS (ships later). Square share = 1 - Pebble.")
+a_in("Kickstarter backer units (base, before scenario)", "ks_units", 4000, "units", "~$0.8M raised (Research internal success $750k-1M; public goal $150k).")
+a_in("Post-campaign pre-order units (BackerKit / website)", "pre_units", 1000, "units", "Late pledges typically 15-30% of campaign units.")
+a_in("Pre-order SKU mix -- Pebble share", "pre_mix_peb", 0.45, "%", "Research mix 45/40/15.")
+a_in("Pre-order SKU mix -- Atlas share (Square = remainder)", "pre_mix_atl", 0.15, "%", "Atlas backers ship Feb-Mar 2028 (separate NTN/camera cert).")
 a_in("Kickstarter platform fee", "ks_fee", 0.05, "%", "Kickstarter 5% of funds (https://www.launchboom.com/crowdfunding-tips/how-much-does-kickstarter-charge/)")
 a_in("Kickstarter payment processing %", "ks_proc", 0.03, "%", "3% + $0.20 per pledge (https://www.pledgebox.com/post/how-much-does-kickstarter-take)")
 a_in("Kickstarter processing fixed per pledge", "ks_proc_fixed", 0.20, "$", "")
@@ -377,19 +380,19 @@ a_in("Average units per pledge", "units_per_pledge", 1.15, "units", "Estimate (t
 
 a_sec("Subscription -- LORE Pass (COMPANY.md)")
 a_in("Explorer list price per month", "sub_price", 9.99, "$/mo", "COMPANY.md.")
-a_in("Realised ARPU as % of list (annual-plan discount, promos)", "arpu_real", 0.90, "%", "Assume ~30% on annual plan at ~$89/yr.")
+a_in("Realised ARPU as % of list (annual-plan discount, promos)", "arpu_real", 0.86, "%", "~40% on Research-recommended $79/yr annual plan.")
 a_in("Free Explorer trial included with every device", "trial_months", 3, "months", "COMPANY.md.")
-a_in("Post-trial paid attach -- Pebble", "attach_peb", 0.22, "%", "No eSIM; value = unlimited live AI + packs. Hardware-subscription comps: Whoop/Oura are mandatory/near-mandatory; ours is optional.")
+a_in("Post-trial paid attach -- Pebble", "attach_peb", 0.28, "%", "Pebble ships as cloud-AI (ECR) spec, so unlimited live AI needs the Pass; no eSIM. Hardware-subscription comps: Whoop/Oura are mandatory/near-mandatory; ours is optional.")
 a_in("Post-trial paid attach -- Square", "attach_sq", 0.40, "%", "eSIM data makes Pass the natural default.")
 a_in("Post-trial paid attach -- Atlas", "attach_atl", 0.55, "%", "Premium buyer; satellite SOS.")
 a_in("Monthly churn of paid Explorer subs (base)", "churn", 0.06, "%/mo", "Consumer subscription apps lose most subs in month 1; travel is seasonal (https://www.revenuecat.com/state-of-subscription-apps-2025). Annualised ~52%.")
-a_in("Trip Pass price (14 days, 5 GB)", "trip_price", 29.0, "$", "COMPANY.md.")
+a_in("Trip Pass price (14 days, 5 GB)", "trip_price", 32.0, "$", "Blend: 85% $29 (14d/5GB) + 15% $49 (30d/10GB) (Research).")
 a_in("Trip Pass purchase rate per month (non-paying eSIM devices)", "trip_rate", 0.03, "/mo", "~0.36 trips/yr bought by non-subscribers; estimate.")
 a_in("Device inactivity (abandonment) rate per month", "device_inactive", 0.02, "%/mo", "~22%/yr of installed base goes dormant.")
 
 a_sec("Accessories, affiliate, B2B fleet")
 a_in("Accessory attach (orders per device sold)", "acc_attach", 0.30, "orders/unit", "LORE Kit: clip, lanyard, dock, case, Buds.")
-a_in("Accessory average order value", "acc_aov", 45.0, "$", "Mix of $19-29 straps/cases and $79 LORE Buds.")
+a_in("Accessory average order value", "acc_aov", 45.0, "$", "Mix of $19-39 straps/cases/docks and $129 LORE Buds (Research price).")
 a_in("Accessory COGS (% of revenue)", "acc_cogs_pct", 0.38, "%", "Accessories typically 55-70% GM.")
 a_in("B2B fleet rental fee per device per month", "fleet_fee", 22.0, "$/unit/mo", "Hostels/tour operators re-rent at ~$5-8/day.")
 a_in("Fleet device cost (capitalised)", "fleet_unit_cost", 95.0, "$/unit", "Blend of Pebble/Square landed cost + rugged case.")
@@ -473,39 +476,41 @@ def A(name):
 
 
 # units: regular (non-pre-order) sell-in units, all SKUs
-reg_2028 = [1200, 1300, 1600, 2000, 2400, 2800, 3300, 3400, 3200, 3600, 5200, 7400]
-reg_units = by_period(monthly_map={202712: 800, **{202800 + k + 1: v for k, v in enumerate(reg_2028)}},
-                      annual={2029: 95000, 2030: 170000, 2031: 265000})
+reg_2028 = [1250, 1350, 1650, 2050, 2450, 2850, 3350, 3450, 3250, 3650, 5250, 7400]
+reg_units = by_period(monthly_map={**{202800 + k + 1: v for k, v in enumerate(reg_2028)}},
+                      annual={2029: 120000, 2030: 250000, 2031: 400000})
 ts_in("reg_units", "Regular unit sales, all SKUs (DTC + retail), base", reg_units, F_NUM,
-      "2028 ramp w/ Q4 holiday peak; FY29-31 growth +154%/+79%/+56%.")
+      "Research final units: 5k 2027 (all pre-orders), 40k 2028, 120k 2029, 250k 2030; 400k 2031 (Research SOM table).")
 ts_in("pre_ship_pct", "Pre-order units shipped (% of total pre-orders)",
       by_period(monthly_map={202711: 0.50, 202712: 0.37, 202801: 0.13}), F_PCT, "Q4-2027 first shipments (COMPANY.md).")
 ts_in("pre_collect_pct", "Pre-order cash collected (% of total pre-orders)",
       by_period(monthly_map={202706: 0.80, 202707: 0.05, 202708: 0.05, 202709: 0.05, 202710: 0.05}), F_PCT,
       "KS campaign May-2027, payout ~14 days after close = Jun-2027; late pledges Jul-Oct.")
+ts_in("pre_ship_atl", "Atlas pre-order units shipped (% of Atlas pre-orders)",
+      by_period(monthly_map={202802: 0.5, 202803: 0.5}), F_PCT, "Atlas ships ~3 months after Pebble/Square.")
 ts_in("retail_share", "Retail / wholesale share of regular units",
       by_period(monthly_map={**{202800 + k: 0.10 for k in range(1, 7)}, **{202800 + k: 0.25 for k in range(7, 13)}},
-                annual={2029: 0.35, 2030: 0.45, 2031: 0.50}), F_PCT, "Retail from 2028 (COMPANY.md).")
-mix_peb = by_period(year_default={2026: 0.45, 2027: 0.45, 2028: 0.45},
-                    monthly_map={202809: 0.38, 202810: 0.38, 202811: 0.38, 202812: 0.38},
-                    annual={2029: 0.38, 2030: 0.37, 2031: 0.36})
-mix_atl = by_period(monthly_map={202809: 0.15, 202810: 0.15, 202811: 0.15, 202812: 0.15},
-                    annual={2029: 0.17, 2030: 0.18, 2031: 0.19})
+                annual={2029: 0.30, 2030: 0.35, 2031: 0.35}), F_PCT, "Retail from 2028 (COMPANY.md). DTC-led (Oura/Whoop-style) because retail margin on Square is thin at BOM-reconciled COGS.")
+mix_peb = by_period(year_default={2026: 0.53, 2027: 0.53, 2028: 0.45},
+                    monthly_map={202801: 0.53, 202802: 0.53, 202803: 0.53},
+                    annual={2029: 0.45, 2030: 0.45, 2031: 0.45})
+mix_atl = by_period(year_default={2028: 0.15}, monthly_map={202801: 0.0, 202802: 0.0, 202803: 0.0},
+                    annual={2029: 0.15, 2030: 0.15, 2031: 0.15})
 mix_sq = [round(1 - a - b, 4) for a, b in zip(mix_peb, mix_atl)]
 ts_in("mix_peb", "SKU mix of regular units -- Pebble", mix_peb, F_PCT)
 ts_in("mix_sq", "SKU mix of regular units -- Square", mix_sq, F_PCT)
-ts_in("mix_atl", "SKU mix of regular units -- Atlas (from Sep-2028)", mix_atl, F_PCT)
+ts_in("mix_atl", "SKU mix of regular units -- Atlas (regular sales from Apr-2028)", mix_atl, F_PCT)
 ts_in("fleet_end", "B2B fleet devices deployed (end of period)",
       by_period(monthly_map={202804: 50, 202805: 100, 202806: 150, 202807: 200, 202808: 250, 202809: 300,
                              202810: 400, 202811: 500, 202812: 600},
                 annual={2029: 2500, 2030: 6000, 2031: 11000}), F_NUM, "Hostels & tour operators.")
 ts_in("cogs_index", "Landed-COGS index (learning curve / volume)",
-      by_period(default=1.0, annual={2029: 0.94, 2030: 0.89, 2031: 0.85}), "0.00", "~5-6%/yr cost-down at volume.")
+      by_period(default=1.0, monthly_map={202807: 0.95, 202808: 0.95, 202809: 0.95, 202810: 0.95, 202811: 0.95, 202812: 0.95}, annual={2029: 0.89, 2030: 0.82, 2031: 0.79}), "0.00", "hardware/bom: 10k->100k tier ratio ~0.79-0.81 for all SKUs; H2-2028 0.95 = DRAM normalisation (Square normalised $206 vs $227).")
 ts_in("affiliate_rate", "Affiliate booking revenue per active device per month",
       by_period(default=0.30, annual={2029: 0.40, 2030: 0.50, 2031: 0.60}), F_USD2,
       "Tours/hotels/restaurants commissions (~8% tours, ~4-6% hotels) on in-app bookings.")
 ts_in("cac", "Paid CAC per regular DTC unit (before scenario)",
-      by_period(year_default={2026: 0, 2027: 45, 2028: 60}, annual={2029: 70, 2030: 75, 2031: 80}), F_USD,
+      by_period(year_default={2026: 0, 2027: 45, 2028: 60}, annual={2029: 65, 2030: 62, 2031: 60}), F_USD,
       "Consumer electronics CAC ~$76-120 across all channels (https://tenten.co/shopify/d2c-cac-benchmarks-2026/); ours lower as KS community + PR + affiliates drive a share.")
 ts_in("ks_mkt", "Kickstarter pre-launch & campaign marketing",
       by_period(monthly_map={202701: 10000, 202702: 20000, 202703: 40000, 202704: 60000, 202705: 70000, 202706: 15000}),
@@ -520,15 +525,15 @@ ts_in("nre_id", "R&D: ID / ME / CMF design agency",
                 annual={2029: 300000, 2030: 400000, 2031: 500000}), F_USD)
 ts_in("nre_odm", "R&D: ODM engineering NRE (EVT/DVT/PVT)",
       by_period(monthly_map={202612: 30000, 202701: 30000, 202702: 20000, 202707: 80000, 202708: 60000,
-                             202709: 60000, 202710: 40000, 202803: 80000, 202805: 80000, 202807: 60000},
+                             202709: 140000, 202710: 120000, 202711: 60000},
                 annual={2029: 600000, 2030: 900000, 2031: 1200000}), F_USD, "Pebble+Square 2027; Atlas 2028; Gen-2 2029+.")
 ts_in("nre_proto", "R&D: prototype builds (EVT 50u, DVT 150u, PVT)",
-      by_period(monthly_map={202702: 35000, 202707: 40000, 202709: 30000, 202804: 30000, 202806: 30000},
+      by_period(monthly_map={202702: 35000, 202707: 40000, 202709: 60000, 202711: 30000, 202805: 30000},
                 annual={2029: 150000, 2030: 200000, 2031: 250000}), F_USD, "Q1-2027: 50 EVT units (COMPANY.md).")
 ts_in("nre_cert", "R&D: certification (FCC/CE/UKCA/IC, PTCRB/GCF, carrier, NTN)",
-      by_period(monthly_map={202708: 25000, 202709: 90000, 202710: 70000, 202807: 120000, 202808: 60000},
+      by_period(monthly_map={202708: 60000, 202709: 300000, 202710: 265000, 202711: 300000, 202712: 340000},
                 annual={2029: 250000, 2030: 300000, 2031: 350000}), F_USD,
-      "LTE device PTCRB/GCF + carrier is the big ticket; estimate, reconcile with hardware/ cert plan.")
+      "hardware/bom NRE: cert Pebble Lite $140k + Square $485k + Atlas $640k, all in H2-2027.")
 ts_in("nre_content", "R&D: City Pack content (fact-checking, data licences, editors' contracts)",
       by_period(monthly_map={202611: 8000, 202612: 8000, 202701: 8000, 202702: 8000, 202703: 8000,
                              202707: 10000, 202708: 10000, 202709: 10000, 202710: 10000, 202711: 10000, 202712: 10000},
@@ -538,9 +543,9 @@ ts_in("nre_content", "R&D: City Pack content (fact-checking, data licences, edit
 ts_in("nre_sw", "R&D: dev tools, cloud dev/test, on-device model fine-tuning compute",
       by_period(year_default={2026: 3000, 2027: 5000, 2028: 12000}, annual={2029: 250000, 2030: 400000, 2031: 600000}), F_USD)
 ts_in("tooling", "Capex: production tooling & test fixtures",
-      by_period(monthly_map={202707: 150000, 202708: 150000, 202806: 250000, 202812: 100000},
+      by_period(monthly_map={202707: 180000, 202708: 185000, 202710: 330000, 202812: 100000},
                 annual={2029: 500000, 2030: 800000, 2031: 1000000}), F_USD,
-      "Pebble+Square injection/die-cast tooling ~$300k; Atlas Ti CNC fixtures ~$250k; estimate.")
+      "hardware/bom: tooling+fixtures Pebble Lite $130k, Square $235k, Atlas $330k.")
 ts_in("ga_other", "G&A non-personnel (legal, IP, accounting, insurance, office, SaaS)",
       by_period(year_default={2026: 12000, 2027: 12000, 2028: 35000},
                 monthly_map={202708: 20000, 202709: 20000, 202710: 20000, 202711: 20000, 202712: 20000},
@@ -563,6 +568,8 @@ pm.add("pre_px_peb", "Pre-order blended price -- Pebble",
        lambda i: "(ks_units*ks_peb+pre_units*pre_peb)/(ks_units+pre_units)*sc_price", F_USD2, "$", summ=None)
 pm.add("pre_px_sq", "Pre-order blended price -- Square",
        lambda i: "(ks_units*ks_sq+pre_units*pre_sq)/(ks_units+pre_units)*sc_price", F_USD2, "$", summ=None)
+pm.add("pre_px_atl", "Pre-order blended price -- Atlas",
+       lambda i: "(ks_units*ks_atl+pre_units*pre_atl)/(ks_units+pre_units)*sc_price", F_USD2, "$", summ=None)
 pm.section("Units")
 pm.add("reg_total", "Regular units sold (after scenario)", lambda i: f"{A('reg_units')(i)}*sc_vol", F_NUM, "units")
 for s, nm in SKUS:
@@ -574,14 +581,14 @@ for s, nm in SKUS:
 for s, nm in SKUS:
     pm.add(f"retu_{s}", f"Retail units -- {nm}",
            lambda i, s=s: f"{pm.ref('reg_total', i)}*{pm.ref('mix_'+s, i)}*{pm.ref('retail_sh', i)}", F_NUM, "units")
+pm.add("preu_peb", "Pre-order units shipped -- Pebble", lambda i: f"(ks_units+pre_units)*sc_vol*{A('pre_ship_pct')(i)}*pre_mix_peb", F_NUM, "units")
+pm.add("preu_sq", "Pre-order units shipped -- Square", lambda i: f"(ks_units+pre_units)*sc_vol*{A('pre_ship_pct')(i)}*(1-pre_mix_peb-pre_mix_atl)", F_NUM, "units")
+pm.add("preu_atl", "Pre-order units shipped -- Atlas", lambda i: f"(ks_units+pre_units)*sc_vol*{A('pre_ship_atl')(i)}*pre_mix_atl", F_NUM, "units")
 pm.add("pre_total", "Pre-order (KS + late pledge) units shipped",
-       lambda i: f"(ks_units+pre_units)*sc_vol*{A('pre_ship_pct')(i)}", F_NUM, "units")
-pm.add("preu_peb", "Pre-order units shipped -- Pebble", lambda i: f"{pm.ref('pre_total', i)}*pre_mix_peb", F_NUM, "units")
-pm.add("preu_sq", "Pre-order units shipped -- Square", lambda i: f"{pm.ref('pre_total', i)}*(1-pre_mix_peb)", F_NUM, "units")
+       lambda i: f"{pm.ref('preu_peb', i)}+{pm.ref('preu_sq', i)}+{pm.ref('preu_atl', i)}", F_NUM, "units")
 for s, nm in SKUS:
-    extra = f"+{pm.ref('preu_'+s, 0)}" if s != "atl" else ""
     pm.add(f"units_{s}", f"Total units shipped -- {nm}",
-           (lambda i, s=s: f"{pm.ref('dtcu_'+s, i)}+{pm.ref('retu_'+s, i)}" + (f"+{pm.ref('preu_'+s, i)}" if s != 'atl' else "")),
+           (lambda i, s=s: f"{pm.ref('dtcu_'+s, i)}+{pm.ref('retu_'+s, i)}+{pm.ref('preu_'+s, i)}"),
            F_NUM, "units")
 pm.add("units_total", "TOTAL UNITS SHIPPED", lambda i: "+".join(pm.ref(f"units_{s}", i) for s, _ in SKUS), F_NUM, "units", total=True)
 pm.add("dtcu_total", "DTC regular units", lambda i: "+".join(pm.ref(f"dtcu_{s}", i) for s, _ in SKUS), F_NUM, "units")
@@ -714,7 +721,7 @@ rv.add("hw_dtc", "Hardware -- DTC (web/app)",
 rv.add("hw_ret", "Hardware -- retail / wholesale (sell-in)",
        lambda i: "+".join(f"{pm.ref('retu_'+s, i)}*{pm.ref('ret_'+s, i)}" for s, _ in SKUS), F_USD)
 rv.add("hw_pre", "Hardware -- Kickstarter / pre-orders (recognised on shipment)",
-       lambda i: f"{pm.ref('preu_peb', i)}*{pm.ref('pre_px_peb', i)}+{pm.ref('preu_sq', i)}*{pm.ref('pre_px_sq', i)}", F_USD)
+       lambda i: "+".join(f"{pm.ref('preu_'+k, i)}*{pm.ref('pre_px_'+k, i)}" for k in ("peb", "sq", "atl")), F_USD)
 rv.add("hw_gross", "Gross hardware revenue", lambda i: f"{rv.ref('hw_dtc', i)}+{rv.ref('hw_ret', i)}+{rv.ref('hw_pre', i)}", F_USD)
 rv.add("hw_returns", "Less: returns & refunds allowance", lambda i: f"-{rv.ref('hw_gross', i)}*returns_pct", F_USD)
 rv.add("hw_net", "Net hardware revenue", lambda i: f"{rv.ref('hw_gross', i)}+{rv.ref('hw_returns', i)}", F_USD, total=True)
@@ -905,7 +912,7 @@ wc.add("ar", "Retail accounts receivable (end)",
        F_USD, summ="last")
 wc.section("Kickstarter / pre-order deferred revenue")
 wc.add("pre_cash", "Pre-order cash collected (gross pledges)",
-       lambda i: f"(ks_units+pre_units)*sc_vol*{A('pre_collect_pct')(i)}*(pre_mix_peb*{pm.ref('pre_px_peb', i)}+(1-pre_mix_peb)*{pm.ref('pre_px_sq', i)})",
+       lambda i: f"(ks_units+pre_units)*sc_vol*{A('pre_collect_pct')(i)}*(pre_mix_peb*{pm.ref('pre_px_peb', i)}+(1-pre_mix_peb-pre_mix_atl)*{pm.ref('pre_px_sq', i)}+pre_mix_atl*{pm.ref('pre_px_atl', i)})",
        F_USD)
 wc.add("pre_rev", "Pre-order revenue recognised on shipment", R(rv, "hw_pre"), F_USD)
 wc.add("deferred", "Deferred revenue -- pre-orders (end)",
@@ -1000,8 +1007,9 @@ for j, h in enumerate(["Round", "Instrument", "Period key", "Amount ($)", "Pre-m
 ROUNDS = [
     ("Pre-seed", "Post-money SAFE", 202611, 1500000, None, 12000000, "COMPANY.md: $1.5M SAFE at $12M post-money cap."),
     ("Seed", "Priced (Series Seed Preferred)", 202708, 6000000, 22000000, None, "After Kickstarter (COMPANY.md: $6M). Pre-money is a CFO estimate."),
-    ("Series A", "Priced preferred", 202811, OVERRIDES.get("seriesA_amt", 20000000), 80000000, None, "Post-holiday 2028 traction; $100M post-money is the target (see valuation.md)."),
-    ("Series B", "Priced preferred", 2030, OVERRIDES.get("seriesB_amt", 40000000), 260000000, None, "Growth / inventory for retail scale; sized to keep min cash > ~6 months of burn."),
+    ("Seed extension", "Seed-2 preferred (priced at step-up to Seed)", 202803, OVERRIDES.get("seedx_amt", 3000000), 36000000, None, "CFO addition: bridges Mar-Sep 2028 (inventory for first retail + Atlas). Alternative: $3M inventory/venture-debt facility."),
+    ("Series A", "Priced preferred", 202809, OVERRIDES.get("seriesA_amt", 25000000), 80000000, None, "Post-holiday 2028 traction; $100M post-money is the target (see valuation.md)."),
+    ("Series B", "Priced preferred", 2030, OVERRIDES.get("seriesB_amt", 35000000), 250000000, None, "Growth / inventory for retail scale; sized to keep min cash > ~6 months of burn."),
 ]
 for k, (nm, ins, key, amt, pre, post, note) in enumerate(ROUNDS):
     r = 4 + k
@@ -1020,7 +1028,7 @@ for k, (nm, ins, key, amt, pre, post, note) in enumerate(ROUNDS):
         c.font, c.fill, c.number_format = BLUE, INFILL, "#,##0"
         fr.cell(r, 6, f"=E{r}+D{r}").number_format = "#,##0"
     fr.cell(r, 7, note).font = NOTE
-FR_KEYS, FR_AMT = "'Funding & Runway'!$C$4:$C$7", "'Funding & Runway'!$D$4:$D$7"
+FR_KEYS, FR_AMT = "'Funding & Runway'!$C$4:$C$8", "'Funding & Runway'!$D$4:$D$8"
 for col, w in zip("ABCDEFG", [16, 30, 12, 14, 15, 15, 90]):
     fr.column_dimensions[col].width = w
 
@@ -1127,14 +1135,14 @@ bs.add("check", "CHECK (assets - L&E), must be 0", lambda i: f"ROUND({bs.ref('ta
 # --------------------------------------------------------------------------
 # 15. Funding & runway metrics (rows under round table)
 # --------------------------------------------------------------------------
-r0 = 10
+r0 = 11
 fr.cell(r0, 1, "RUNWAY METRICS").font = TITLE
 mrng_cash = f"{q(cf.name)}!${FIRST}${cf.rows['end']}:${COLS[NM-1]}${cf.rows['end']}"
 mrng_burn = f"{q(cf.name)}!${FIRST}${cf.rows['burn']}:${COLS[NM-1]}${cf.rows['burn']}"
 mrng_lab = f"Timeline!${FIRST}$2:${COLS[NM-1]}$2"
 arng_cash = f"{q(cf.name)}!${FIRST}${cf.rows['end']}:${LAST}${cf.rows['end']}"
 metrics = [
-    ("Total equity raised through FY2031", f"=SUM(D4:D7)", F_USD),
+    ("Total equity raised through FY2031", f"=SUM(D4:D8)", F_USD),
     ("Minimum month-end cash, Nov-26..Dec-28", f"=MIN({mrng_cash})", F_USD),
     ("Month of minimum cash", f"=INDEX({mrng_lab},MATCH(MIN({mrng_cash}),{mrng_cash},0))", None),
     ("Minimum period-end cash incl. FY29-31", f"=MIN({arng_cash})", F_USD),
@@ -1196,8 +1204,9 @@ for k, (lab, nm, v, fmt) in enumerate(inp):
 # round refs
 SAFE_AMT, SAFE_CAP = "'Funding & Runway'!$D$4", "'Funding & Runway'!$F$4"
 SEED_AMT, SEED_PRE = "'Funding & Runway'!$D$5", "'Funding & Runway'!$E$5"
-A_AMT, A_PRE = "'Funding & Runway'!$D$6", "'Funding & Runway'!$E$6"
-B_AMT, B_PRE = "'Funding & Runway'!$D$7", "'Funding & Runway'!$E$7"
+X_AMT, X_PRE = "'Funding & Runway'!$D$6", "'Funding & Runway'!$E$6"
+A_AMT, A_PRE = "'Funding & Runway'!$D$7", "'Funding & Runway'!$E$7"
+B_AMT, B_PRE = "'Funding & Runway'!$D$8", "'Funding & Runway'!$E$8"
 r = 10
 ct.cell(r, 1, "Derived share counts").font = BOLD
 calc = [
@@ -1210,13 +1219,15 @@ calc = [
     ("Seed: pool top-up shares", "ct_pool_add_seed", "=ct_post_seed*ct_pool_seed-ct_pool0", "#,##0"),
     ("Seed price per share", "ct_seed_px", f"={SEED_AMT}/ct_seed_sh", "$0.0000"),
     ("SAFE effective price per share", "ct_safe_px", f"={SAFE_AMT}/ct_safe_sh", "$0.0000"),
+    ("Seed-2 extension price per share (pre-money / post-Seed FD shares)", "ct_x_px", f"={X_PRE}/ct_post_seed", "$0.0000"),
+    ("Seed-2 extension new shares", "ct_x_sh", f"={X_AMT}/ct_x_px", "#,##0"),
     ("Series A: new money % of post", "ct_A_pct", f"={A_AMT}/({A_PRE}+{A_AMT})", "0.00%"),
-    ("Series A: post-money FD shares", "ct_post_A", "=(ct_founder+ct_safe_sh+ct_seed_sh)/(1-ct_A_pct-ct_pool_A)", "#,##0"),
+    ("Series A: post-money FD shares", "ct_post_A", "=(ct_founder+ct_safe_sh+ct_seed_sh+ct_x_sh)/(1-ct_A_pct-ct_pool_A)", "#,##0"),
     ("Series A: new preferred shares", "ct_A_sh", "=ct_post_A*ct_A_pct", "#,##0"),
     ("Series A: pool top-up shares", "ct_pool_add_A", "=ct_post_A*ct_pool_A-ct_post_seed*ct_pool_seed", "#,##0"),
     ("Series A price per share", "ct_A_px", f"={A_AMT}/ct_A_sh", "$0.0000"),
     ("Series B: new money % of post", "ct_B_pct", f"=IF({B_AMT}>0,{B_AMT}/({B_PRE}+{B_AMT}),0)", "0.00%"),
-    ("Series B: post-money FD shares", "ct_post_B", "=(ct_founder+ct_safe_sh+ct_seed_sh+ct_A_sh)/(1-ct_B_pct-ct_pool_B)", "#,##0"),
+    ("Series B: post-money FD shares", "ct_post_B", "=(ct_founder+ct_safe_sh+ct_seed_sh+ct_x_sh+ct_A_sh)/(1-ct_B_pct-ct_pool_B)", "#,##0"),
     ("Series B: new preferred shares", "ct_B_sh", "=ct_post_B*ct_B_pct", "#,##0"),
     ("Series B: pool top-up shares", "ct_pool_add_B", "=ct_post_B*ct_pool_B-ct_post_A*ct_pool_A", "#,##0"),
     ("Series B price per share", "ct_B_px", f"=IF(ct_B_sh>0,{B_AMT}/ct_B_sh,0)", "$0.0000"),
@@ -1229,7 +1240,7 @@ for k, (lab, nm, fml, fmt) in enumerate(calc):
     add_name(nm, f"'Cap Table'!$B${rr}")
 r = r + len(calc) + 3
 ct.cell(r, 1, "Ownership by stage (fully diluted)").font = BOLD
-stages = ["Formation", "Post pre-seed SAFE (as-converted)", "Post Seed", "Post Series A", "Post Series B"]
+stages = ["Formation", "Post pre-seed SAFE (as-converted)", "Post Seed", "Post Seed-2 + Series A", "Post Series B"]
 for j, s in enumerate(stages):
     c1 = ct.cell(r + 1, 2 + 2 * j, s)
     c1.font, c1.fill = HDR, HDRFILL
@@ -1240,6 +1251,7 @@ holders = [
     ("Option pool (granted + unallocated)", ["ct_pool0", "ct_pool0", "ct_post_seed*ct_pool_seed", "ct_post_A*ct_pool_A", "ct_post_B*ct_pool_B"]),
     ("Pre-seed SAFE investors", ["0", "ct_safe_sh", "ct_safe_sh", "ct_safe_sh", "ct_safe_sh"]),
     ("Seed investors", ["0", "0", "ct_seed_sh", "ct_seed_sh", "ct_seed_sh"]),
+    ("Seed-2 extension investors", ["0", "0", "0", "ct_x_sh", "ct_x_sh"]),
     ("Series A investors", ["0", "0", "0", "ct_A_sh", "ct_A_sh"]),
     ("Series B investors", ["0", "0", "0", "0", "ct_B_sh"]),
 ]
