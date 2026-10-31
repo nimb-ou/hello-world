@@ -19,6 +19,10 @@ export interface DemoRoute {
   talkingWindowsM: [number, number][];
   /** Simulated stops (metres along route, seconds standing). */
   stops: { atM: number; seconds: number; label: string }[];
+  /** Places with magnetic disturbance (trams, buses, steel) used by the simulation's compass model. */
+  magneticZones?: { at: LatLng; radiusM: number }[];
+  /** Distances (m) where the simulated user presses "tell me more". */
+  tellMeMoreAtM?: number[];
 }
 
 export const ROME_DEMO_ROUTE: DemoRoute = {
@@ -67,4 +71,56 @@ export const ROME_DEMO_ROUTE: DemoRoute = {
     { atM: 330, seconds: 60, label: "Admire the Four Rivers" },
     { atM: 1180, seconds: 45, label: "Look at the temples of Largo Argentina" },
   ],
+  magneticZones: [{ at: { lat: 41.9003, lng: 12.4808 }, radiusM: 40 }],
+  tellMeMoreAtM: [335, 1185],
 };
+
+/**
+ * Mumbai test route (founder's first real walks): Gateway of India -> Regal Circle -> Kala Ghoda ->
+ * Flora Fountain (Hutatma Chowk) -> Horniman Circle -> Chhatrapati Shivaji Maharaj Terminus.
+ * Hand-traced along Chhatrapati Shivaji Marg, MG Road, Veer Nariman Road and D. N. Road (approx. 10-30 m).
+ */
+export const MUMBAI_DEMO_ROUTE: DemoRoute = {
+  id: "mumbai-fort-heritage",
+  name: "Gateway of India to CSMT (simulated walk)",
+  path: [
+    { lat: 18.9219, lng: 72.8344, label: "Gateway of India" },
+    { lat: 18.9226, lng: 72.8338, label: "Apollo Bunder" },
+    { lat: 18.9234, lng: 72.8331 },
+    { lat: 18.9241, lng: 72.8323, label: "Regal Circle" },
+    { lat: 18.9250, lng: 72.8320 },
+    { lat: 18.9260, lng: 72.8321, label: "MG Road" },
+    { lat: 18.9270, lng: 72.8321, label: "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya" },
+    { lat: 18.9283, lng: 72.8322, label: "Kala Ghoda" },
+    { lat: 18.9295, lng: 72.8320 },
+    { lat: 18.9308, lng: 72.8318, label: "MG Road (Fort)" },
+    { lat: 18.9320, lng: 72.8318, label: "Flora Fountain / Hutatma Chowk" },
+    { lat: 18.9323, lng: 72.8330, label: "Veer Nariman Road" },
+    { lat: 18.9326, lng: 72.8341, label: "St. Thomas Cathedral" },
+    { lat: 18.9330, lng: 72.8350, label: "Horniman Circle" },
+    { lat: 18.9341, lng: 72.8352 },
+    { lat: 18.9356, lng: 72.8354, label: "D. N. Road" },
+    { lat: 18.9372, lng: 72.8355 },
+    { lat: 18.9386, lng: 72.8356 },
+    { lat: 18.9396, lng: 72.8352, label: "Chhatrapati Shivaji Maharaj Terminus" },
+  ],
+  crossings: [
+    { at: { lat: 18.9241, lng: 72.8323 }, radiusM: 20, name: "Regal Circle" },
+    { at: { lat: 18.9283, lng: 72.8322 }, radiusM: 12, name: "Kala Ghoda junction" },
+    { at: { lat: 18.9320, lng: 72.8318 }, radiusM: 18, name: "Hutatma Chowk" },
+    { at: { lat: 18.9386, lng: 72.8356 }, radiusM: 18, name: "CSMT junction" },
+  ],
+  talkingWindowsM: [
+    [900, 950],
+    [1700, 1750],
+  ],
+  stops: [
+    { atM: 0, seconds: 40, label: "Look at the Gateway" },
+    { atM: 800, seconds: 45, label: "Kala Ghoda" },
+    { atM: 1450, seconds: 40, label: "Horniman Circle" },
+  ],
+  magneticZones: [{ at: { lat: 18.9390, lng: 72.8355 }, radiusM: 50 }],
+  tellMeMoreAtM: [810, 1460],
+};
+
+export const DEMO_ROUTES: Record<string, DemoRoute> = { rome: ROME_DEMO_ROUTE, mumbai: MUMBAI_DEMO_ROUTE };

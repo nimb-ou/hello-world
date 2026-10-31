@@ -11,7 +11,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  HeadingKalman, ROME_DEMO_ROUTE, StoryEngine, destinationPoint, directionTo, haversine, interpolateAlong, pathLength,
+  DEMO_ROUTES, HeadingKalman, ROME_DEMO_ROUTE, StoryEngine, destinationPoint, directionTo, haversine, interpolateAlong, pathLength,
   templateNarration, type CityPack, type DemoRoute, type Persona,
 } from "../packages/core/src/index.ts";
 
@@ -64,8 +64,8 @@ function rng(seed: number) {
   return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 2 ** 32);
 }
 
-export function loadPack(): CityPack {
-  return JSON.parse(readFileSync(join(here, "../city-pack/output/rome.pack.json"), "utf8"));
+export function loadPack(city = "rome"): CityPack {
+  return JSON.parse(readFileSync(join(here, `../city-pack/output/${city}.pack.json`), "utf8"));
 }
 
 export function runWalk(pack: CityPack, opts: SimOptions = {}) {
@@ -77,7 +77,7 @@ export function runWalk(pack: CityPack, opts: SimOptions = {}) {
   const total = pathLength(route.path);
   const engine = new StoryEngine(pack.pois);
   const kf = new HeadingKalman();
-  const tellAt = [...(opts.tellMeMoreAtM ?? [335, 1185])];
+  const tellAt = [...(opts.tellMeMoreAtM ?? route.tellMeMoreAtM ?? [])];
   const stops = route.stops.map((s) => ({ ...s, remaining: s.seconds, done: false }));
   const transcript: TranscriptEntry[] = [];
   const silence: Record<string, number> = {};
@@ -107,7 +107,7 @@ export function runWalk(pack: CityPack, opts: SimOptions = {}) {
     const trueHeading = truth.heading;
     // --- simulated sensors ---
     const gpsPos = destinationPoint(truth.pos, r() * 360, Math.abs(g()) * 4);
-    const nearCorso = haversine(truth.pos, { lat: 41.9003, lng: 12.4808 }) < 40; // trams/buses: magnetic disturbance
+    const nearCorso = (route.magneticZones ?? []).some((z) => haversine(truth.pos, z.at) < z.radiusM); // trams/buses/steel: magnetic disturbance
     for (let k = 0; k < 5; k++) {
       const tt = t - 1000 + k * 200;
       kf.gyro({ t: tt, yawRateDps: g() * 2 });
@@ -187,7 +187,7 @@ export function toMarkdown(res: ReturnType<typeof runWalk>, seed: number): strin
   const lines = [
     `# LORE walk simulation: ${res.route.name}`,
     "",
-    "> **SIMULATED DATA.** GNSS, compass, gyro and step signals are synthetic (seeded noise, a 7 deg compass bias, magnetic disturbance near Via del Corso). Narration uses the offline deterministic template path from verified City Pack fact cards. Regenerate with `npm run sim`.",
+    "> **SIMULATED DATA.** GNSS, compass, gyro and step signals are synthetic (seeded noise, a 7 deg compass bias, magnetic disturbance zones on busy roads). Narration uses the offline deterministic template path from verified City Pack fact cards. Regenerate with `npm run sim`.",
     "",
     `Persona: **${res.persona}**, seed ${seed}. Route ${m.routeKm} km, ${m.durationMin} min including stops.`,
     "",
@@ -231,11 +231,14 @@ if (isMain) {
   };
   const seed = Number(arg("--seed") ?? 42);
   const persona = (arg("--persona") ?? "local-friend") as Persona;
-  const res = runWalk(loadPack(), { seed, persona });
+  const city = arg("--city") ?? "rome";
+  const route = DEMO_ROUTES[city];
+  if (!route) throw new Error(`no demo route for ${city}`);
+  const res = runWalk(loadPack(city), { seed, persona, route });
   const out = join(here, "output");
   mkdirSync(out, { recursive: true });
-  writeFileSync(join(out, "rome-walk-transcript.md"), toMarkdown(res, seed));
-  writeFileSync(join(out, "rome-walk-metrics.json"), JSON.stringify(res.metrics, null, 2));
+  writeFileSync(join(out, `${city}-walk-transcript.md`), toMarkdown(res, seed));
+  writeFileSync(join(out, `${city}-walk-metrics.json`), JSON.stringify(res.metrics, null, 2));
   console.log(JSON.stringify(res.metrics, null, 2));
-  console.log(`transcript -> ${join(out, "rome-walk-transcript.md")}`);
+  console.log(`transcript -> ${join(out, `${city}-walk-transcript.md`)}`);
 }

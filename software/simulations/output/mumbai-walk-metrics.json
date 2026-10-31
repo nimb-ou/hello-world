@@ -1,0 +1,29 @@
+{
+  "simulated": true,
+  "routeKm": 2.32,
+  "durationMin": 31.8,
+  "narrations": 16,
+  "narrationsPerKm": 6.9,
+  "factsSpoken": 39,
+  "factRepeatRate": 0,
+  "poiRepeatRate": 0,
+  "speakingShare": 0.19,
+  "quiet": {
+    "quietSeconds": 228,
+    "narrationStartsDuringQuiet": 0,
+    "compliance": 1,
+    "ongoingSpeechOverlapSec": 1
+  },
+  "directionAccuracy": 0.938,
+  "headingErrorDeg": {
+    "mean": 2.8,
+    "p95": 5.4
+  },
+  "silenceReasons": {
+    "speaking": 349,
+    "cooldown": 281,
+    "nothing-nearby": 1020,
+    "crossing-road": 163,
+    "user-talking": 81
+  }
+}
