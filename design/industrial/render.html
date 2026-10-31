@@ -71,16 +71,16 @@ const BONE = 0xE6E0D6, STONE = 0xD3CCC1, INK = 0x1B1D21, NIGHT = 0x16202B, SAND 
 S['hero-pebble'] = (st) => { st.scene.background.set(BONE); st.floor.material.color.set(BONE);
   const a = placeOnFloor(flat(G.buildPebble(PR, 'bone', { led: LED }), 0.35));
   st.scene.add(a); st.target.set(0, 5, 0); st.keyDir.set(-0.6, 1, 0.5).normalize();
-  cap('LORE Pebble · P1 · Bone · soft-touch PC-GF10 · 42 × 42 × 14 mm · est. 29 g');
+  cap('LORE Pebble · P1 · Bone · soft-touch PC-GF10 · 42 × 42 × 14 mm · est. 33 g');
   return persp(15, [0, 150, 175], [0, 2, 0]); };
 S['hero-square'] = (st) => { st.scene.background.set(STONE); st.floor.material.color.set(STONE);
   const a = placeOnFloor(flat(dev('square', 'sq-ink'), -0.42)); st.scene.add(a); st.target.set(0, 5, 0);
-  cap('LORE Square · S1 · Ink anodised 6013 aluminium · 54 × 54 × 12 mm · est. 52 g');
+  cap('LORE Square · S1 · Ink anodised 6013 aluminium · 54 × 54 × 12 mm · est. 57 g');
   return persp(15, [-30, 170, 200], [0, 3, 0]); };
 S['hero-atlas'] = (st) => { st.scene.background.set(0x2A2A2C); st.floor.material.color.set(0x2A2A2C); st.scene.environmentIntensity = 1.0;
   ov.classList.add('dark');
   const a = placeOnFloor(flat(dev('atlas', 'at-ti'), 0.5)); st.scene.add(a); st.target.set(0, 5, 0); st.key.intensity = 2.6;
-  cap('LORE Atlas · A1 · Bead-blasted Grade 5 titanium · sapphire · ZrN brass-tone crown · est. 66 g');
+  cap('LORE Atlas · A1 · Bead-blasted Grade 5 titanium · sapphire · ZrN brass-tone crown · 54 × 54 × 13.5 mm · est. 85 g');
   return persp(15, [20, 165, 205], [0, 3, 0]); };
 S['hero-square-upright'] = (st) => { st.scene.background.set(SAND); st.floor.material.color.set(SAND);
   const a = placeOnFloor(upright(dev('square', 'sq-sand'), -0.55, 0.12)); st.scene.add(a); st.target.set(0, 25, 0);
@@ -154,9 +154,9 @@ S['scale-reference'] = (st) => { st.scene.background.set(0xEDE8DF); st.floor.mat
   put(G.buildPebble(PR, 'bone', { led: LED }), -10, 0); put(dev('square', 'sq-ink'), 55, 0); put(dev('atlas', 'at-dlc'), 122, 0);
   st.target.set(15, 0, 0);
   ttl('Scale reference', 'ID-1 card 85.6 × 54.0 mm · €1 coin Ø23.25 mm');
-  cap('Top view, orthographic · Pebble 42 mm · Square 54 mm · Atlas 54 mm · 1 grid = 10 mm');
-  st.scene.environmentIntensity = 0.3; st.keyDir.set(-0.85, 0.55, 0.35).normalize(); st.keySpread = 0.18;
-  const c = ortho(215, [15, 600, 0.001], [15, 0, 0], [0, 0, -1]);
+  cap('Near-top view, 12.5° lens · Pebble 42 mm · Square 54 mm · Atlas 54 mm · scale bar at device plane');
+  st.keyDir.set(-0.6, 0.8, 0.2).normalize(); st.keySpread = 0.18; st.sky.intensity = 0.25;
+  const c = persp(12.5, [15, 1000, 420], [15, 0, 0]);
   st.after = () => { // 10 mm scale bar
     const a = project(c, new THREE.Vector3(100, 0, 52), W, H), b = project(c, new THREE.Vector3(150, 0, 52), W, H);
     ov.insertAdjacentHTML('beforeend', `<svg width="${W}" height="${H}"><line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="#2a2c30" stroke-width="3"/>${[0, 1, 2, 3, 4, 5].map((k) => `<line x1="${a.x + (b.x - a.x) * k / 5}" y1="${a.y - 10}" x2="${a.x + (b.x - a.x) * k / 5}" y2="${a.y}" stroke="#2a2c30" stroke-width="2"/>`).join('')}<text x="${(a.x + b.x) / 2}" y="${a.y + 34}" font-family="JetBrains Mono" font-size="${W / 110}" fill="#2a2c30" text-anchor="middle">50 mm</text></svg>`);
@@ -180,17 +180,17 @@ for (const sku of ['pebble', 'square', 'atlas']) {
   S[`ortho-${sku}`] = (st) => { st.scene.background.set(0xF4F1EC); st.floor.visible = false; st.scene.environmentIntensity = 1.0;
     const mk = () => (sku === 'pebble' ? G.buildPebble(PR, fin, { led: LED }) : dev(sku, fin));
     const T = PR[sku].thickness_total;
-    const front = mk(); front.position.set(-40, 0, 0); // facing +Z (camera)
+    const front = mk(); front.position.set(-50, 0, 0); // facing +Z (camera)
     const side = mk(); side.rotation.y = -Math.PI / 2; side.position.set(0, 0, 0); // right side view (crown towards camera)
-    const top = mk(); top.rotation.x = Math.PI / 2; top.position.set(45, 0, 0); // top edge view
-    const back = mk(); back.rotation.y = Math.PI; back.position.set(100, 0, 0);
+    const top = mk(); top.rotation.x = Math.PI / 2; top.position.set(48, 0, 0); // top edge view
+    const back = mk(); back.rotation.y = Math.PI; back.position.set(108, 0, 0);
     [front, side, top, back].forEach((o) => st.scene.add(o));
     st.target.set(30, 0, 0); st.keyDir.set(-0.3, 0.5, 1).normalize(); st.sky.intensity = 0.25;
     ttl(`${PR[sku].name} · orthographic`, 'front · right side · top · back');
     cap(`${PR[sku].code} · ${PR[sku].plan_w ?? PR.square.plan_w} × ${PR[sku].plan_h ?? PR.square.plan_h} × ${T} mm · see drawings/${sku}.svg for dimensions`);
-    const c = ortho(142, [30, 0, 800], [30, 0, 0]);
+    const c = ortho(150, [29, 0, 800], [29, 0, 0]);
     st.after = () => { const lab = (x, t) => { const p = project(c, new THREE.Vector3(x, -40, 0), W, H); ov.insertAdjacentHTML('beforeend', `<div class="lab" style="left:${p.x}px;top:${p.y}px;transform:translateX(-50%);font-family:'JetBrains Mono';text-transform:uppercase;letter-spacing:.1em;color:#7c7a74">${t}</div>`); };
-      lab(-40, 'Front'); lab(sku === 'pebble' ? 0 : T / 2, 'Right'); lab(45, 'Top'); lab(100, 'Back'); };
+      lab(-50, 'Front'); lab(0, 'Right'); lab(48, 'Top'); lab(108, 'Back'); };
     return c; };
 }
 // --- accessory / context shots

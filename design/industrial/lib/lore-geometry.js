@@ -239,6 +239,10 @@ export function buildPebble(PR, finishKey = 'bone', opts = {}) {
     const x = (k - (P.speaker_holes - 1) / 2) * P.speaker_hole_pitch;
     parts.add(named(onSide(ol, idxNearX(ol, x, -1), zMid - zb, hole(P.speaker_hole_d, hm)), 'speaker_hole', 'port'));
   }
+  // volume rocker (hardware: main button + volume rocker) on the east side, flush pill
+  { const rol = squircleRect(2.6, 9.0, 1.29, 2, 96);
+    const rk = named(new THREE.Mesh(sweep(rol, slabProfile({ H: 0.6, rt: 0.3, rb: 0.01, cap: 6, fil: 4 })), dish), 'volume_rocker', 'button');
+    const ri = idxAt(ol, 0); rk.rotation.y = Math.PI / 2; rk.position.set(ol.p[ri][0] - 0.35, 0, zMid - zb); parts.add(rk); }
   // tether tunnel: two holes on the back at the NW corner
   const ia = idxAt(ol, (3 * Math.PI) / 4);
   for (const t of [-0.5, 0.5]) {
@@ -337,6 +341,13 @@ export function buildSlate(PR, sku = 'square', finishKey = 'sq-ink', opts = {}) 
   const ki = idxNearY(ol, S.talk_y, 1);
   key.position.set(ol.p[ki][0] - 0.3, S.talk_y, rb + (H - rb - rt) / 2);
   parts.add(key);
+  // SOS button: recessed, ridged, left side (needs a deliberate 2 s hold; cannot be pressed by a pocket)
+  const sol = squircleRect(3.0, 7.0, 1.49, 2, 96);
+  const sos = named(new THREE.Mesh(sweep(sol, slabProfile({ H: 0.35, rt: 0.2, rb: 0.01, cap: 6, fil: 4 })), mat(F.key)), 'sos_button', 'button');
+  sos.rotation.y = -Math.PI / 2;
+  const si = idxNearY(ol, -2, -1);
+  sos.position.set(ol.p[si][0] + 0.2, -2, rb + (H - rb - rt) / 2); parts.add(sos);
+  const sosRing = slot(3.8, 7.8, M.hole(), 1.9); parts.add(named(onSide(ol, si, rb + (H - rb - rt) / 2, sosRing, 0.01), 'sos_recess', 'port'));
   // ports: USB-C + speaker + mics on the bottom edge, 2 mics on the top edge
   const hm = M.hole(), zMid = rb + (H - rb - rt) / 2;
   const usb = slot(S.usb_c_opening[0], S.usb_c_opening[1], hm);
@@ -399,7 +410,7 @@ export function buildSlateExploded(PR, sku, finish, opts = {}) {
   // battery + coil-free charge path
   const bat = box(38, 30, 4.6, 3, M.pouch(), 'battery');
   bat.position.set(0, -4, 0);
-  layer([bat], -gap * 2.1, sku === 'atlas' ? 'Battery · 3.87 V 1000 mAh Li-ion polymer (est.)' : 'Battery · 3.87 V 850 mAh Li-ion polymer (est.)', 'stacked-cell, swelling allowance 8 %');
+  layer([bat], -gap * 2.1, sku === 'atlas' ? 'Battery · 1450 mAh / 5.63 Wh Li-ion 4.45 V HV' : 'Battery · 1100 mAh / 4.27 Wh Li-ion 4.45 V HV', 'per hardware/system-architecture.md · 8 % swelling allowance');
   // main PCB with shields + LRA + speaker
   const pcb = new THREE.Group();
   const board = box(44, 40, 0.8, 6, M.pcb(), 'main_pcb'); pcb.add(board);
@@ -410,7 +421,7 @@ export function buildSlateExploded(PR, sku, finish, opts = {}) {
   const lra = named(new THREE.Mesh(new THREE.CylinderGeometry(4, 4, 2.6, 48), M.steelPolish()), 'haptic_lra', 'internal'); lra.rotation.x = Math.PI / 2; lra.position.set(12, -14, 2.1);
   pcb.add(can1, can2, can3, spk, lra);
   if (sku === 'atlas') { const cam = box(6.5, 6.5, 4.2, 0.8, M.plasticBlack(), 'camera_module'); cam.position.set(0, 18.5, 0.8); pcb.add(cam); }
-  layer([pcb], -gap * 0.9, 'Main logic board · 10-layer HDI, SiP + LTE Cat-4 modem', sku === 'atlas' ? 'Glance camera module · 1511 speaker · Ø8 LRA' : '1511 speaker box (ePTFE vent) · Ø8 LRA haptic');
+  layer([pcb], -gap * 0.9, sku === 'atlas' ? 'Logic board · Genio 720 · EG25-G LTE + BG95-S5 NTN' : 'Logic board · MediaTek Genio 720 · LTE Cat-1bis (D11)', sku === 'atlas' ? 'OV13B10 Glance camera · LC29HAA L1+L5 · 15×11 speaker · DRV2605L LRA' : 'LC29HAA L1+L5 GNSS · nRF54L15 hub · 15×11 speaker · DRV2605L LRA');
   // frame with buttons
   const fr = layer([...find('frame_unibody'), ...find('diamond_cut_chamfer'), ...find('antenna_split'), ...parts.children.filter((c) => c.userData.role === 'port')], gap * 0.2,
     sku === 'atlas' ? 'Unibody · Grade 5 titanium, CNC 5-axis' : 'Unibody · 6013-T6 aluminium, CNC 5-axis', '4 nano-moulded antenna splits · USB-C (IPx7 receptacle)');
@@ -423,7 +434,7 @@ export function buildSlateExploded(PR, sku, finish, opts = {}) {
   const disp = new THREE.Group();
   const panel = box(31.5, 31.5, 0.9, 6, M.plasticBlack(), 'display_module'); disp.add(panel);
   const flex = box(10, 9, 0.12, 1, M.flex(), 'display_flex'); flex.position.set(0, -20, 0.2); disp.add(flex);
-  layer([disp], gap * 2.75, '1.6" AMOLED · 466 × 466 · 412 ppi · LTPO 1–60 Hz', 'peak 1,500 nits (outdoor), AOD');
+  layer([disp], gap * 2.75, '1.6" AMOLED · 466 × 466 · 412 ppi · on-cell touch', '1000-nit HBM · AOD · MIPI-DSI 1-lane');
   const glassObjs = parts.children.filter((c) => ['cover_glass', 'cover_sapphire', 'display_466', 'camera_trim', 'camera_lens', 'privacy_led'].includes(c.name) || (c.geometry && c.geometry.type === 'CircleGeometry' && c.position.z > S.frame_h));
   const gl = layer(glassObjs, gap * 3.55, sku === 'atlas' ? 'Cover · sapphire 0.8 mm, AR + oleophobic' : 'Cover · Gorilla Glass Victus 2, 0.7 mm 2.5D', 'black ink mask, ALS window');
   for (const o of glassObjs) o.position.z -= S.frame_h; // keep glass close to its layer origin
@@ -441,12 +452,12 @@ export function buildPebbleExploded(PR, finish, opts = {}) {
   const take = (pred) => parts.children.filter(pred);
   const layer = (objs, z, lab, sub) => { const grp = new THREE.Group(); for (const o of objs) { parts.remove(o); grp.add(o); } grp.position.z = z; label(grp, lab, sub); g.add(grp); return grp; };
   layer(take((c) => c.name === 'housing_back' || c.name === 'tether_hole'), -gap * 3.0, 'Back housing · PC-GF10, 2K soft-touch PU', 'LORE Mount insert (316L) · N52 ring magnet · 2× Au pogo');
-  const bat = box(30, 26, 5.2, 4, M.pouch(), 'battery'); layer([bat], -gap * 1.8, 'Battery · 3.85 V 600 mAh Li-ion polymer (est.)', '');
+  const bat = box(30, 26, 5.2, 4, M.pouch(), 'battery'); layer([bat], -gap * 1.8, 'Battery · 650 mAh / 2.52 Wh Li-ion', 'per hardware/system-architecture.md');
   const pcb = new THREE.Group(); const board = box(32, 30, 0.8, 8, M.pcb(), 'main_pcb'); pcb.add(board);
   const can = box(12, 11, 1.3, 0.6, M.shield(), 'shield_soc'); can.position.set(-4, 3, 0.8); pcb.add(can);
   const spk = box(15, 11, 3, 1.2, M.plasticBlack(), 'speaker'); spk.position.set(5, -8, 0.8); pcb.add(spk);
   const ant = box(10, 10, 1.6, 0.4, M.ceramicWhite(), 'gnss_patch'); ant.position.set(8, 8, 0.8); pcb.add(ant);
-  layer([pcb], -gap * 0.6, 'Logic board · nRF54H20-class BLE SoC + NPU co-processor', 'L1+L5 GNSS · 9-axis IMU · 1511 speaker');
+  layer([pcb], -gap * 0.6, 'Logic board · BLE-tethered "Lite" (D10) · nRF54L15 hub', 'LC29HAA L1+L5 GNSS · BHI360 IMU · 13×9 speaker · LP5024 LED driver');
   layer(take((c) => c.name === 'housing_top_shell' || c.userData.role === 'port'), gap * 0.7, 'Top housing · PC-GF10, 2K soft-touch PU', 'ePTFE mic + speaker membranes (IP67)');
   layer(take((c) => c.name === 'led_ring_lightguide'), gap * 3.2, 'Light guide · frosted PMMA, 12× RGB LED', 'Talk-button travel 0.35 mm, metal dome 2.4 N');
   layer(take((c) => c.name === 'talk_button_cap'), gap * 4.3, 'Talk cap · floating, full-face press', '');

@@ -1,5 +1,15 @@
 # LORE Labs: Hardware Engineering
 
+> **Founder decisions made after this analysis** (see `company/decisions-log.md`):
+> - **D8:** Atlas price is now **$599**. At $599, Atlas hardware margin at 10k units, including one-off costs, is about 31%.
+> - **D10:** Pebble moves to the phone-tethered **"Lite"** design (about $90 landed).
+> - **D11:** Square uses **LTE Cat-1bis** instead of Cat-4 (EG25-G), with a cost-down target of ≤ $240 landed.
+> - **D12:** Atlas is **13.5 mm** thick, and its battery is claimed as "2+ days".
+> - **D13:** assembly is in **Vietnam/Malaysia**.
+>
+> The BOM and simulations below remain the baseline analysis that led to these decisions.
+
+
 Owner: Head of Hardware Engineering. Status: architecture v0.9, pre-EVT (2026-10-31).
 
 This folder holds the electronics architecture, component selection, costed BOMs, reference schematics, power/RF/thermal/fusion simulations, certification plan, and manufacturing plan for **LORE Pebble, Square and Atlas**. COMPANY.md is the requirements baseline. Deviations are raised as ECRs in `system-architecture.md` §8.
@@ -33,7 +43,7 @@ cd ../schematics && python3 gen_schematics.py
 
 ## Architecture summary
 
-| | **Pebble** ($149) | **Square** ($299) | **Atlas** ($549) |
+| | **Pebble** ($149) | **Square** ($299) | **Atlas** ($599) |
 |---|---|---|---|
 | AP SoC | **MediaTek Genio 520 (MT8371)**, 10 TOPS | **MediaTek Genio 720 (MT8391)**, 10 TOPS | **MediaTek Genio 720 (MT8391)** |
 | RAM / storage | 4 GB LPDDR5 / 32 GB eMMC | 6 GB LPDDR5 / 64 GB UFS | 8 GB LPDDR5 / 128 GB UFS |

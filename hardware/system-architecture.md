@@ -116,7 +116,7 @@ Block diagrams: `block-diagrams/{pebble,square,atlas}_block_diagram.svg|png`.
 | Power | 1100 mAh / 4.27 Wh Si-C anode cell, 4.0×46×40 mm (≈ 580 Wh/L; **E, cell-vendor confirm**); TI BQ25620 buck charger; TPS63810 3.8 V/2 A LTE rail; MAX17262 | |
 | Body | 6013-T6 Al CNC unibody, NMT antenna breaks, anodised Ink/Sand; RF-transparent PC+GF back with pogo; IP67 | |
 
-### 3.3 LORE Atlas (54×54×13.5 mm proposed, $549)
+### 3.3 LORE Atlas (54×54×13.5 mm proposed, $599 — see D8)
 
 Everything in the Square, plus:
 

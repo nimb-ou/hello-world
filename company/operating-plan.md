@@ -16,7 +16,7 @@ The company's job is to remove the biggest risk at each stage before it spends m
 ## Stage 1: Prove the device (Feb – May 2027)
 **Risk to remove:** can a small device beat the phone?
 - Build 50 hand-built **EVT** units (dev-board prototype in a 3D-printed or CNC-machined case). Software runs offline on the device.
-- Write the requirements for the contract manufacturer, ask 3 Shenzhen manufacturers for quotes, and lock the main chip (SoC) choice.
+- Write the requirements for the contract manufacturer, ask 3 contract manufacturers in Vietnam/Malaysia for quotes (D13), and lock the main chip (SoC) choice.
 - Raise the pre-seed: **$1.5M** SAFE at a **$12M** post-money valuation cap.
 - Hire the first team members: firmware lead, ML/voice engineer, industrial designer (contract), content lead.
 - **Gate G1:**

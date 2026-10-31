@@ -186,7 +186,8 @@ def header(s, kicker, title, dark=False, sub=None):
     fg = BONE if dark else INK
     text(s, MX, Inches(0.42), Inches(9), Inches(0.3), kicker.upper(), size=11,
          color=TERRA, bold=True)
-    text(s, MX, Inches(0.72), Inches(12.1), Inches(0.9), title, size=30, font=DISPLAY,
+    tsize = 30 if (len(title) <= 54 or "\n" in title) else 26
+    text(s, MX, Inches(0.72), Inches(12.1), Inches(0.9), title, size=tsize, font=DISPLAY,
          color=fg, spacing=1.0)
     if sub:
         text(s, MX, Inches(1.5), Inches(12.1), Inches(0.4), sub, size=13,
@@ -232,7 +233,7 @@ def stat(s, x, y, w, big, label, dark=False, bigc=TERRA, size=34):
 
 
 def table(s, x, y, colw, rows, rowh=Inches(0.36), size=11, header_fill=INK,
-          first_bold=True, hl_col=None):
+          first_bold=True, hl_col=None, left_all=False):
     """Simple shape-drawn table. rows[0] is the header."""
     yy = y
     for ri, row in enumerate(rows):
@@ -249,7 +250,7 @@ def table(s, x, y, colw, rows, rowh=Inches(0.36), size=11, header_fill=INK,
                 col, b = TERRA, True
             text(s, xx + Inches(0.1), yy, colw[ci] - Inches(0.15), rowh, str(cell),
                  size=size, color=col, bold=b, anchor=MSO_ANCHOR.MIDDLE,
-                 align=PP_ALIGN.LEFT if ci == 0 else PP_ALIGN.RIGHT)
+                 align=PP_ALIGN.LEFT if (ci == 0 or left_all) else PP_ALIGN.RIGHT)
             xx += colw[ci]
         yy += rowh
     box(s, x, yy, sum(colw), Emu(9000), fill=LINE)
@@ -268,15 +269,16 @@ text(s, MX, Inches(3.95), Inches(6.0), Inches(1.2),
      "city around you, through your own earphones. Online or offline. Phone stays in "
      "your pocket.", size=15, color=FOG, spacing=1.2)
 text(s, MX, Inches(5.55), Inches(6), Inches(0.4),
-     [[("Pre-seed  ·  $1.5M SAFE  ·  $12M post-money cap", {"bold": True, "color": BRASS})]],
+     [[("Pre-seed  ·  $1.75M SAFE  ·  $12M post-money cap", {"bold": True, "color": BRASS})]],
      size=14)
 text(s, MX, Inches(5.95), Inches(6), Inches(0.4),
      "Nimit Jain, Founder & CEO  ·  LORE Labs, Inc. (Delaware C-corp, planned)  ·  Nov 2026",
      size=11, color=FOG)
 box(s, Inches(7.2), Inches(0.6), Inches(5.55), Inches(6.3), fill=BONE)
+image(s, A.get("hero-square.png", ""), Inches(7.3), Inches(0.75), Inches(5.35), Inches(3.3))
 if "lineup.png" in A:
-    image(s, A["lineup.png"], Inches(7.3), Inches(1.2), Inches(5.35), Inches(3.6))
-text(s, Inches(7.45), Inches(5.3), Inches(5.1), Inches(1.2),
+    image(s, A["lineup.png"], Inches(7.3), Inches(4.0), Inches(5.35), Inches(1.35))
+text(s, Inches(7.45), Inches(5.6), Inches(5.1), Inches(1.2),
      [[("Pebble $149  ·  Square $299  ·  Atlas $599", {"bold": True, "color": INK})],
       "Industrial-design renders (design/industrial). Not production units."],
      size=11.5, color=MUTED, align=PP_ALIGN.CENTER)
@@ -286,7 +288,7 @@ footer(s, dark=True)
 s = new_slide()
 header(s, "The problem", "In a new city, your phone is your guide, your map, your wallet\nand your only lifeline. It is bad at all four at once.")
 cards = [
-    ("Head down, not looking up",
+    ("Eyes on the screen",
      "Travellers read Wikipedia in front of monuments and still miss what is there. "
      "Generic \"top 10\" lists and audio guides tied to single sites."),
     ("Battery dead by 4 pm",
@@ -376,7 +378,7 @@ for i, (img, name, price, desc) in enumerate(fam):
     text(s, x + fw * 0.6, Inches(4.6), fw * 0.4, Inches(0.4), price, size=17, font=DISPLAY,
          color=TERRA, align=PP_ALIGN.RIGHT)
     text(s, x, Inches(5.05), fw, Inches(1.3), desc, size=11, color=MUTED, spacing=1.15)
-text(s, MX, Inches(6.2), Inches(12.1), Inches(0.4),
+text(s, MX, Inches(6.0), Inches(12.1), Inches(0.4),
      [[("LORE Pass: ", {"bold": True, "color": INK}),
        ("Explorer $9.99/mo or $79/yr · Trip Pass $29 / 14 days / 5 GB · $49 / 30 days / 10 GB · free tier (3 cities). "
         "Every device includes 3 months of Explorer.  ", {}),
@@ -405,8 +407,8 @@ text(s, mid_x + Inches(0.2), Inches(1.95), Inches(2.5), Inches(2.7),
      size=10.5, color=FOG, spacing=1.1, space_after=3)
 box(s, mid_x + Inches(3.0), Inches(3.2), Inches(0.5), Inches(0.1), fill=BRASS)
 text(s, mid_x + Inches(3.6), Inches(1.85), Inches(4.5), Inches(1.2),
-     "left · right · ahead · behind · look up", size=22, font=DISPLAY, color=TERRA)
-text(s, mid_x + Inches(3.6), Inches(2.65), Inches(4.5), Inches(2.0),
+     "left · right · ahead · behind · look up", size=18, font=DISPLAY, color=TERRA)
+text(s, mid_x + Inches(3.6), Inches(2.35), Inches(4.5), Inches(2.4),
      [[("Simulated accuracy (hardware/simulations): ", {"bold": True, "color": INK}),
        ("left/right 99.9% with EKF + map-matching + L1/L5; EKF alone 98.9%; L1+L5 adds 3-7 points over L1-only.", {})],
       [("Prototype walk (software sim): ", {"bold": True, "color": INK}),
@@ -425,7 +427,7 @@ source(s, "Sources: hardware/README.md, hardware/simulations/results.md, softwar
 
 # 7 Demo ---------------------------------------------------------------
 s = new_slide()
-header(s, "Demo: the working Rome prototype", "A phone PWA runs the real story engine on a 1.93 km walk, Pantheon to Trevi.")
+header(s, "Demo: the working Rome prototype", "The real story engine, walking Pantheon to Trevi (1.93 km).")
 shots = ["shot-pantheon.png", "shot-navona.png", "shot-around.png", "shot-dark.png"]
 sx = MX
 for sh in shots:
@@ -461,7 +463,7 @@ stats = [("$10.7B", "TAM (top-down, 2027): eSIM, audio guides, travel safety, AI
          ("$1.44B", "SAM: 8.7M solo/independent travellers, 2+ trips/yr, US/CA/UK/EU/AU-NZ, will pay $150+"),
          ("$93M", "SOM 2030 base: 250k units in 2030, 415k cumulative (4.7% of SAM). Bear $46M / Bull $148M")]
 for i, (b, l) in enumerate(stats):
-    stat(s, MX, Inches(1.75) + i * Inches(1.18), Inches(4.2), b, l, size=30)
+    stat(s, MX, Inches(1.7) + i * Inches(1.15), Inches(4.2), b, l, size=30)
 box(s, Inches(5.1), Inches(1.75), Inches(7.6), Inches(3.75), fill=WHITE, line=LINE)
 image(s, RCH / "market-size-waterfall.png", Inches(5.2), Inches(1.85), Inches(7.4), Inches(3.55))
 text(s, Inches(5.1), Inches(5.65), Inches(7.6), Inches(0.9),
@@ -471,7 +473,7 @@ source(s, "Source: research/market-sizing.md (all figures cited with URLs there)
 
 # 9 Competition -------------------------------------------------------
 s = new_slide()
-header(s, "Competition and positioning", "Everything exists. Nothing does it together, standalone, with verified facts.")
+header(s, "Competition and positioning", "Nothing else is standalone, travel-first and verified.")
 box(s, MX, Inches(1.7), Inches(5.6), Inches(4.5), fill=WHITE, line=LINE)
 image(s, RCH / "positioning-map.png", MX + Inches(0.1), Inches(1.75), Inches(5.4), Inches(4.4))
 comp = [["Threat", "What it is", "Our answer"],
@@ -479,7 +481,7 @@ comp = [["Threat", "What it is", "Our answer"],
         ["Meta Ray-Ban / Display", "~7M glasses sold 2025", "No camera needed; $149 entry"],
         ["Phone + AI-guide app + eSIM", "Audiala $4.99/mo + Airalo", "Battery, theft, eyes-up, SOS"],
         ["OpenAI io device", "H2 2026-27 (narrative)", "Narrow job; verified facts"]]
-table(s, Inches(6.45), Inches(1.7), [Inches(2.35), Inches(1.85), Inches(2.1)], comp, rowh=Inches(0.55), size=9.5)
+table(s, Inches(6.45), Inches(1.7), [Inches(2.35), Inches(1.85), Inches(2.1)], comp, rowh=Inches(0.55), size=9.5, left_all=True)
 text(s, Inches(6.45), Inches(4.65), Inches(6.3), Inches(1.6),
      [[("Lessons we design against: ", {"bold": True, "color": INK}),
        ("Humane (~10k units; assets sold to HP for $116M) and Rabbit (~130k sold, ~5% daily use) shipped general assistants with no "
@@ -491,14 +493,14 @@ source(s, "Source: research/competitors.md (30-product matrix, URLs inside), res
 
 # 10 Business model & pricing -------------------------------------------
 s = new_slide()
-header(s, "Business model and pricing", "Hardware gets us in the pocket; LORE Pass, accessories and bookings compound.")
+header(s, "Business model and pricing", "Hardware gets us in; LORE Pass and bookings compound.")
 pr = [["", "Pebble", "Square", "Atlas"],
       ["US price", "$149", "$299", "$599"],
       ["Kickstarter super early bird", "$99", "$199", "$399"],
       ["EU / UK", "€159 / £149", "€329 / £299", "€649 / £599"],
       ["Price anchor", "Plaud NotePin S $179", "Pocketalk Plus $299.95", "inReach Mini 3+ $499 / Watch Ultra $799"]]
 table(s, MX, Inches(1.75), [Inches(2.6), Inches(1.75), Inches(1.75), Inches(2.4)], pr, rowh=Inches(0.48), size=10.5)
-streams = [("Hardware", "3 SKUs, DTC first; retail only after returns <5%"),
+streams = [("Hardware", "DTC first; retail after returns <5%, led by Pebble + Atlas (D15)"),
            ("LORE Pass", "$9.99/mo · $79/yr · Trip Pass $29 / $49; 3 months free with every device"),
            ("LORE Kit", "Clip, lanyard, dock, case, LORE Buds $129, city bundles"),
            ("Bookings", "Affiliate fees: hotels, tours, restaurants"),
@@ -516,17 +518,17 @@ text(s, MX, Inches(4.35), Inches(8.5), Inches(1.9),
       [("Retention by design (the Rabbit lesson): ", {"bold": True, "color": INK}),
        ("annual Explorer at $79, a free tier that stays useful, home-city 'Weekend Walks', and retention KPIs reported to investors.", {})]],
      size=11.5, color=MUTED, spacing=1.15, space_after=8)
-source(s, "Sources: COMPANY.md, research/pricing-research.md, company/decisions-log.md D6, D8.")
+source(s, "Sources: COMPANY.md, research/pricing-research.md, company/decisions-log.md D6, D8, D15.")
 
 # 11 Unit economics -----------------------------------------------------
 s = new_slide()
-header(s, "Unit economics", "We found a hardware-margin problem early, and changed the product to fix it.")
+header(s, "Unit economics", "We found the margin problem early and changed the product.")
 ue = [["Landed COGS @10k units", "Before (full spec)", "Decision", "After"],
       ["Pebble $149", "$157 incl. NRE → −5% GM", "D10: 'Lite' (AI via phone)", "~$90 → 39% GM"],
       ["Square $299", "$299 incl. NRE → 0% GM", "D11: LTE Cat-1bis, cost-down", "Target ≤$240 by unit 10k; $329 fallback"],
       ["Atlas $599", "$413 incl. NRE → 25% at $549", "D8 price $599; D12 13.5 mm", "Margin engine"],
       ["Any SKU, China FATP", "Square $343 landed (tariffs)", "D13: Vietnam / Malaysia", "0% duty assumed"]]
-table(s, MX, Inches(1.75), [Inches(2.35), Inches(2.85), Inches(2.85), Inches(4.05)], ue, rowh=Inches(0.48), size=10.5, hl_col=3)
+table(s, MX, Inches(1.75), [Inches(2.35), Inches(2.85), Inches(2.85), Inches(4.05)], ue, rowh=Inches(0.48), size=10.5, hl_col=3, left_all=True)
 uex = FIN["unit_economics"] if FIN else None
 if FCH.joinpath("unit_economics_waterfall.png").exists():
     box(s, MX, Inches(4.3), Inches(7.3), Inches(2.3), fill=WHITE, line=LINE)
@@ -537,7 +539,7 @@ source(s, "Sources: hardware/README.md + hardware/bom/BOM.md (estimates, 2026 DR
 
 # 12 GTM & Kickstarter ---------------------------------------------------
 s = new_slide()
-header(s, "Go-to-market and Kickstarter", "Stories sell on social; safety justifies the purchase; Kickstarter proves demand.")
+header(s, "Go-to-market and Kickstarter", "Stories sell; safety justifies; Kickstarter proves demand.")
 ph = [("Nov 26-Jan 27", "Waitlist", "5k sign-ups"), ("Feb-Apr 27", "Rome beta", "50 EVT units"),
       ("Pre-launch", "List + VIPs", "20k emails, 2k $1 VIPs"), ("25 May-24 Jun 27", "Kickstarter", "$250k goal"),
       ("Q4 27", "DTC", "First 5k units"), ("2028", "Retail / airport", "after returns <5%")]
@@ -578,9 +580,9 @@ for i, (when, title, work, gate) in enumerate(gates):
     text(s, x, Inches(1.98), gw, Inches(0.3), when, size=10, bold=True, color=TERRA)
     text(s, x, Inches(2.28), gw, Inches(0.45), title, size=19, font=DISPLAY)
     text(s, x, Inches(2.82), gw, Inches(1.4), work, size=11, color=MUTED, spacing=1.15)
-    box(s, x, Inches(4.25), gw, Inches(1.45), fill=CARD, line=LINE)
-    text(s, x + Inches(0.15), Inches(4.35), gw - Inches(0.3), Inches(1.3), gate, size=11, bold=True, spacing=1.15)
-text(s, MX, Inches(5.9), Inches(12.1), Inches(0.6),
+    box(s, x, Inches(3.85), gw, Inches(1.45), fill=CARD, line=LINE)
+    text(s, x + Inches(0.15), Inches(3.95), gw - Inches(0.3), Inches(1.3), gate, size=11, bold=True, spacing=1.15)
+text(s, MX, Inches(5.6), Inches(12.1), Inches(0.6),
      [[("What we will not do: ", {"bold": True, "color": INK}),
        ("no glasses; no camera before Atlas; ≤1 new city/month until City Pack quality is measured; no retail before DTC returns <5%. "
         "2028: retail + 20 cities.", {})]], size=11.5, color=MUTED)
@@ -588,7 +590,7 @@ source(s, "Source: company/operating-plan.md, COMPANY.md timeline, gtm/README.md
 
 # 14 Team & hiring ---------------------------------------------------------
 s = new_slide()
-header(s, "Team and hiring", "A founder-led company today; the pre-seed buys the founding engineering team.")
+header(s, "Team and hiring", "Founder-led today; the pre-seed buys the founding team.")
 card(s, MX, Inches(1.8), Inches(4.0), Inches(2.3), "Nimit Jain, Founder & CEO",
      "Product, fundraising and story quality. Today every department (research, brand, design, hardware, software, "
      "finance, GTM, legal/ops, IR) is run as an AI-agent team with founder sign-off on every output; this deck is built from their files.",
@@ -605,7 +607,7 @@ hires = [["#", "First hires (pre-seed)", "When"],
          ["6", "Content Editor-in-Chief (City Packs)", "Jan 2027"],
          ["7", "Growth & Community Lead (Kickstarter)", "Feb 2027"],
          ["8", "Supply Chain & Quality Manager", "Mar 2027"]]
-table(s, Inches(4.85), Inches(1.8), [Inches(0.45), Inches(5.6), Inches(1.85)], hires, rowh=Inches(0.42), size=11)
+table(s, Inches(4.85), Inches(1.8), [Inches(0.45), Inches(5.6), Inches(1.85)], hires, rowh=Inches(0.42), size=11, left_all=True)
 text(s, Inches(4.85), Inches(5.7), Inches(7.9), Inches(0.7),
      "We are not claiming hires, advisors or investors that do not exist. Roles, salary bands (US/EU/IN) and equity bands: legal-ops/hr-hiring.md. 12% option pool planned.",
      size=10.5, color=MUTED)
@@ -630,7 +632,7 @@ def fill_finance():
         b = FIN["scenario_snapshot"]["Base"]
         fy = FIN["fy"]
         title_shape.text_frame.paragraphs[0].runs[0].text = (
-            f"Base case: {money(b['rev'][-1], 0)} revenue in FY{fy[-1]}; EBITDA-positive in FY{b['be']}.")
+            f"Base case: {money(b['rev'][-1], 0)} revenue and EBITDA-positive in FY{b['be']}.")
         rows = [["Base case", *[f"FY{str(y)[2:]}" for y in fy[1:]]],
                 ["Units", *[f"{u/1000:.1f}k" if u < 1e4 else f"{u/1000:.0f}k" for u in b["units"][1:]]],
                 ["Revenue", *[money(v) for v in b["rev"][1:]]],
@@ -643,9 +645,10 @@ def fill_finance():
         notes = [[("Scenarios FY31 revenue: ", {"bold": True, "color": INK}),
                   (f"Bear {money(bear['rev'][-1])} · Base {money(b['rev'][-1])} · Bull {money(bull['rev'][-1])}.", {})],
                  [("Funding need: ", {"bold": True, "color": INK}),
-                  (f"{money(f['Total equity raised through FY2031'])} equity modelled through FY31 (pre-seed → seed → A → B). "
-                   f"Minimum cash {money(f['Minimum month-end cash, Nov-26..Dec-28'])} in {f['Month of minimum cash']}: "
-                   "Kickstarter timing is critical.", {})],
+                  (f"{money(f['Total equity raised through FY2031'])} total equity to break-even (D16): pre-seed → $6M seed → $3M seed-2 "
+                   "→ $25M A → $20M B. Bear case needs ≈$72M. "
+                   f"At $1.5M the pre-seed bottomed at {money(f['Minimum month-end cash, Nov-26..Dec-28'])} in Jun-27, "
+                   "so the round is now $1.75M (D14).", {})],
                  [("Research cross-check: ", {"bold": True, "color": INK}),
                   ("SOM 2030 base $93M (bear $46M / bull $148M).", {})]]
         text(s, MX, Inches(4.45), Inches(6.7), Inches(2.0), notes, size=11, color=MUTED, spacing=1.12, space_after=6)
@@ -667,16 +670,16 @@ def fill_finance():
 def fill_ask(use_of_funds, runway_note):
     s = ASK_SLIDE
     text(s, MX, Inches(0.42), Inches(9), Inches(0.3), "THE ASK", size=11, color=TERRA, bold=True)
-    text(s, MX, Inches(0.72), Inches(7), Inches(1.4), "$1.5M pre-seed SAFE\n$12M post-money cap",
+    text(s, MX, Inches(0.72), Inches(7), Inches(1.4), "$1.75M pre-seed SAFE\n$12M post-money cap",
          size=34, font=DISPLAY, color=BONE, spacing=1.0)
     text(s, MX, Inches(2.15), Inches(6.2), Inches(1.6),
          [[("Gets us to: ", {"bold": True, "color": BONE}),
            ("Gate G0 (product love), 50 EVT units and Gate G1, a $1M+ Kickstarter (Gate G2), and the $6M seed.", {})],
-          [("Investor owns: ", {"bold": True, "color": BONE}), ("12.5% post-money at conversion (cap table, finance model).", {})],
+          [("Investor owns: ", {"bold": True, "color": BONE}), ("≈14.6% at the $12M post-money cap. $1.5M + $250k top-up (D14).", {})],
           [(runway_note, {})]],
          size=12.5, color=FOG, spacing=1.15, space_after=6)
     text(s, Inches(7.3), Inches(0.75), Inches(5.4), Inches(0.4), "Use of funds", size=16, bold=True, color=BONE)
-    y = Inches(1.25)
+    y = Inches(1.2)
     total = sum(v for _, v, _ in use_of_funds)
     for i, (label, v, note) in enumerate(use_of_funds):
         frac = v / total if total else 0
@@ -686,8 +689,8 @@ def fill_ask(use_of_funds, runway_note):
         box(s, Inches(7.3), y + Inches(0.33), Inches(5.4), Inches(0.09), fill=RGBColor(0x2A, 0x2D, 0x33))
         box(s, Inches(7.3), y + Inches(0.33), max(int(Inches(5.4) * frac), Inches(0.05)), Inches(0.09),
             fill=[TERRA, BRASS, OLIVE, FOG, BONE, TERRA][i % 6])
-        text(s, Inches(7.3), y + Inches(0.47), Inches(5.4), Inches(0.3), note, size=9.5, color=FOG)
-        y += Inches(0.82)
+        text(s, Inches(7.3), y + Inches(0.45), Inches(5.4), Inches(0.25), note, size=9, color=FOG)
+        y += Inches(0.68)
     # contact strip
     box(s, Inches(0), Inches(5.35), W, Inches(1.55), fill=TERRA)
     text(s, MX, Inches(5.55), Inches(6.5), Inches(0.6), "Let's walk Rome together.", size=26, font=DISPLAY, color=BONE)

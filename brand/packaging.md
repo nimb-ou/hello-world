@@ -17,7 +17,7 @@
 
 | | **LORE Pebble** (LP-01) | **LORE Square** (LS-01) | **LORE Atlas** (LA-01) |
 |---|---|---|---|
-| Price (target) | $149 | $299 | $549 |
+| Price (target) | $149 | $299 | $599 |
 | Structure | **Drawer box**: glue-free double-wall tray + wrap sleeve | **Rigid set-up box**: telescoping lid and base | **Rigid set-up box**, deeper, with a ribbon pull and a 2-tier insert |
 | Outer dims (est.) | Sleeve ≈ 102 × 101 × 40 mm | Lid 132 × 132 × 48 mm (base 128 × 128 × 46) | Lid 159 × 159 × 62 mm (base 154 × 154 × 60) |
 | Board | 400 g/m² FSC Recycled uncoated folding boxboard (tray). 360 g/m² through-dyed Terracotta (sleeve) | 1.5 mm FSC Recycled greyboard | 2.0 mm FSC Recycled greyboard |
