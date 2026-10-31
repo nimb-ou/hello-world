@@ -105,7 +105,7 @@ LORE stays silent while you're crossing a road or talking to someone, and starts
 | On-device AI | ~1B model + cloud | 3B model + cloud | 3–4B model + vision + cloud |
 | Camera | — | — | Wide-angle "Glance" camera |
 | Battery (target) | 1.5 days | 2 days | 3 days |
-| Retail price | $149 | $299 | $549 |
+| Retail price | $149 | $299 | $599 |
 | **Kickstarter from** | **$99** | **$199** | **$399** |
 
 All three use **your own earphones** (Bluetooth LE Audio and Classic A2DP) and have a small speaker as a fallback.

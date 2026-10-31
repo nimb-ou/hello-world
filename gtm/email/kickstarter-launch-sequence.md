@@ -17,7 +17,7 @@
 | L-9 | Tue 1 Jun 10:00 | Non-backers | "Your questions, answered" | Top 6 objections (phone vs device, subscription, privacy, delivery risk, earphones, shipping/VAT) |
 | L-10 | Mon 7 Jun 10:00 | Non-backers | "Halfway: what's new" | New add-on/bundle, creator reviews (real), city vote |
 | L-11 | Mon 14 Jun 10:00 | All | "Field report: how accurate is LORE?" | Accuracy report (beta numbers + limits) |
-| L-12 | Tue 22 Jun 15:00 | Non-backers | "48 hours left" | The last chance for KS pricing (retail later is $149/$299/$549) |
+| L-12 | Tue 22 Jun 15:00 | Non-backers | "48 hours left" | The last chance for KS pricing (retail later is $149/$299/$599) |
 | L-13 | Thu 24 Jun 09:00 | Non-backers | "Last day: LORE closes at 15:00 CEST" | Short; countdown |
 | L-14 | Thu 24 Jun 13:00 | Non-backers, opened L-13 | "2 hours left" | One line + button; SMS to VIP non-backers |
 | L-15 | Thu 24 Jun 17:00 | Backers | "We did it. [N] founding walkers." | Final results, what happens next (pledge manager in ~7 days, monthly updates) |
@@ -34,7 +34,7 @@
 > Today you can reserve yours:
 > - **Pebble from $99** (retail $149)
 > - **Square from $199** (retail $299): global data built in
-> - **Atlas Founders Edition $399** (retail $549): numbered 001–500
+> - **Atlas Founders Edition $399** (retail $599): numbered 001–500
 >
 > Super Early Bird prices are limited to the first 750 per model.
 >
@@ -47,7 +47,7 @@
 
 ## Full copy: L-12 (48 hours)
 **Subject:** 48 hours left
-> LORE closes on Kickstarter on Thursday at 15:00 CEST. After that, prices go to retail: $149, $299 and $549.
+> LORE closes on Kickstarter on Thursday at 15:00 CEST. After that, prices go to retail: $149, $299 and $599.
 > [N] people from [N] countries have already backed it. If you've been waiting for a sign, this is the polite one. 🙂 [Back LORE →]
 
 ## Deliverability & compliance

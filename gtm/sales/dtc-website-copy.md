@@ -34,7 +34,7 @@ Platform recommendation: Shopify (Plus once revenue is above ~$1M/yr) + Recharge
 **Section: "A local friend in your pocket."** Press to ask. Double-press for what's around you. Long-press for SOS. Clip it on and just walk.
 **Section: Map Vision.** No camera. LORE knows what's on your left, right and above your head from precise positioning, motion sensors and the real shape of the streets.
 **Section: True stories.** Our AI tells the story, and our team checks the facts. Every story has a source you can see.
-**Section: Choose your LORE.** Three cards (Pebble $149 / Square $299 / Atlas $549) with "Compare models".
+**Section: Choose your LORE.** Three cards (Pebble $149 / Square $299 / Atlas $599) with "Compare models".
 **Section: LORE Pass.** 3 months of Explorer included. Then $9.99/month, or a $29 Trip Pass when you travel, or free offline packs.
 **Section: Cities.** Rome, Lisbon, Paris, Barcelona, London… [city tiles] "Vote for the next city."
 **Section: Solo, never alone.** SOS · walk me home · live location (with the legal footnote).
@@ -58,7 +58,7 @@ Platform recommendation: Shopify (Plus once revenue is above ~$1M/yr) + Recharge
 **Bullets:** LTE Cat-4 global eSIM + Wi-Fi + Bluetooth 5.4 LE Audio · on-device 3B model for offline answers · 2-day battery (target) · Map Vision · glanceable arrows and the "look up" cue on screen · SOS with live location over its own data.
 **Best for:** frequent travellers (2+ trips a year), anyone tired of roaming bills.
 
-### LORE Atlas ($549)
+### LORE Atlas ($599)
 **H1:** LORE Atlas. Titanium. Sapphire. Satellite SOS.
 **Sub:** The same footprint as Square, made in bead-blasted or black DLC titanium with sapphire glass, a brass-tone crown, a wide-angle Glance camera and satellite SOS for when there's no network at all.**
 **In the box:** Atlas, magnetic dock, leather lanyard, cable. 3 months of Explorer.

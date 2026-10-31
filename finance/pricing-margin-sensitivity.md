@@ -1,64 +1,61 @@
 # Pricing & margin sensitivity
 
-*Two layers:*
-1. *The **live grid** in `LORE_Financial_Model.xlsx` → `Unit Economics` (rows below the SKU table) gives DTC hardware gross margin by price × landed-COGS change for each SKU, and it recalculates when you change inputs.*
-2. *The **whole-model reruns** below come from `scripts/sensitivity.py`, which rebuilds the workbook with one input changed, recalculates it in LibreOffice and writes `sensitivity_results.json`.*
+*There are two layers.*
+- *The **live grid** in `LORE_Financial_Model.xlsx` → `Unit Economics` (below the SKU table) shows DTC hardware GM by price × change in landed cost for each SKU. Grid costs use the **launch** quote.*
+- *The **whole-model reruns** come from `scripts/sensitivity.py`. It rebuilds the workbook with one input changed, recalculates it in LibreOffice and writes `sensitivity_results.json`.*
 
-*All figures are estimates; base = Research final prices + hardware/bom COGS.*
+*Base case: Research prices, hardware COGS, D10-D13, and the D11 Square cost-down to $185 ex-NRE from Jul-2028. All figures are estimates. The equity-need figures below were run with the earlier $35M Series B. The Series B size affects only cash, not burn, so they still hold.*
 
 ## 1. Whole-model sensitivities
 
-| Case | FY28 revenue | FY31 revenue | FY28 GM | FY31 GM | FY30 EBITDA | FY31 EBITDA | Peak cumulative burn* | First EBITDA+ year |
+| Case | FY28 rev | FY31 rev | FY28 GM | FY31 GM | FY30 EBITDA | FY31 EBITDA | Peak cumulative burn* | First EBITDA+ FY |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| **Base** | $10.0M | $111.3M | 23.9% | 39.7% | −$6.6M | −$0.6M | $37.1M | after FY31 (≈ break-even FY31) |
-| Square MSRP $349 (KS $259 / pre-order $299) | $10.7M | $117.7M | 28.3% | 42.8% | −$2.8M | +$5.4M | $25.9M | FY2031 |
-| Square value-engineered to $185 FOB | $10.0M | $111.3M | 29.1% | 43.6% | −$3.8M | +$3.7M | $26.8M | FY2031 |
-| **Square $349 + VE $185 FOB** (CFO recommended) | $10.7M | $117.7M | 33.2% | 46.5% | −$0.0M | **+$9.7M** | **$20.4M** | FY2031 (FY30 ≈ 0) |
-| Atlas back to $549 | $9.8M | $109.0M | 22.1% | 38.5% | −$8.0M | −$2.9M | $41.7M | after FY31 |
-| Pebble full spec (on-device 1B, $125 FOB) | $10.0M | $111.3M | 13.0% | 31.6% | −$12.5M | −$9.7M | $58.4M | after FY31 |
-| China FATP, +20% of FOB tariff | $10.0M | $111.3M | 11.4% | 30.4% | −$13.3M | −$11.0M | $61.6M | after FY31 |
-| Explorer attach −25% | $9.9M | $108.8M | 23.5% | 38.9% | −$7.6M | −$2.6M | $40.5M | after FY31 |
-| Churn 8%/mo (vs 6%) | $10.0M | $109.8M | 23.8% | 39.2% | −$7.1M | −$1.8M | $39.0M | after FY31 |
-| Churn 4%/mo | $10.0M | $113.4M | 23.9% | 40.4% | −$5.9M | +$1.0M | $34.6M | FY2031 |
-| eSIM data $3.00/GB (vs $1.60) | $10.0M | $111.3M | 23.1% | 38.7% | −$7.3M | −$1.8M | $39.4M | after FY31 |
-| Retail margin 45% (vs 38%) | $9.9M | $108.7M | 22.8% | 38.3% | −$8.1M | −$3.0M | $41.5M | after FY31 |
-| DTC promo discount 12% (vs 6%) | $9.6M | $107.2M | 20.4% | 37.6% | −$9.0M | −$4.6M | $45.4M | after FY31 |
+| **Base** | $10.1M | $111.3M | 26.8% | 41.0% | −$5.4M | **+$0.8M** | **$32.8M** | **2031** |
+| Square at $329 (D11 fallback) | $10.5M | $115.2M | 29.4% | 42.9% | −$3.2M | +$4.4M | $25.8M | 2031 |
+| Square hits the D11 target ($168 ex-NRE, ≤ $240 incl. NRE) | $10.1M | $111.3M | 28.5% | 43.0% | −$4.1M | +$3.0M | $27.9M | 2031 |
+| **Square cost-down fails (stays at $227)** | $10.1M | $111.3M | 22.3% | 32.9% | −$10.7M | **−$8.3M** | **$51.7M** | after FY31 |
+| Cost-down fails + Square at $329 | $10.5M | $115.2M | 25.0% | 35.0% | −$8.4M | −$4.7M | $44.3M | after FY31 |
+| Atlas back to $549 | $9.9M | $109.0M | 25.3% | 39.8% | −$6.8M | −$1.4M | $37.4M | after FY31 |
+| **China assembly, +20% of FOB tariff** | $10.1M | $111.3M | 14.9% | 31.9% | −$12.0M | **−$9.3M** | **$56.5M** | after FY31 |
+| Explorer attach −25% | $10.0M | $108.8M | 26.5% | 40.2% | −$6.4M | −$1.1M | $36.2M | after FY31 |
+| Churn 8%/mo (vs 6%) | $10.1M | $109.8M | 26.8% | 40.5% | −$6.0M | −$0.3M | $34.7M | after FY31 |
+| Churn 4%/mo | $10.1M | $113.4M | 26.9% | 41.7% | −$4.8M | +$2.4M | $30.3M | 2031 |
+| eSIM data at $3.00/GB (vs $1.60) | $10.1M | $111.3M | 26.0% | 40.0% | −$6.1M | −$0.3M | $35.2M | after FY31 |
+| Retailer margin 45% (vs 38%) | $10.0M | $108.7M | 25.8% | 39.7% | −$6.9M | −$1.5M | $37.2M | after FY31 |
+| DTC promotions 12% (vs 6%) | $9.6M | $107.2M | 23.5% | 39.0% | −$7.9M | −$3.1M | $41.2M | after FY31 |
+| Kickstarter at half of base (2,300 backers) | $9.8M | $111.3M | 26.9% | 41.0% | −$5.5M | +$0.8M | $33.0M | 2031 |
 
-*Peak cumulative operating + investing cash outflow: the minimum equity needed before any cash buffer.
+*Peak cumulative operating + investing cash outflow is the minimum equity needed before any cash buffer.
 
-**Scenario toggles** (sheet `Scenarios`) multiply volume, price, attach, churn, COGS and CAC together:
+**Scenario toggles** (sheet `Scenarios`; multipliers on volume, price, attach, churn, COGS and CAC):
 
-| | FY28 revenue | FY31 revenue | FY31 EBITDA | FY31 ending cash (planned rounds) |
+| | FY28 rev | FY31 rev | FY31 EBITDA | FY31 cash (with planned $55.5M of rounds) |
 |---|---:|---:|---:|---:|
-| Bear (0.55× volume, −7% price, 0.7× attach, 1.3× churn, +10% COGS, 1.35× CAC) | $5.1M | $56.2M | −$23.2M | **−$3.6M (needs ~$74M equity)** |
-| Base | $10.0M | $111.3M | −$0.6M | $33.4M |
-| Bull (1.45× volume, 1.25× attach, 0.8× churn, −5% COGS, 0.85× CAC) | $14.6M | $166.1M | +$22.4M | $66.8M (EBITDA+ from FY2030) |
+| Bear: 0.55× volume, −7% price, 0.7× attach, 1.3× churn, +10% COGS, 1.35× CAC | $5.1M | $56.2M | −$22.3M | **−$16.6M → needs ≈ $72M of equity** |
+| **Base** | $10.1M | $111.3M | +$0.8M | $22.1M |
+| Bull: 1.45× volume, 1.25× attach, 0.8× churn, −5% COGS, 0.85× CAC | $14.8M | $166.1M | +$24.4M | $56.1M (EBITDA+ from FY2030) |
 
 ![Revenue by scenario](charts/scenarios_revenue.png)
 
-## 2. DTC hardware gross margin grid (FY2028 cost basis)
+## 2. Price-point view (DTC hardware GM, launch cost vs H2-2028 cost)
 
-Formula: 1 − (landed × (1+Δ) + $11 fulfilment + net price × (2.9% + 2%) + $0.30) ÷ (MSRP × 0.94 × 0.96).
+| SKU | Price | Landed at launch | DTC HW GM at launch | Landed H2-28 | DTC HW GM H2-28 |
+|---|---:|---:|---:|---:|---:|
+| Pebble | $129 | $62.65 | 31% | $59.52 | 34% |
+| Pebble | **$149** | $62.65 | 40% | $59.52 | **42%** |
+| Square | **$299** | $227.16 | **7%** | $184.00 | **23%** |
+| Square | $329 | $227.16 | 15% | $184.00 | 29% |
+| Square | $349 | $227.16 | 19% | $184.00 | 33% |
+| Atlas | $549 | $317.39 | 29% | $301.52 | 32% |
+| Atlas | **$599** | $317.39 | 34% | $301.52 | **37%** |
+| Atlas | $649 | $317.39 | 39% | $301.52 | 41% |
 
-**Square** (landed $227.16)
+DTC HW GM = (MSRP × 0.94 × 0.96 − landed − $11 fulfilment − 2.9% − $0.30 − 2% warranty) ÷ (MSRP × 0.94 × 0.96).
 
-| MSRP \ COGS Δ | −15% | −10% | −5% | 0% | +5% | +10% | +20% |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| $249 | 15% | 10% | 5% | **−0%** | −5% | −10% | −19% |
-| $279 | 24% | 20% | 15% | 11% | 7% | 2% | −7% |
-| **$299** | 29% | 25% | 21% | **17%**¹ | 12% | 8% | 0% |
-| $329 | 35% | 31% | 28% | 24% | 20% | 16% | 9% |
-| $349 | 39% | 35% | 31% | **28%** | 24% | 21% | 14% |
+## 3. CFO recommendations
 
-¹ This grid excludes the returns allowance in COGS. It is shown on net-of-returns revenue, so it reads higher than the 7% in `unit-economics.md`, which also deducts discount and returns from gross price. Use the workbook grid for exact values.
-
-**Pebble (Lite/ECR spec, $62.65 landed)** at $149 MSRP gives ≈46% DTC GM. At $129 it is ≈38%; at $119, ≈33%.
-**Atlas ($317.39 landed)**: at $599 ≈37%; at $549 ≈31%; at $649 ≈42%.
-
-## 3. Recommendations (founder decisions)
-
-1. **Fix Square before the Kickstarter price is locked (by Mar-2027).** Either (a) list Square at **$349** (Research's Gabor-Granger test includes a $349 cell, so test it), or (b) set Hardware a **$185 FOB value-engineering target**: 2-3 GB DRAM with a smaller on-device model, LTE Cat-1bis in place of Cat-4, and a renegotiated display. Doing both takes FY2031 EBITDA from −$0.6M to +$9.7M and cuts the equity need by about $17M.
-2. **Ship Pebble at the ECR (cloud-AI) spec.** The full on-device spec costs about $9M of FY2031 EBITDA.
-3. **Lock in non-China final assembly (VN/MY/TH).** A 20% tariff is the single biggest downside, at −$10M of EBITDA a year (legal-ops/supply-chain-ops.md already shortlists non-China FATP).
-4. **Keep promotions under 8% blended.** Every 6 points of discount costs ≈$4M of FY2031 EBITDA.
-5. **Treat retail as distribution for Pebble and Atlas only** until Square's cost-down lands. At $299, a Square sold through retail loses money.
+1. **The D11 Square cost-down is the most valuable engineering milestone in the plan**, worth ≈$9M a year of EBITDA by FY2031. Set a hard DVT gate (Sep-2027): if the projected landed cost is above $205 ex-NRE, switch to $329 before regular DTC sales open (Kickstarter prices are already locked).
+2. **Keep assembly in VN/MY (D13).** China assembly is the largest single downside (−$10M EBITDA a year).
+3. **Hold Atlas at $599** and keep promotions under 8% blended. Each extra 6 points of discount costs ≈$4M of FY2031 EBITDA.
+4. **Sell Square in retail only after the cost-down.** Lead retail with Pebble and Atlas.
+5. **Protect churn.** Moving from 6% to 4% a month is worth +$1.6M of FY2031 EBITDA. Annual plans ($79/yr) and Trip Pass upsell are the tools.

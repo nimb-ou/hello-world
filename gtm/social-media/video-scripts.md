@@ -40,4 +40,4 @@ Every fact must be City-Pack-verified before publishing.
 0–2s: OST: "Every Roman knows this. Most tourists don't." · 2–10s: a hand blocks the spout and water arcs up from the top hole; someone drinks. · 10–15s: OST: "Free, cold water all over Rome. Save this." Audio: a satisfying water sound plus a light beat.
 
 ### V10. "Pebble, Square or Atlas?" (Build in public) · 25s
-0–3s: three objects on a Bone sweep (renders labelled "Render"). OST: "Which one would you carry?" · 3–9s: Pebble: "clips on, no screen". · 9–15s: Square: "screen + global data". · 15–21s: Atlas: "titanium, camera, satellite SOS". · 21–25s: "Comment 1, 2 or 3." OST: "Target prices: $149 / $299 / $549". *Use the comment counts as real research input and report the results.*
+0–3s: three objects on a Bone sweep (renders labelled "Render"). OST: "Which one would you carry?" · 3–9s: Pebble: "clips on, no screen". · 9–15s: Square: "screen + global data". · 15–21s: Atlas: "titanium, camera, satellite SOS". · 21–25s: "Comment 1, 2 or 3." OST: "Target prices: $149 / $299 / $599". *Use the comment counts as real research input and report the results.*

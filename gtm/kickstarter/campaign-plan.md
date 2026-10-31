@@ -41,8 +41,8 @@ MSRP = target retail price at DTC launch. Every device reward includes **3 month
 | T5 | **Square — Super Early Bird** | **$199** | $299 | 33% | 750 | LORE Square (Ink or Sand anodised), magnetic charging dock, eSIM activated | Dec 2027 |
 | T6 | Square — Early Bird | $229 | $299 | 23% | 2,000 | Same as T5 | Dec 2027 |
 | T7 | Square — Kickstarter Special | $249 | $299 | 17% | ∞ | Same as T5 | Jan 2028 |
-| T8 | **Atlas — Founders Edition** | **$399** | $549 | 27% | 500, numbered 001–500 | LORE Atlas (bead-blasted or black DLC titanium), engraved "Founders 001/500", leather lanyard, magnetic dock | Apr 2028 |
-| T9 | Atlas — Kickstarter Special | $449 | $549 | 18% | ∞ | LORE Atlas, magnetic dock | Apr 2028 |
+| T8 | **Atlas — Founders Edition** | **$399** | $599 | 33% | 500, numbered 001–500 | LORE Atlas (bead-blasted or black DLC titanium), engraved "Founders 001/500", leather lanyard, magnetic dock | Apr 2028 |
+| T9 | Atlas — Kickstarter Special | $449 | $599 | 25% | ∞ | LORE Atlas, magnetic dock | Apr 2028 |
 | T10 | **Pebble Duo** (travel with a friend) | $209 | $298 | 30% | 1,000 | 2× Pebble in any colours, 2 clips | Dec 2027 |
 | T11 | **Square Traveller Kit** | $299 | $466 | 36% | 1,500 | Square + LORE Buds (open-ear) + rugged case + travel power puck | Jan 2028 |
 | T12 | **Pebble Explorer Kit** | $179 | $277 | 35% | 1,500 | Pebble + LORE Buds + leather lanyard | Jan 2028 |

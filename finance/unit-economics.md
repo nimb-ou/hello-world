@@ -1,73 +1,67 @@
 # Unit economics per SKU
 
-*Source: `LORE_Financial_Model.xlsx` → sheet **Unit Economics** (live formulas), base scenario, FY2028 cost basis. All figures are estimates. Landed costs are **reconciled to `hardware/bom/cogs_summary.csv` (10k tier, 30 Oct 2026)**. Prices are **Research final** (`research/pricing-research.md`).*
+*Source: `LORE_Financial_Model.xlsx` → sheet **Unit Economics** (live formulas), base scenario. The cost basis is H2-2028 steady state, after the D11 Square cost-down and DRAM normalisation. All figures are estimates. Landed costs are **reconciled to `hardware/bom/cogs_summary.csv` and founder decisions D10-D13**. Prices are **Research final**: Pebble $149, Square $299, Atlas $599.*
 
 ![Unit economics waterfall](charts/unit_economics_waterfall.png)
 
-## 1. Per-device economics, DTC channel ($ per unit)
+## 1. Reconciliation to Hardware
+
+Hardware quotes landed cost **including** amortised certification and tooling. The model books certification ($165k / $485k / $640k) as R&D opex and tooling + fixtures ($140k / $235k / $330k) as capex. Unit COGS is therefore **ex-NRE**, so nothing is counted twice.
+
+| SKU | Hardware: landed incl. NRE @10k | NRE per unit @10k | **Model unit COGS ex-NRE (launch)** | Model H2-2028 | Model FY2031 | Hardware @100k incl. NRE |
+|---|---:|---:|---:|---:|---:|---:|
+| Pebble (Lite design, D10) | ≈ $90 | ≈ $27-30 | $62.65 | $59.52 | $49.49 | ≈ $53 |
+| Square (Cat-1bis, D11) | ≈ $299 today; target ≤ $240 | ≈ $72 | $227.16 | **$184.00** (assumes the target is missed by ~10%) | $170.37 | ≈ $190 |
+| Atlas | ≈ $413 | ≈ $97 | $317.39 | $301.52 | $250.74 | ≈ $263 |
+
+Assembly is in Vietnam/Malaysia with 0% US duty (D13). The China-assembly +20% case is in `pricing-margin-sensitivity.md`.
+
+## 2. Per-device economics, DTC channel ($ per unit)
 
 | Line | Pebble $149 | Square $299 | Atlas $599 |
 |---|---:|---:|---:|
-| MSRP | 149.00 | 299.00 | 599.00 |
 | DTC promo discount (6%) | −8.94 | −17.94 | −35.94 |
 | Returns allowance (4%) | −5.60 | −11.24 | −22.52 |
 | **Net revenue** | **134.46** | **269.82** | **540.54** |
-| Landed COGS (hardware/bom FOB + royalties + ~1% freight, 0% duty VN/MY FATP) | −62.65 | −227.16 | −317.39 |
+| Landed COGS ex-NRE | −59.52 | −184.00 | −301.52 |
 | Fulfilment (3PL + outbound) | −11.00 | −11.00 | −11.00 |
 | Card processing (2.9% + $0.30) | −4.36 | −8.45 | −16.63 |
 | Warranty reserve (2%) | −2.80 | −5.62 | −11.26 |
-| **Hardware gross profit** | **53.64 (40%)** | **17.59 (7%)** | **184.26 (34%)** |
-| Paid CAC (FY2028, $60) | −60.00 | −60.00 | −60.00 |
-| Hardware contribution after CAC | −6.36 | −42.41 | 124.26 |
-| Accessories GP (30% attach × $45 AOV × 62% GM) | +8.37 | +8.37 | +8.37 |
+| **Hardware gross profit (margin)** | **56.78 (42%)** | **60.75 (23%)** | **200.12 (37%)** |
+| Paid CAC (FY2028) | −60.00 | −60.00 | −60.00 |
+| Hardware contribution after CAC | −3.22 | +0.75 | +140.12 |
+| Accessories GP (30% attach × $45 AOV × 62%) | +8.37 | +8.37 | +8.37 |
 | Free 3-month Explorer trial (cloud cost) | −6.05 | −6.05 | −6.05 |
 | Paid attach after trial | 28% | 40% | 55% |
-| Subscription GP per paid month ($8.59 ARPU − billing − $2.02 cloud/data) | 5.89 | 5.89 | 5.89 |
-| Expected paid life (1 / 6% churn) | 16.7 mo | 16.7 mo | 16.7 mo |
+| Subscription GP per paid month ($8.59 ARPU − 8% billing − $2.02 cloud/data) | 5.89 | 5.89 | 5.89 |
+| Expected paid life (1 ÷ 6% churn) | 16.7 mo | 16.7 mo | 16.7 mo |
 | Subscription LTV (GP, undiscounted) | +27.48 | +39.25 | +53.97 |
-| Affiliate GP over device life ($0.30/mo ÷ 2% monthly dormancy) | +15.00 | +15.00 | +15.00 |
-| **Lifetime contribution per device** | **$38** | **$14** | **$196** |
-| LTV : CAC (contribution before CAC ÷ CAC) | 1.6x | 1.2x | 4.3x |
-| CAC payback | at sale | 14.5 months | at sale |
+| Affiliate GP over device life ($0.30/mo ÷ 2% dormancy) | +15.00 | +15.00 | +15.00 |
+| **Lifetime contribution per device** | **$42** | **$57** | **$211** |
+| Lifetime contribution before CAC ÷ CAC | 1.7x | 2.0x | 4.5x |
+| CAC payback | at sale | at sale | at sale |
 
-## 2. Retail channel (sell-in at 38% retailer margin)
+**Retail channel** (38% retailer margin): hardware GP is Pebble $23 (26%), **Square −$14 (−8%)** and Atlas $44 (12%). Lifetime contribution is $63 / $32 / $93 because co-op (6%) replaces paid CAC.
 
-| | Pebble | Square | Atlas |
-|---|---:|---:|---:|
-| Net revenue per unit | 88.68 | 177.96 | 356.52 |
-| Hardware gross profit | 20.19 (23%) | **−56.90 (−32%)** | 27.70 (8%) |
-| Lifetime contribution (with co-op 6%, subs, affiliate) | $59 | **−$11** | $77 |
+**At launch, before the cost-down** (the Kickstarter units and H1-2028), Square at $227 landed makes only $18 of hardware GP (7%) DTC and loses $57 per unit in retail. See `kickstarter-economics.md`.
 
-## 3. What this says (CFO view)
+## 3. Subscription & cloud COGS per paid user-month (2027-28 prices)
 
-1. **Square at $299 is the problem SKU.** Hardware's BOM puts it at $227 landed at 10k units, because of LTE Cat-4, 4 GB of DRAM priced during the 2026-27 shortage, AMOLED and cellular SEP royalties. That leaves a **7% DTC hardware margin and a negative margin at retail.** It only works through the subscription, and only with a 14-month payback. Section 5 lists the fixes. The model already assumes DRAM normalises in H2-2028 (index 0.95) and the 100k-tier cost curve by 2031 (index 0.79 → $180).
-2. **Pebble only works as the "Pebble Lite" (ECR) spec.** This is the cloud-AI version with no on-device 1B model or DRAM: $63 landed against $126 for full spec. At full spec, Pebble's hardware margin at $149 is about −5% (hardware/bom). **The base case assumes the ECR spec ships as "LORE Pebble"**, and the founder and Hardware must confirm this. On-device AI moves to Square and Atlas only.
-3. **Atlas is the margin engine** (34% hardware GM DTC, $196 lifetime contribution). The Research price rise from $549 to $599 is worth about $2.3M of EBITDA in FY2031 (sensitivity).
-4. **Subscription gross margin is ~69%** (FY2028), rising to ~75% by FY2031 as AI unit costs deflate 20% a year. eSIM data is the largest variable cost line (≈$0.62 per user-month at $1.60/GB wholesale and 0.7 GB used × 55% eSIM share).
-5. **Blended gross margin** moves from 24% (FY28) to 40% (FY31) as hardware cost-downs land and recurring revenue reaches 15% of the mix. That is below Oura and Whoop-style subscription hardware. It is in line with GoPro (≈34-36% GAAP GM; https://www.alphaquery.com/stock/GPRO/fundamentals/annual/gross-margin).
-
-## 4. Subscription & cloud COGS per paid user-month (FY2027-28)
-
-| Component | $/user-month | Basis |
+| Component | $/user-mo | Basis |
 |---|---:|---|
-| LLM inference (~150 live queries: ~300k in / 45k out tokens, Flash-class) | 0.30 | $0.30/M in, $2.50/M out (https://www.morphllm.com/gemini-api-pricing) |
+| LLM inference (~150 live queries/mo: ~300k in / 45k out tokens on a Flash-class model) | 0.30 | $0.30/M in, $2.50/M out (https://www.morphllm.com/gemini-api-pricing) |
 | Speech-to-text (~25 min) | 0.15 | ~$0.006/min (estimate) |
-| Neural TTS for live answers (stories are pre-rendered & cached per POI) | 0.70 | ~$0.016/1k chars standard neural. Premium voices ($0.04-0.10/1k, https://developer.puter.com/tutorials/elevenlabs-api-pricing/) would cost 3-6x |
+| Neural TTS for live answers (stories are pre-rendered & cached per POI) | 0.70 | ~$0.016/1k chars standard neural. Premium voices cost $0.04-0.10/1k (https://developer.puter.com/tutorials/elevenlabs-api-pricing/) |
 | Infra, maps/places APIs | 0.25 | estimate |
-| eSIM data (0.7 GB × $1.60/GB × 55% eSIM share) | 0.62 | wholesale ~€2.5/GB small volume; $1.85/GB illustrative blend (https://simology.io/blog/wholesale-pricing-forecasting-volume-tiers-commitments-and-margins) |
-| **Total cloud/data** | **2.02** | + billing fees 8% of ARPU (web checkout + app stores) |
+| eSIM data (0.7 GB × $1.60/GB × 55% eSIM share) | 0.62 | wholesale ~€2.5/GB at small volume; $1.85/GB illustrative (https://simology.io/blog/wholesale-pricing-forecasting-volume-tiers-commitments-and-margins) |
+| **Total** | **2.02** | plus 8% billing (web checkout + app stores) |
 
-The Trip Pass ($32 blended: $29 for 14 days/5 GB, $49 for 30 days/10 GB) costs ≈$7.30 per pass (2.5 GB used, AI, billing), so its GM is ≈77%.
+Explorer gross margin is ≈69% in 2028 and ≈75% by 2031 (AI deflation 20%/yr, data 8%/yr). Trip Pass ($32 blended: $29/14 days/5 GB, $49/30 days/10 GB) costs ≈$7.30 per pass, a ≈77% GM.
 
-## 5. Levers ranked by FY2031 EBITDA impact (full-model reruns, `sensitivity_results.json`)
+## 4. Takeaways
 
-| Lever | FY2028 GM | FY2031 EBITDA | Peak cumulative burn |
-|---|---:|---:|---:|
-| Base | 23.9% | −$0.6M | $37.1M |
-| Square $349 + value-engineered to $185 FOB | 33.2% | **+$9.7M** | $20.4M |
-| Square $349 only | 28.3% | +$5.4M | $25.9M |
-| Square VE to $185 FOB only (2 GB DRAM / LTE Cat-1bis) | 29.1% | +$3.7M | $26.8M |
-| China FATP tariff (+20% of FOB) | 11.4% | **−$11.0M** | $61.6M |
-| Pebble full spec ($125 FOB) | 13.0% | −$9.7M | $58.4M |
-
-See `pricing-margin-sensitivity.md` for the full table.
+1. **Atlas carries the hardware economics**, and the $599 price is worth ≈$2.2M of FY2031 EBITDA compared with $549.
+2. **Square is only viable if the D11 cost-down lands.** If it stays at $227, FY2031 EBITDA is −$8.3M and the equity need rises by ≈$19M. Moving the price to $329 recovers roughly half of that.
+3. **Pebble as "Lite" (D10)** is a solid entry SKU: 42% hardware GM DTC, and the hardware margin alone pays for CAC.
+4. **Retail suits Pebble and Atlas.** Square in retail destroys margin until Square is below ≈$165 landed.
+5. **The subscription is the lever for lifetime value**, not the main source of gross profit. Recurring revenue reaches 13% of revenue in FY2031, so blended GM peaks around 41%, in GoPro territory (≈34-36% GAAP GM; https://www.alphaquery.com/stock/GPRO/fundamentals/annual/gross-margin) rather than Oura or Whoop.

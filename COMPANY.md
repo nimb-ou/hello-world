@@ -103,7 +103,7 @@ Every device comes with 3 months of Explorer.
   | Q4 2027 | First 5k units shipped |
   | 2028 | Retail + 20 cities |
 
-- **Fundraising:** pre-seed $1.5M now (a SAFE, $12M post-money valuation cap). Seed $6M after Kickstarter.
+- **Fundraising:** pre-seed $1.75M now (a SAFE, $12M post-money valuation cap; see D14). Seed $6M after Kickstarter.
 
 ## Repo layout (each team owns ONLY its folder)
 ```

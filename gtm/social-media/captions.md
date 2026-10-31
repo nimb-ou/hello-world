@@ -181,7 +181,7 @@ Rules: every Secrets/Look Up fact must pass the Story team's City Pack check bef
 > Pebble, Square or Atlas: which would you actually carry?
 > 🟤 Pebble: clips on, no screen, $149 (target)
 > ⬛ Square: screen + global data, $299 (target)
-> ⚪ Atlas: titanium, camera, satellite SOS, $549 (target)
+> ⚪ Atlas: titanium, camera, satellite SOS, $599 (target)
 > Vote in the comments. We're listening.
 > #BuildInPublic #TravelTech #ProductDesign
 

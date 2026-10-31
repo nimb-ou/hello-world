@@ -25,7 +25,7 @@ LORE clips to a bag strap, lanyard or wrist strap. As the wearer walks, it works
 |---|---|---|
 | LORE Pebble | $99 | $149 |
 | LORE Square | $199 | $299 |
-| LORE Atlas | $399 | $549 |
+| LORE Atlas | $399 | $599 |
 
 Every device includes the LORE Pass Explorer subscription (6 months for Kickstarter backers; $9.99/month afterwards, or a $29 Trip Pass for 14 days). Shipping is estimated to begin in December 2027 for Pebble and Square and in April 2028 for Atlas. Rome is the first City Pack. Lisbon, Paris, Barcelona and London are planned as stretch goals.
 

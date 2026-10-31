@@ -154,7 +154,7 @@ export const designs = [
   <div style="text-align:center"><div style="width:240px;height:240px;margin:0 auto;border-radius:56px;background:linear-gradient(145deg,#d9d9d6,#9AA0A6 60%,#7b8086);box-shadow:0 30px 40px rgba(20,22,26,.3);display:grid;place-items:center;position:relative"><div style="width:170px;height:170px;border-radius:40px;background:#0D1B2A"></div><div style="position:absolute;right:-12px;top:96px;width:16px;height:48px;border-radius:6px;background:#B8935A"></div></div>
    <div class="serif" style="font-size:46px;margin-top:40px">3 · Atlas</div><div class="mono" style="font-size:22px;opacity:.65;margin-top:8px">titanium · satellite SOS</div></div>
  </div>
- <div class="src" style="position:absolute;left:84px;top:1110px">ILLUSTRATION, NOT A PRODUCT RENDER · TARGET PRICES $149 / $299 / $549</div>
+ <div class="src" style="position:absolute;left:84px;top:1110px">ILLUSTRATION, NOT A PRODUCT RENDER · TARGET PRICES $149 / $299 / $599</div>
  ${foot('light', 'Comment 1, 2 or 3')}
 </div>` },
 

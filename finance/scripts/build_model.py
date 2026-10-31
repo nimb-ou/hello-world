@@ -1016,7 +1016,7 @@ ROUNDS = [
     ("Seed", "Priced (Series Seed Preferred)", 202708, 6000000, 22000000, None, "After Kickstarter (COMPANY.md: $6M). Pre-money is a CFO estimate."),
     ("Seed extension", "Seed-2 preferred (priced at step-up to Seed)", 202803, OVERRIDES.get("seedx_amt", 3000000), 36000000, None, "CFO addition: bridges Mar-Sep 2028 (inventory for first retail + Atlas). Alternative: $3M inventory/venture-debt facility."),
     ("Series A", "Priced preferred", 202809, OVERRIDES.get("seriesA_amt", 25000000), 80000000, None, "Post-holiday 2028 traction; $100M post-money is the target (see valuation.md)."),
-    ("Series B", "Priced preferred", 2030, OVERRIDES.get("seriesB_amt", 35000000), 250000000, None, "Growth / inventory for retail scale; sized to keep min cash > ~6 months of burn."),
+    ("Series B", "Priced preferred", 2030, OVERRIDES.get("seriesB_amt", 20000000), 230000000, None, "Growth / inventory for retail scale; sized to keep min cash > ~6 months of burn."),
 ]
 for k, (nm, ins, key, amt, pre, post, note) in enumerate(ROUNDS):
     r = 4 + k
