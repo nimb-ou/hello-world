@@ -1,0 +1,31 @@
+/* LORE brand fonts — self-hosted, SIL OFL 1.1 (see fonts/OFL-*.txt).
+   Variable files from Fontsource (latin subset). Production web: subset further with glyphhanger/pyftsubset. */
+@font-face { font-family: "Fraunces"; src: url("fonts/fraunces-latin-full-normal.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fraunces"; src: url("fonts/fraunces-latin-full-italic.woff2") format("woff2");
+  font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/inter-latin-opsz-normal.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/inter-latin-opsz-italic.woff2") format("woff2");
+  font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 800; font-style: normal; font-display: swap; }
+
+:root {
+  --lore-font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --lore-font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --lore-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* Fraunces axes: keep SOFT 0 and WONK 0 for brand settings */
+  --lore-fraunces-settings: "SOFT" 0, "WONK" 0;
+}
+.lore-display-1 { font: 400 88px/1.04 var(--lore-font-display); letter-spacing: -0.008em; font-variation-settings: "opsz" 144, var(--lore-fraunces-settings); }
+.lore-display-2 { font: 400 64px/1.06 var(--lore-font-display); letter-spacing: -0.004em; font-variation-settings: "opsz" 96, var(--lore-fraunces-settings); }
+.lore-h1 { font: 400 48px/1.12 var(--lore-font-display); letter-spacing: -0.01em; font-variation-settings: "opsz" 72, var(--lore-fraunces-settings); }
+.lore-h2 { font: 400 36px/1.17 var(--lore-font-display); letter-spacing: -0.005em; font-variation-settings: "opsz" 48, var(--lore-fraunces-settings); }
+.lore-h3 { font: 600 24px/1.33 var(--lore-font-ui); letter-spacing: -0.01em; font-variation-settings: "opsz" 28; }
+.lore-lead { font: 400 20px/1.5 var(--lore-font-ui); letter-spacing: -0.005em; font-variation-settings: "opsz" 20; }
+.lore-body { font: 400 16px/1.625 var(--lore-font-ui); font-variation-settings: "opsz" 16; }
+.lore-small { font: 400 14px/1.43 var(--lore-font-ui); font-variation-settings: "opsz" 14; }
+.lore-quote { font: italic 380 28px/1.35 var(--lore-font-display); font-variation-settings: "opsz" 36, var(--lore-fraunces-settings); }
+.lore-overline { font: 500 12px/1.33 var(--lore-font-mono); letter-spacing: 0.14em; text-transform: uppercase; }
+.lore-data { font: 400 13px/1.38 var(--lore-font-mono); font-variant-numeric: tabular-nums slashed-zero; }

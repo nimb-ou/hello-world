@@ -1,0 +1,291 @@
+{
+ "Pebble": {
+  "battery_wh": 2.52,
+  "profiles": {
+   "standby": {
+    "battery_mw": 10.0,
+    "hours_new": 238.8,
+    "hours_aged": 191.0,
+    "breakdown": {
+     "SoC+DRAM": 6.82,
+     "Sensors+MCU": 0.68,
+     "GNSS": 0.09,
+     "BT/BLE": 1.59,
+     "LED/haptics": 0.23
+    }
+   },
+   "walk_baseline": {
+    "battery_mw": 226.6,
+    "hours_new": 10.5,
+    "hours_aged": 8.4,
+    "breakdown": {
+     "SoC+DRAM": 111.82,
+     "Sensors+MCU": 3.98,
+     "GNSS": 90.0,
+     "BT/BLE": 16.15,
+     "Mics": 0.08,
+     "LED/haptics": 3.98
+    }
+   },
+   "walk_optimised": {
+    "battery_mw": 87.3,
+    "hours_new": 27.4,
+    "hours_aged": 21.9,
+    "breakdown": {
+     "SoC+DRAM": 33.07,
+     "Sensors+MCU": 3.98,
+     "GNSS": 36.05,
+     "BT/BLE": 9.5,
+     "Mics": 0.08,
+     "LED/haptics": 3.98
+    }
+   },
+   "nav_gnss": {
+    "battery_mw": 168.5,
+    "hours_new": 14.2,
+    "hours_aged": 11.3,
+    "breakdown": {
+     "SoC+DRAM": 68.07,
+     "Sensors+MCU": 3.98,
+     "GNSS": 90.0,
+     "BT/BLE": 5.85
+    }
+   },
+   "lte_stream": {
+    "battery_mw": 588.8,
+    "hours_new": 4.1,
+    "hours_aged": 3.2,
+    "breakdown": {
+     "SoC+DRAM": 511.36,
+     "Sensors+MCU": 3.98,
+     "GNSS": 36.0,
+     "BT/BLE": 35.23,
+     "Mics": 1.59
+    }
+   },
+   "llm_sustained": {
+    "battery_mw": 2519.3,
+    "hours_new": 0.9,
+    "hours_aged": 0.8,
+    "breakdown": {
+     "SoC+DRAM": 2500.0,
+     "Sensors+MCU": 3.98,
+     "BT/BLE": 14.2,
+     "Mics": 0.48
+    }
+   }
+  },
+  "trip_day_baseline": {
+   "mwh_per_day": 1956.0,
+   "days_new": 1.22,
+   "days_aged": 0.98,
+   "hours_new": 29.3
+  },
+  "trip_day_optimised": {
+   "mwh_per_day": 1120.0,
+   "days_new": 2.13,
+   "days_aged": 1.71,
+   "hours_new": 51.2
+  }
+ },
+ "Square": {
+  "battery_wh": 4.27,
+  "profiles": {
+   "standby": {
+    "battery_mw": 21.2,
+    "hours_new": 191.2,
+    "hours_aged": 153.0,
+    "breakdown": {
+     "SoC+DRAM": 7.95,
+     "Sensors+MCU": 0.68,
+     "GNSS": 0.09,
+     "BT/BLE": 0.68,
+     "LTE": 10.8,
+     "LED/haptics": 0.0
+    }
+   },
+   "walk_baseline": {
+    "battery_mw": 302.5,
+    "hours_new": 13.4,
+    "hours_aged": 10.7,
+    "breakdown": {
+     "SoC+DRAM": 125.91,
+     "Sensors+MCU": 3.98,
+     "GNSS": 90.0,
+     "BT/BLE": 13.47,
+     "Mics": 0.08,
+     "LTE": 61.32,
+     "Display": 6.14,
+     "LED/haptics": 0.57
+    }
+   },
+   "walk_optimised": {
+    "battery_mw": 128.1,
+    "hours_new": 31.6,
+    "hours_aged": 25.3,
+    "breakdown": {
+     "SoC+DRAM": 37.44,
+     "Sensors+MCU": 3.98,
+     "GNSS": 36.05,
+     "BT/BLE": 6.82,
+     "Mics": 0.08,
+     "LTE": 36.06,
+     "Display": 6.14,
+     "LED/haptics": 0.57
+    }
+   },
+   "nav_gnss": {
+    "battery_mw": 234.1,
+    "hours_new": 17.3,
+    "hours_aged": 13.9,
+    "breakdown": {
+     "SoC+DRAM": 76.76,
+     "Sensors+MCU": 3.98,
+     "GNSS": 90.0,
+     "BT/BLE": 4.94,
+     "LTE": 31.85,
+     "Display": 25.57
+    }
+   },
+   "lte_stream": {
+    "battery_mw": 1284.6,
+    "hours_new": 3.2,
+    "hours_aged": 2.5,
+    "breakdown": {
+     "SoC+DRAM": 568.18,
+     "Sensors+MCU": 3.98,
+     "GNSS": 36.0,
+     "BT/BLE": 28.41,
+     "Mics": 1.59,
+     "LTE": 625.0,
+     "Display": 20.45
+    }
+   },
+   "llm_sustained": {
+    "battery_mw": 4379.3,
+    "hours_new": 0.9,
+    "hours_aged": 0.7,
+    "breakdown": {
+     "SoC+DRAM": 4318.18,
+     "Sensors+MCU": 3.98,
+     "BT/BLE": 14.2,
+     "Mics": 0.48,
+     "LTE": 10.8,
+     "Display": 30.68
+    }
+   }
+  },
+  "trip_day_baseline": {
+   "mwh_per_day": 3005.0,
+   "days_new": 1.35,
+   "days_aged": 1.08,
+   "hours_new": 32.4
+  },
+  "trip_day_optimised": {
+   "mwh_per_day": 1959.0,
+   "days_new": 2.07,
+   "days_aged": 1.66,
+   "hours_new": 49.7
+  }
+ },
+ "Atlas": {
+  "battery_wh": 5.63,
+  "profiles": {
+   "standby": {
+    "battery_mw": 23.7,
+    "hours_new": 225.7,
+    "hours_aged": 180.6,
+    "breakdown": {
+     "SoC+DRAM": 10.23,
+     "Sensors+MCU": 0.68,
+     "GNSS": 0.09,
+     "BT/BLE": 0.68,
+     "LTE": 10.8,
+     "LED/haptics": 0.0
+    }
+   },
+   "walk_baseline": {
+    "battery_mw": 307.0,
+    "hours_new": 17.4,
+    "hours_aged": 13.9,
+    "breakdown": {
+     "SoC+DRAM": 130.23,
+     "Sensors+MCU": 3.98,
+     "GNSS": 90.0,
+     "BT/BLE": 13.47,
+     "Mics": 0.08,
+     "LTE": 61.32,
+     "Display": 6.14,
+     "LED/haptics": 0.57
+    }
+   },
+   "walk_optimised": {
+    "battery_mw": 131.1,
+    "hours_new": 40.8,
+    "hours_aged": 32.6,
+    "breakdown": {
+     "SoC+DRAM": 40.23,
+     "Sensors+MCU": 3.98,
+     "GNSS": 36.05,
+     "BT/BLE": 6.82,
+     "Mics": 0.08,
+     "LTE": 36.06,
+     "Display": 6.14,
+     "LED/haptics": 0.57
+    }
+   },
+   "nav_gnss": {
+    "battery_mw": 237.8,
+    "hours_new": 22.5,
+    "hours_aged": 18.0,
+    "breakdown": {
+     "SoC+DRAM": 80.23,
+     "Sensors+MCU": 3.98,
+     "GNSS": 90.0,
+     "BT/BLE": 4.94,
+     "LTE": 31.85,
+     "Display": 25.57
+    }
+   },
+   "lte_stream": {
+    "battery_mw": 1307.5,
+    "hours_new": 4.1,
+    "hours_aged": 3.3,
+    "breakdown": {
+     "SoC+DRAM": 590.91,
+     "Sensors+MCU": 3.98,
+     "GNSS": 36.0,
+     "BT/BLE": 28.41,
+     "Mics": 1.59,
+     "LTE": 625.0,
+     "Display": 20.45
+    }
+   },
+   "llm_sustained": {
+    "battery_mw": 4834.1,
+    "hours_new": 1.1,
+    "hours_aged": 0.9,
+    "breakdown": {
+     "SoC+DRAM": 4772.73,
+     "Sensors+MCU": 3.98,
+     "BT/BLE": 14.2,
+     "Mics": 0.48,
+     "LTE": 10.8,
+     "Display": 30.68
+    }
+   }
+  },
+  "trip_day_baseline": {
+   "mwh_per_day": 3245.0,
+   "days_new": 1.65,
+   "days_aged": 1.32,
+   "hours_new": 39.5
+  },
+  "trip_day_optimised": {
+   "mwh_per_day": 2190.0,
+   "days_new": 2.44,
+   "days_aged": 1.95,
+   "hours_new": 58.6
+  }
+ }
+}

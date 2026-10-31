@@ -1,0 +1,58 @@
+category,ref,description,manufacturer,mpn,qty,unit_1k,unit_10k,unit_100k,ext_1k,ext_10k,ext_100k,price_basis,supplier,alternates
+Compute,U1,"Application SoC, 6 nm, 2xA78+6xA55, 10 TOPS NPU, Mali GPU (MT8391)",MediaTek,Genio 720 (MT8391),1,36.00,30.00,25.50,36.00,30.00,25.50,E,MediaTek via Richardson/Avnet/WPG,Qualcomm QCS6490 (12 TOPS)
+Compute,U2,Companion PMIC set per Genio 720 reference design (incl. audio codec),MediaTek,MT63xx-class PMIC (NDA),1,4.80,4.00,3.30,4.80,4.00,3.30,E,MediaTek,
+Compute,U3,"LPDDR5 8 GB (x32, 6400 MT/s) - 3-4B INT4 LLM + VLM resident",Micron / SK hynix / Samsung,LPDDR5-8GB-x32,1,60.00,50.00,42.00,60.00,50.00,42.00,E,Franchised (shortage),12 GB if 4B+VLM concurrency needed
+Compute,U4,UFS 3.1 128 GB,Kioxia / Samsung,UFS31-128GB,1,14.00,12.00,10.30,14.00,12.00,10.30,E,Franchised,
+Compute,U5,"Always-on MCU: sensor hub, crown, buttons, SOS path, power sequencing",Nordic Semiconductor,nRF54L15-CAAA (WLCSP),1,2.30,1.90,1.60,2.30,1.90,1.60,E,Nordic distribution,Ambiq Apollo4 Lite
+RF,U6,"LTE Cat-4 global module (FDD/TDD, 3G fallback), LGA 29x32x2.4 mm",Quectel,EG25-G (EG25GGB-256-SGNS),1,38.00,26.00,21.00,38.00,26.00,21.00,D,Quectel direct / RS / SOS,Quectel EG95-EX/NA regional; chip-down v2
+RF,U7,"Consumer eSIM eUICC, GSMA SGP.22, WLCSP 1.8x1.6 mm",Infineon,OPTIGA Connect Consumer OC1230,1,1.60,1.25,0.95,1.60,1.25,0.95,E,Infineon / connectivity partner,Thales/Kigen eUICC; ST ST4SIM (SGP.32)
+RF,U8,"Wi-Fi 6 + BT 5.4 dual-mode combo (LE Audio, Auracast, A2DP) per Genio ref design",MediaTek,MT79xx combo (MT7920/MT7921 class),1,4.80,4.00,3.40,4.80,4.00,3.40,E,MediaTek,AzureWave module (EVT)
+RF,U9,2.4/5 GHz FEM,Qorvo / Skyworks,FEM-WiFi6-2G5G,1,0.90,0.70,0.55,0.90,0.70,0.55,E,Distribution,
+RF,U10,GNSS L1+L5 module 12.2x16x2.5 mm,Quectel,LC29HAA,1,7.80,6.30,5.30,7.80,6.30,5.30,D,Quectel / Mouser,u-blox NEO-F10N
+RF,U11,LTE antenna aperture tuner SP4T (low-band tuning for metal body),Infineon,BGSA14GN10,1,0.65,0.50,0.40,0.65,0.50,0.40,E,Infineon,Qorvo QAT3550
+RF,ANT1-4,"Antennas: LTE main+div (Ti frame segments), GNSS L1/L5, Wi-Fi/BT, NTN L/S-band",Pulse / Sunway / Luxshare,frame-feed + LDS,1,3.60,2.70,2.10,3.60,2.70,2.10,E,Antenna house RFQ,
+RF,J5-8,Micro-coax + spring contacts for frame antenna feeds,I-PEX / Murata,MHF7S / spring clips,1,0.90,0.68,0.52,0.90,0.68,0.52,E,Distribution,
+Sensors,U20,"6-axis IMU + programmable fusion MCU (BSX, PDR, step/heading)",Bosch Sensortec,BHI360,1,4.70,3.95,3.30,4.70,3.95,3.30,D,Digi-Key/Future (franchised),TDK ICM-45686 + host fusion
+Sensors,U21,"3-axis magnetometer, +/-2000 uT, 0.1 uT noise-class, I3C/I2C",Bosch Sensortec,BMM350,1,2.10,1.65,1.35,2.10,1.65,1.35,D,Mouser/Future,MEMSIC MMC5983MA
+Sensors,U22,"Barometric pressure sensor (floor/look-up, altitude aid)",Bosch Sensortec,BMP390,1,2.40,1.90,1.50,2.40,1.90,1.50,E,Digi-Key/Future,Infineon DPS368
+Audio,MK1-2,"Digital MEMS mic, PDM, 73 dB SNR, IP57 (beamforming pair)",Infineon,IM73D122V01,2,1.15,0.92,0.75,2.30,1.84,1.50,E,Digi-Key/Avnet,Knowles SPH0690LM4H-1
+Audio,U30,"Smart Class-D speaker amp w/ boost + IV-sense speaker protection, I2S/TDM",Texas Instruments,TAS2563YFP,1,1.60,1.30,1.05,1.60,1.30,1.05,E,TI direct/Arrow,Analog Devices MAX98390
+Audio,LS1,"Micro-speaker 1511 box, 8 ohm 0.5 W, IP67 membrane",AAC / Goertek,SPK-1511-custom,1,1.00,0.75,0.58,1.00,0.75,0.58,E,AAC/Goertek RFQ,Knowles/ Merry
+Haptics,U31,"Haptic driver, LRA auto-resonance, ROM effects",Texas Instruments,DRV2605LYZFR,1,1.10,0.88,0.70,1.10,0.88,0.70,E,TI direct/Arrow,Awinic AW86224
+Haptics,M1,"X-axis linear resonant actuator 0.8 G, 170 Hz (custom 10x3.5x2.5 mm)",AAC / Jahwa,LRA-X1035-custom,1,1.30,0.95,0.75,1.30,0.95,0.75,E,AAC RFQ,Vybronics VG0832012
+Display,LCD1,"1.6in AMOLED 466x466 round-corner, on-cell touch, MIPI-DSI 1-lane / QSPI, AOD, 1000 nit HBM",Visionox / BOE / Tianma,AMOLED-1.60-466-custom (CO5300/RM690B0 DDIC),1,15.00,12.00,9.80,15.00,12.00,9.80,E,Panel maker RFQ (semi-custom cut),1.43in 466x466 std panel (EVT)
+Display,CG1,"Sapphire cover 0.7 mm, double-side AR, AF, PVD mask",Biel / Crystal-Optech / Lens Tech,SAP-AT-070,1,9.00,6.50,5.00,9.00,6.50,5.00,E,Sapphire finisher RFQ,Aluminosilicate (cost-down)
+UI,U51,"Optical crown rotation sensor (finger-nav, 0.1 deg-class)",PixArt,PAT9125EL-TKIT,1,1.70,1.35,1.05,1.70,1.35,1.05,E,PixArt distributor,Hall + magnet ring
+UI,SW1-3,"Tact switches (crown push, main button, SOS)",C&K / Alps,KMR2-class,3,0.14,0.11,0.09,0.42,0.33,0.27,E,Distribution,
+Security,U12,"Secure element (device identity, theft-lock, attestation)",NXP,SE050E2HQ1,1,2.10,1.70,1.35,2.10,1.70,1.35,E,NXP,Infineon OPTIGA Trust M
+Power,BT1,"Li-ion polymer 1450 mAh 3.88 V (5.63 Wh), Si-C anode, 5.2x46x40 mm, PCM+NTC",ATL / Sunwoda,LP524640-1450,1,6.00,4.90,4.00,6.00,4.90,4.00,E,Cell vendor RFQ,
+Power,U41,"Li-ion charger (USB-C 5 V in, I2C, JEITA, ship mode)",TI,BQ25620RYKR,1,1.45,1.15,0.92,1.45,1.15,0.92,E,TI direct/Arrow,SGMicro SGM41511 / Southchip SC8551
+Power,U42,"Fuel gauge ModelGauge m5 EZ, internal sense, cycle/age tracking",Analog Devices,MAX17262,1,1.55,1.25,1.00,1.55,1.25,1.00,E,ADI/Digi-Key,TI BQ27427
+Power,J1,"USB-C 16-pin mid-mount receptacle, IPX8-gasketed",Amphenol / Korea Hirose,USB-C-16P-WP,1,0.55,0.42,0.33,0.55,0.42,0.33,E,Amphenol RFQ,JAE DX07 series
+Power,D1-4,"ESD/TVS arrays (USB, buttons, pogo)",Nexperia / TI,PESD5V0X1BL / TPD4E05U06,4,0.08,0.06,0.05,0.32,0.24,0.20,E,Distribution,
+Power,J2,4-pin magnetic pogo receiver (dock / power-puck),CFE / Lotes,POGO-4P-1.5mm,1,0.60,0.45,0.35,0.60,0.45,0.35,E,Shenzhen pogo vendor RFQ,
+Power,U43,3.8 V high-current buck-boost for LTE PA rail (2 A peaks),Texas Instruments,TPS63810,1,1.30,1.05,0.85,1.30,1.05,0.85,E,TI,Richtek RT6160
+Power,U44,"Load switches / LDOs (GNSS, sensors, mic bias)",TI / Torex,TPS22916 / TLV755P,4,0.18,0.14,0.11,0.72,0.56,0.44,E,Distribution,
+Passives,R/C/L,"Passives (~520 pcs, 01005/0201/0402 MLCC, R, ferrite, inductors)",Murata/Samsung EM/Yageo,various,1,3.10,2.40,1.95,3.10,2.40,1.95,E,Distribution,
+Passives,Y1-3,"Crystals / TCXO (32.768 kHz, 26 MHz SoC, 38.4 MHz radio)",Epson / NDK / TXC,various,1,0.70,0.55,0.45,0.70,0.55,0.45,E,Distribution,
+PCB,PCB1,"Stacked main board: 2x 10-layer any-layer HDI + interposer (sandwich), 48x48 mm",Unimicron / Zhen Ding / AT&S,LORE-AT-MAIN-STACK,1,19.00,13.50,10.50,19.00,13.50,10.50,E,PCB fab RFQ,Single board + daughterboard
+PCB,FPC1-4,"Flex: display tail, crown/button flex, battery/pogo flex, antenna feed flex",Career / Flexium / MFLEX,LORE-SQ-FPC,1,2.40,1.80,1.40,2.40,1.80,1.40,E,FPC fab RFQ,
+PCB,SH1-5,"RF shield cans (SoC/DRAM, LTE, Wi-Fi, GNSS, PMIC)",Shenzhen stamping,SHIELD-SQ,5,0.22,0.16,0.12,1.10,0.80,0.60,E,Stamping vendor,
+PCB,J3-6,"Board-to-board connectors (display, battery, flexes)",Panasonic / Hirose,A35S / BM28,4,0.32,0.25,0.20,1.28,1.00,0.80,E,Distribution,
+Mechanical,MEC1,"Housing Ti Gr.5 (Ti-6Al-4V) CNC 5-axis, bead-blast or black DLC, ceramic-filled antenna breaks",Catcher / BYD Elec / Lens Tech,LORE-AT-HSG,1,46.00,30.00,22.00,46.00,30.00,22.00,E,Ti CNC house RFQ,Ti Gr.2 (easier machining) / MIM Ti
+Mechanical,MEC2,Back cover zirconia ceramic (RF window) with pogo pads + camera bezel,Sinocera / Lens Tech,LORE-AT-BACK,1,5.50,4.00,3.10,5.50,4.00,3.10,E,Ceramic RFQ,Sapphire back
+Mechanical,MEC3,Crown: Ti machined with brass-tone PVD accent ring,Precision turning,LORE-AT-CRN,1,2.80,2.00,1.55,2.80,2.00,1.55,E,RFQ,
+Mechanical,MEC4,"Button caps 316L SS / Al, terracotta SOS accent",Precision turning,LORE-SQ-BTN,2,0.40,0.28,0.22,0.80,0.56,0.44,E,RFQ,
+Mechanical,MEC5,"Gaskets, display PSA, acoustic vents ePTFE (IP67), mid-frame foam",Saati / Gore / 3M,various,1,1.50,1.15,0.92,1.50,1.15,0.92,E,Die-cut converter,
+Mechanical,MEC6,Thermal: Cu foil 50 um + 2x graphite 40 um + TIM gel + vapour-chamber-lite (0.3 mm),Jones / Auras / Panasonic,various,1,1.60,1.20,0.95,1.60,1.20,0.95,E,Converter,Graphite-only
+Mechanical,MEC7,"Mid-frame SUS 0.2 mm stamped (display support, ground)",Stamping,LORE-SQ-MF,1,0.55,0.40,0.30,0.55,0.40,0.30,E,RFQ,
+Mechanical,MEC8,"Screws (Torx T2), magnets N52 for dock (x2), lanyard pin",various,various,1,0.40,0.30,0.24,0.40,0.30,0.24,E,RFQ,
+Packaging,PKG1,"Rigid two-piece box, wrapped FSC paper, foil, magnet close",Shenzhen packaging house,LORE-PKG,1,6.50,4.80,3.80,6.50,4.80,3.80,E,Packaging RFQ,
+Packaging,PKG2,"Quick-start guide, regulatory leaflet, labels",Printer,LORE-QSG,1,0.30,0.22,0.17,0.30,0.22,0.17,E,Printer,
+Packaging,ACC1,"USB-C to USB-C braided 1 m cable (60 W, E-marker-less)",Cable OEM,CBL-C2C-1M,1,1.30,1.00,0.80,1.30,1.00,0.80,E,Cable OEM,
+RF,U13,"3GPP Rel-17 IoT-NTN module (Skylo-certified) + LTE-M/NB fallback, 23.6x19.9x2.2 mm",Quectel,BG95-S5,1,19.00,14.50,11.50,19.00,14.50,11.50,E,Quectel,Quectel CC660D-LS (NTN-only)
+RF,U14,SPDT RF switch NTN/LTE antenna share,Infineon / pSemi,BGS12P2L6,1,0.30,0.24,0.19,0.30,0.24,0.19,E,Distribution,
+Camera,CAM1,"13 MP 1/3in 1.12 um 'Glance' camera, fixed-focus wide (~100 deg DFOV) module 6.4x7.2 mm, MIPI CSI-2 4-lane",OmniVision (module: Sunny / Q-Tech / O-Film),OV13B10 FF module,1,6.20,5.10,4.30,6.20,5.10,4.30,E,Module house RFQ,OmniVision OV08B10 8 MP
+Camera,CAM2,Camera window sapphire 4 mm + privacy LED,Biel / Everlight,CAMWIN-AT,1,0.80,0.60,0.45,0.80,0.60,0.45,E,RFQ,
+Mechanical,MEC9,Extra thermal: 0.4 mm Ti-compatible vapour chamber + Cu heat-spreader,Auras / Jones,VC-AT-04,1,3.20,2.40,1.90,3.20,2.40,1.90,E,Thermal vendor RFQ,
+Packaging,ACC2,Full-grain leather lanyard + Ti quick-release + polishing cloth,Accessory OEM,ACC-AT,1,4.00,3.00,2.30,4.00,3.00,2.30,E,RFQ,
