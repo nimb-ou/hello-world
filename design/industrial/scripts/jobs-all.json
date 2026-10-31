@@ -84,8 +84,8 @@
   "waitFor": "window.__done===true"
  },
  {
-  "url": "industrial/render.html?shot=acc-family&w=2400&h=1600&frames=24",
-  "out": "industrial/renders/acc-family.png",
+  "url": "industrial/render.html?shot=acc-kit-family&w=2400&h=1600&frames=24",
+  "out": "industrial/renders/acc-kit-family.png",
   "width": 2400,
   "height": 1600,
   "waitFor": "window.__done===true"

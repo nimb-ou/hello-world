@@ -14,14 +14,14 @@
 | 2 | +0:40 | App install | Scans the QR | App opens on **Welcome** (A-01) | A-01 |
 | 3 | +1:30 | Pairing | Taps "Pair", holds Talk when asked | BLE bond, eSIM activates silently, firmware is current | A-02 |
 | 4 | +2:30 | Interests | Picks *Architecture, Food, Dark history, Art*; depth slider "Curious" | Builds the story-ranking profile | A-03 |
-| 5 | +3:10 | Safety | Adds her sister as a safety contact | Saves; Walk Me Home defaults to "after 22:00, suggest" | A-04 |
-| 6 | +3:40 | First story | Connects AirPods; taps "Try it" | Plays a 25 s "here at home" demo story, then *"Want the Rome pack? It's 1.2 GB, best on Wi-Fi."* | A-05/A-06, D-13 |
+| 5 | +3:10 | Safety | Adds her sister as a safety contact | Saves; Walk Me Home defaults to "after 22:00, suggest" | A-08 |
+| 6 | +3:40 | First story | Connects AirPods; taps "Try it" | Plays a 25 s "here at home" demo story, then *"Want the Rome pack? It's 1.2 GB, best on Wi-Fi."* | A-04/A-05, D-11 |
 | 7 | Day 1, 10:05 | Lands at FCO | Phone in airplane mode; turns LORE on | eSIM attaches (TIM/Vodafone roaming profile). D-01 shows Rome time and weather. *"Benvenuta. The train to Termini is 32 minutes. Want me to tell you about the aqueduct you'll pass?"* | D-01 |
 | 8 | 12:40 | First walk: Via dei Coronari | Clips LORE to her bag strap, walks, phone in pocket | Quiet-moments score rises near Piazza Navona; `story-start` earcon. *"On your left, the fountain's river god is covering his eyes. Legend says Bernini made him flinch at Borromini's church. It's a great story, and it's false: the fountain was finished first. Look up at the church's twin towers."* | D-02 (L indicator) |
 | 9 | 12:42 | Depth | Says "Source?" | *"Two sources: the Fountain's 1651 completion record, and the church's 1653 start. Both are in the Rome pack."* | D-02 source chip |
 | 10 | 12:50 | Around | Double-presses Talk | Sweep: *"Left, 60 m: Palazzo Pamphilj. Ahead, 180 m: the Pantheon. Right, 90 m: a 1938 gelateria locals argue about."* | D-03 |
 | 11 | 13:05 | Navigate | "Take me to the Pantheon" | Brass arrow, `turn-right` earcon panned right at 30 m | D-04 |
-| 12 | 18:30 | Evening | Opens the app | Day recap: 6.4 km, 11 stories, 3 saved places | A-07, A-08, A-09 |
+| 12 | 18:30 | Evening | Opens the app | Day recap: 6.4 km, 11 stories, 3 saved places | A-07, A-11, A-06 |
 
 **Success criteria:**
 - First story in **under 4 min** from opening the box.
@@ -34,7 +34,7 @@
 
 | # | Moment | LORE behaviour |
 |---|---|---|
-| 1 | LTE drops in a narrow medieval street (multipath, basement-level sidewalk) | No interruption. The current story is from the pack. Fog "OFFLINE · ROME PACK" chip appears on D-15; the `offline` earcon plays once. **Nothing is said aloud** unless Maya asks for something that needs the network |
+| 1 | LTE drops in a narrow medieval street (multipath, basement-level sidewalk) | No interruption. The current story is from the pack. Fog "OFFLINE · ROME PACK" chip appears on D-14; the `offline` earcon plays once. **Nothing is said aloud** unless Maya asks for something that needs the network |
 | 2 | GNSS degrades (urban canyon, HDOP > 5) | Map Vision switches to PDR (step + heading) snapped to the pack's street graph. If confidence drops below 70 %, stories switch to landmark-relative wording ("the doorway with the marble lion") |
 | 3 | Maya asks "Is Da Enzo open now?" | *"Going by the Rome pack's 28 October hours, yes until 23:00. I'll check live hours when we're back online and tell you if that's changed."* (stale-data date is shown on D-07) |
 | 4 | She asks a deep question outside the pack ("What did Garibaldi think of the Pope?") | Square/Atlas answer briefly with the on-device model, using pack facts only, then: *"I can go deeper online. Want me to save the question?"* The question is queued |
@@ -64,8 +64,8 @@
 |---|---|---|---|
 | 1 | "Somewhere good for dinner. Not touristy, cacio e pepe, not too far." | Ranks venues by distance, open-now, cuisine, and a local-signal score (review language mix, menu prices, no photo menus). Excludes places she flagged | D-07 |
 | 2 | Hears three picks | *"Three good ones. Closest: a trattoria 6 minutes left, around €16 for cacio e pepe, mostly Roman reviewers. Second: …"* | D-07 |
-| 3 | "Book the first one for 8:15, one person" | Online only: books via a partner API (TheFork/OpenTable-class). Confirms by voice and puts a card on the phone. **Affiliate disclosure:** "LORE may earn a small fee" is shown in-app (A-10). Ranking is never affected by fees (editorial rule) | A-10 |
-| 4 | Booking not possible (no partner) | *"They only take phone bookings. Want me to show the number on your phone, or call through your phone?"* | A-10 |
+| 3 | "Book the first one for 8:15, one person" | Online only: books via a partner API (TheFork/OpenTable-class). Confirms by voice and puts a card on the phone. **Affiliate disclosure:** "LORE may earn a small fee" is shown in-app (A-12). Ranking is never affected by fees (editorial rule) | A-10 |
+| 4 | Booking not possible (no partner) | *"They only take phone bookings. Want me to show the number on your phone, or call through your phone?"* | A-12 |
 | 5 | Walk there | Navigation (D-04) with one optional story on the way (cooldown respected) | D-04, D-02 |
 | 6 | At the table | Quiet: the device detects a stationary state indoors plus speech, so no stories. "How do I say *the bill, please*?" → *"Il conto, per favore."* spoken slowly, then at normal speed | — |
 

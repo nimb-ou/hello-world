@@ -159,7 +159,8 @@ function normalizeUV(g) {
 }
 
 // ------------------------------------------------------------------ back-plate texture (mount, pogo, laser etch)
-function backTexture({ size, base, text, lines, mountR, rough = 0.5, mountSteel = '#B8B8B5', mirror = true }) {
+const pogoXs = (PR) => { const n = PR?.mount?.pogo_count ?? 4, p = PR?.mount?.pogo_pitch ?? 2.5; return Array.from({ length: n }, (_, k) => (k - (n - 1) / 2) * p); };
+function backTexture({ size, base, text, lines, mountR, rough = 0.5, mountSteel = '#B8B8B5', mirror = true, pogo = [-3.75, -1.25, 1.25, 3.75], padR = 0.8 }) {
   const S = 1024, px = S / size;
   const mk = () => { const c = document.createElement('canvas'); c.width = c.height = S; return c; };
   const col = mk(), rgh = mk(), met = mk();
@@ -181,9 +182,9 @@ function backTexture({ size, base, text, lines, mountR, rough = 0.5, mountSteel 
     gc.fillStyle = 'rgba(0,0,0,0.55)'; gc.fillRect(-2 * px, (mountR - 1.3) * px, 4 * px, 1.0 * px); gc.restore();
   }
   // pogo pads (gold) + alignment dot
-  for (const dx of [-2.5, 2.5]) {
-    for (const [g, f] of [[gc, '#E3B866'], [gm, '#fff'], [gr, 'rgb(60,60,60)']]) { g.beginPath(); g.arc(dx * px, 0, 1.0 * px, 0, Math.PI * 2); g.fillStyle = f; g.fill(); }
-    gc.beginPath(); gc.arc(dx * px, 0, 1.25 * px, 0, Math.PI * 2); gc.strokeStyle = 'rgba(0,0,0,0.6)'; gc.lineWidth = 0.3 * px; gc.stroke();
+  for (const dx of pogo) {
+    for (const [g, f] of [[gc, '#E3B866'], [gm, '#fff'], [gr, 'rgb(60,60,60)']]) { g.beginPath(); g.arc(dx * px, 0, padR * px, 0, Math.PI * 2); g.fillStyle = f; g.fill(); }
+    gc.beginPath(); gc.arc(dx * px, 0, (padR + 0.25) * px, 0, Math.PI * 2); gc.strokeStyle = 'rgba(0,0,0,0.6)'; gc.lineWidth = 0.3 * px; gc.stroke();
   }
   gc.beginPath(); gc.arc(0, (mountR - 3.2) * px, 0.45 * px, 0, Math.PI * 2); gc.fillStyle = 'rgba(0,0,0,0.5)'; gc.fill();
   // laser etch text (y positive = toward top edge)
@@ -218,7 +219,7 @@ export function buildPebble(PR, finishKey = 'bone', opts = {}) {
   const shell = named(new THREE.Mesh(sweep(ol, prof), body), 'housing_top_shell', 'housing');
   // back (textured with mount + etch)
   const capR = (P.plan_w - 2 * rb) / 2;
-  const bt = backTexture({ size: 60, base: F.back, text: F.backText, mountR: PR.mount.recess_d / 2, rough: 0.62,
+  const bt = backTexture({ size: 60, base: F.back, text: F.backText, mountR: PR.mount.recess_d / 2, pogo: pogoXs(PR), padR: PR.mount.pogo_pad_d / 2, rough: 0.62,
     lines: [{ t: 'LORE', y: -15.0, size: 2.6, font: 'Fraunces', weight: 500, track: 0.5 },
       { t: 'Pebble · P1 · Designed by LORE Labs', y: -18.0, size: 0.95 }] });
   const backMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, ...bt, metalness: 1, roughness: 1, sheen: 0.2, sheenRoughness: 0.8 });
@@ -242,7 +243,7 @@ export function buildPebble(PR, finishKey = 'bone', opts = {}) {
   // volume rocker (hardware: main button + volume rocker) on the east side, flush pill
   { const rol = squircleRect(2.6, 9.0, 1.29, 2, 96);
     const rk = named(new THREE.Mesh(sweep(rol, slabProfile({ H: 0.6, rt: 0.3, rb: 0.01, cap: 6, fil: 4 })), dish), 'volume_rocker', 'button');
-    const ri = idxAt(ol, 0); rk.rotation.y = Math.PI / 2; rk.position.set(ol.p[ri][0] - 0.35, 0, zMid - zb); parts.add(rk); }
+    const ri = idxAt(ol, 0); rk.rotation.y = Math.PI / 2; rk.position.set(ol.p[ri][0] - 0.15, 0, zMid - zb); /* 0.45 proud at centre */ parts.add(rk); }
   // tether tunnel: two holes on the back at the NW corner
   const ia = idxAt(ol, (3 * Math.PI) / 4);
   for (const t of [-0.5, 0.5]) {
@@ -304,7 +305,7 @@ export function buildSlate(PR, sku = 'square', finishKey = 'sq-ink', opts = {}) 
   // back cover (etched glass / zirconia) with mount + etch
   const bol = offsetOutline(ol, -inset);
   const bw = outlineWidth(bol);
-  const bt = backTexture({ size: bw, base: F.back, text: F.backText, mountR: PR.mount.recess_d / 2, rough: F.backRough,
+  const bt = backTexture({ size: bw, base: F.back, text: F.backText, mountR: PR.mount.recess_d / 2, pogo: pogoXs(PR), padR: PR.mount.pogo_pad_d / 2, rough: F.backRough,
     lines: [{ t: 'LORE', y: -13.2, size: 3.0, font: 'Fraunces', weight: 500, track: 0.6 },
       { t: `${S.name.replace('LORE ', '')} · ${S.code}`, y: -16.6, size: 1.1, weight: 500, track: 0.2 },
       { t: 'Designed by LORE Labs · Model A26' + (sku === 'atlas' ? '20' : '10') + ' · IMEI on device', y: -18.8, size: 0.75 },
@@ -346,7 +347,7 @@ export function buildSlate(PR, sku = 'square', finishKey = 'sq-ink', opts = {}) 
   const sos = named(new THREE.Mesh(sweep(sol, slabProfile({ H: 0.35, rt: 0.2, rb: 0.01, cap: 6, fil: 4 })), mat(F.key)), 'sos_button', 'button');
   sos.rotation.y = -Math.PI / 2;
   const si = idxNearY(ol, -2, -1);
-  sos.position.set(ol.p[si][0] + 0.2, -2, rb + (H - rb - rt) / 2); parts.add(sos);
+  sos.position.set(ol.p[si][0] + 0.33, -2, rb + (H - rb - rt) / 2); /* face ~flush in the pocket ring; 0.25 recess not boolean-cut, drawings govern */ parts.add(sos);
   const sosRing = slot(3.8, 7.8, M.hole(), 1.9); parts.add(named(onSide(ol, si, rb + (H - rb - rt) / 2, sosRing, 0.01), 'sos_recess', 'port'));
   // ports: USB-C + speaker + mics on the bottom edge, 2 mics on the top edge
   const hm = M.hole(), zMid = rb + (H - rb - rt) / 2;
@@ -406,7 +407,7 @@ export function buildSlateExploded(PR, sku, finish, opts = {}) {
   const g = new THREE.Group(); g.name = 'exploded';
   const layer = (objs, z, lab, sub) => { const grp = new THREE.Group(); for (const o of objs) { parts.remove(o); grp.add(o); } grp.position.z = z; label(grp, lab, sub); g.add(grp); return grp; };
   // order back -> front
-  layer(find(sku === 'atlas' ? 'back_zirconia' : 'back_glass'), -gap * 3.2, sku === 'atlas' ? 'Back · zirconia ceramic, laser-etched' : 'Back · AG-etched glass, colour-matched', 'LORE Mount: 316L insert, N52 magnet ring, 2× Au pogo');
+  layer(find(sku === 'atlas' ? 'back_zirconia' : 'back_glass'), -gap * 3.2, sku === 'atlas' ? 'Back · zirconia ceramic, laser-etched' : 'Back · AG-etched glass, colour-matched', 'LORE Mount: 316L insert, N52 magnet ring, 4× Au pogo');
   // battery + coil-free charge path
   const bat = box(38, 30, 4.6, 3, M.pouch(), 'battery');
   bat.position.set(0, -4, 0);
@@ -430,7 +431,7 @@ export function buildSlateExploded(PR, sku, finish, opts = {}) {
   crown.position.x += gap * 0.45; key.position.x += gap * 0.45;
   // midframe + display + glass
   const mid = box(46, 46, 0.9, 8, M.plasticDark(), 'midframe_pc_gf'); mid.position.z = 0;
-  layer([mid], gap * 2.0, 'Midframe · PC-GF30 + Mg stiffener', 'display seal: 0.25 mm PSA gasket');
+  layer([mid], gap * 2.0, 'Mid-frame · SUS 0.2 mm stamped + Cu/graphite spreader', 'display seal: 0.25 mm PSA gasket · VC-lite 0.3 mm');
   const disp = new THREE.Group();
   const panel = box(31.5, 31.5, 0.9, 6, M.plasticBlack(), 'display_module'); disp.add(panel);
   const flex = box(10, 9, 0.12, 1, M.flex(), 'display_flex'); flex.position.set(0, -20, 0.2); disp.add(flex);
@@ -451,15 +452,15 @@ export function buildPebbleExploded(PR, finish, opts = {}) {
   const g = new THREE.Group();
   const take = (pred) => parts.children.filter(pred);
   const layer = (objs, z, lab, sub) => { const grp = new THREE.Group(); for (const o of objs) { parts.remove(o); grp.add(o); } grp.position.z = z; label(grp, lab, sub); g.add(grp); return grp; };
-  layer(take((c) => c.name === 'housing_back' || c.name === 'tether_hole'), -gap * 3.0, 'Back housing · PC-GF10, 2K soft-touch PU', 'LORE Mount insert (316L) · N52 ring magnet · 2× Au pogo');
-  const bat = box(30, 26, 5.2, 4, M.pouch(), 'battery'); layer([bat], -gap * 1.8, 'Battery · 650 mAh / 2.52 Wh Li-ion', 'per hardware/system-architecture.md');
+  layer(take((c) => c.name === 'housing_back' || c.name === 'tether_hole'), -gap * 3.0, 'Back housing · PC-GF10, 2K soft-touch PU', 'LORE Mount insert (316L) · N52 ring magnet · 4× Au pogo');
+  const bat = box(35, 32, 5.5, 4, M.pouch(), 'battery'); layer([bat], -gap * 1.8, 'Battery · 650 mAh / 2.52 Wh Li-ion, 35×32×5.5', 'per hardware/system-architecture.md');
   const pcb = new THREE.Group(); const board = box(32, 30, 0.8, 8, M.pcb(), 'main_pcb'); pcb.add(board);
   const can = box(12, 11, 1.3, 0.6, M.shield(), 'shield_soc'); can.position.set(-4, 3, 0.8); pcb.add(can);
   const spk = box(15, 11, 3, 1.2, M.plasticBlack(), 'speaker'); spk.position.set(5, -8, 0.8); pcb.add(spk);
   const ant = box(10, 10, 1.6, 0.4, M.ceramicWhite(), 'gnss_patch'); ant.position.set(8, 8, 0.8); pcb.add(ant);
   layer([pcb], -gap * 0.6, 'Logic board · BLE-tethered "Lite" (D10) · nRF54L15 hub', 'LC29HAA L1+L5 GNSS · BHI360 IMU · 13×9 speaker · LP5024 LED driver');
   layer(take((c) => c.name === 'housing_top_shell' || c.userData.role === 'port'), gap * 0.7, 'Top housing · PC-GF10, 2K soft-touch PU', 'ePTFE mic + speaker membranes (IP67)');
-  layer(take((c) => c.name === 'led_ring_lightguide'), gap * 3.2, 'Light guide · frosted PMMA, 12× RGB LED', 'Talk-button travel 0.35 mm, metal dome 2.4 N');
+  layer(take((c) => c.name === 'led_ring_lightguide'), gap * 3.2, 'Light guide · frosted PMMA, 8× RGB LED (LP5024)', 'Talk-button travel 0.35 mm, metal dome 2.4 N');
   layer(take((c) => c.name === 'talk_button_cap'), gap * 4.3, 'Talk cap · floating, full-face press', '');
   g.add(parts);
   const outer = new THREE.Group(); outer.add(g); outer.position.z = 0; outer.userData = { ...dev.userData, exploded: true }; outer.name = dev.name + ' (exploded)';
@@ -486,7 +487,7 @@ export function mountPuck(PR, m, { d = 23.6, t = 2.4 } = {}) {
     const lug = box(4, 1.4, 0.8, 0.3, m, 'mount_lug'); const a = k * Math.PI * 2 / 3;
     lug.position.set(Math.cos(a) * (d / 2 - 0.6), Math.sin(a) * (d / 2 - 0.6), t - 0.4); lug.rotation.z = a + Math.PI / 2; grp.add(lug);
   }
-  for (const dx of [-2.5, 2.5]) { const pin = named(new THREE.Mesh(new THREE.CylinderGeometry(0.9, 0.9, 0.6, 24), M.gold()), 'pogo_pin', 'accessory'); pin.rotation.x = Math.PI / 2; pin.position.set(dx, 0, t + 0.15); grp.add(pin); }
+  for (const dx of pogoXs(PR)) { const pin = named(new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.6, 24), M.gold()), 'pogo_pin', 'accessory'); pin.rotation.x = Math.PI / 2; pin.position.set(dx, 0, t + 0.15); grp.add(pin); }
   return grp;
 }
 export function buildClip(PR) {

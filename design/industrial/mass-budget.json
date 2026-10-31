@@ -1,0 +1,149 @@
+{
+ "pebble": {
+  "total_g": 31.9,
+  "parts": [
+   [
+    "Housing top + back, PC-GF10, 1.4 mm wall",
+    7.78
+   ],
+   [
+    "2K soft-touch PU paint (~40 um)",
+    0.4
+   ],
+   [
+    "Talk cap + PMMA light guide",
+    1.6
+   ],
+   [
+    "Battery 650 mAh / 2.52 Wh",
+    11.45
+   ],
+   [
+    "Logic board + shields, Lite (D10): BT audio SoC, nRF54L15, 64 MB NOR, LC29HAA GNSS, 36x36 8L HDI",
+    3.6
+   ],
+   [
+    "Speaker 13x9 + acoustic seal",
+    1.3
+   ],
+   [
+    "LORE Mount: 316L insert + N52 ring magnet",
+    3.4
+   ],
+   [
+    "4-pin pogo receiver, LRA, 2 mics, flexes, PSA, screws",
+    2.4
+   ]
+  ]
+ },
+ "square": {
+  "total_g": 58.6,
+  "parts": [
+   [
+    "Unibody, 6013-T6 Al, 1.2 mm wall + ledges",
+    10.21
+   ],
+   [
+    "Cover, Victus 2 0.7 mm",
+    3.6
+   ],
+   [
+    "Back, AG glass 0.7 mm",
+    3.4
+   ],
+   [
+    "AMOLED module 1.6\" + on-cell touch",
+    2.6
+   ],
+   [
+    "Mid-frame SUS 0.2 stamped (display support, ground)",
+    2.2
+   ],
+   [
+    "Thermal: Cu 50 um + 2x graphite + TIM + VC-lite 0.3",
+    1.4
+   ],
+   [
+    "Battery 1100 mAh / 4.27 Wh",
+    19.41
+   ],
+   [
+    "Logic board 48x48 10L ELIC + shields (Genio 720, 6 GB, 64 GB UFS, LTE Cat-1bis per D11)",
+    5.6
+   ],
+   [
+    "Speaker 15x11, LRA, mics, flexes",
+    3.2
+   ],
+   [
+    "Crown (encoder) + Talk + SOS keys",
+    1.1
+   ],
+   [
+    "LORE Mount: 316L insert + N52 ring magnet + 4-pin pogo",
+    3.6
+   ],
+   [
+    "Antennas, USB-C receptacle, PSA, gaskets, screws",
+    2.3
+   ]
+  ]
+ },
+ "atlas": {
+  "total_g": 88.6,
+  "parts": [
+   [
+    "Unibody, Ti-6Al-4V, 1.2 mm wall + ledges",
+    18.23
+   ],
+   [
+    "Cover, sapphire 0.8 mm",
+    6.76
+   ],
+   [
+    "Back, zirconia 0.9 mm",
+    10.94
+   ],
+   [
+    "AMOLED module 1.6\" + on-cell touch",
+    2.6
+   ],
+   [
+    "Mid-frame SUS 0.2 stamped (display support, ground)",
+    2.2
+   ],
+   [
+    "Thermal: Cu 50 um + 2x graphite + TIM + VC-lite 0.3 + Ti-compatible VC 0.4 + Cu spreader",
+    3.0
+   ],
+   [
+    "Battery 1450 mAh / 5.63 Wh",
+    25.59
+   ],
+   [
+    "Logic boards, sandwich 2x46x46 + 1.6 interposer (Genio 720, 8 GB, 128 GB UFS, LTE, BG95-S5 NTN)",
+    7.5
+   ],
+   [
+    "Speaker 15x11, LRA, mics, flexes",
+    3.2
+   ],
+   [
+    "Crown (encoder) + Talk + SOS keys",
+    1.6
+   ],
+   [
+    "LORE Mount: 316L insert + N52 ring magnet + 4-pin pogo",
+    3.6
+   ],
+   [
+    "Antennas, USB-C receptacle, PSA, gaskets, screws",
+    2.3
+   ],
+   [
+    "Glance camera OV13B10 module + trim",
+    1.1
+   ]
+  ]
+ }
+}

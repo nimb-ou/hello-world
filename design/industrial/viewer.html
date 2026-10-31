@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LORE ID Viewer</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{--ink:#14161A;--bone:#F3EEE6;--terra:#C4623A;--fog:#9AA0A6;--line:#d9d2c6;--panel:rgba(243,238,230,.88)}
+  html,body{margin:0;height:100%;background:#E6E0D6;color:var(--ink);font:14px/1.4 Inter,system-ui,sans-serif;overflow:hidden}
+  canvas{display:block;outline:none}
+  header{position:fixed;top:0;left:0;right:0;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:14px 20px;pointer-events:none}
+  header>*{pointer-events:auto}
+  h1{font:400 24px/1 Fraunces,serif;margin:0;letter-spacing:-.01em}
+  h1 small{display:block;font:500 10px/1.6 Inter;letter-spacing:.14em;text-transform:uppercase;color:#7c7a74;margin-top:4px}
+  .seg{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px;backdrop-filter:blur(6px)}
+  .seg button{border:0;background:none;font:500 13px Inter;padding:7px 14px;border-radius:999px;cursor:pointer;color:var(--ink)}
+  .seg button[aria-pressed=true]{background:var(--ink);color:var(--bone)}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 10px 5px 6px;font:500 12px Inter;cursor:pointer}
+  .chip i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+  .chip[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+  aside{position:fixed;right:16px;bottom:16px;width:300px;max-width:calc(100vw - 32px);box-sizing:border-box;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;backdrop-filter:blur(6px)}
+  aside h2{font:400 20px Fraunces,serif;margin:0 0 8px}
+  dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:12.5px}
+  dt{font:500 10.5px "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.06em;color:#7c7a74;padding-top:2px}
+  dd{margin:0}
+  .links{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;font-size:12px}
+  .links a{color:var(--terra);text-decoration:none;border-bottom:1px solid currentColor}
+  .opts{position:fixed;left:16px;bottom:16px;display:flex;gap:8px;flex-wrap:wrap}
+  .opts label{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font:500 12px Inter;cursor:pointer;user-select:none}
+  .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:#7c7a74;pointer-events:none}
+  #err{position:fixed;inset:0;display:none;place-items:center;text-align:center;padding:24px;background:#E6E0D6}
+  @media (max-width:720px){aside{left:12px;right:12px;width:auto;bottom:58px;padding:12px 14px;max-height:34vh;overflow:auto}aside h2{font-size:17px}.opts{left:12px;right:12px;bottom:12px;flex-wrap:nowrap;overflow-x:auto}.opts label{white-space:nowrap}.hint{display:none}h1{font-size:20px}header{padding:12px}}
+</style>
+<script type="importmap">{"imports":{"three":"../assets/vendor/three/three.module.js","three/addons/":"../assets/vendor/three/jsm/"}}</script>
+</head><body>
+<header>
+  <h1>LORE ID viewer<small>Rev <span id="rev">—</span> · live from params.json</small></h1>
+  <div class="seg" id="sku" role="group" aria-label="Model">
+    <button data-k="family" aria-pressed="true">Family</button><button data-k="pebble">Pebble</button><button data-k="square">Square</button><button data-k="atlas">Atlas</button>
+  </div>
+  <div class="chips" id="fin"></div>
+</header>
+<aside id="info"></aside>
+<div class="opts">
+  <label><input type="checkbox" id="spin" checked> Auto-rotate</label>
+  <label><input type="checkbox" id="lit" checked> Screen / LED on</label>
+  <label><input type="checkbox" id="flip"> Show back</label>
+</div>
+<div class="hint">drag to orbit · scroll to zoom · right-drag to pan</div>
+<div id="err"><div><h2 style="font-family:Fraunces">Serve this folder over HTTP</h2><p>ES modules don't load from file://. From the repo root run<br><code>python3 -m http.server -d design 8000</code><br>then open <code>http://localhost:8000/industrial/viewer.html</code>.</p></div></div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import * as G from './lib/lore-geometry.js';
+import { FINISHES } from './lib/materials.js';
+
+let PR, MB = {};
+try { PR = await (await fetch('params.json')).json(); } catch { document.getElementById('err').style.display = 'grid'; throw new Error('needs http'); }
+try { MB = await (await fetch('mass-budget.json')).json(); } catch {}
+document.getElementById('rev').textContent = PR.rev;
+await Promise.all(['500 40px Fraunces', '400 20px Inter'].map((f) => document.fonts.load(f))).catch(() => {});
+
+const FIN = { pebble: ['bone', 'ink', 'terracotta'], square: ['sq-ink', 'sq-sand'], atlas: ['at-ti', 'at-dlc'] };
+const SWATCH = { bone: '#F3EEE6', ink: '#14161A', terracotta: '#C4623A', 'sq-ink': '#3B3C40', 'sq-sand': '#CDBDA3', 'at-ti': '#A29D94', 'at-dlc': '#2A2A2D' };
+const state = { sku: 'family', fin: { pebble: 'terracotta', square: 'sq-ink', atlas: 'at-ti' } };
+
+// screen texture: UX home screen if present
+let screen = null;
+try { const r = await fetch('../ux/device-screens/png/01-home-compass.png'); if (r.ok) { const cv = document.createElement('canvas'); cv.width = cv.height = 932; cv.getContext('2d').drawImage(await createImageBitmap(await r.blob()), 0, 0, 932, 932); screen = new THREE.CanvasTexture(cv); screen.colorSpace = THREE.SRGBColorSpace; } } catch {}
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = 0.95;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.prepend(renderer.domElement);
+const scene = new THREE.Scene(); scene.background = new THREE.Color(0xE6E0D6);
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture; scene.environmentIntensity = 0.65;
+const key = new THREE.DirectionalLight(0xfff4e8, 1.6); key.position.set(-120, 260, 180); key.castShadow = true; key.shadow.mapSize.set(2048, 2048);
+Object.assign(key.shadow.camera, { left: -200, right: 200, top: 200, bottom: -200, near: 10, far: 1000 }); key.shadow.bias = -0.0003; key.shadow.normalBias = 0.1; scene.add(key);
+const floor = new THREE.Mesh(new THREE.CircleGeometry(600, 64), new THREE.ShadowMaterial({ opacity: 0.16 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+const cam = new THREE.PerspectiveCamera(22, 1, 1, 5000);
+const ctl = new OrbitControls(cam, renderer.domElement); ctl.enableDamping = true; ctl.minDistance = 60; ctl.maxDistance = 1200; ctl.maxPolarAngle = Math.PI * 0.495; ctl.autoRotateSpeed = 0.9;
+const group = new THREE.Group(); scene.add(group);
+
+const LED = { color: 0xE8784A, intensity: 2.0 };
+function build(sku, fin) {
+  const lit = document.getElementById('lit').checked;
+  const o = sku === 'pebble' ? G.buildPebble(PR, fin, lit ? { led: LED } : {}) : G.buildDevice(PR, sku, fin, { screenTexture: screen, screenOn: lit });
+  o.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  const g = new THREE.Group(); o.rotation.x = -0.14; g.add(o);  // stands upright, slight lean like the lineup render
+  if (document.getElementById('flip').checked) g.rotation.y = Math.PI;
+  g.updateMatrixWorld(true); const b = new THREE.Box3().setFromObject(g); g.position.y -= b.min.y; g.position.z -= (b.min.z + b.max.z) / 2;
+  return g;
+}
+function dims(sku) { const s = { ...PR.square, ...(sku === 'atlas' ? PR.atlas : {}) }; const p = sku === 'pebble' ? PR.pebble : s; return { w: p.plan_w, h: p.plan_h, t: sku === 'pebble' ? 13.56 : p.thickness_total, ip: p.ip, name: p.name, code: p.code }; }
+function rebuild(reframe) {
+  group.clear();
+  const list = state.sku === 'family' ? [['pebble', -78], ['square', 0], ['atlas', 84]] : [[state.sku, 0]];
+  for (const [sku, x] of list) { const d = build(sku, state.fin[sku]); d.position.x = x; group.add(d); }
+  if (reframe) { const fam = state.sku === 'family', k = Math.max(1, (fam ? 1.6 : 1.0) / cam.aspect); cam.position.set((fam ? 60 : 40) * k, (fam ? 120 : 70) * k, (fam ? 560 : 260) * k); ctl.target.set(0, cam.aspect < 1 ? 14 : 26, 0); }
+  renderChips(); renderInfo();
+}
+function renderChips() {
+  const el = document.getElementById('fin'); el.innerHTML = '';
+  const skus = state.sku === 'family' ? ['pebble', 'square', 'atlas'] : [state.sku];
+  for (const sku of skus) for (const f of FIN[sku]) {
+    const b = document.createElement('button'); b.className = 'chip'; b.setAttribute('aria-pressed', state.fin[sku] === f);
+    b.innerHTML = `<i style="background:${SWATCH[f]}"></i>${state.sku === 'family' ? sku[0].toUpperCase() + ' · ' : ''}${FINISHES[f]?.label || f}`;
+    b.onclick = () => { state.fin[sku] = f; rebuild(false); }; el.append(b);
+  }
+}
+function renderInfo() {
+  const el = document.getElementById('info');
+  if (state.sku === 'family') {
+    el.innerHTML = `<h2>The LORE family</h2><dl>${['pebble', 'square', 'atlas'].map((k) => { const d = dims(k); return `<dt>${d.code}</dt><dd>${d.name.replace('LORE ', '')} · ${d.w}×${d.h}×${d.t} mm · ${MB[k] ? Math.round(MB[k].total_g) + ' g est.' : ''}</dd>`; }).join('')}<dt>Price</dt><dd>$149 · $299 · $599 target</dd></dl>
+    <div class="links"><a href="id-spec.md">id-spec.md</a><a href="accessories.md">accessories.md</a><a href="renders/contact-sheet.png">contact sheet</a></div>`;
+    return;
+  }
+  const k = state.sku, d = dims(k), f = state.fin[k];
+  const glb = { pebble: 'lore-pebble-p1-bone', square: 'lore-square-s1-ink', atlas: 'lore-atlas-a1-titanium' }[k];
+  el.innerHTML = `<h2>${d.name} <span style="font:500 12px 'JetBrains Mono';color:#7c7a74">${d.code}</span></h2><dl>
+    <dt>Envelope</dt><dd>${d.w} × ${d.h} × ${d.t} mm${k === 'pebble' ? ' max (≤ 14 envelope)' : ''}</dd>
+    <dt>Mass</dt><dd>${MB[k] ? MB[k].total_g.toFixed(1) + ' g (estimate)' : '—'}</dd>
+    <dt>IP</dt><dd>${d.ip}</dd><dt>Finish</dt><dd>${FINISHES[f]?.label || f}</dd>
+    <dt>Charge</dt><dd>LORE Mount 4-pin pogo${k === 'pebble' ? '' : ' + USB-C PD'}</dd></dl>
+    <div class="links"><a href="drawings/${k}.svg">drawing (SVG)</a><a href="models/${glb}.glb" download>GLB</a><a href="models/${glb}.stl" download>STL</a></div>`;
+}
+document.querySelectorAll('#sku button').forEach((b) => b.onclick = () => { document.querySelectorAll('#sku button').forEach((x) => x.setAttribute('aria-pressed', x === b)); state.sku = b.dataset.k; rebuild(true); });
+for (const id of ['lit', 'flip']) document.getElementById(id).onchange = () => rebuild(false);
+function resize() { const w = innerWidth, h = innerHeight; renderer.setSize(w, h); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+addEventListener('resize', resize); resize(); rebuild(true);
+renderer.setAnimationLoop(() => { ctl.autoRotate = document.getElementById('spin').checked; ctl.update(); renderer.render(scene, cam); });
+window.__ready = true;
+</script></body></html>

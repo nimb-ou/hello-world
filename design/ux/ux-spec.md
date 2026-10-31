@@ -189,12 +189,12 @@ Mockups are in `device-screens/png/`; the contact sheet is `device-screens/conta
 | 07 | Dinner picks | 3 restaurants, open-now, walk minutes, book |
 | 08 | SOS countdown | Full red, 5-4-3-2-1, cancel hint |
 | 09 | SOS live | Contacts notified, sharing, satellite state (Atlas) |
-| 10 | Walk Me Home | Route progress, ETA shared, next check-in |
-| 11 | Battery & modes | %, time-left estimate, Normal / Saver / Ultra |
-| 12 | Nightstand | Docked clock + tomorrow |
-| 13 | City Pack download | Progress, size, Wi-Fi only |
-| 14 | Settings | Quiet, voice, story length, interests, rotate 180° |
-| 15 | Offline state | Home with an offline chip and capability list |
+| 10 | Walk Me Home | Next check-in timer, ETA shared with contacts, I'm OK / +10 min |
+| 11 | City Pack download | Progress, size, contents (maps, 86 places · 215 stories, voice + model), Wi-Fi |
+| 12 | Battery low power | %, time-left estimate, Saver / Ultra, safety reserve |
+| 13 | Settings: narrator persona | Isla / Marco / Nell, story length |
+| 14 | Offline mode | Home with the Fog offline chip and a capability line |
+| 15 | Nightstand | Docked clock + tomorrow |
 
 ## 9. Companion app (iOS/Android, 390 × 844 pt reference)
 
@@ -204,16 +204,16 @@ Screens are in `app-screens/png/`; the contact sheet is `app-screens/contact-she
 |---|---|
 | 01 | Welcome (brand moment) |
 | 02 | Pairing (device found, hold Talk to confirm) |
-| 03 | Interests profile (tap chips + depth slider) |
-| 04 | Safety contacts + Walk Me Home defaults |
-| 05 | City Pack store |
-| 06 | City Pack detail (Rome) |
-| 07 | Today / day recap (timeline of stories, distance, saved places) |
-| 08 | Story detail (transcript + sources + "listen again") |
-| 09 | Map (walked route, story pins, offline area outline) |
-| 10 | Dinner / booking flow |
-| 11 | Subscription (LORE Pass: Free / Explorer / Trip Pass) |
-| 12 | Device settings and battery |
+| 03 | Interests, depth slider and narrator persona |
+| 04 | City Pack store |
+| 05 | City Pack detail (Rome: 86 places, 215 stories, 1.2 GB, offline) |
+| 06 | Live walk map (stylised map, current story, left/right indicator) |
+| 07 | Today / day recap (stories, distance, saved places, timeline) |
+| 08 | Safety: trusted contacts + Walk Me Home rules |
+| 09 | Subscription (LORE Pass: Explorer / Trip Pass; Free noted) |
+| 10 | Device settings (battery modes, firmware, buttons) |
+| 11 | Story detail (transcript + sources + "listen again") |
+| 12 | Dinner / booking flow (with fee disclosure) |
 
 The onboarding target is **first story heard in under 4 min from box open** (§11).
 

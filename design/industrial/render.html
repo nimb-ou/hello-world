@@ -27,6 +27,8 @@ const q = new URLSearchParams(location.search);
 const shot = q.get('shot') || 'hero-square';
 const W = +q.get('w') || 2400, H = +q.get('h') || 1600, FR = +q.get('frames') || 24;
 const PR = await (await fetch('params.json')).json();
+const MB = await (await fetch('mass-budget.json')).json(); // from scripts/mass_budget.py
+const g_ = (sku) => `est. ${Math.round(MB[sku].total_g)} g`;
 await Promise.all(['500 40px Fraunces', '400 40px Fraunces', '500 20px Inter', '400 20px Inter', '500 20px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
 
 // ---- screen texture: real UX mockup if rendered, else a canvas fallback
@@ -34,8 +36,9 @@ async function screenTex(name = 'home') {
   const files = { home: '../ux/device-screens/png/01-home-compass.png', narr: '../ux/device-screens/png/02-now-narrating.png', clock: '../ux/device-screens/png/12-nightstand.png', nav: '../ux/device-screens/png/04-navigation.png' };
   try {
     const r = await fetch(files[name]); if (!r.ok) throw 0;
-    const img = await createImageBitmap(await r.blob());
-    const t = new THREE.Texture(img); t.colorSpace = THREE.SRGBColorSpace; t.needsUpdate = true; t.anisotropy = 8; return t;
+    // draw into a canvas: WebGL ignores flipY for ImageBitmap, which rendered the UI upside-down
+    const img = await createImageBitmap(await r.blob()); const cv = document.createElement('canvas'); cv.width = cv.height = 932; cv.getContext('2d').drawImage(img, 0, 0, 932, 932);
+    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
   } catch {
     const c = document.createElement('canvas'); c.width = c.height = 932; const g = c.getContext('2d'); g.scale(2, 2);
     g.fillStyle = '#000'; g.fillRect(0, 0, 466, 466);
@@ -71,16 +74,16 @@ const BONE = 0xE6E0D6, STONE = 0xD3CCC1, INK = 0x1B1D21, NIGHT = 0x16202B, SAND 
 S['hero-pebble'] = (st) => { st.scene.background.set(BONE); st.floor.material.color.set(BONE);
   const a = placeOnFloor(flat(G.buildPebble(PR, 'bone', { led: LED }), 0.35));
   st.scene.add(a); st.target.set(0, 5, 0); st.keyDir.set(-0.6, 1, 0.5).normalize();
-  cap('LORE Pebble · P1 · Bone · soft-touch PC-GF10 · 42 × 42 × 14 mm · est. 33 g');
+  cap(`LORE Pebble · P1 · Bone · soft-touch PC-GF10 · 42 × 42 × 14 mm · ${g_('pebble')}`);
   return persp(15, [0, 150, 175], [0, 2, 0]); };
 S['hero-square'] = (st) => { st.scene.background.set(STONE); st.floor.material.color.set(STONE);
   const a = placeOnFloor(flat(dev('square', 'sq-ink'), -0.42)); st.scene.add(a); st.target.set(0, 5, 0);
-  cap('LORE Square · S1 · Ink anodised 6013 aluminium · 54 × 54 × 12 mm · est. 57 g');
+  cap(`LORE Square · S1 · Ink anodised 6013 aluminium · 54 × 54 × 12 mm · ${g_('square')}`);
   return persp(15, [-30, 170, 200], [0, 3, 0]); };
 S['hero-atlas'] = (st) => { st.scene.background.set(0x2A2A2C); st.floor.material.color.set(0x2A2A2C); st.scene.environmentIntensity = 1.0;
   ov.classList.add('dark');
   const a = placeOnFloor(flat(dev('atlas', 'at-ti'), 0.5)); st.scene.add(a); st.target.set(0, 5, 0); st.key.intensity = 2.6;
-  cap('LORE Atlas · A1 · Bead-blasted Grade 5 titanium · sapphire · ZrN brass-tone crown · 54 × 54 × 13.5 mm · est. 85 g');
+  cap(`LORE Atlas · A1 · Bead-blasted Grade 5 titanium · sapphire · ZrN brass-tone crown · 54 × 54 × ${PR.atlas.thickness_total} mm · ${g_('atlas')}`);
   return persp(15, [20, 165, 205], [0, 3, 0]); };
 S['hero-square-upright'] = (st) => { st.scene.background.set(SAND); st.floor.material.color.set(SAND);
   const a = placeOnFloor(upright(dev('square', 'sq-sand'), -0.55, 0.12)); st.scene.add(a); st.target.set(0, 25, 0);
@@ -221,15 +224,18 @@ S['acc-lanyard'] = (st) => accShot(st, 0xD9D1C4, (sc) => { const l = G.buildLany
 S['acc-wrist-strap'] = (st) => accShot(st, 0xDDD6CA, (sc) => { const w = G.buildWristStrap(PR); w.rotation.x = -Math.PI / 2; const g = new THREE.Group(); g.add(w); placeOnFloor(g); sc.add(g); }, 'LORE Wrist Strap · leather loop with brass keeper · LORE Mount tab', [0, 260, 230], [0, 0, -30], [0, 0, -30]);
 S['acc-dock'] = (st) => accShot(st, 0xD3CCC1, (sc) => { const d = G.buildDock(PR); const s2 = dev('square', 'sq-ink'); s2.position.z = 10.4; d.userData.cradle.add(s2); d.rotation.y = -0.45; placeOnFloor(d); sc.add(d); }, 'LORE Dock · machined aluminium, 68° cradle, magnetic LORE Mount + pogo charge · nightstand mode', [0, 120, 300], [0, 26, 0], [0, 20, 0]);
 S['acc-rugged-case'] = (st) => accShot(st, 0xCFC8BC, (sc) => { const c = G.buildRuggedCase(PR); const s2 = dev('square', 'sq-ink'); c.add(s2); const a = placeOnFloor(flat(c, 0.5)); sc.add(a);
-  const c2 = G.buildRuggedCase(PR, { color: 0x1E2024 }); const b = placeOnFloor(upright(c2, -0.4, 0.15)); b.position.set(78, b.position.y, -30); sc.add(b); }, 'LORE Rugged Case · TPU 85A with PC back plate · 2 m drop corners · Olive / Ink', [20, 170, 260], [35, 5, -10], [35, 10, -10]);
+  const c2 = G.buildRuggedCase(PR, { color: 0x1E2024 }); const b = placeOnFloor(upright(c2, -0.4, 0.15)); b.position.set(78, b.position.y, -30); sc.add(b); }, 'LORE Rugged Case · TPU 85A with PC back plate · 2 m drop corners · Olive / Ink', [30, 230, 330], [38, 16, -12], [38, 12, -12]);
 S['acc-buds'] = (st) => accShot(st, 0xDDD6CA, (sc) => { const b = G.buildBuds(PR); b.rotation.x = -Math.PI / 2; const g = new THREE.Group(); g.add(b); g.rotation.y = 0.2; placeOnFloor(g); sc.add(g); }, 'LORE Buds · open-ear bone-conduction · Ti memory-alloy band · LE Audio (LC3) · brass accent', [0, 260, 260], [0, 0, -30], [0, 0, -30]);
 S['acc-power-puck'] = (st) => accShot(st, 0xD3CCC1, (sc) => { const p = G.buildPowerPuck(PR); const pb = G.buildPebble(PR, 'terracotta', { led: LED }); pb.position.z = 17.2; p.add(pb); const a = placeOnFloor(flat(p, 0.4)); sc.add(a); }, 'LORE Power Puck · 5,000 mAh / 19.3 Wh · USB-C PD 20 W in/out · LORE Mount pad charges any LORE', [0, 170, 220], [0, 8, 0], [0, 8, 0]);
-S['acc-family'] = (st) => { st.scene.background.set(0xDDD6CA); st.floor.material.color.set(0xDDD6CA);
+S['acc-kit-family'] = (st) => { st.scene.background.set(0xDDD6CA); st.floor.material.color.set(0xDDD6CA);
   const put = (o, x, z, yaw = 0) => { const a = placeOnFloor(flat(o, yaw)); a.position.x = x; a.position.z = z; st.scene.add(a); return a; };
-  put(G.buildDock(PR), -120, -40); put(G.buildPowerPuck(PR), -10, -50, 0.3); const c = G.buildRuggedCase(PR); put(c, 90, -45, -0.2);
-  put(G.buildClip(PR), -95, 55, 0.4); put(G.buildBuds(PR), 30, 50, 0.1); const w = G.buildWristStrap(PR); put(w, 140, 60, -0.3);
-  st.target.set(0, 0, 0); ttl('LORE Kit', 'Clip · Lanyard · Wrist strap · Dock · Rugged case · Buds · Power puck'); cap('Accessories share one interface: the LORE Mount (twist-lock + N52 magnet + 2-pin pogo)');
-  return persp(20, [0, 420, 470], [10, 0, 5]); };
+  put(G.buildLanyard(PR, { length: 300 }), -205, 185, -0.12);
+  put(G.buildDock(PR), -55, -80); put(G.buildPowerPuck(PR), 52, -84, 0.3); put(G.buildRuggedCase(PR), 150, -80, -0.2);
+  put(G.buildClip(PR), -85, 85, 0.4); put(G.buildBuds(PR), 45, 80, 0.1); put(G.buildWristStrap(PR), 185, 92, -0.3);
+  st.target.set(0, 0, 0); st.keyDir.set(-0.5, 1, 0.45).normalize();
+  ttl('LORE Kit', 'Lanyard · Dock · Power puck · Rugged case · Clip · Buds · Wrist strap');
+  cap('Flat-lay, true relative scale · every accessory shares one interface: the LORE Mount (twist-lock + N52 magnet + 4-pin pogo)');
+  return persp(26, [0, 620, 500], [0, 0, 30]); };
 import { M as MAT } from './lib/materials.js';
 function await_m() { return MAT; }
 

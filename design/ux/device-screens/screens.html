@@ -1,11 +1,19 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><title>LORE device screens</title>
+<!--
+  LORE Square / Atlas screen system. One file, four views:
+    ?s=<id>              one 466x466 screen (captured as #cap)
+    ?frame=1&s=<id>      that screen inside the drawn Ink Square device (transparent background, #cap)
+    (no params)          labelled contact sheet (#sheet)
+    ?view=mockup         on-device product shot, 4 key screens (#sheet)
+  Rendered by ux/scripts/render-device-screens.mjs
+-->
 <link rel="stylesheet" href="../../assets/fonts.css">
 <style>
-:root{--ink:#14161A;--bone:#F3EEE6;--terra:#C4623A;--brass:#B8935A;--olive:#5E6B4E;--fog:#9AA0A6;--night:#0D1B2A;--signal:#D2392B;--dim:#5d6166}
+:root{--ink:#14161A;--bone:#F3EEE6;--terra:#C4623A;--brass:#B8935A;--olive:#5E6B4E;--fog:#9AA0A6;--night:#0D1B2A;--signal:#D2392B;--verdigris:#3F7F74;--dim:#5d6166}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#000;font-family:Inter,sans-serif;color:var(--bone);-webkit-font-smoothing:antialiased}
-.scr{position:relative;width:466px;height:466px;background:#000;border-radius:92px;overflow:hidden}
+.scr{position:relative;width:466px;height:466px;background:#000;border-radius:92px;overflow:hidden;color:var(--bone)}
 .abs{position:absolute}
 .c{left:0;right:0;text-align:center}
 .mono{font-family:"JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
@@ -17,16 +25,43 @@ body{background:#000;font-family:Inter,sans-serif;color:var(--bone);-webkit-font
 .chip.t{border-color:var(--terra);color:var(--terra)}
 .row{display:flex;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid #222428}
 .row:last-child{border:none}
+.row.tight{padding:11px 0;gap:16px}
 .t1{font:500 22px Inter;color:var(--bone)}
 .t2{font:400 16px Inter;color:var(--fog);margin-top:3px}
 .btn{display:inline-block;padding:13px 26px;border-radius:99px;background:var(--bone);color:var(--ink);font:600 18px Inter}
 .btn.ghost{background:none;border:1.5px solid #3a3d42;color:var(--bone)}
+.btn.sm{padding:10px 22px;font-size:17px}
+
+/* ---------- drawn device: LORE Square S1, Ink anodise. 1 mm = 16.22 px so the 28.73 mm display is exactly 466 px ---------- */
+.dev{position:relative;width:876px;height:876px}
+.dev .body{position:absolute;left:0;top:0;width:876px;height:876px;border-radius:211px;
+  background:linear-gradient(140deg,#7b7d83 0%,#45474c 22%,#2b2c30 55%,#17181b 100%);
+  box-shadow:0 70px 110px -30px rgba(52,38,24,.42),0 26px 40px -10px rgba(52,38,24,.28),0 4px 8px rgba(52,38,24,.18)}
+.dev .face{position:absolute;inset:20px;border-radius:191px;
+  background:radial-gradient(120% 120% at 25% 15%,#46484d 0%,#36373b 40%,#2a2b2f 75%,#232427 100%);
+  box-shadow:0 0 14px 4px rgba(10,10,12,.35),inset 0 2px 1px rgba(255,255,255,.08)}
+.dev .grain{position:absolute;inset:20px;border-radius:191px;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.9'/></svg>")}
+.dev .chamfer{position:absolute;inset:51px;border-radius:160px;
+  background:linear-gradient(135deg,#d9d7d2 0%,#8e8f94 20%,#4a4b50 42%,#323337 60%,#a9a8a4 84%,#5f6065 100%)}
+.dev .glass{position:absolute;inset:57px;border-radius:154px;background:#060607;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05),inset 0 6px 18px rgba(0,0,0,.8)}
+.dev .als{position:absolute;left:432px;top:128px;width:12px;height:12px;border-radius:50%;background:#101012;box-shadow:inset 0 1px 1px rgba(255,255,255,.08)}
+.dev .disp{position:absolute;left:205px;top:205px}
+.dev .refl{position:absolute;inset:57px;border-radius:154px;pointer-events:none;
+  background:linear-gradient(152deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.035) 30%,rgba(255,255,255,0) 44%,rgba(255,255,255,0) 78%,rgba(255,255,255,.04) 100%)}
+.dev .crown{position:absolute;left:868px;top:243px;width:44px;height:98px;border-radius:4px 14px 14px 4px;
+  background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.18) 45%,rgba(0,0,0,.35)),repeating-linear-gradient(180deg,#6d6f74 0 2.4px,#26272a 2.4px 4.9px);
+  box-shadow:0 10px 18px -6px rgba(52,38,24,.4)}
+.dev .stem{position:absolute;left:862px;top:270px;width:12px;height:44px;background:linear-gradient(180deg,#5b5d62,#222326);border-radius:2px}
+.dev .talk{position:absolute;left:866px;top:479px;width:23px;height:178px;border-radius:3px 12px 12px 3px;
+  background:linear-gradient(90deg,#7c3618,#d27a50 45%,#b9582f 70%,#8a3d1e)}
 </style></head><body>
 <div id="root"></div>
 <script>
 const Q = new URLSearchParams(location.search);
 const arrow = (deg, col = 'var(--bone)', s = 30) => `<svg width="${s}" height="${s}" viewBox="0 0 30 30" style="transform:rotate(${deg}deg)"><path d="M15 3 L24 25 L15 20 L6 25Z" fill="${col}"/></svg>`;
-const status = (extra = '') => `<div class="status"><span><b>14:32</b></span><span>LTE ▂▄▆</span><span>82%</span>${extra}</div>`;
+const status = (extra = '', net = 'LTE ▂▄▆', batt = '82%') => `<div class="status"><span><b>14:32</b></span><span>${net}</span><span>${batt}</span>${extra}</div>`;
 function compassRing(r = 170, heading = 0, pois = []) {
   let s = `<svg class="abs" style="left:0;top:0" width="466" height="466" viewBox="0 0 466 466"><g transform="translate(233 233)">`;
   for (let d = 0; d < 360; d += 6) {
@@ -42,22 +77,25 @@ function compassRing(r = 170, heading = 0, pois = []) {
     const a = p.b * Math.PI / 180;
     s += `<circle cx="${Math.sin(a) * (r - 28)}" cy="${-Math.cos(a) * (r - 28)}" r="${p.big ? 7 : 4.5}" fill="${p.big ? '#C4623A' : '#9AA0A6'}"/>`;
   }
-  s += `<path d="M0 ${-r - 2} l-9 -15 h18z" fill="#F3EEE6" transform="translate(0 ${0})"/></g></svg>`;
+  s += `<path d="M0 ${-r - 2} l-9 -15 h18z" fill="#F3EEE6"/></g></svg>`;
   return s;
 }
+const radio = (on) => `<div style="flex:none;width:22px;height:22px;border-radius:50%;border:2px solid ${on ? 'var(--bone)' : '#3a3d42'};display:grid;place-items:center">${on ? '<div style="width:10px;height:10px;border-radius:50%;background:var(--bone)"></div>' : ''}</div>`;
+
 const S = {};
 S['01-home-compass'] = () => `${compassRing(178, 20, [{ b: -8, big: 1 }, { b: 64 }, { b: -70 }, { b: 140 }])}
   <div class="abs c cap" style="top:118px">Via dei Coronari</div>
   <div class="abs c serif" style="top:140px;font-size:104px;font-weight:300;letter-spacing:-.02em">14:32</div>
   <div class="abs c" style="top:282px;font:500 21px Inter">Pantheon <span style="color:var(--fog)">· 240 m ahead</span></div>
   <div class="abs c" style="top:318px"><span class="chip">☀ 19° · Rome</span></div>`;
+// fix (coordinator): LEFT label now sits inside the arc, clear of the Terracotta stroke
 S['02-now-narrating'] = () => `${status()}
   <div class="abs c cap" style="top:76px;color:var(--terra)">● Now narrating</div>
   <svg class="abs" style="left:73px;top:110px" width="320" height="120" viewBox="0 0 320 120">
     <path d="M30 110 A130 130 0 0 1 290 110" fill="none" stroke="#26282c" stroke-width="10" stroke-linecap="round"/>
     <path d="M30 110 A130 130 0 0 1 95 18" fill="none" stroke="#C4623A" stroke-width="10" stroke-linecap="round"/>
     <circle cx="160" cy="110" r="9" fill="#F3EEE6"/><text x="160" y="76" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#5d6166">AHEAD</text>
-    <text x="22" y="72" font-family="Inter" font-weight="600" font-size="22" fill="#C4623A">◀ LEFT</text></svg>
+    <text x="60" y="106" font-family="Inter" font-weight="600" font-size="19" fill="#C4623A">◀ LEFT</text></svg>
   <div class="abs" style="left:52px;right:52px;top:250px;text-align:center"><div class="serif" style="font-size:31px;line-height:1.12;font-weight:400">Fontana dei<br>Quattro Fiumi</div>
   <div class="t2" style="margin-top:8px">Look up: the river god shields his eyes</div></div>
   <div class="abs" style="left:96px;right:96px;top:372px"><div style="height:4px;background:#26282c;border-radius:2px"><div style="width:56%;height:4px;background:var(--bone);border-radius:2px"></div></div>
@@ -87,56 +125,115 @@ S['07-dinner'] = () => `${status()}
   ${[['Trattoria da Enzo*', '6 min · €16 · mostly Roman reviews', 1], ['Osteria Sant\'Ana*', '9 min · €14 · quiet courtyard'], ['Roscioli Salumeria*', '4 min · €18 · busy, book']].map(([a, b, f]) => `<div class="row"><div style="font:500 26px Fraunces;color:${f ? 'var(--terra)' : 'var(--fog)'};width:22px">${f ? '1' : '·'}</div><div style="flex:1"><div class="t1">${a}</div><div class="t2">${b}</div></div></div>`).join('')}</div>
   <div class="abs c" style="top:358px"><span class="btn">Book 20:15</span></div>
   <div class="abs c" style="top:416px;font:400 12px Inter;color:var(--dim)">*illustrative venues · LORE may earn a booking fee</div>`;
+// fix (coordinator): smaller ring, numeral centred in it, contacts + cancel hint moved below the ring
 S['08-sos-countdown'] = () => `<div class="abs" style="inset:0;background:var(--signal)"></div>
-  <div class="abs c mono" style="top:64px;font-size:17px;color:#fff;letter-spacing:.2em">SOS · calling for help</div>
-  <div class="abs c serif" style="top:96px;font-size:200px;font-weight:300;color:#fff;line-height:1">3</div>
-  <svg class="abs" style="left:73px;top:73px" width="320" height="320" viewBox="0 0 320 320"><circle cx="160" cy="160" r="150" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="6"/><circle cx="160" cy="160" r="150" fill="none" stroke="#fff" stroke-width="6" stroke-dasharray="942" stroke-dashoffset="377" transform="rotate(-90 160 160)" stroke-linecap="round"/></svg>
-  <div class="abs c" style="top:330px;font:600 20px Inter;color:#fff">112 · Sara + 1 contact</div>
-  <div class="abs c" style="top:362px;font:500 16px Inter;color:rgba(255,255,255,.85)">Press the crown to cancel</div>`;
+  <div class="abs c mono" style="top:50px;font-size:17px;color:#fff;letter-spacing:.2em">SOS · calling for help</div>
+  <svg class="abs" style="left:125px;top:88px" width="216" height="216" viewBox="0 0 216 216"><circle cx="108" cy="108" r="100" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="6"/><circle cx="108" cy="108" r="100" fill="none" stroke="#fff" stroke-width="6" stroke-dasharray="628.3" stroke-dashoffset="251" transform="rotate(-90 108 108)" stroke-linecap="round"/></svg>
+  <div class="abs serif" style="left:125px;top:88px;width:216px;height:216px;display:grid;place-items:center;font-size:136px;font-weight:300;color:#fff;line-height:1;padding-bottom:14px">3</div>
+  <div class="abs c" style="top:326px;font:600 20px Inter;color:#fff">112 · Sara + 1 contact</div>
+  <div class="abs c" style="top:360px;font:500 16px Inter;color:rgba(255,255,255,.85)">Press the crown to cancel</div>`;
 S['09-sos-live'] = () => `<div class="abs" style="left:0;right:0;top:0;height:120px;background:var(--signal)"></div>
   <div class="abs c mono" style="top:44px;font-size:16px;color:#fff;letter-spacing:.2em">SOS active · 00:48</div>
   <div class="abs c" style="top:74px;font:600 21px Inter;color:#fff">Help is on the way</div>
   <div class="abs" style="left:58px;right:58px;top:132px">
   ${[['✓', '112 called', 'Connected 0:41'], ['✓', 'Sara, Tom notified', 'Live location · every 30 s'], ['◎', 'Satellite standby', 'Atlas NTN · used if LTE drops']].map(([i, a, b], k) => `<div class="row"><div style="width:26px;font:600 20px Inter;color:${k < 2 ? 'var(--bone)' : 'var(--fog)'}">${i}</div><div><div class="t1">${a}</div><div class="t2">${b}</div></div></div>`).join('')}</div>
   <div class="abs c cap" style="top:396px">Hold SOS 2 s to end</div>`;
+// 10 · Walk Me Home: check-in timer (ux-spec §6.2). Brass = Walk Me Home; the ring drains toward the next check-in.
 S['10-walk-me-home'] = () => `${status('<span style="color:var(--brass)">♥</span>')}
-  <div class="abs c cap" style="top:74px;color:var(--brass)">Walk me home</div>
-  <svg class="abs" style="left:63px;top:104px" width="340" height="150" viewBox="0 0 340 150"><path d="M20 120 C80 120 90 40 160 50 S260 110 320 30" fill="none" stroke="#2a2c30" stroke-width="8" stroke-linecap="round"/><path d="M20 120 C80 120 90 40 160 50" fill="none" stroke="#B8935A" stroke-width="8" stroke-linecap="round"/><circle cx="160" cy="50" r="11" fill="#F3EEE6"/><circle cx="320" cy="30" r="7" fill="none" stroke="#F3EEE6" stroke-width="3"/><text x="300" y="62" font-family="JetBrains Mono" font-size="12" fill="#9AA0A6">HOTEL</text></svg>
-  <div class="abs c" style="top:268px"><span class="serif" style="font-size:64px;font-weight:300">8</span><span style="font:500 24px Inter;color:var(--fog)"> min</span></div>
-  <div class="abs c" style="top:346px;font:500 19px Inter">Sara can see you · ETA 23:56</div>
-  <div class="abs c cap" style="top:382px">Via Nazionale · lit route</div>`;
-S['11-battery'] = () => `${status()}
-  <div class="abs c" style="top:76px"><span class="serif" style="font-size:96px;font-weight:300">62</span><span style="font:500 28px Inter;color:var(--fog)">%</span></div>
-  <div class="abs c" style="top:190px;font:500 19px Inter;color:var(--fog)">About 1 day 6 h left at today's pace</div>
-  <div class="abs" style="left:56px;right:56px;top:236px">
-  ${[['Normal', 'Everything on', 1], ['Saver', 'AOD off · L1 GNSS · auto at 20 %'], ['Ultra', 'Nav + safety only · auto at 8 %']].map(([a, b, on]) => `<div class="row"><div style="width:22px;height:22px;border-radius:50%;border:2px solid ${on ? 'var(--terra)' : '#3a3d42'};display:grid;place-items:center">${on ? '<div style="width:10px;height:10px;border-radius:50%;background:var(--terra)"></div>' : ''}</div><div><div class="t1">${a}</div><div class="t2">${b}</div></div></div>`).join('')}</div>`;
-S['12-nightstand'] = () => `<div class="abs c serif" style="top:110px;font-size:120px;font-weight:300;color:#8a7f70">06:45</div>
+  <div class="abs c cap" style="top:68px;color:var(--brass)">Walk me home · Sara can see you</div>
+  <svg class="abs" style="left:131px;top:98px" width="204" height="204" viewBox="0 0 204 204">
+    <circle cx="102" cy="102" r="94" fill="none" stroke="#26282c" stroke-width="7"/>
+    <circle cx="102" cy="102" r="94" fill="none" stroke="#B8935A" stroke-width="7" stroke-linecap="round" stroke-dasharray="590.6" stroke-dashoffset="92" transform="rotate(-90 102 102)"/>
+  </svg>
+  <div class="abs c cap" style="top:150px;font-size:13px">Next check-in</div>
+  <div class="abs c serif" style="top:170px;font-size:62px;font-weight:300;line-height:1;letter-spacing:-.01em">12:40</div>
+  <div class="abs c" style="top:246px;font:500 14px Inter;color:var(--fog)">or press Talk</div>
+  <div class="abs c" style="top:318px;font:500 20px Inter">Hotel Artemide <span style="color:var(--fog)">· ETA 23:56</span></div>
+  <div class="abs c t2" style="top:348px">1.1 km · Via Nazionale, lit route</div>
+  <div class="abs c" style="top:384px;display:flex;justify-content:center;gap:12px"><span class="btn sm">I'm OK</span><span class="btn sm ghost">+10 min</span></div>`;
+// 11 · City Pack download (Wi-Fi). Numbers match app screen A-05.
+S['11-city-pack-download'] = () => `${status('', 'WI-FI ◠', '91%')}
+  <div class="abs c cap" style="top:70px">City pack · downloading</div>
+  <div class="abs c serif" style="top:92px;font-size:56px;font-weight:400;line-height:1.05">Rome</div>
+  <div class="abs" style="left:70px;right:70px;top:176px"><div style="height:6px;background:#26282c;border-radius:3px"><div style="width:64%;height:6px;background:var(--terra);border-radius:3px"></div></div>
+  <div style="display:flex;justify-content:space-between;margin-top:10px" class="cap"><span>780 MB of 1.2 GB</span><span style="color:var(--bone)">64 %</span></div></div>
+  <div class="abs" style="left:64px;right:64px;top:226px">
+  ${[['✓', 'Maps + offline routing', '410 MB', 1], ['✓', '86 places · 215 stories', '240 MB', 1], ['◌', 'Voice + AI model', 'about 3 min', 0]].map(([i, a, b, d]) => `<div class="row tight"><div style="width:20px;font:600 19px Inter;color:var(--bone)">${d ? i : '<span style="display:block;width:15px;height:15px;border-radius:50%;border:2px dashed #9AA0A6"></span>'}</div><div style="flex:1;font:500 19px Inter;color:${d ? 'var(--bone)' : 'var(--fog)'}">${a}</div><div class="cap" style="font-size:13px">${b}</div></div>`).join('')}</div>
+  <div class="abs c cap" style="top:396px;font-size:13px">Then it all works with no signal</div>`;
+// 12 · Battery low: Saver on automatically at 20 %, safety reserve visible (ux-spec §12)
+S['12-battery-low-power'] = () => `${status('', 'LTE ▂▄▆', '<span style="color:var(--brass)">14%</span>')}
+  <div class="abs c cap" style="top:70px;color:var(--brass)">Low battery · Saver on</div>
+  <div class="abs c" style="top:88px"><span class="serif" style="font-size:104px;font-weight:300;letter-spacing:-.02em">14</span><span style="font:500 28px Inter;color:var(--fog)">%</span></div>
+  <svg class="abs" style="left:143px;top:222px" width="180" height="30" viewBox="0 0 180 30"><rect x="1.5" y="1.5" width="166" height="27" rx="8" fill="none" stroke="#3a3d42" stroke-width="2"/><rect x="171" y="9" width="7" height="12" rx="2.5" fill="#3a3d42"/><rect x="6" y="6" width="23" height="18" rx="4.5" fill="#B8935A"/></svg>
+  <div class="abs c" style="top:268px;font:500 19px Inter">About 6 h left · last 3 % kept for SOS</div>
+  <div class="abs" style="left:64px;right:64px;top:300px">
+  ${[['Saver', 'Glance-only screen · fewer stories', 1], ['Ultra', 'Clock, nav + safety · auto at 8 %', 0]].map(([a, b, on]) => `<div class="row tight">${radio(on)}<div><div class="t1" style="font-size:20px">${a}</div><div class="t2" style="font-size:15px">${b}</div></div></div>`).join('')}</div>`;
+// 13 · Settings → Narrator persona. Crown scrolls, Talk plays a 5 s sample.
+S['13-settings-narrator-persona'] = () => `${status()}
+  <div class="abs c cap" style="top:70px">Settings · Narrator</div>
+  <div class="abs" style="left:54px;right:54px;top:92px">
+  ${[['I', 'Isla · The Historian', 'Warm, precise, dates and makers', 1], ['M', 'Marco · The Local', 'Wry, food-first, neighbourhood talk', 0], ['N', 'Nell · The Storyteller', 'Slower, theatrical, the gory bits', 0]].map(([l, a, b, on]) => `<div class="row tight"><div style="flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:italic 400 22px Fraunces;${on ? 'background:var(--terra);color:var(--ink)' : 'border:1.5px solid #3a3d42;color:var(--fog)'}">${l}</div><div style="flex:1"><div class="t1" style="font-size:20px">${a}</div><div class="t2" style="font-size:15px">${b}</div></div>${on ? '<div style="font:600 18px Inter;color:var(--bone)">✓</div>' : ''}</div>`).join('')}
+  <div class="row tight" style="justify-content:space-between"><div class="t1" style="font-size:19px">Story length</div><div class="t2" style="margin:0;font-size:16px">Short · 20–40 s</div></div></div>
+  <div class="abs c cap" style="top:398px;font-size:13px">Press Talk for a sample</div>`;
+S['14-offline-mode'] = () => `${compassRing(178, 300, [{ b: 30, big: 1 }, { b: -50 }, { b: 120 }])}
+  <div class="abs c" style="top:118px"><span class="chip" style="font-size:12px;padding:6px 12px">◌ Offline · Rome pack</span></div>
+  <div class="abs c serif" style="top:150px;font-size:92px;font-weight:300">21:07</div>
+  <div class="abs c" style="top:272px;font:500 19px Inter">Stories, maps, routes: all here</div>
+  <div class="abs c t2" style="top:300px;font-size:15px">Live hours when back online</div>`;
+S['15-nightstand'] = () => `<div class="abs c serif" style="top:110px;font-size:120px;font-weight:300;color:#8a7f70">06:45</div>
   <div class="abs c cap" style="top:262px;color:#6d6458">Alarm · tomorrow</div>
   <div class="abs c" style="top:300px;font:400 19px Fraunces;color:#8a7f70">First walk: Trastevere at 09:30 · 21°, clear</div>
   <div class="abs c" style="top:350px"><span style="display:inline-block;width:110px;height:5px;border-radius:3px;background:#2a2c30"><span style="display:block;width:78%;height:5px;border-radius:3px;background:#5E6B4E"></span></span></div>`;
-S['13-city-pack'] = () => `${status()}
-  <div class="abs c cap" style="top:74px">City pack</div>
-  <div class="abs c serif" style="top:98px;font-size:56px;font-weight:400">Rome</div>
-  <svg class="abs" style="left:153px;top:176px" width="160" height="160" viewBox="0 0 160 160"><circle cx="80" cy="80" r="70" fill="none" stroke="#26282c" stroke-width="8"/><circle cx="80" cy="80" r="70" fill="none" stroke="#C4623A" stroke-width="8" stroke-dasharray="440" stroke-dashoffset="158" transform="rotate(-90 80 80)" stroke-linecap="round"/><text x="80" y="90" text-anchor="middle" font-family="Fraunces" font-weight="300" font-size="38" fill="#F3EEE6">64%</text></svg>
-  <div class="abs c" style="top:352px;font:500 18px Inter">780 MB of 1.2 GB · Wi-Fi</div>
-  <div class="abs c cap" style="top:384px">2,140 stories · maps · on-device model</div>`;
-S['14-settings'] = () => `${status()}
-  <div class="abs c cap" style="top:72px">Settings</div>
-  <div class="abs" style="left:56px;right:56px;top:96px">
-  ${[['Story frequency', 'Every 4 min'], ['Story length', 'Short · 20–40 s'], ['Voice', 'Isla · English'], ['Quiet hours', '22:30 – 08:00'], ['Rotate 180°', 'Left-hand']].map(([a, b], i) => `<div class="row" style="justify-content:space-between"><div class="t1" style="font-size:20px">${a}</div><div class="t2" style="margin:0;color:${i === 0 ? 'var(--terra)' : 'var(--fog)'}">${b}</div></div>`).join('')}</div>`;
-S['15-offline'] = () => `${compassRing(178, 300, [{ b: 30, big: 1 }, { b: -50 }, { b: 120 }])}
-  <div class="abs c" style="top:106px"><span class="chip">◌ Offline · Rome pack</span></div>
-  <div class="abs c serif" style="top:146px;font-size:96px;font-weight:300">21:07</div>
-  <div class="abs c" style="top:276px;font:500 20px Inter">Stories, maps, routes · all here</div>
-  <div class="abs c t2" style="top:306px">Live hours & booking when back online</div>`;
+
+// Extra screens used only inside the drawn device (embedded by the companion-app mockups), not part of the numbered set
+const X = {};
+X['x-pair'] = () => `<svg class="abs" style="left:83px;top:58px" width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="138" fill="none" stroke="#26282c" stroke-width="7"/><circle cx="150" cy="150" r="138" fill="none" stroke="#C4623A" stroke-width="7" stroke-linecap="round" stroke-dasharray="867" stroke-dashoffset="520" transform="rotate(-90 150 150)"/></svg>
+  <svg class="abs" style="left:191px;top:118px" width="84" height="84" viewBox="0 0 100 100"><path fill="#C4623A" fill-rule="evenodd" d="M0 50A50 50 0 1 1 100 50A50 50 0 1 1 0 50ZM55.44 51.81A13 13 0 1 0 44.56 51.81L38.5 77L61.5 77Z"/></svg>
+  <div class="abs c cap" style="top:226px;font-size:14px">Pairing · S1-4F2A</div>
+  <div class="abs c" style="top:262px;font:500 21px Inter">Hold Talk</div>
+  <div class="abs c" style="top:378px;font:400 19px Fraunces;color:var(--fog)">Hi. I'm Lore.</div>`;
+const CAP = {
+  '01-home-compass': 'Time, street, heading ring, next story', '02-now-narrating': 'Story on your left, progress, sources',
+  '03-nearby': 'Double-press Talk: clockwise sweep', '04-navigation': 'Brass turn arrow, distance to turn',
+  '05-listening': 'Hold Talk: waveform + live transcript', '06-answer': 'Short answer from the pack, cited',
+  '07-dinner': 'Three picks, open now, book', '08-sos-countdown': '5 s to cancel, then 112 + contacts',
+  '09-sos-live': 'Who was told, live location, satellite', '10-walk-me-home': 'Check-in timer, ETA shared with Sara',
+  '11-city-pack-download': 'Rome: 86 places, 215 stories, 1.2 GB', '12-battery-low-power': 'Saver on, SOS reserve kept',
+  '13-settings-narrator-persona': 'Choose who tells the stories', '14-offline-mode': 'No signal: the Rome pack still does it all',
+  '15-nightstand': 'Docked clock + tomorrow\'s first walk',
+};
 const ids = Object.keys(S);
-const one = Q.get('s');
+const label = (k) => k.replace('-', ' · ').replace(/-/g, ' ');
+const device = (k) => `<div class="dev"><div class="stem"></div><div class="crown"></div><div class="talk"></div><div class="body"></div><div class="face"></div><div class="grain"></div><div class="chamfer"></div><div class="glass"></div><div class="als"></div><div class="disp"><div class="scr">${(S[k] || X[k])()}</div></div><div class="refl"></div></div>`;
+const one = Q.get('s'), view = Q.get('view');
 const root = document.getElementById('root');
-if (one) { root.innerHTML = `<div class="scr" id="cap">${S[one]()}</div>`; }
-else { // contact sheet
-  document.body.style.background = '#E9E4DB'; document.body.style.padding = '64px';
-  root.innerHTML = `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px;color:#14161A"><div style="font:400 44px Fraunces">LORE Square / Atlas · screen system</div><div style="font:500 15px 'JetBrains Mono';letter-spacing:.12em;color:#6b6f75">1.6" AMOLED · 466 × 466 · EVT-0</div></div>
-  <div style="display:grid;grid-template-columns:repeat(5,466px);gap:40px 36px">${ids.map((k) => `<div><div class="scr" style="box-shadow:0 0 0 10px #1b1d21, 0 0 0 11px #3b3c40">${S[k]()}</div><div style="margin-top:22px;font:500 15px 'JetBrains Mono';letter-spacing:.1em;color:#4a4d52;text-transform:uppercase">${k.replace('-', ' · ').replace(/-/g, ' ')}</div></div>`).join('')}</div>`;
+if (one && Q.get('frame')) {
+  document.body.style.background = 'transparent';
+  root.innerHTML = `<div id="cap" style="width:1000px;height:1000px;display:grid;place-items:center"><div style="transform:translateX(18px)">${device(one)}</div></div>`;
+} else if (one) {
+  root.innerHTML = `<div class="scr" id="cap">${S[one]()}</div>`;
+} else if (view === 'mockup') {
+  const pick = [['01-home-compass', 'Idle', 'The time, the street, and what is worth a look.'], ['02-now-narrating', 'Narrating', 'Which side to look, and where the facts come from.'], ['03-nearby', 'What\'s around me', 'Double-press Talk for a clockwise sweep.'], ['10-walk-me-home', 'Walk me home', 'A quiet check-in timer that Sara can see.']];
+  const sc = 0.42;
+  root.innerHTML = `<div id="sheet" style="position:relative;width:1760px;height:1000px;overflow:hidden;background:radial-gradient(90% 80% at 50% 42%,#F8F5EF 0%,#F3EEE6 45%,#E7E0D3 100%);color:var(--ink)">
+    <img src="../../assets/brand/lore-wordmark-ink.svg" style="position:absolute;left:96px;top:84px;height:30px">
+    <div style="position:absolute;right:96px;top:90px;font:500 13px 'JetBrains Mono';letter-spacing:.16em;color:#5C5F66;text-transform:uppercase">LORE Square S1 · Ink · screen system</div>
+    <div style="position:absolute;left:0;right:0;top:160px;text-align:center;font:300 60px/1.05 Fraunces;letter-spacing:-.01em">Eyes up. <i style="font-weight:300">The screen only confirms.</i></div>
+    <div style="position:absolute;left:0;right:0;top:246px;text-align:center;font:400 18px Inter;color:#5C5F66">Four moments from a day in Rome, on the 1.6" AMOLED. Pure black, one accent at a time.</div>
+    <div style="position:absolute;left:0;right:0;top:330px;display:flex;justify-content:center;gap:52px">
+      ${pick.map(([k, t, d], i) => `<div style="width:372px">
+        <div style="width:372px;height:372px;position:relative"><div style="position:absolute;left:0;top:0;transform:scale(${sc});transform-origin:0 0">${device(k)}</div></div>
+        <div style="margin-top:44px;font:500 12px 'JetBrains Mono';letter-spacing:.16em;color:#A84E2A;text-transform:uppercase">${k.slice(0, 2)} · ${t}</div>
+        <div style="margin-top:8px;font:400 16px/1.45 Inter;color:#5C5F66;max-width:300px">${d}</div></div>`).join('')}
+    </div>
+    <div style="position:absolute;left:96px;right:96px;bottom:64px;display:flex;justify-content:space-between;font:500 12px 'JetBrains Mono';letter-spacing:.14em;color:#848280;text-transform:uppercase"><span>54 × 54 × 12 mm · bead-blast Ink anodise · diamond-cut chamfer</span><span>466 × 466 · 412 ppi · EVT-0 · illustrative render</span></div>
+  </div>`;
+} else { // labelled contact sheet
+  document.body.style.background = '#E9E4DB';
+  root.innerHTML = `<div id="sheet" style="padding:64px;background:#E9E4DB;width:max-content"><div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:44px;color:#14161A"><div style="font:400 44px Fraunces">LORE Square / Atlas · screen system</div><div style="font:500 15px 'JetBrains Mono';letter-spacing:.12em;color:#6b6f75">1.6" AMOLED · 466 × 466 · ${ids.length} SCREENS · EVT-0</div></div>
+  <div style="display:grid;grid-template-columns:repeat(5,466px);gap:44px 36px">${ids.map((k) => `<div><div class="scr" style="box-shadow:0 0 0 10px #1b1d21, 0 0 0 11px #3b3c40">${S[k]()}</div><div style="margin-top:24px;font:500 15px 'JetBrains Mono';letter-spacing:.1em;color:#4a4d52;text-transform:uppercase">${label(k)}</div><div style="margin-top:6px;font:400 16px Inter;color:#6b6f75">${CAP[k] || ''}</div></div>`).join('')}</div></div>`;
 }
-window.__ids = ids; window.__done = true;
+window.__ids = ids;
+const imgs = [...document.images].map((im) => im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; }));
+Promise.all([document.fonts.ready, ...imgs]).then(() => { window.__done = true; });
 </script></body></html>
